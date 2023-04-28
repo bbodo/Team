@@ -11,6 +11,6 @@
 	Hello world!  
 </h1>
 
-<P> 지금 시간은 ${serverTime} 입니다 </P>
+<P> test </P>
 </body>
 </html>
