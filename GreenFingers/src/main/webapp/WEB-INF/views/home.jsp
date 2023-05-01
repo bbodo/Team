@@ -9,8 +9,12 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/include/header.jsp" %>
+<<<<<<< Updated upstream
 	<h2>Home</h2>
 	<a href="/board"></a>
+=======
+	<h2>Home test만 한번 해보고 다시 지울게옇ㅎㅎ</h2>
+>>>>>>> Stashed changes
 	<%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>
