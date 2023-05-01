@@ -17,7 +17,7 @@
        <a href="/Board/List?menu_id=${ menu.menu_id }">${ menu.menu_name }</a> 
      </td>
    </c:forEach> --%>
-   <td class="right"><a href="">로그인</a></td>
+   <td class="right"><a href="login">로그인</a></td>
  </tr>
 
 </table>

@@ -28,4 +28,9 @@ public class HomeController {
 	public String view() {
 		return "/board/view";
 	}
+	
+	@RequestMapping("login")
+	public String login() {
+		return "/user/login";
+	}
 }
