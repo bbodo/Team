@@ -6,11 +6,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>게시판 양식</title>
+
+<style type="text/css">
+
+	#title {
+		width: 100%;
+		text-align: center;
+		height: 100px;
+		background-color: orange;
+	}
+	#title p {
+		 line-height: 100px;
+	}
+	#leftNav {
+		float: left;
+		height: 800px;
+		background-color: navy;
+		width: 20%;
+		padding: 10px;
+	}
+	#main {
+		width: 76%;
+		height: 800px;
+		float: left;
+		padding: 10px;
+		background-color: gray;
+	}	
+
+</style>
+
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
-     <div id="Title">
-     	식물 연합
+     <div id="title">
+     	<p>식물 연합</p>
      </div>
      <div id="leftNav">
      	포이즌<br />
