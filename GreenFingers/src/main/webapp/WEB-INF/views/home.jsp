@@ -9,14 +9,11 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/include/header.jsp" %>
-<<<<<<< Updated upstream
 	<h2>Home</h2>
 	<a href="/board">board 가는길</a> <br />
 	<a href="/write">write 가는길</a> <br />
 	<a href="">길 찾아가세요</a>
-	
 	<h2>Home</h2>
->>>>>>> Stashed changes
 	<%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>
