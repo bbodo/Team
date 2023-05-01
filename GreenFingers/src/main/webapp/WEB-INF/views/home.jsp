@@ -13,6 +13,7 @@
 	<a href="/board">board 가는길</a> <br />
 	<a href="/write">write 가는길</a> <br />
 	<a href="/view">view 가는길</a> <br />
+	<a href="/update">update 가는길</a> <br />
 	<a href="">길 찾아가세요</a>
 	<h2>Home</h2>
 	<%@include file="/WEB-INF/include/footer.jsp" %>

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>식물연합 게시글 상세보기</title>
+<title>게시판 수정</title>
 
 <style type="text/css">
 
@@ -50,8 +50,15 @@
 	.left {
 		text-align: left;
 	}
+	.center {
+		text-align: center;
+	}
+	input[type=text] {
+		width: 100%;
+	}
 	textarea {
-		width: 650px;
+		width: 100%;
+		height: 400px;
 	}
 
 </style>
@@ -72,63 +79,24 @@
      </div>
      <div id="main">
 		<table id="cont">
-			<caption class="left">게시글 열람</caption>
+			<caption class="left">게시글 수정</caption>
 			<tr>
 				<th>제목</th>
-				<td>땡겨올 제목</td>
+				<td><input type="text" name="title" value="달라 떙겨오기"/></td>
 			</tr>
 			<tr>
-				<th>작성자</th>
-				<td>땡겨올 작성자 이름</td>
-				<th>작성일</th>
-				<td>땡겨올 작성일</td>
-				<th>조회수</th>
-				<td>땡겨올 조회수</td>
-			</tr>
-				<tr><td colspan="6"><hr /></td></tr>
-			<tr>
-				<th>내용</th>
-				<td>이건 내용입니다~</td>
+				<th>글 내용</th>
+				<td><textarea name="content">달라 떙겨오기</textarea></td>
 			</tr>
 			<tr>
 				<th>파일 첨부</th>
-				<td><input type="file" name="file" /></td>
+				<td><input type="file" name="file" />파일 떙겨오기</td>
 			</tr>
 		</table>
-		<!-- 나중에 if 문 -->
-		<div class="right">
-		<a href="">수정</a>
-		<a href="">삭제</a> <br />
+		<div class="center">
+			<input type="button" value="수정" />
+			<input type="button" value="삭제" />
 		</div>
-	
-		<br />
-		
-		<div id="writeComment">
-			<table>
-				<tr>
-					<th>달러 아이디 넣을곳</th>
-					<td><textarea></textarea></td>
-					<td><a href="">등록</a></td>
-				</tr>
-			</table>
-		</div>
-		<div id="readComment">
-			<table>
-				<tr>
-					<th>달러 아이디 넣을곳</th>
-					<td>댓글 내용 불러올곳</td>
-				</tr>
-				<!-- 답글/수정/삭제 이 칸만 조금만 작게 -->
-				<tr>
-					<td>답글</td>
-					<!-- 나중에 if 문 -->
-					<td><a href="">수정</a></td>
-					<td><a href="">삭제</a></td>
-				</tr>
-			</table>
-		</div>
-		
-     <%@include file="/WEB-INF/include/paging.jsp" %>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

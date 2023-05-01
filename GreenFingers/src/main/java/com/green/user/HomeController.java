@@ -33,4 +33,9 @@ public class HomeController {
 	public String login() {
 		return "/user/login";
 	}
+	
+	@RequestMapping("/update")
+	public String update() {
+		return "/board/update";
+	}
 }
