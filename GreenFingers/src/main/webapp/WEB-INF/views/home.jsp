@@ -12,6 +12,7 @@
 <<<<<<< Updated upstream
 	<h2>Home</h2>
 	<a href="/board"></a>
+	<a href="/board2"></a>
 =======
 	<h2>Home</h2>
 >>>>>>> Stashed changes
