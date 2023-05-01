@@ -35,7 +35,17 @@
 		float: left;
 		padding: 10px;
 		background-color: gray;
-	}	
+		text-align: center;
+	}
+	#list {
+		background-color: #fff;
+	}
+	#list th {
+		background-color: #666;
+	}
+	.right {
+		text-align: right;
+	}
 
 </style>
 
@@ -54,7 +64,25 @@
      	포이즌<br />
      </div>
      <div id="main">
-		여기 게시판     
+		<table id="list">
+			<caption>게시판 제목</caption>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성일</th>
+				<th>작성자</th>
+				<th>조회수</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>ㅋㅋ 독초키워서 다죽일꺼임</td>
+				<td>2023-05-01</td>
+				<td>독초애호가</td>
+				<td>123</td>
+			</tr>
+		</table>
+		<input type="button" class="right" value="새글 작성" />
+	    <%@include file="/WEB-INF/include/paging.jsp" %>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

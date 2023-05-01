@@ -5,19 +5,21 @@
 
 <!-- 메뉴목록 -->
 
-<table  id="header">
+<table  id="footer">
  
  <tr>
    
-	<td><a href="/">버튼1</a></td>
-	<td><a href="/">버튼1</a></td>
-	<td><a href="/">버튼1</a></td>
+	<td><a href="/">1</a></td>
+	<td><a href="/">2</a></td>
+	<td><a href="/">3</a></td>
+	<td><a href="/">4</a></td>
+	<td><a href="/">5</a></td>
    <%-- <c:forEach  var="menu"  items="${ menuList }">   
      <td>
        <a href="/Board/List?menu_id=${ menu.menu_id }">${ menu.menu_name }</a> 
      </td>
    </c:forEach> --%>
-   <td class="right"><a href="">로그인</a></td>
+   
  </tr>
 
 </table>
