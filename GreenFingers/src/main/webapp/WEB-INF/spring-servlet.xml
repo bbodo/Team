@@ -30,9 +30,9 @@
     class="org.apache.commons.dbcp2.BasicDataSource"
     destroy-method="close">
        <property name="driverClassName"  value="oracle.jdbc.OracleDriver" />
-       <property name="url"              value="jdbc:oracle:thin:@localhost:1521:xe" />
-       <property name="username"         value="hr" />
-       <property name="password"         value="1234" />    
+       <property name="url"              value="jdbc:oracle:thin:@team_medium?TNS_ADMIN=D:/Wallet/Wallet_team" />
+       <property name="username"         value="admin" />
+       <property name="password"         value="Teamproject1" />    
     </bean>
     
     <!-- mybatis 와 스프링 연결을 위한 SqlSessionFactoryBean 객체 사용
@@ -61,11 +61,11 @@
     </bean>
     
     <!-- MultipartResolver 설정 : 파일업로드 처리 -->
-    <!-- 최대 업로드 크기설정 100000000 : 100M -->
+    <!-- 최대 업로드 크기설정 104857600 : 100M -->
     <bean id    ="multipartResolver"
           class ="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-          <property name="maxUploadSize" value="100000000" />   
-          <property name="maxInMemorySize" value="100000000" /> 
+          <property name="maxUploadSize" value="104857600" />   
+          <property name="maxInMemorySize" value="104857600" /> 
     </bean>
     
      <!-- Interceptor 설정 추가  -->
