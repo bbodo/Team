@@ -11,7 +11,7 @@
    
 	<td><a href="/">버튼1</a></td>
 	<td><a href="/">버튼1</a></td>
-	<td><a href="/">버튼1</a></td>
+	<td><a href="/">버튼1333333333333333333333</a></td>
    <%-- <c:forEach  var="menu"  items="${ menuList }">   
      <td>
        <a href="/Board/List?menu_id=${ menu.menu_id }">${ menu.menu_name }</a> 
