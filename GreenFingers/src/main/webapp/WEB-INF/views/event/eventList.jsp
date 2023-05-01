@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%@include file="/WEB-INF/include/comHead.jsp" %>
 <title>당첨자 리스트</title>
 
 <style type="text/css">
@@ -68,16 +69,16 @@
 				<th colspan="2"><a href="/winnerList">당첨자 발표</a></th>
 			</tr>
 			<tr>
-				<td colspan="4">a태그로 이미지 넣을것</td>
+				<td colspan="4"><a href="/eventView">a태그로 이미지 넣을것</a></td>
 			</tr>
 			<tr>
-				<td colspan="4">a태그로 이미지 넣을것</td>
+				<td colspan="4"><a href="/eventView">a태그로 이미지 넣을것</a></td>
 			</tr>
 			<tr>
-				<td colspan="4">a태그로 이미지 넣을것</td>
+				<td colspan="4"><a href="/eventView">a태그로 이미지 넣을것</a></td>
 			</tr>
 			<tr>
-				<td colspan="4">a태그로 이미지 넣을것</td>
+				<td colspan="4"><a href="/eventView">a태그로 이미지 넣을것</a></td>
 			</tr>
 		</table>
 	    <%@include file="/WEB-INF/include/paging.jsp" %>

@@ -44,6 +44,10 @@ public class HomeController {
 	public String eventList() {
 		return "/event/eventList";
 	}
+	@RequestMapping("/eventView")
+	public String eventView() {
+		return "/event/eventView";
+	}
 	@RequestMapping("/userwrite")
 	public String userwrite() {
 		return "/user/userwrite";
@@ -52,6 +56,10 @@ public class HomeController {
 	@RequestMapping("/winnerList")
 	public String winnerList() {
 		return "/event/winnerList";
+	}
+	@RequestMapping("/winnerView")
+	public String winnerView() {
+		return "/event/winnerView";
 	}
 	
 	// 수정중
