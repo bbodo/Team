@@ -37,6 +37,20 @@
 		background-color: gray;
 		text-align: center;
 	}
+	    .plantlist { width: 735px; 
+                margin-left: auto;
+                margin-right: auto;
+    }
+    
+    .plant  { 
+             width: 225px;
+             text-align : center;
+             display: block;
+             text-decoration: none;
+             float: left; 
+             margin-left: 10px;
+             margin-right: 10px;
+     }
 	#list {
 		background-color: #fff;
 	}
