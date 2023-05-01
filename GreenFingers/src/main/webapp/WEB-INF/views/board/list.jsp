@@ -9,6 +9,10 @@
 
 <style type="text/css">
 
+	* {
+		box-sizing: border-box;
+	}
+
 	#title {
 		width: 100%;
 		text-align: center;
@@ -18,7 +22,7 @@
 	#title p {
 		 line-height: 100px;
 	}
-	#leftNav {
+	#aside {
 		float: left;
 		height: 800px;
 		background-color: navy;
@@ -26,7 +30,7 @@
 		padding: 10px;
 	}
 	#main {
-		width: 76%;
+		width: 80%;
 		height: 800px;
 		float: left;
 		padding: 10px;
@@ -41,7 +45,7 @@
      <div id="title">
      	<p>식물 연합</p>
      </div>
-     <div id="leftNav">
+     <div id="aside">
      	포이즌<br />
      	포이즌<br />
      	포이즌<br />
