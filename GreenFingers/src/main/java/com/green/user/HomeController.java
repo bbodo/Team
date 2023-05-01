@@ -12,10 +12,16 @@ public class HomeController {
 	}
 	
 	// --------------------------- 양식을 위한 주소
+	// --------------------------- 그림 다그리고 컨트롤러 다시 만들예정
 	
 	@RequestMapping("/board")
 	public String board() {
 		return "/board/list";
+	}
+	
+	@RequestMapping("/write")
+	public String write() {
+		return "/board/write";
 	}
 
 }

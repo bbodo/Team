@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -35,17 +35,27 @@
 		float: left;
 		padding: 10px;
 		background-color: gray;
-		text-align: center;
 	}
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
+		width: 100%;
 	}
 	#cont th {
 		background-color: #666;
 	}
 	.right {
 		text-align: right;
+	}
+	.left {
+		text-align: left;
+	}
+	input[type=text] {
+		width: 100%;
+	}
+	textarea {
+		width: 100%;
+		height: 400px;
 	}
 
 </style>
@@ -66,24 +76,21 @@
      </div>
      <div id="main">
 		<table id="cont">
-			<caption>게시판 제목</caption>
+			<caption class="left">게시글 등록</caption>
 			<tr>
-				<th>번호</th>
 				<th>제목</th>
-				<th>작성일</th>
-				<th>작성자</th>
-				<th>조회수</th>
+				<td><input type="text" name="title"/></td>
 			</tr>
 			<tr>
-				<td>1</td>
-				<td>ㅋㅋ 독초키워서 다죽일꺼임</td>
-				<td>2023-05-01</td>
-				<td>독초애호가</td>
-				<td>123</td>
+				<th>글 내용</th>
+				<td><textarea name="content"></textarea></td>
+			</tr>
+			<tr>
+				<th>파일 첨부</th>
+				<td><input type="file" name="file" /></td>
 			</tr>
 		</table>
-		<input type="button" class="right" value="새글 작성" />
-	    <%@include file="/WEB-INF/include/paging.jsp" %>
+		<input type="button" value="등록" />
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
