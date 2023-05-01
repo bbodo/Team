@@ -34,7 +34,7 @@ public class HomeController {
 		return "/user/login";
 	}
 	
-<<<<<<< Updated upstream
+
 	@RequestMapping("/update")
 	public String update() {
 		return "/board/update";
@@ -43,10 +43,9 @@ public class HomeController {
 	@RequestMapping("/eventList")
 	public String eventList() {
 		return "/event/list";
-=======
+	}
 	@RequestMapping("/userwrite")
 	public String userwrite() {
 		return "/user/userwrite";
->>>>>>> Stashed changes
 	}
 }
