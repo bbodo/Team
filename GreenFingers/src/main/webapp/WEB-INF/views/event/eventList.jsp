@@ -33,6 +33,8 @@
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
+		width: 100%;
+		padding: 50px;
 	}
 	#cont th {
 		background-color: #666;
@@ -51,6 +53,8 @@
      </div>
      <div id="main">
 		<table id="cont">
+			
+			<!-- 크기 조정 할것 -->
 			<tr>
 				<td><h2>이벤트</h2></td>
 				<td>
@@ -60,11 +64,20 @@
 				<td><a href="">돋보기 버튼</a></td>
 			</tr>
 			<tr>
-				<th><a href="">이벤트</a></th>
-				<th><a href="">당첨자 발표</a></th>
+				<th colspan="2"><a href="">이벤트</a></th>
+				<th colspan="2"><a href="">당첨자 발표</a></th>
 			</tr>
 			<tr>
-				<td>a태그로 이미지 넣을것</td>
+				<td colspan="4">a태그로 이미지 넣을것</td>
+			</tr>
+			<tr>
+				<td colspan="4">a태그로 이미지 넣을것</td>
+			</tr>
+			<tr>
+				<td colspan="4">a태그로 이미지 넣을것</td>
+			</tr>
+			<tr>
+				<td colspan="4">a태그로 이미지 넣을것</td>
 			</tr>
 		</table>
 	    <%@include file="/WEB-INF/include/paging.jsp" %>
