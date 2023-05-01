@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>당첨자 리스트</title>
+<title>이벤트 리스트</title>
 
 <style type="text/css">
 
@@ -49,7 +49,7 @@
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
      <div id="title">
-     	<p>당첨자</p>
+     	<p>이벤트</p>
      </div>
      <div id="main">
 		<table id="cont">
@@ -64,20 +64,21 @@
 				<td><a href="">돋보기 버튼</a></td>
 			</tr>
 			<tr>
-				<th colspan="2"><a href="">이벤트</a></th>
-				<th colspan="2"><a href="/winnerList">당첨자 발표</a></th>
+				<th colspan="2"><a href="">이벤트 허허</a></th>
+				<th colspan="2"><a href="">당첨자 발표</a></th>
 			</tr>
 			<tr>
-				<td colspan="4">a태그로 이미지 넣을것</td>
+				<td colspan="4"><hr /></td>
 			</tr>
 			<tr>
-				<td colspan="4">a태그로 이미지 넣을것</td>
+				<th colspan="2">제목</th>
+				<th>작성일</th>
+				<th>조회수</th>
 			</tr>
 			<tr>
-				<td colspan="4">a태그로 이미지 넣을것</td>
-			</tr>
-			<tr>
-				<td colspan="4">a태그로 이미지 넣을것</td>
+				<td colspan="2">땡겨올 제목</td>
+				<td>땡겨올 작성일</td>
+				<td>땡겨올 조회수</td>
 			</tr>
 		</table>
 	    <%@include file="/WEB-INF/include/paging.jsp" %>

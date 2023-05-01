@@ -42,11 +42,16 @@ public class HomeController {
 	
 	@RequestMapping("/eventList")
 	public String eventList() {
-		return "/event/list";
+		return "/event/eventList";
 	}
 	@RequestMapping("/userwrite")
 	public String userwrite() {
 		return "/user/userwrite";
+	}
+	
+	@RequestMapping("/winnerList")
+	public String winnerList() {
+		return "/event/winnerList";
 	}
 	
 	// 수정중
