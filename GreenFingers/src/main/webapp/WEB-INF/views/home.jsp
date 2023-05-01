@@ -10,6 +10,7 @@
 <body>
 	<%@include file="/WEB-INF/include/header.jsp" %>
 	<h2>Home</h2>
+	<a href="/board"></a>
 	<%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>

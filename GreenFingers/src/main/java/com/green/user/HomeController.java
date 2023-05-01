@@ -10,5 +10,12 @@ public class HomeController {
 	public String home() {
 		return "home";
 	}
+	
+	// --------------------------- 양식을 위한 주소
+	
+	@RequestMapping("/board")
+	public String board() {
+		return "/board/list";
+	}
 
 }
