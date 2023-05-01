@@ -38,4 +38,9 @@ public class HomeController {
 	public String update() {
 		return "/board/update";
 	}
+	
+	@RequestMapping("/eventList")
+	public String eventList() {
+		return "/event/list";
+	}
 }

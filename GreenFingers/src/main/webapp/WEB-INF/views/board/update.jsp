@@ -84,7 +84,7 @@
 				<th>제목</th>
 				<td><input type="text" name="title" value="달라 떙겨오기"/></td>
 			</tr>
-			<tr>
+			<tr>   
 				<th>글 내용</th>
 				<td><textarea name="content">달라 떙겨오기</textarea></td>
 			</tr>
