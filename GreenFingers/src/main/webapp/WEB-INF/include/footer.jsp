@@ -5,7 +5,7 @@
 
 <!-- 메뉴목록 -->
 
-<table  id="header">
+<table  id="footer">
  
  <tr>
    
