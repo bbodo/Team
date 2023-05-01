@@ -16,6 +16,16 @@
    table {margin  : auto; }  
    h2 {text-align : center}
    
+   #title {
+		width: 100%;
+		text-align: center;
+		height: 100px;
+		background-color: orange;
+	}
+#title p {
+		 line-height: 100px;
+	}
+   
   #id {
   width:300px;
   height:50px;
@@ -57,6 +67,9 @@
 
 </head>
 <body>
+     <div id="title">
+     	<p>반려식물 회원가입</p>
+     </div>
   <div id="main">
   <h2>회원 가입</h2>
   <form action="/User/Write" method="POST" >
