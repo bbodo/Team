@@ -81,7 +81,7 @@
 	   <a href="">
 	     <img src="/img/그린마켓3.png">
 	     <span class="tag">나눔</span>
-	     <p>유니플로라 데려가세요</p>
+	     <p>유니플로라 데려가세요</p> 
 	   </a>
 	 </section>
 	
