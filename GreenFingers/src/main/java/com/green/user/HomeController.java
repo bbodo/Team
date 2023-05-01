@@ -48,4 +48,10 @@ public class HomeController {
 	public String userwrite() {
 		return "/user/userwrite";
 	}
+	
+	// 수정중
+    @RequestMapping("/market")
+    public String market() {
+        return "/market/list";
+    }
 }
