@@ -30,16 +30,16 @@
 	   <ul id="menu">
 	      <li><a href="/board">식물연합</a>
 	         <ul>
-	            <li><a href="">포이즌</a></li>
-	            <li><a href="">이파리</a></li>
-	            <li><a href="">플라워</a></li>
-	            <li><a href="">우드</a></li>
-	            <li><a href="">열매</a></li>
-	            <li><a href="">허브</a></li>
-	            <li><a href="">사막</a></li>
-	            <li><a href="">습지</a></li>
-	            <li><a href="">채소</a></li>
-	            <li><a href="">불법단체</a></li>
+	            <li><a href="/board">포이즌</a></li>
+	            <li><a href="/board">이파리</a></li>
+	            <li><a href="/board">플라워</a></li>
+	            <li><a href="/board">우드</a></li>
+	            <li><a href="/board">열매</a></li>
+	            <li><a href="/board">허브</a></li>
+	            <li><a href="/board">사막</a></li>
+	            <li><a href="/board">습지</a></li>
+	            <li><a href="/board">채소</a></li>
+	            <li><a href="/board">불법단체</a></li>
 	         </ul>
 	      </li>
 	      
@@ -54,9 +54,9 @@
 	      
 	      <li><a href="#">그린마켓</a>
 	         <ul>
-	            <li><a href="">입양</a></li>
-	            <li><a href="">분양</a></li>
-	            <li><a href="">소모품</a></li>
+	            <li><a href="/market">입양</a></li>
+	            <li><a href="/market">분양</a></li>
+	            <li><a href="/market">소모품</a></li>
 	         </ul>
 	      </li>
 	      

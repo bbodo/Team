@@ -98,7 +98,7 @@
 		</table>
 		<!-- 나중에 if 문 -->
 		<div class="right">
-		<a href="">수정</a>
+		<a href="/update">수정</a>
 		<a href="">삭제</a> <br />
 		</div>
 	

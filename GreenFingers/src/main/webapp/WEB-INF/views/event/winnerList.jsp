@@ -54,30 +54,35 @@
      </div>
      <div id="main">
 		<table id="cont">
-			
-			<!-- 크기 조정 할것 -->
 			<tr>
-				<td><h2>이벤트</h2></td>
-				<td>
-					총 X개
+				<td colspan="2" style="width: 50%">
+					<div style="float: left;">
+			     		<h2>이벤트</h2>
+			     	</div>
 				</td>
-				<td><input type="text" placeholder="검색"/></td>
-				<td><a href="">돋보기 버튼</a></td>
+				<td style="width: 50%">
+					<div style="float: right;">
+			     		총 X개 &nbsp;&nbsp;
+			     		<input type="text" placeholder="검색"/> &nbsp;&nbsp;
+		     		<a href="">돋보기버튼</a>
+     				</div>
+				</td>
 			</tr>
 			<tr>
 				<th colspan="2"><a href="/eventList">이벤트</a></th>
 				<th colspan="2"><a href="">당첨자 발표</a></th>
 			</tr>
 			<tr>
-				<td colspan="4"><hr /></td>
+				<td colspan="4"><br /><hr /><br /></td>
 			</tr>
+			<!-- 여기 제목만 늘리고 싶은데 늘리면 진짜 커짐;; -->
 			<tr>
-				<th colspan="2">제목</th>
+				<th>제목</th>
 				<th>작성일</th>
 				<th>조회수</th>
 			</tr>
 			<tr>
-				<td colspan="2"><a href="/winnerView">땡겨올 제목</a></td>
+				<td><a href="/winnerView">땡겨올 제목</a></td>
 				<td>땡겨올 작성일</td>
 				<td>땡겨올 조회수</td>
 			</tr>

@@ -41,6 +41,7 @@
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
+		width: 90%;
 	}
 	#cont th {
 		background-color: #666;
@@ -67,7 +68,7 @@
      </div>
      <div id="main">
 		<table id="cont">
-			<caption>게시판 제목</caption>
+			<caption><h2>게시판 제목</h2></caption>
 			<tr>
 				<th>번호</th>
 				<th>제목</th>
@@ -77,13 +78,15 @@
 			</tr>
 			<tr>
 				<td>1</td>
-				<td>ㅋㅋ 독초키워서 다죽일꺼임</td>
+				<td><a href="/view">ㅋㅋㅋ 독초 키워서 다 죽일꺼임</a></td>
 				<td>2023-05-01</td>
 				<td>독초애호가</td>
 				<td>123</td>
 			</tr>
 		</table>
-		<input type="button" class="right" value="새글 작성" />
+		<div class="right">
+			<input type="button" value="새글 작성" />
+		</div>
 	    <%@include file="/WEB-INF/include/paging.jsp" %>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>

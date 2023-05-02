@@ -54,15 +54,19 @@
      </div>
      <div id="main">
 		<table id="cont">
-			
-			<!-- 크기 조정 할것 -->
 			<tr>
-				<td><h2>이벤트</h2></td>
-				<td>
-					총 X개
+				<td colspan="3" style="width: 50%">
+					<div style="float: left;">
+			     		<h2>이벤트</h2>
+			     	</div>
 				</td>
-				<td><input type="text" placeholder="검색"/></td>
-				<td><a href="">돋보기 버튼</a></td>
+				<td style="width: 50%">
+					<div style="float: right;">
+			     		총 X개 &nbsp;&nbsp;
+			     		<input type="text" placeholder="검색"/> &nbsp;&nbsp;
+		     		<a href="">돋보기버튼</a>
+     				</div>
+				</td>
 			</tr>
 			<tr>
 				<th colspan="2"><a href="">이벤트</a></th>
