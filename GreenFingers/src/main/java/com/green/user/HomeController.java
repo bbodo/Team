@@ -89,6 +89,16 @@ public class HomeController {
 		return "/mypage/myPageUpdate";
 	}
 	
+	// ---------admin---------
+	@RequestMapping("/adminMemberManagement")
+	public String adminMemberManagement() {
+		return "/admin/adminMemberManagement";
+	}
+	@RequestMapping("/adminMemberUpdate")
+	public String adminMemberUpdate() {
+		return "/admin/adminMemberUpdate";
+	}
+	
 	
 	
 	// 수정중
