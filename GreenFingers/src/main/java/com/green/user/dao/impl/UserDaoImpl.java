@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.green.user.dao.UserDao;
+import com.green.user.vo.UserVo;
 
 @Repository("userDao")
 public class UserDaoImpl implements UserDao {
@@ -20,6 +21,14 @@ public class UserDaoImpl implements UserDao {
 		map.put("grade", "씨앗");
 		sqlSession.insert("User.UserWrite", map);
 		
+	}
+
+	@Override
+	public UserVo getLogin(HashMap<String, Object> map) {
+		
+		UserVo userVo = sqlSession.selectOne("User.GetLogin", map);
+		
+		return userVo;
 	}
 
 }

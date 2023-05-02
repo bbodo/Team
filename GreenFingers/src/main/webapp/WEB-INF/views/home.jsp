@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +61,14 @@
 	</div>
 	
 	<!-- header	 -->
-	<%@include file="/WEB-INF/include/header.jsp" %>
+	<c:choose>
+		<c:when test="${ sessionScope.login eq null }">
+			<%@include file="/WEB-INF/include/header.jsp" %>
+		</c:when>
+		<c:otherwise>
+			<%@include file="/WEB-INF/include/header2.jsp" %>
+		</c:otherwise>
+	</c:choose>
 	
 	<!-- Swiper -->
   	<div class="swiper mySwiper">

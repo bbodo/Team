@@ -47,6 +47,28 @@
 		
    
    </insert>
+   
+   <!-- 로그인 처리 -->
+ 	<select id="GetLogin"
+ 			resultType = "com.green.user.vo.UserVo" >
+ 	
+ 		SELECT
+ 			USERID,
+			PASSWD,
+			USERNAME,
+			EMAIL,
+			TO_CHAR( JOINDATE, 'YYYY-MM-DD HH24:MI:SS' ) AS JOINDATE,
+			GRADE,
+			ADDR
+ 		FROM
+ 			MEMBER
+ 		WHERE
+ 			USERID = #{ userid }
+ 		AND
+ 			PASSWD = #{ passwd }
+ 	
+ 	</select>
+ 	
 <!--    
    <delete id="UserDelete">
    

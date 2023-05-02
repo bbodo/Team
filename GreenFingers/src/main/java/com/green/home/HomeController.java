@@ -1,10 +1,22 @@
 package com.green.home;
 
+import java.util.HashMap;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.green.user.service.UserService;
+import com.green.user.vo.UserVo;
 
 @Controller 
 public class HomeController {
+	
+	@Autowired
+	UserService userService;
 	
 	@RequestMapping("/")
 	public String home() {
@@ -35,12 +47,45 @@ public class HomeController {
 	
 	
 	// ---------user---------
-	@RequestMapping("login")
+	@RequestMapping("/login")
 	public String login() {
 		return "/user/login";
 	}
-
-
+	
+	@RequestMapping("/loginprocess")
+	public String loginprocess(
+			HttpSession session,
+			@RequestParam HashMap<String, Object> map
+			) {
+		String returnURL = "";
+		
+		if(session.getAttribute("login") != null) {
+			// 기존 login 정보가 존재한다면 
+			session.removeAttribute("login");
+		}
+		
+		// 로그인 성공하면
+		UserVo vo = userService.getLogin(map);
+		if ( vo != null) {
+			session.setAttribute("login", vo);
+			returnURL = "redirect:/";
+		} else {
+			returnURL = "redirect:/login";
+		}
+		
+		return returnURL;
+	}
+	
+	// 로그아웃
+	@RequestMapping("/logout")
+	public String logout(
+			HttpSession session) {
+		
+		session.invalidate();
+		
+		return "redirect:/login";
+	}
+	
 	@RequestMapping("/userwrite")
 	public String userwrite() {
 		return "/user/userwrite";

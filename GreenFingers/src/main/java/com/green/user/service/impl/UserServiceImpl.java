@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.green.user.dao.UserDao;
 import com.green.user.service.UserService;
+import com.green.user.vo.UserVo;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -19,6 +20,14 @@ public class UserServiceImpl implements UserService {
 
 		userDao.userWrite(map);
 		
+	}
+
+	@Override
+	public UserVo getLogin(HashMap<String, Object> map) {
+		
+		UserVo userVo = userDao.getLogin(map); 
+		
+		return userVo;
 	}
 
 }
