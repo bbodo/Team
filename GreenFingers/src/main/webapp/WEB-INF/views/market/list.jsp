@@ -24,33 +24,35 @@
 	}
 	#aside {
 		float: left;
-		height: 800px;
+		height: 1000px;
 		background-color: navy;
 		width: 20%;
 		padding: 10px;
 	}
 	#main {
 		width: 80%;
-		height: 800px;
+		height: 1000px;
 		float: left;
 		padding: 10px;
 		background-color: gray;
 		text-align: center;
 	}
-	    .plantlist { width: 735px; 
-                margin-left: auto;
-                margin-right: auto;
+	#givelist { 
+	            display: flex;
+	            gap : 0.3px;
+	            text-decoration : none;
+	            margin-top: 20px;
     }
-    
     .plant  { 
-             width: 225px;
-             text-align : center;
-             display: block;
-             text-decoration: none;
-             float: left; 
-             margin-left: 10px;
-             margin-right: 10px;
-     }
+             margin: 0 0 15px 0;
+    }
+	#sell_list { 
+	            display: flex;
+	            gap : 0.3px;
+	            text-decoration : none;
+	            margin-top: 20px;
+    }
+     
 	#list {
 		background-color: #fff;
 	}
@@ -81,29 +83,78 @@
      	소모품<br />
      </div>
      <div id="main">
-	 <section>
-	   <a href="">
-	     <img src="/img/그린마켓1.png">
+     
+     <p>그린핑거는 판매 혹은 구매 회원 간의 상품 거래 정보<br>
+     및 거래에 관여하지 않으며 어떠한 의무와 책임도 부담하지 않습니다</p>
+     
+     <div id="givelist">
+      <figure>
+      <a href="">
+     <div class="plant">
+	     <img src="/img/그린마켓1.png" >
+	  </div>
+	  </a>
 	     <span class="tag">나눔</span>
 	     <p>루브라 나눔합니다</p>
-	   </a>
-	   <a href="">
-	     <img src="/img/그린마켓2.png">
+	  </figure>
+      <figure>
+      <a href="">
+     <div class="plant">
+	     <img src="/img/그린마켓2.png" >
+	  </div>
+	  </a>
 	     <span class="tag">나눔</span>
 	     <p>제라늄 데려가실 분</p>
-	   </a>
-	   <a href="">
+	  </figure>
+      <figure>
+      <a href="">
+     <div class="plant">
 	     <img src="/img/그린마켓3.png">
+	  </div>
+	  </a>
 	     <span class="tag">나눔</span>
 	     <p>유니플로라 데려가세요</p> 
-	   </a>
-	 </section>
+	  </figure>
+	</div>
+	
+     
+     <div id="sell_list">
+      <figure>
+      <a href="">
+     <div class="plant">
+	     <img src="/img/판매1.png" >
+	  </div>
+	  </a>
+	     <span class="tag">판매</span>
+	     <p>찔레 장미 사실 분</p>
+	     <p>30000원</p>
+	  </figure>
+      <figure>
+      <a href="">
+     <div class="plant">
+	     <img src="/img/판매2.png" >
+	  </div>
+	  </a>
+	     <span class="tag">판매</span>
+	     <p>공조팝나무</p>
+	     <p>40000원</p>
+	  </figure>
+      <figure>
+      <a href="">
+     <div class="plant">
+	     <img src="/img/판매3.png">  
+	  </div>
+	  </a>
+	     <span class="tag">판매</span>
+	     <p>미니구골목서입니다</p>   
+	     <p>10000원</p>  
+	  </figure>
+	</div> 
 	
 	
-	
-     </div>
 		<input type="button" class="right" value="새글 작성" />
 	    <%@include file="/WEB-INF/include/paging.jsp" %>
+     </div>
      
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
