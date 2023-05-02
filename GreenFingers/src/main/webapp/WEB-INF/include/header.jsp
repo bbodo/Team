@@ -46,7 +46,7 @@
 	      <li><a href="#">커뮤니티</a>
 	         <ul>
 	            <li><a href="">꿀팁</a></li>
-	            <li><a href="">QA</a></li>
+	            <li><a href="qalist">Q&A</a></li>
 	            <li><a href="">자유</a></li>
 	            <li><a href="">초록별</a></li>
 	         </ul>
