@@ -13,24 +13,14 @@
 
   <!-- Demo styles -->
   <style>
-    html,
-    body {
+    html, body {
       position: relative;
       height: 100%;
     }
 
-    body {
-      background: #eee;
-      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-      font-size: 14px;
-      color: #000;
-      margin: 0;
-      padding: 0;
-    }
-
     .swiper {
       width: 100%;
-      height: 500px;
+      height: 100%;
     }
 
     .swiper-slide {
@@ -45,8 +35,8 @@
     .swiper-slide img {
       display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: 600px;
+      object-fit: fill;
     }
 
     .swiper {
@@ -75,15 +65,10 @@
 	<!-- Swiper -->
   	<div class="swiper mySwiper">
     	<div class="swiper-wrapper">
-      	  <div class="swiper-slide">Slide 1</div>
-	      <div class="swiper-slide">Slide 2</div>
-	      <div class="swiper-slide">Slide 3</div>
-	      <div class="swiper-slide">Slide 4</div>
-	      <div class="swiper-slide">Slide 5</div>
-	      <div class="swiper-slide">Slide 6</div>
-	      <div class="swiper-slide">Slide 7</div>
-	      <div class="swiper-slide">Slide 8</div>
-	      <div class="swiper-slide">Slide 9</div>
+      	  <div class="swiper-slide"><a href=""><img src="/img/home/homeBanner6.jpg" alt="banner"/></a></div>
+      	  <div class="swiper-slide"><a href=""><img src="/img/home/homeBanner2.jpg" alt="banner"/></a></div>
+      	  <div class="swiper-slide"><a href=""><img src="/img/home/homeBanner5.jpg" alt="banner"/></a></div>
+      	  <div class="swiper-slide"><a href=""><img src="/img/home/homeBanner4.jpg" alt="banner"/></a></div>
     	</div>
     	<div class="swiper-button-next"></div>
     	<div class="swiper-button-prev"></div>

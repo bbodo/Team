@@ -7,7 +7,7 @@
 
 <header>
    <div id="headerInWrap">
-	   <div id="logo">logo</div>
+	   <div id="logo"><a href="/">logo</a></div>
 	<%-- 	<ul>
 	      <c:forEach var="item" items=${}>
 	         <li><a href="#">${}</a>
@@ -28,7 +28,7 @@
 	   </ul> --%>
 	    
 	   <ul id="menu">
-	      <li><a href="#">식물연합</a>
+	      <li><a href="/board">식물연합</a>
 	         <ul>
 	            <li><a href="">포이즌</a></li>
 	            <li><a href="">이파리</a></li>
@@ -60,7 +60,7 @@
 	         </ul>
 	      </li>
 	      
-	      <li><a href="#">이벤트</a>
+	      <li><a href="/eventList">이벤트</a>
 	         <ul>
 	            <li><a href="">이벤트</a></li>
 	         </ul>
