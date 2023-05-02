@@ -148,29 +148,29 @@ public class HomeController {
 	
 	// ---------admin---------
 
-	@RequestMapping("/adminMemberManagement")
-	public String adminMemberManagement() {
-		return "/admin/adminMemberManagement";
+	@RequestMapping("/memberManagement")
+	public String memberManagement() {
+		return "/admin/memberManagement";
 	}
-	@RequestMapping("/adminMemberUpdate")
-	public String adminMemberUpdate() {
-		return "/admin/adminMemberUpdate";
+	@RequestMapping("/memberUpdate")
+	public String memberUpdate() {
+		return "/admin/memberUpdate";
 	}
-	@RequestMapping("/adminUpperMenuManagement")
-	public String adminUpperMenuManagement() {
-		return "/admin/adminUpperMenuManagement";
+	@RequestMapping("/menuManagement")
+	public String menuManagement() {
+		return "/admin/menuManagement";
 	}
-	@RequestMapping("/adminUpperMenuWrite")
-	public String adminUpperMenuWrite() {
-		return "/admin/adminUpperMenuWrite";
+	@RequestMapping("/menuWrite")
+	public String menuWrite() {
+		return "/admin/menuWrite";
 	}
-	@RequestMapping("/adminLowerMenuManagement")
-	public String adminLowerMenuManagement() {
-		return "/admin/adminLowerMenuManagement";
+	@RequestMapping("/subMenuManagement")
+	public String subMenuManagement() {
+		return "/admin/subMenuManagement";
 	}
-	@RequestMapping("/adminLowerMenuWrite")
-	public String adminLowerMenuWrite() {
-		return "/admin/adminLowerMenuWrite";
+	@RequestMapping("/subMenuWrite")
+	public String subMenuWrite() {
+		return "/admin/subMenuWrite";
 	}
 	
 	
