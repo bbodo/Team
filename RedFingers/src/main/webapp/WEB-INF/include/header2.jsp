@@ -8,26 +8,16 @@
 <header>
    <div id="headerInWrap">
 	   <div id="logo"><a href="/">logo</a></div>
-	<%-- 	<ul>
-	      <c:forEach var="item" items=${}>
-	         <li><a href="#">${}</a>
-	            <ul>
-	               <li><a href="">포이즌</a></li>
-	               <li><a href="">이파리</a></li>
-	               <li><a href="">플라워</a></li>
-	               <li><a href="">우드</a></li>
-	               <li><a href="">열매</a></li>
-	               <li><a href="">허브</a></li>
-	               <li><a href="">사막</a></li>
-	               <li><a href="">습지</a></li>
-	               <li><a href="">채소</a></li>
-	               <li><a href="">불법단체</a></li>
-	            </ul>
-	         </li>
+		<ul>
+	      <c:forEach var="menu" items="${ menuList }">
+	     
+	               <li><a href="">${ menu.menu_name }</a></li>
+	       
+	        
 	      </c:forEach>
-	   </ul> --%>
+	   </ul> 
 	    
-	   <ul id="menu">
+	  <%--  <ul id="menu">
 	      <li><a href="/board">식물연합</a>
 	         <ul>
 	            <li><a href="/board">포이즌</a></li>
@@ -74,16 +64,16 @@
 	   </ul>
 	   
 	   <nav>
-	      <%-- <c:if test="${  != null }">
+	      <c:if test="${  != null }">
 	         <div><a href="/">로그아웃</a></div>
 	         <div><a href="">마이페이지</a></div>
 	      </c:if>
 	      
 	      <c:if test="${  == null }">
-	      </c:if> --%>
+	      </c:if>
 	      <div style="display: inline-block;"><a href="/myPageCheck">마이페이지</a></div> 
 	      <div style="display: inline-block;"><a href="/logout">로그아웃</a></div>
-	   </nav>
+	   </nav> --%>
    </div>
 </header>
 

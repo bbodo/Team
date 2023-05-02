@@ -1,6 +1,7 @@
 package com.green.home;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -8,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.green.menus.service.MenuService;
+import com.green.menus.vo.MenuVo;
 import com.green.user.service.UserService;
 import com.green.user.vo.UserVo;
 
@@ -18,9 +22,18 @@ public class HomeController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	private MenuService menuService;
+	
 	@RequestMapping("/")
-	public String home() {
-		return "home";
+	public ModelAndView home() {
+		List<MenuVo> menuList = menuService.getMenuList();
+		System.out.println(menuList);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("home");
+		mv.addObject("menuList", menuList);
+		
+		return mv;
 	}
 	
 	// --------------------------- 양식을 위한 주소
