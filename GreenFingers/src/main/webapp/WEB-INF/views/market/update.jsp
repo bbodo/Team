@@ -32,6 +32,7 @@
 	}
 	#aside a {
 	    text-decoration : none;
+	    color: #fff;
 	}
 	#main {
 		width: 80%;
@@ -43,7 +44,7 @@
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
-		width: 100%;
+		width: 80%;
 	}
 	#cont th {
 		background-color: #666;
@@ -77,9 +78,8 @@
      	<p>그린 마켓</p>  
      </div>
      <div id="aside">
-     	<a href="">나눔 원해요</a><br />
-     	<a href="">판매 원해요</a><br />
-     	<a href="">구매 원해요</a><br />
+     	<a href="">나눔합니다</a><br />
+     	<a href="">입양원해요</a><br />
      	<a href="">포인트 스토어</a><br />
      </div>
      <div id="main">
@@ -87,21 +87,6 @@
 			<caption class="left">게시글 수정</caption>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title"/></td>
-			</tr>
-			<tr>
-				<th>종류</th>
-				<td>
-				<select name="kind">
-				 <option value="">종류 선택</option>
-				 <option value="나눔">나눔</option>
-				 <option value="판매">판매</option>
-				 <option value="구매">구매</option>
-				</select>
-				</td>
-			</tr>
-			<tr>
-				<th>가격</th>
 				<td><input type="text" name="title"/></td>
 			</tr>
 			<tr>

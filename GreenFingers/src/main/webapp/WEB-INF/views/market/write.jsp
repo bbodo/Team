@@ -32,6 +32,7 @@
 	}
 	#aside a {
 	    text-decoration : none;
+	    color: #fff;
 	}
 	#main {
 		width: 80%;
@@ -43,7 +44,7 @@
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
-		width: 100%;
+		width: 80%;
 	}
 	#cont th {
 		background-color: #666;
@@ -51,7 +52,8 @@
 	.right {
 		text-align: right;
 	}
-	.left {
+	h2 {
+	    font-weight: 30px;
 		text-align: center;
 		padding: 30px;
 		font-weight: bold;
@@ -63,6 +65,10 @@
 		width: 100%;
 		height: 400px;
 	}
+	.btn {
+		margin-top : 30px;
+		text-align: center;
+	}
 
 </style>
 
@@ -73,32 +79,20 @@
      	<p>그린 마켓</p>  
      </div>
      <div id="aside">
-     	<a href="">나눔 원해요</a><br />
-     	<a href="">판매 원해요</a><br />
-     	<a href="">구매 원해요</a><br />
+     	<a href="">나눔합니다</a><br />
+     	<a href="">입양원해요</a><br />
      	<a href="">포인트 스토어</a><br />
      </div>
      <div id="main">
 		<table id="cont">
-			<caption class="left">그린마켓 등록</caption>
+			<h2>그린마켓 등록</h2>
 			<tr>
 				<th>제목</th>
 				<td><input type="text" name="title"/></td>
 			</tr>
 			<tr>
-				<th>종류</th>
-				<td>
-				<select name="kind">
-				 <option value="">종류 선택</option>
-				 <option value="나눔">나눔</option>
-				 <option value="판매">판매</option>
-				 <option value="구매">구매</option>
-				</select>
-				</td>
-			</tr>
-			<tr>
-				<th>가격</th>
-				<td><input type="text" name="title"/></td>
+				<th>작성자</th>
+				<td><input type="text" name="writer"/></td>
 			</tr>
 			<tr>
 				<th>글 내용</th>
@@ -109,7 +103,9 @@
 				<td><input type="file" name="file" /></td>
 			</tr>
 		</table>
+		<div class="btn">
 		<input type="button" value="등록" />
+		</div>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

@@ -143,4 +143,9 @@ public class HomeController {
     public String marketUpdate() {
     	return "/market/update";
     }
+    @RequestMapping("/marketView")
+    public String marketView() {
+    	return "/market/view";
+    }
+    
 }

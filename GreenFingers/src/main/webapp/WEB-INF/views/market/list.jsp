@@ -31,6 +31,8 @@
 	}
 	#aside a {
 	        text-decoration : none;
+	        color: #fff;
+	        margin: 10px 30px;
 	}
 	#main {
 		width: 80%;
@@ -44,18 +46,12 @@
 	            display: flex;
 	            gap : 0.3px;
 	            text-decoration : none;
-	            margin-top: 20px;
+	            margin-top: 50px;
+	            margin-left: 250px;
     }
     .plant  { 
              margin: 0 0 15px 0;
     }
-	#sell_list { 
-	            display: flex;
-	            gap : 0.3px;
-	            text-decoration : none;
-	            margin-top: 20px;
-    }
-     
 	#list {
 		background-color: #fff;
 	}
@@ -71,6 +67,16 @@
 	img { width : 250px; 
 	      height: 250px;
 	}
+	#cont {
+		background-color: #fff;
+		margin: 0 auto;
+		margin-bottom: 30px;
+		width: 60%;
+	}
+	#cont th {
+		background-color: #666;
+	}
+	
 
 </style>
 
@@ -81,9 +87,8 @@
      	<p>그린마켓</p>
      </div>
      <div id="aside">
-     	<a href="">나눔 원해요</a><br />
-     	<a href="">판매 원해요</a><br />
-     	<a href="">구매 원해요</a><br />
+     	<a href="">나눔합니다</a><br />
+     	<a href="">입양원해요</a><br />
      	<a href="">포인트 스토어</a><br />
      </div>
      <div id="main">
@@ -121,39 +126,34 @@
 	  </figure>
 	</div>
 	
-     
-     <div id="sell_list">
-      <figure>
-      <a href="">
-     <div class="plant">
-	     <img src="/img/판매1.png" >
-	  </div>
-	  </a>
-	     <span class="tag">판매</span>
-	     <p>찔레 장미 사실 분</p>
-	     <p>30000원</p>
-	  </figure>
-      <figure>
-      <a href="">
-     <div class="plant">
-	     <img src="/img/판매2.png" >
-	  </div>
-	  </a>
-	     <span class="tag">판매</span>
-	     <p>공조팝나무</p>
-	     <p>40000원</p>
-	  </figure>
-      <figure>
-      <a href="">
-     <div class="plant">
-	     <img src="/img/판매3.png">  
-	  </div>
-	  </a>
-	     <span class="tag">판매</span>
-	     <p>미니구골목서입니다</p>   
-	     <p>10000원</p>  
-	  </figure>
-	</div> 
+    <table id="cont">
+			<caption><h2>입양원해요</h2></caption>
+			<tr>
+				<th>제목</th>
+				<th>작성일</th>
+				<th>작성자</th>
+				<th>조회수</th>
+			</tr>
+			<tr>
+				<td><a href="/view">찔레 장미 키우시는 분</a></td>
+				<td>2023-05-01</td>
+				<td>독초애호가</td>
+				<td>123</td>
+			</tr>
+			<tr>
+				<td><a href="/view">바오밥 씨앗 원해요!</a></td>
+				<td>2023-05-01</td>
+				<td>바오밥은 사랑</td>
+				<td>12</td>
+			</tr>
+			<tr>
+				<td><a href="/view">임파첸스 입양하고 싶어요</a></td>
+				<td>2023-05-02</td>
+				<td>식물사랑단</td>
+				<td>3</td>
+			</tr>
+		</table> 
+    
 	
 	
 		<input type="button" class="right" value="새글 작성" />
