@@ -70,7 +70,7 @@
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
      <div id="title">
-     	<p>그린 마켓</p>
+     	<p>그린 마켓</p>  
      </div>
      <div id="aside">
      	<a href="">나눔 원해요</a><br />

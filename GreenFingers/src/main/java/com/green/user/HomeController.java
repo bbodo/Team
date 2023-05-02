@@ -100,7 +100,7 @@ public class HomeController {
 	}
 	
 	
-	//---------market---------------
+	//---------market-----------------
 
     @RequestMapping("/market")
     public String market() {
