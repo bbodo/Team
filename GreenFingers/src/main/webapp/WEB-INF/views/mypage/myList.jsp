@@ -1,4 +1,4 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -36,27 +36,18 @@
 		float: left;
 		padding: 10px;
 		background-color: gray;
+		text-align: center;
 	}
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
-		width: 100%;
+		width: 85%;
 	}
 	#cont th {
 		background-color: #666;
 	}
 	.right {
 		text-align: right;
-	}
-	.left {
-		text-align: left;
-	}
-	input[type=text] {
-		width: 100%;
-	}
-	textarea {
-		width: 100%;
-		height: 400px;
 	}
 
 </style>
@@ -65,33 +56,32 @@
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
      <div id="title">
-     	<p>식물 연합</p>
+     	<p>마이 페이지</p>
      </div>
      <div id="aside">
-     	포이즌<br />
-     	포이즌<br />
-     	포이즌<br />
-     	포이즌<br />
-     	포이즌<br />
-     	포이즌<br />
+     	내정보<br />
+     	작성글<br />
+     	쪽지<br />
      </div>
      <div id="main">
 		<table id="cont">
-			<caption class="left">게시글 등록</caption>
+			<caption>내가 작성 한 글</caption>
 			<tr>
+				<th>번호</th>
 				<th>제목</th>
-				<td><input type="text" name="title"/></td>
+				<th>작성일</th>
+				<th>작성자</th>
+				<th>조회수</th>
 			</tr>
 			<tr>
-				<th>글 내용</th>
-				<td><textarea name="content"></textarea></td>
-			</tr>
-			<tr>
-				<th>파일 첨부</th>
-				<td><input type="file" name="file" /></td>
+				<td>1</td>
+				<td>ㅋㅋ 독초키워서 다죽일꺼임</td>
+				<td>2023-05-01</td>
+				<td>독초애호가</td>
+				<td>123</td>
 			</tr>
 		</table>
-		<input type="button" value="등록" />
+	    <%@include file="/WEB-INF/include/paging.jsp" %>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%@include file="/WEB-INF/include/comHead.jsp" %>
 <title>게시판 수정</title>
 
 <style type="text/css">

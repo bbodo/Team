@@ -62,6 +62,15 @@ public class HomeController {
 		return "/event/winnerView";
 	}
 	
+	@RequestMapping("/myList")
+	public String myList() {
+		return "/mypage/myList";
+	}
+	@RequestMapping("/myNote")
+	public String myNote() {
+		return "/mypage/myNote";
+	}
+	
 	// 수정중
     @RequestMapping("/market")
     public String market() {
