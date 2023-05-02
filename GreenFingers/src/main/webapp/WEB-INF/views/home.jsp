@@ -12,7 +12,7 @@
 <div id="wrap">
 	
 	<aside>
-		
+		<div>이벤트배너부분</div>
 	</aside>
 	
 	<%@include file="/WEB-INF/include/header.jsp" %>
