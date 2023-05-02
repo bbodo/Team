@@ -64,7 +64,7 @@
 	}
 	.right {
 		text-align: right;
-	}
+	} 
 	
 	#main { display: block; }
 	

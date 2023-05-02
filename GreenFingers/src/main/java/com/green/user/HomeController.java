@@ -110,4 +110,8 @@ public class HomeController {
     public String marketWrite() {
     	return "/market/write";
     }
+    @RequestMapping("/marketUpdate")
+    public String marketUpdate() {
+    	return "/market/update";
+    }
 }

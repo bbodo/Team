@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <%@include file="/WEB-INF/include/comHead.jsp" %>
 <title>홈</title>
 
@@ -97,6 +98,7 @@
 	<a href="/eventList">이벤트 리스트 가는길</a> <br />
 	<a href="/market">market 가는길</a> <br />
 	<a href="/marketWrite">market write 가는길</a> <br />
+	<a href="/marketUpdate">market update 가는길</a> <br />
 	<a href="/myList">자기가 쓴글</a> <br />  
 	<a href="/myNote">쪽지</a> <br />
 	<a href="/myNoteWrite">쪽지작성</a> <br />
