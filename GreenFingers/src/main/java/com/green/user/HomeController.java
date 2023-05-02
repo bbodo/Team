@@ -90,6 +90,7 @@ public class HomeController {
 	}
 	
 	// ---------admin---------
+
 	@RequestMapping("/adminMemberManagement")
 	public String adminMemberManagement() {
 		return "/admin/adminMemberManagement";
@@ -97,6 +98,22 @@ public class HomeController {
 	@RequestMapping("/adminMemberUpdate")
 	public String adminMemberUpdate() {
 		return "/admin/adminMemberUpdate";
+	}
+	@RequestMapping("/adminUpperMenuManagement")
+	public String adminUpperMenuManagement() {
+		return "/admin/adminUpperMenuManagement";
+	}
+	@RequestMapping("/adminUpperMenuWrite")
+	public String adminUpperMenuWrite() {
+		return "/admin/adminUpperMenuWrite";
+	}
+	@RequestMapping("/adminLowerMenuManagement")
+	public String adminLowerMenuManagement() {
+		return "/admin/adminLowerMenuManagement";
+	}
+	@RequestMapping("/adminLowerMenuWrite")
+	public String adminLowerMenuWrite() {
+		return "/admin/adminLowerMenuWrite";
 	}
 	
 	
