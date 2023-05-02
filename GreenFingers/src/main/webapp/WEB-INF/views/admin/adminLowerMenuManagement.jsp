@@ -31,7 +31,7 @@
 		padding: 10px;
 	}
 	#main {
-		width: 100%;
+		width: 80%;
 		height: 800px;
 		float: left;
 		padding: 10px;
@@ -59,6 +59,14 @@
 <body>
      <div id="title">
      	<p>하위 메뉴 관리</p>
+     </div>
+     <div id="aside">
+     	포이즌<br />
+     	포이즌<br />
+     	포이즌<br />
+     	포이즌<br />
+     	포이즌<br />
+     	포이즌<br />
      </div>
      <div id="main">
 		<table id="cont">
