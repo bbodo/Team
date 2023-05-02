@@ -88,16 +88,16 @@
    </tr> 
    <tr>
      <th>이름</th>
-     <td><input type="text" name="username" id = "name"/></td>
+     <td><input type="text" name="username" id = "username"/></td>
    </tr> 
    <tr>
      <th>생년월일</th>
-     <td><input type="date" name="userBirth" id="birth"/> </td>
+     <td><input type="date" name="birthday" id="birth"/> </td>
    </tr> 
    <tr>
      <th>성별</th>
-     <td><input type="radio" name="userGender" data-th-value="남"/>남
-         <input type="radio" name="userGender" data-th-value="녀"/>녀</td>
+     <td><input type="radio" name="gender" value="남"/>남
+         <input type="radio" name="gender" value="여"/>여</td>
    </tr> 
    <tr>
      <th>이메일</th>
@@ -105,7 +105,7 @@
    </tr> 
    <tr>
      <th>주소</th>
-     <td><input type="text" name="adder" id="add"/></td>
+     <td><input type="text" name="addr" id="add"/></td>
    </tr>  
    <tr>     
      <td colspan="2">

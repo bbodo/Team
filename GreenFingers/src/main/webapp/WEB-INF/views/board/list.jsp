@@ -56,7 +56,7 @@
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
      <div id="title">
-     	<p>식물 연합</p>
+     	<div>식물 연합</div>
      </div>
      <div id="aside">
      	포이즌<br />
@@ -85,7 +85,7 @@
 			</tr>
 		</table>
 		<div class="right">
-			<input type="button" value="새글 작성" />
+			<a href="/write">새글 작성</a>
 		</div>
 	    <%@include file="/WEB-INF/include/paging.jsp" %>
      </div>

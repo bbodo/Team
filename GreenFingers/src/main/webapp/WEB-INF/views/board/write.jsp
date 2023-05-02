@@ -76,15 +76,20 @@
      	포이즌<br />
      </div>
      <div id="main">
+     	<form action="/Board/write">
 		<table id="cont">
 			<caption class="left">게시글 등록</caption>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title"/></td>
+				<td><input type="text" name="board_title"/></td>
+			</tr>
+			<tr>
+				<th>작성자</th>
+				<td><input type="text" name="username"/></td>
 			</tr>
 			<tr>
 				<th>글 내용</th>
-				<td><textarea name="content"></textarea></td>
+				<td><textarea name="board_cont"></textarea></td>
 			</tr>
 			<tr>
 				<th>파일 첨부</th>
@@ -92,6 +97,7 @@
 			</tr>
 		</table>
 		<input type="button" value="등록" />
+		</form>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

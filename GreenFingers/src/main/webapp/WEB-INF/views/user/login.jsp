@@ -59,9 +59,7 @@ div{text-align : center}
 			</tr>
 			</table>
 			</form>
-		<form action = "/userwrite" method="POST">	
-				<input type="submit" value="회원가입"/>			
-		</form>
+			<a href="/User/WriteForm">회원가입</a>
 	</div>
 </body>
 </html>
