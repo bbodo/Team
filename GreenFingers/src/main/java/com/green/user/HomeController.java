@@ -27,7 +27,7 @@ public class HomeController {
 	public String view() {
 		return "/board/view";
 	}
-<<<<<<< Updated upstream
+	
 	@RequestMapping("/update")
 	public String update() {
 		return "/board/update";
@@ -39,22 +39,15 @@ public class HomeController {
 	public String login() {
 		return "/user/login";
 	}
-=======
-    
-	
->>>>>>> Stashed changes
+
+
 	@RequestMapping("/userwrite")
 	public String userwrite() {
 		return "/user/userwrite";
 	}
 	
-<<<<<<< Updated upstream
-=======
 
-	@RequestMapping("/update")
-	public String update() {
-		return "/board/update";
-	}
+
 	
 	@RequestMapping("qalist")
 	public String qlist() {
@@ -66,11 +59,7 @@ public class HomeController {
 		return "/board/qawrite";
 	}
 	
-	@RequestMapping("login")
-	public String login() {
-		return "/user/login";
-	}
->>>>>>> Stashed changes
+
 	// ---------Event---------
 	@RequestMapping("/eventList")
 	public String eventList() {
