@@ -68,7 +68,7 @@
 	      
 	      <li><a href="#">그린위키</a>
 	         <ul>
-	            <li><a href="">그린위키</a></li>
+	            <li><a href="/static/html/green.html">그린위키</a></li>
 	         </ul>
 	      </li>
 	   </ul>
