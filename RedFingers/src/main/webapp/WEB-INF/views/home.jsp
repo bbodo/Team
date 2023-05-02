@@ -93,6 +93,7 @@
 	<a href="/marketWrite">market write 가는길</a> <br />
 	<a href="/marketUpdate">market update 가는길</a> <br />
 	<a href="/marketView">market view 가는길</a> <br />
+	<a href="/marketPointList">market pointList 가는길</a> <br />
 	<a href="/myList">자기가 쓴글</a> <br />  
 	<a href="/myNote">쪽지</a> <br />
 	<a href="/myNoteWrite">쪽지작성</a> <br />
