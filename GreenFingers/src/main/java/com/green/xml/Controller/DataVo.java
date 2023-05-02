@@ -1,53 +1,67 @@
-package com.green.rest.Vo;
+package com.green.xml.Controller;
 
-public class greenVo {
+
+public class DataVo {
 	
-private String	ntntsNo;
-private String	cntntsSj;
-private String	rtnFileSn;
-private String	rtnFileSeCode;
+                                            
+private String cntntsNo                     ;
+private String cntntsSj                     ;
+private String rtnFileSn                    ;
+private String rtnFileSeCode                ;
 
-private String	rtnFileSeCodeName;
-private String	rtnImgSeCode;
-private String	rtnImgSeCodeName;
-private String	rtnOrginlFileNm;
-private String	rtnImageDc;
-private String	rtnFileUrl;
-private String	rtnThumbFileUrl;
+private String rtnFileSeCodeName            ;
+private String rtnImgSeCode                 ;
+private String rtnImgSeCodeName             ;
+private String rtnOrginlFileNm              ;
+private String rtnImageDc                   ;
+private String rtnFileUrl                   ;
+private String rtnThumbFileUrl              ;
 
-private String	fmlNm;
-private String	smellCode;
-private String	managelevelCode;
-private String	grwtveCode;
-private String	grwhTpCode;
+private String fmlNm                        ;
+private String smellCode                    ;
+private String managelevelCode              ;
+private String grwtveCode                   ;
+private String grwhTpCode                   ;
 
-private String	winterLwetTpCode;
-private String	hdCode;
-private String	watercycleSprngCode;
-private String	watercycleSummerCode;
-private String	watercycleAutumnCode;
-private String	watercycleWinterCode;
-private String	managedemanddoCode;
-private String	clCode;
-private String	grwhstleCode;
-private String	indoorpsncpacompositionCode;
-private String	eclgyCode;
-private String	lefmrkCode;
-private String	lefcolrCode;
-private String	ignSeasonCode;
+private String winterLwetTpCode             ;
+private String hdCode                       ;
+private String watercycleSprngCode         ;
+private String watercycleSummerCode        ;
+private String watercycleAutumnCode        ;
+private String watercycleWinterCode         ;
+private String managedemanddoCode           ;
+private String clCode                       ;
+private String grwhstleCode                 ;
+private String indoorpsncpacompositionCode  ;
+private String eclgyCode                    ;
+private String lefmrkCode                   ;
+private String lefcolrCode                  ;
+private String ignSeasonCode                ;
 
-private String	flclrCode;
-private String	fmldeSeasonCode;
-private String	fmldecolrCode;
-private String	prpgtmthCode;
-private String	lighttdemanddoCode;
-private String	postngplaceCode;
-private String	dlthtsCode;
-public String getNtntsNo() {
-	return ntntsNo;
+private String flclrCode                    ;
+private String fmldeSeasonCode              ;
+private String fmldecolrCode                ;
+private String prpgtmthCode                 ;
+private String lighttdemanddoCode           ;
+private String postngplaceCode              ;
+private String dlthtsCode                   ;
+
+public DataVo(String cntntsNo2, String cntntsSj2, String rtnFileSn2, String rtnFileSeCode2, String rtnFileSeCodeName2,
+		String rtnImgSeCode2, String rtnImgSeCodeName2, String rtnOrginlFileNm2, String rtnImageDc2, String rtnFileUrl2,
+		String rtnThumbFileUrl2, String fmlNm2, String smellCode2, String managelevelCode2, String grwtveCode2,
+		String grwhTpCode2, String winterLwetTpCode2, String hdCode2, String watercycleSprngCode2,
+		String watercycleSummerCode2, String watercycleAutumnCode2, String watercycleWinterCode2,
+		String managedemanddoCode2, String clCode2, String grwhstleCode2, String indoorpsncpacompositionCode2,
+		String eclgyCode2, String lefmrkCode2, String lefcolrCode2, String ignSeasonCode2, String flclrCode2,
+		String fmldeSeasonCode2, String fmldecolrCode2, String prpgtmthCode2, String lighttdemanddoCode2,
+		String postngplaceCode2, String dlthtsCode2) {
+	// TODO Auto-generated constructor stub
 }
-public void setNtntsNo(String ntntsNo) {
-	this.ntntsNo = ntntsNo;
+public String getCntntsNo() {
+	return cntntsNo;
+}
+public void setCntntsNo(String cntntsNo) {
+	this.cntntsNo = cntntsNo;
 }
 public String getCntntsSj() {
 	return cntntsSj;
@@ -267,7 +281,7 @@ public void setDlthtsCode(String dlthtsCode) {
 }
 @Override
 public String toString() {
-	return "greenVo [ntntsNo=" + ntntsNo + ", cntntsSj=" + cntntsSj + ", rtnFileSn=" + rtnFileSn + ", rtnFileSeCode="
+	return "DataVo [cntntsNo=" + cntntsNo + ", cntntsSj=" + cntntsSj + ", rtnFileSn=" + rtnFileSn + ", rtnFileSeCode="
 			+ rtnFileSeCode + ", rtnFileSeCodeName=" + rtnFileSeCodeName + ", rtnImgSeCode=" + rtnImgSeCode
 			+ ", rtnImgSeCodeName=" + rtnImgSeCodeName + ", rtnOrginlFileNm=" + rtnOrginlFileNm + ", rtnImageDc="
 			+ rtnImageDc + ", rtnFileUrl=" + rtnFileUrl + ", rtnThumbFileUrl=" + rtnThumbFileUrl + ", fmlNm=" + fmlNm
@@ -282,5 +296,17 @@ public String toString() {
 			+ ", prpgtmthCode=" + prpgtmthCode + ", lighttdemanddoCode=" + lighttdemanddoCode + ", postngplaceCode="
 			+ postngplaceCode + ", dlthtsCode=" + dlthtsCode + "]";
 }
+ 
 
+
+
+
+
+
+	
+	
+	
+	
+	
+	
 }
