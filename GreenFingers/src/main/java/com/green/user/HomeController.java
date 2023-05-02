@@ -14,6 +14,8 @@ public class HomeController {
 	// --------------------------- 양식을 위한 주소
 	// --------------------------- 그림 다그리고 컨트롤러 다시 만들죠~
 	
+	// ---------Board---------
+	
 	@RequestMapping("/board")
 	public String board() {
 		return "/board/list";
@@ -28,10 +30,15 @@ public class HomeController {
 	public String view() {
 		return "/board/view";
 	}
+
 	
 	@RequestMapping("login")
 	public String login() {
 		return "/user/login";
+	}
+	@RequestMapping("/userwrite")
+	public String userwrite() {
+		return "/user/userwrite";
 	}
 	
 
@@ -39,6 +46,8 @@ public class HomeController {
 	public String update() {
 		return "/board/update";
 	}
+	
+	// ---------Event---------
 	
 	@RequestMapping("/eventList")
 	public String eventList() {
@@ -48,11 +57,6 @@ public class HomeController {
 	public String eventView() {
 		return "/event/eventView";
 	}
-	@RequestMapping("/userwrite")
-	public String userwrite() {
-		return "/user/userwrite";
-	}
-	
 	@RequestMapping("/winnerList")
 	public String winnerList() {
 		return "/event/winnerList";
@@ -61,6 +65,8 @@ public class HomeController {
 	public String winnerView() {
 		return "/event/winnerView";
 	}
+
+	// ---------mypage---------
 	
 	@RequestMapping("/myList")
 	public String myList() {
@@ -70,6 +76,20 @@ public class HomeController {
 	public String myNote() {
 		return "/mypage/myNote";
 	}
+	@RequestMapping("/myNoteWrite")
+	public String myNoteWrite() {
+		return "/mypage/myNoteWrite";
+	}
+	@RequestMapping("/myPageCheck")
+	public String myPageCheck() {
+		return "/mypage/myPageCheck";
+	}
+	@RequestMapping("/myPageUpdate")
+	public String myPageUpdate() {
+		return "/mypage/myPageUpdate";
+	}
+	
+	
 	
 	// 수정중
     @RequestMapping("/market")

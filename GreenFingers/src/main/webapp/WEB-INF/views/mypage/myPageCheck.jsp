@@ -59,29 +59,18 @@
      	<p>마이 페이지</p>
      </div>
      <div id="aside">
-     	<a href="/myPageCheck">내정보</a><br />
+     	내정보<br />
      	작성글<br />
      	쪽지<br />
      </div>
      <div id="main">
-		<table id="cont">
-			<caption>내가 작성 한 글</caption>
-			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성일</th>
-				<th>작성자</th>
-				<th>조회수</th>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>ㅋㅋ 독초키워서 다죽일꺼임</td>
-				<td>2023-05-01</td>
-				<td>독초애호가</td>
-				<td>123</td>
-			</tr>
-		</table>
-	    <%@include file="/WEB-INF/include/paging.jsp" %>
+		<div style="float: left;">내 정보 수정하기</div> <br />
+		<hr />
+		<div>
+			<p>비밀번호 확인</p><br />
+			<input type="text" /> <br />
+			<a href="/myPageUpdate">확인버튼</a>			
+		</div>     
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

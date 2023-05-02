@@ -17,7 +17,7 @@
 	
 	<%@include file="/WEB-INF/include/header.jsp" %>
 	<h2>Home</h2>
-	<a href="/board">board 가는길</a> <br />
+		<a href="/board">board 가는길</a> <br />
 	<a href="/write">write 가는길</a> <br />
 	<a href="/view">view 가는길</a> <br />
 	<a href="/update">update 가는길</a> <br />
@@ -25,6 +25,7 @@
 	<a href="/market">market 가는길</a> <br />
 	<a href="/myList">자기가 쓴글</a> <br />
 	<a href="/myNote">쪽지</a> <br />
+	<a href="/myNoteWrite">쪽지작성</a> <br />
 	<a href="">길 찾아가세요</a> 
 	<h2>Home</h2>
 	<%@include file="/WEB-INF/include/footer.jsp" %>
