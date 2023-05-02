@@ -23,6 +23,7 @@
 	<a href="/update">update 가는길</a> <br />
 	<a href="/eventList">이벤트 리스트 가는길</a> <br />
 	<a href="/market">market 가는길</a> <br />
+	<a href="/marketWrite">market write 가는길</a> <br />
 	<a href="/myList">자기가 쓴글</a> <br />
 	<a href="/myNote">쪽지</a> <br />
 	<a href="/myNoteWrite">쪽지작성</a> <br />

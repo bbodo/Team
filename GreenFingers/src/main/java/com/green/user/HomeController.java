@@ -90,10 +90,14 @@ public class HomeController {
 	}
 	
 	
-	
-	// 수정중
+	//---------market---------------
+
     @RequestMapping("/market")
     public String market() {
         return "/market/list";
+    }
+    @RequestMapping("/marketWrite")
+    public String marketWrite() {
+    	return "/market/write";
     }
 }

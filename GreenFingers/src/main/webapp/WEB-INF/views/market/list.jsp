@@ -20,7 +20,7 @@
 		background-color: orange;
 	}
 	#title p {
-		 line-height: 100px;
+		 line-height: 100px; 
 	}
 	#aside {
 		float: left;
@@ -28,6 +28,9 @@
 		background-color: navy;
 		width: 20%;
 		padding: 10px;
+	}
+	#aside a {
+	        text-decoration : none;
 	}
 	#main {
 		width: 80%;
@@ -78,9 +81,10 @@
      	<p>그린마켓</p>
      </div>
      <div id="aside">
-     	입양<br />
-     	분양<br />
-     	소모품<br />
+     	<a href="">나눔 원해요</a><br />
+     	<a href="">판매 원해요</a><br />
+     	<a href="">구매 원해요</a><br />
+     	<a href="">포인트 스토어</a><br />
      </div>
      <div id="main">
      
