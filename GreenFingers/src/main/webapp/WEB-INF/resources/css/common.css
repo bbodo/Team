@@ -7,14 +7,13 @@ a {text-decoration: none;}
 
 #wrap, header, footer {width:100%; position: relative;}
 
+header {z-index: 9;}
 
 :root {
 	
 }
 
 /* header */
-
-
 
 @media all and (min-width:600px){
 	header {height: 50px;}
