@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,7 +101,7 @@
       <figure>
       <a href="">
      <div class="plant">
-	     <img src="/img/그린마켓1.png" >
+	     <img src="/img/market/그린마켓1.png" >
 	  </div>
 	  </a>
 	     <span class="tag">나눔</span>
@@ -109,7 +110,7 @@
       <figure>
       <a href="">
      <div class="plant">
-	     <img src="/img/그린마켓2.png" >
+	     <img src="/img/market/그린마켓2.png" >
 	  </div>
 	  </a>
 	     <span class="tag">나눔</span>
@@ -118,7 +119,7 @@
       <figure>
       <a href="">
      <div class="plant">
-	     <img src="/img/그린마켓3.png">
+	     <img src="/img/market/그린마켓3.png">
 	  </div>
 	  </a>
 	     <span class="tag">나눔</span>
@@ -127,31 +128,72 @@
 	</div>
 	
     <table id="cont">
-			<caption><h2>입양원해요</h2></caption>
-			<tr>
-				<th>제목</th>
-				<th>작성일</th>
-				<th>작성자</th>
-				<th>조회수</th>
-			</tr>
-			<tr>
-				<td><a href="/view">찔레 장미 키우시는 분</a></td>
-				<td>2023-05-01</td>
-				<td>독초애호가</td>
-				<td>123</td>
-			</tr>
-			<tr>
-				<td><a href="/view">바오밥 씨앗 원해요!</a></td>
-				<td>2023-05-01</td>
-				<td>바오밥은 사랑</td>
-				<td>12</td>
-			</tr>
-			<tr>
-				<td><a href="/view">임파첸스 입양하고 싶어요</a></td>
-				<td>2023-05-02</td>
-				<td>식물사랑단</td>
-				<td>3</td>
-			</tr>
+		<caption><h2>입양원해요</h2></caption>
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>작성일</th>
+			<th>작성자</th>
+			<th>조회수</th>
+		</tr>
+		
+		<c:forEach var="marketVo" items="${ adoptList }">
+	  <tr>
+	     <td>
+	     <!-- 번호 -->
+	      <c:if test="${ marketVo.lvl eq 0 }">
+	          ${ marketVo.board_idx }
+	      </c:if> 
+	     </td>
+	     <td>
+	       <!-- 제목(새글/답글) -->
+	       <c:choose>
+	         <c:when test="${ marketVo.lvl eq 0 }">
+	           <c:choose>
+	            <c:when test="${ marketVo.delboard eq 0 }">
+	              <a href="/Market/View?submenu_id=${marketVo.submenu_id}&board_idx=${marketVo.board_idx}&nowpage=${map.nowpage}">
+	       		   ${ marketVo.board_title }
+	       		  </a>
+	       		</c:when>
+	       		<c:otherwise>
+	       		   <s>삭제된 게시물 입니다</s>
+	       		</c:otherwise>
+	       	   </c:choose>	 
+	       		
+	         </c:when>
+	         <c:otherwise>
+	         
+	            <b style="display:inline-block; width:${marketVo.lvl*20}px"></b> 
+	            
+	            <c:choose>
+	              <c:when test="${ marketVo.delnum eq 0 }">
+	                <a href="/Market/View?submenu_id=${marketVo.submenu_id}&board_idx=${marketVo.board_idx}&nowpage=${map.nowpage}">
+	              	  [답글] ${ marketVo.board_title }
+	         	    </a>
+	         	  </c:when>
+	         	  <c:otherwise>
+	         	     [답글] <s>삭제된 글입니다</s>
+	         	  </c:otherwise>
+	         	</c:choose>
+	         	
+	         </c:otherwise>
+	       </c:choose>
+	     </td>
+	     <td>
+	     <!-- 작성일 -->
+	     <!-- 날짜 -->
+	     ${fn:substring( marketVo.board_regdate, 0, 10) }
+	     </td>
+		 <td>    
+	     <!-- 작성자 -->
+	     ${ marketVo.nickname }
+	     </td>
+	     <td>
+	     <!-- 조회수 -->
+	     ${ marketVo.readcount }
+	     </td>
+	  </tr>  
+	  </c:forEach>
 		</table> 
     
 	

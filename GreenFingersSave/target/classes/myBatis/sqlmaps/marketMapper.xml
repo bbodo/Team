@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Market">  
+  
+ 	<!-- 페이징된 리스트 가져오기 -->
+	<select id="AdoptList"
+			resultType="com.green.market.vo.MarketVo">
+	
+	SELECT * FROM
+	(
+		SELECT
+			ROW_NUMBER() OVER(ORDER BY NREF DESC, STEP ASC)  RNUM,
+			B.BOARD_IDX,
+			B.SUBMENU_ID,
+			B.BOARD_TITLE,
+			B.BOARD_CONT,
+			B.USERCODE,
+			TO_CHAR(B.BOARD_REGDATE, 'YYYY-MM-DD HH24:MI:SS') BOARD_REGDATE,
+			B.READCOUNT,
+			B.BNUM,
+			B.LVL,
+			B.STEP,
+			B.NREF,
+			B.DELBOARD,
+			B.PARENT,
+			M.USERID
+		FROM
+			BOARD B
+		JOIN 
+			MEMBER M
+		ON 
+			B.USERCODE = M.USERCODE
+		<if test="menu_id != null or menu_id !=''">
+        WHERE     
+          SUBMENU_ID  =  #{submenu_id}
+       </if>    
+	) T 
+	WHERE 
+		T.RNUM BETWEEN #{startnum} AND #{endnum}
+	ORDER BY
+		 NREF  DESC, STEP   ASC   
+		
+	</select>
+	
+	
+	
+	<!-- 전체 자료수 조회 -->
+	<select   id             = "GetTotalCount"
+	          parameterType  = "hashmap"
+	          resultType     = "_int">
+	          
+		SELECT
+	    	COUNT( BOARD_IDX )  AS   TOTALCOUNT
+		FROM   
+	    	BOARD
+	    <if test="submenu_id != null or submenu_id != ''"> 
+		WHERE
+			SUBMENU_ID = #{ submenu_id }
+	    </if>
+	    
+	</select>
+  
+  	<!-- 답글일때 원글 정보 가져가기 -->
+  	<!--  
+	<select   id             = "GetMarketBoard"
+	          resultType     = "com.green.market.vo.MarketVo">
+		
+		SELECT 
+			B.BOARD_IDX,
+			B.SUBMENU_ID,
+			B.BOARD_TITLE,
+			B.BOARD_CONT,
+			B.MARKET_VALUE,
+			B.USERCODE,
+			B.MANAGERCODE,
+			TO_CHAR(B.BOARD_REGDATE, 'YYYY-MM-DD HH24:MI:SS') BOARD_REGDATE,
+			B.READCOUNT,
+			B.BNUM,
+			B.LVL,
+			B.STEP,
+			B.B.NREF,
+			B.DELBOARD,
+			B.PARENT,
+			M.USERID
+		FROM
+			BOARD B
+		JOIN
+			MEMBER M
+		ON
+			B.USERCODE = M.USERCODE
+		WHERE
+			BOARD_IDX = #{ board_idx }
+
+	</select>  
+	
+	<insert id="MarketBoardInsert">
+	
+		INSERT INTO
+			BOARD
+			(
+				BOARD_IDX,
+				SUBMENU_ID,
+				BOARD_TITLE,
+				BOARD_CONT,
+				USERCODE,
+				BNUM,
+				NREF,
+			)
+		VALUES
+			(
+				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
+				#{ submenu_id },
+				#{ board_title },
+				#{ board_cont },
+				(SELECT USERCODE FROM MEMBER WHERE USERID = #{ userid }),
+				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
+				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD)
+			)
+	</insert>
+	-->
+	
+	
+	<!-- 답글을 추가하기위해 기존글의 step 을 증가시킨다 -->
+	<!--  
+	<update   id="StepUpdate">
+	   
+		UPDATE
+			BOARD
+		SET
+			STEP    =  STEP + 1
+		WHERE
+			SUBMENU_ID =  #{ submenu_id }
+		AND
+		    NREF    =  #{ nref } 
+		AND
+		    step    >  #{ step } 
+	   
+	</update>
+
+	<insert   id="MarketBoardReply">
+      INSERT INTO
+      	BOARD 
+			(
+				BOARD_IDX,
+				SUBMENU_ID,
+				BOARD_TITLE,
+				BOARD_CONT,
+				USERCODE,
+				BNUM,
+				LVL,
+				STEP,
+				NREF,
+				PARENT   		
+			)
+      VALUES
+	       (
+	          (SELECT  NVL( MAX(IDX), 0 ) + 1 FROM BOARD),
+	          #{ submenu_id },
+	          #{ board_title },
+	          #{ board_cont },
+	          (SELECT USERCODE FROM MEMBER WHERE USERNAME = #{ userid }),
+	          #{ bnum },
+	          #{ lvl } + 1,
+	          #{ step } + 1,
+	          #{ nref },
+	          #{ parent }
+	      )
+   </insert>
+   -->
+   
+   
+   <!-- 파일 저장 -->
+ <!--  
+    <insert  id="FileInsert">
+      <foreach collection="fileList" item="file"
+           index      = "i"  
+           open       = "INSERT ALL"    
+           close      = "SELECT * FROM DUAL"
+           separator  = " " >
+           INTO  FILES  VALUES (
+                GET_FILENUM()
+              , ( SELECT MAX(BOARD_IDX) FROM BOARD  )
+              , #{ file.filename   }
+              , #{ file.fileext    }
+              , #{ file.sfilename  }
+           )
+      </foreach>
+   
+   </insert>
+-->
+</mapper>
+
+
+
+
+
+   

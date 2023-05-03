@@ -119,7 +119,7 @@
 			<tr>
 				<th>내용</th>
 				<td>
-				<img src="/img/그린마켓1.png">
+				<img src="/img/market/그린마켓1.png">
 				루브라 나눔합니다
 				얼른 데려가세요!
 				</td>
@@ -167,7 +167,7 @@
 		     <figure>
 		     <a href="">
 		    <div class="plant">
-		     <img src="/img/그린마켓1.png" >
+		     <img src="/img/market/그린마켓1.png" >
 		  </div>
 		  </a>
 		     <span class="tag">나눔</span>
@@ -176,7 +176,7 @@
 		     <figure>
 		     <a href="">
 		    <div class="plant">
-		     <img src="/img/그린마켓2.png" >
+		     <img src="/img/market/그린마켓2.png" >
 		  </div>
 		  </a>
 		     <span class="tag">나눔</span>
@@ -185,7 +185,7 @@
 		     <figure>
 		     <a href="">
 		    <div class="plant">
-		     <img src="/img/그린마켓3.png">
+		     <img src="/img/market/그린마켓3.png">
 		  </div>
 		  </a>
 		     <span class="tag">나눔</span>
