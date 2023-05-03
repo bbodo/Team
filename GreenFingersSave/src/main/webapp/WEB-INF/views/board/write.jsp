@@ -114,7 +114,7 @@
 		<table id="cont">
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="board_title"/>${ vo.board_title }</td>
+				<td><input type="text" name="board_title" value="${ vo.board_title }"/></td>
 			</tr>
 			<tr>
 				<th>글 내용</th>

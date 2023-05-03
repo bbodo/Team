@@ -102,7 +102,7 @@ public class BoardController {
 		if( map.get("board_idx") != null  ) {
 			idx    =  Integer.parseInt( String.valueOf( map.get("board_idx") ) );
 			boardVo  =  boardService.getBoard( map );
-			String title  =  ">> " + boardVo.getBoard_title();
+			String title  =  boardVo.getBoard_title();
 			String cont   =  ">> " + boardVo.getBoard_cont().replace("\n", "\n >> ");
 			cont         +=  "\n==============================\n"; 
 			boardVo.setBoard_title( title );

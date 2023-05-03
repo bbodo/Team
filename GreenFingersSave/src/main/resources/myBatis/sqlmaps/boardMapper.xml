@@ -151,11 +151,11 @@
 			)
       VALUES
 	       (
-	          (SELECT  NVL( MAX(IDX), 0 ) + 1 FROM BOARD),
+	          (SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
 	          #{ submenu_id },
 	          #{ board_title },
 	          #{ board_cont },
-	          (SELECT USERCODE FROM MEMBER WHERE USERNAME = #{ userid }),
+	          (SELECT USERCODE FROM MEMBER WHERE USERID = #{ userid }),
 	          #{ bnum },
 	          #{ lvl } + 1,
 	          #{ step } + 1,

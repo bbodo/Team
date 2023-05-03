@@ -40,6 +40,9 @@
 		background-color: gray;
 		text-align: center;
 	}
+	#tt {
+		text-align: left;
+	}
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
@@ -97,7 +100,7 @@
           ${ boardVo.board_idx }
       </c:if> 
      </td>
-     <td>
+     <td id="tt">
        <!-- 제목(새글/답글) -->
        <c:choose>
          <c:when test="${ boardVo.lvl eq 0 }">
@@ -118,7 +121,7 @@
             <b style="display:inline-block; width:${boardVo.lvl*20}px"></b> 
             
             <c:choose>
-              <c:when test="${ boardVo.delnum eq 0 }">
+              <c:when test="${ boardVo.delboard eq 0 }">
                 <a href="/Board/View?submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}">
               	  [답글] ${ boardVo.board_title }
          	    </a>
