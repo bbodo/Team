@@ -55,7 +55,7 @@
 
 
 <!-- 메뉴목록 -->
-Board/List?submenu_id=SUBMENU01&nowpage=1
+
 <header>
    <div id="headerInWrap">
 	   <div id="logo"><a href="/">logo</a></div>
