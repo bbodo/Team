@@ -84,7 +84,7 @@
   </div>
 	
 	<h2>Home</h2>
-		<a href="/board">board 가는길</a> <br />
+	<a href="/Board/List?submenu_id=SUBMENU01&nowpage=1">식물연합 포이즌 게시판 가는길</a> <br />
 	<a href="/write">write 가는길</a> <br />
 	<a href="/view">view 가는길</a> <br />
 	<a href="/update">update 가는길</a> <br />

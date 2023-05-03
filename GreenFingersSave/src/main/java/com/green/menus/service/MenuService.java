@@ -14,4 +14,6 @@ public interface MenuService {
 	// 서브메뉴 목록 가져오기
 	List<SubmenuVo> getSubmenuList(HashMap<String, Object> map);
 
+	String getMenuName(String submenu_id);
+
 }

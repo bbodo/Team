@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@include file="/WEB-INF/include/comHead.jsp" %>
-<title>게시판 양식</title>
+<title>${ map.submenu_name } 게시판</title>
 
 <style type="text/css">
 
@@ -54,7 +56,15 @@
 
 </head>
 <body>
-	 <%@include file="/WEB-INF/include/header.jsp" %>
+	<!-- header	 -->
+	<c:choose>
+		<c:when test="${ sessionScope.login eq null }">
+			<%@include file="/WEB-INF/include/header.jsp" %>
+		</c:when>
+		<c:otherwise>
+			<%@include file="/WEB-INF/include/header2.jsp" %>
+		</c:otherwise>
+	</c:choose>
      <div id="title">
      	<div>식물 연합</div>
      </div>
@@ -68,7 +78,7 @@
      </div>
      <div id="main">
 		<table id="cont">
-			<caption><h2>게시판 제목</h2></caption>
+			<caption><h2>${ map.submenu_name }</h2></caption>
 			<tr>
 				<th>번호</th>
 				<th>제목</th>
@@ -76,17 +86,79 @@
 				<th>작성자</th>
 				<th>조회수</th>
 			</tr>
-			<tr>
-				<td>1</td>
-				<td><a href="/view">ㅋㅋㅋ 독초 키워서 다 죽일꺼임</a></td>
-				<td>2023-05-01</td>
-				<td>독초애호가</td>
-				<td>123</td>
-			</tr>
+<c:forEach var="boardVo" items="${ boardList }">
+  <tr>
+     <td>
+     <!-- 번호 -->
+      <c:if test="${ boardVo.lvl eq 0 }">
+          ${ boardVo.board_idx }
+      </c:if> 
+     </td>
+     <td>
+       <!-- 제목(새글/답글) -->
+       <c:choose>
+         <c:when test="${ boardVo.lvl eq 0 }">
+           <c:choose>
+            <c:when test="${ boardVo.delboard eq 0 }">
+              <a href="/Board/View?submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}">
+       		   ${ boardVo.board_title }
+       		  </a>
+       		</c:when>
+       		<c:otherwise>
+       		   <s>삭제된 게시물 입니다</s>
+       		</c:otherwise>
+       	   </c:choose>	 
+       		
+         </c:when>
+         <c:otherwise>
+         
+            <b style="display:inline-block; width:${boardVo.lvl*20}px"></b> 
+            
+            <c:choose>
+              <c:when test="${ boardVo.delnum eq 0 }">
+                <a href="/Board/View?submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}">
+              	  [답글] ${ boardVo.board_title }
+         	    </a>
+         	  </c:when>
+         	  <c:otherwise>
+         	     [답글] <s>삭제된 글입니다</s>
+         	  </c:otherwise>
+         	</c:choose>
+         	
+         </c:otherwise>
+       </c:choose>
+     </td>
+     <td>
+     <!-- 작성일 -->
+     <!-- 날짜 -->
+     ${fn:substring( boardVo.board_regdate, 0, 10) }
+     </td>
+	 <td>    
+     <!-- 작성자 -->
+     ${ boardVo.username }
+     </td>
+     <td>
+     <!-- 조회수 -->
+     ${ boardVo.readcount }
+     </td>
+     <%-- <td>
+     <!-- 첨부파일수 -->
+     <c:choose>
+       <c:when test="${ boardVo.filescount eq 0 }">
+         &nbsp;
+       </c:when>
+       <c:otherwise>
+         ${ boardVo.filescount }         
+       </c:otherwise>
+     </c:choose>
+     </td> --%>
+  </tr>  
+  </c:forEach>
 		</table>
 		<div class="right">
 			<a href="/write">새글 작성</a>
 		</div>
+		
 	    <%@include file="/WEB-INF/include/paging.jsp" %>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>

@@ -18,47 +18,19 @@
       WHERE   MENU_ID = #{menu_id}
    </select>
    
+   <!-- 서브메뉴 이름 알아오기 -->
+	<select id         = "GetSubMenuName"
+			resultType = "String">
+        
+        SELECT
+        	SUBMENU_NAME
+        FROM
+        	SUBMENUS
+        WHERE
+        	SUBMENU_ID = #{ submenu_id }
+        
+	</select>
 
-   <insert id="UserWrite">
-   
-	INSERT INTO
-		MEMBER
-		(
-			USERCODE,
-			USERID,
-			PASSWD,
-			USERNAME,
-			BIRTHDAY,
-			GENDER,
-			GRADE,
-			ADDR,
-			EMAIL,
-			POINT
-		)
-		VALUES
-		(
-			( SELECT NVL( MAX(USERCODE ), 0 ) + 1 FROM MEMBER),
-			#{ userid },
-			#{ passwd },
-			#{ username },
-			#{ birthday },
-			#{ gender },
-			#{ grade },
-			#{ addr },
-			#{ email },
-			500
-		)
-		
-   
-   </insert>
-<!--    
-   <delete id="UserDelete">
-   
-      DELETE  FROM   TUSER
-        WHERE  USERID = #{ userid }  
-           
-   </delete>
- -->
 </mapper>
 
 

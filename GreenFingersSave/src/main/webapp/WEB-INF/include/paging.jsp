@@ -1,27 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
- <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+ 
+	<c:set  var="menu_id"            value="${ boardVo.submenu_id     }" /> 
+	<c:set  var="startnum"           value="${ boardVo.pagestartnum   }" /> 
+	<c:set  var="endnum"             value="${ boardVo.pageendnum     }" /> 
+	<c:set  var="totalpagecount"     value="${ boardVo.totalpagecount }" /> 
 
 <!-- 메뉴목록 -->
 
-<table  id="footer">
- 
- <tr>
-   
-	<td><a href="/">1</a></td>
-	<td><a href="/">2</a></td>
-	<td><a href="/">3</a></td>
-	<td><a href="/">4</a></td>
-	<td><a href="/">5</a></td>
-   <%-- <c:forEach  var="menu"  items="${ menuList }">   
-     <td>
-       <a href="/Board/List?menu_id=${ menu.menu_id }">${ menu.menu_name }</a> 
-     </td>
-   </c:forEach> --%>
- </tr>
-
-</table>
+<div>
+    <table width="500" height="25"  align="center"  >
+     <tr>
+       <td width="500" height="25"  align="center" >
+     
+     <!-- 처음/ 이전 -->     
+     <c:if test="${ startnum gt 1 }">
+       <a href="/Board/List?submenu_id=${ menu_id }&nowpage=1">처음</a>
+       <a href="/Board/List?submenu_id=${ menu_id }&nowpage=${ startnum - 1 }">
+       [이전]
+       </a>
+     </c:if>
+     
+     <!-- 1 2 3 4 5 6 [7] 8 9 10  -->
+     <c:forEach  var="pagenum"  begin="${startnum}"  end="${endnum}"  step="1">
+        <a href="/Board/List?submenu_id=${ menu_id }&nowpage=${ pagenum }">
+        ${ pagenum }
+        </a>&nbsp;&nbsp;     
+     </c:forEach>    
+     
+     <!-- 다음 / 마지막 -->
+     <c:if test="${ totalpagecount ne endnum }">
+       <a href="/Board/List?submenu_id=${ menu_id }&nowpage=${ endnum + 1 }">
+       [다음]
+       </a>
+       <a href="/Board/List?submenu_id=${ menu_id }&nowpage=${ totalpagecount }">마지막</a>
+     </c:if>    
+      </td>
+     </tr>    
+    </table>   
+  </div>
 
 
 

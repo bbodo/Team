@@ -20,7 +20,7 @@ import com.green.user.vo.UserVo;
 public class HomeController {
 	
 	@Autowired
-	UserService userService;
+	private UserService userService;
 	
 	@Autowired
 	private MenuService menuService;
@@ -40,10 +40,6 @@ public class HomeController {
 	// --------------------------- 그림 다그리고 컨트롤러 다시 만들죠~
 	
 	// ---------Board---------
-	@RequestMapping("/board")
-	public String board() {
-		return "/board/list";
-	}
 	@RequestMapping("/write")
 	public String write() {
 		return "/board/write";

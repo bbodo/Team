@@ -31,4 +31,12 @@ public class MenuServiceImpl implements MenuService {
 		return submenuList;
 	}
 
+	@Override
+	public String getMenuName(String submenu_id) {
+
+		String name = menuDao.getMenuName(submenu_id);
+		
+		return name;
+	}
+
 }

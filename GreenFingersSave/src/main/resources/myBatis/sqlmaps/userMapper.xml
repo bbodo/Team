@@ -69,14 +69,6 @@
  	
  	</select>
  	
-<!--    
-   <delete id="UserDelete">
-   
-      DELETE  FROM   TUSER
-        WHERE  USERID = #{ userid }  
-           
-   </delete>
- -->
 </mapper>
 
 

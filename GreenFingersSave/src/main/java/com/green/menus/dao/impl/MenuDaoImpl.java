@@ -31,4 +31,13 @@ public class MenuDaoImpl implements MenuDao {
 		return submenuList;
 	}
 
+	// 서브메뉴 이름 알아오기
+	@Override
+	public String getMenuName(String submenu_id) {
+
+		String name = sqlSession.selectOne("Menu.GetSubMenuName", submenu_id);
+		
+		return name;
+	}
+
 }
