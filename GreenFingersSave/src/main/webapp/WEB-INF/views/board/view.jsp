@@ -80,7 +80,7 @@
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td>${vo.userid }</td>
+				<td>${vo.nickname }</td>
 				<th>작성일</th>
 				<td>${vo.board_regdate }</td>
 				<th>조회수</th>
@@ -106,7 +106,7 @@
 		</table>
 		<!-- 나중에 if 문 -->
 		<div class="right">
-		<a href="/update">수정</a>
+		<a href="/Board/UpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
 		<a href="">삭제</a> <br />
 		</div>
 	

@@ -21,20 +21,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.board.service.BoardService;
 import com.green.board.vo.BoardVo;
 import com.green.board.vo.FileVo;
 import com.green.menus.service.MenuService;
-import com.green.user.service.UserService;
 
 @RequestMapping("/Board")
 @Controller
 public class BoardController {
-	
-	@Autowired
-	private UserService userService;
 	
 	@Autowired
 	private BoardService boardService;
@@ -181,6 +178,61 @@ public class BoardController {
 		return mv;
 	}
 	
+	// 수정창
+	// http://localhost:9090/Board/UpdateForm?menu_id=SUBMENU01&board_idx=10&nowpage=1
+	@RequestMapping("/UpdateForm")
+	public ModelAndView updateForm(
+		@RequestParam	HashMap<String, Object>  map
+			) {
+		
+		BoardVo boardVo = boardService.getBoard(map);
+		
+		String        submenu_id = (String) map.get("submenu_id");
+		String        menuname   = menuService.getMenuName(submenu_id);
+		map.put("submenu_id", submenu_id);
+		
+		String content = boardVo.getBoard_cont();
+		if(content == null) {
+			boardVo.setBoard_cont("");
+		} else {
+			content = content.replace("\n", "<br>");
+			// content += "\n===============================\n";
+			boardVo.setBoard_cont(content);
+		}
+		
+		// fileList
+		List<FileVo>  fileList =  boardService.getFileList( map ); 
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/update");
+		mv.addObject("map", map);
+		mv.addObject("fileList", fileList);
+		mv.addObject("vo", boardVo);
+		
+		return mv;
+	}
+	
+	@RequestMapping("/Update")
+	public ModelAndView update(
+			@RequestParam  HashMap<String, Object> map,
+			HttpServletRequest request
+			) {
+		
+		boardService.setUpdate(map, request);
+		
+		int     board_idx   =  Integer.parseInt( String.valueOf(map.get("board_idx")) );  
+		String  submenu_id  =  (String) map.get( "submenu_id" );
+		String  nowpage     =  String.valueOf(map.get("nowpage"));
+		String  fmt      	=  "redirect:/Board/View?board_idx=%d&submenu_id=%s&nowpage=%s";
+		String  loc      	=  String.format(fmt, board_idx, submenu_id, nowpage);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName(loc);
+		mv.addObject("map", map);
+		
+		return mv;
+	}
+	
 	
 
 	
@@ -235,6 +287,20 @@ public class BoardController {
 	inputStream.close();
 	
 	
+	}
+	
+	// 수정중 파일삭제
+	@ResponseBody
+	@RequestMapping(
+		value    =  "/deleteFile",
+		method   = 	RequestMethod.GET,
+		headers  =  "Accept=application/json" )
+	public    void   deleteFile(
+		@RequestParam  HashMap<String, Object>  map	
+			) {
+		
+		boardService.deleteUploadFile( map );
+				
 	}
 	
 }

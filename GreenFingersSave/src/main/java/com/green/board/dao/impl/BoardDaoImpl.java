@@ -70,4 +70,24 @@ public class BoardDaoImpl implements BoardDao {
 		return fileList;
 	}
 
+	@Override
+	public void deleteUploadFile(HashMap<String, Object> map) {
+
+		System.out.println("지우러가는길" + map);
+		sqlSession.delete("Board.DeleteUploadFile", map);
+		
+	}
+
+	@Override
+	public void setUpdate(HashMap<String, Object> map) {
+
+		// Board 정보 수정
+		sqlSession.update("Board.BoardUpdate", map);
+		
+		// File 정보 수정
+		List<FileVo>  fileList  =  (List<FileVo>) map.get("fileList");
+		if( fileList.size() > 0 )
+			sqlSession.insert("Board.FileUpdate", map );
+	}
+
 }

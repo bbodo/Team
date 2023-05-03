@@ -18,7 +18,7 @@ public class BoardVo {
 	private int 	nref;
 	private int 	delboard;
 	private int 	parent;
-	private String	userid;
+	private String	nickname;
 	
 	// paging 처리를 위한 추가 정보
 		// sql 문을 위한 변수
@@ -36,7 +36,7 @@ public class BoardVo {
 	public BoardVo() {}
 	public BoardVo(int board_idx, String submenu_id, String board_title, String board_cont, int market_value,
 			int usercode, int managercode, String board_regdate, int readcount, int bnum, int lvl, int step, int nref,
-			int delboard, int parent, String userid, int nowpage, int pagecount, int totalcount, int totalpagecount,
+			int delboard, int parent, String nickname, int nowpage, int pagecount, int totalcount, int totalpagecount,
 			int pagestartnum, int pageendnum, int pagegrpnum) {
 		super();
 		this.board_idx = board_idx;
@@ -54,7 +54,7 @@ public class BoardVo {
 		this.nref = nref;
 		this.delboard = delboard;
 		this.parent = parent;
-		this.userid = userid;
+		this.nickname = nickname;
 		this.nowpage = nowpage;
 		this.pagecount = pagecount;
 		this.totalcount = totalcount;
@@ -155,11 +155,11 @@ public class BoardVo {
 	public void setParent(int parent) {
 		this.parent = parent;
 	}
-	public String getUserid() {
-		return userid;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setUserid(String userid) {
-		this.userid = userid;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public int getNowpage() {
 		return nowpage;
@@ -211,7 +211,7 @@ public class BoardVo {
 				+ ", board_cont=" + board_cont + ", market_value=" + market_value + ", usercode=" + usercode
 				+ ", managercode=" + managercode + ", board_regdate=" + board_regdate + ", readcount=" + readcount
 				+ ", bnum=" + bnum + ", lvl=" + lvl + ", step=" + step + ", nref=" + nref + ", delboard=" + delboard
-				+ ", parent=" + parent + ", userid=" + userid + ", nowpage=" + nowpage + ", pagecount=" + pagecount
+				+ ", parent=" + parent + ", nickname=" + nickname + ", nowpage=" + nowpage + ", pagecount=" + pagecount
 				+ ", totalcount=" + totalcount + ", totalpagecount=" + totalpagecount + ", pagestartnum=" + pagestartnum
 				+ ", pageendnum=" + pageendnum + ", pagegrpnum=" + pagegrpnum + "]";
 	}

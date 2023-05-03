@@ -40,15 +40,6 @@ public class HomeController {
 	// --------------------------- 그림 다그리고 컨트롤러 다시 만들죠~
 	
 	// ---------Board---------
-	@RequestMapping("/view")
-	public String view() {
-		return "/board/view";
-	}
-	
-	@RequestMapping("/update")
-	public String update() {
-		return "/board/update";
-	}
 	
 	
 	// ---------user---------

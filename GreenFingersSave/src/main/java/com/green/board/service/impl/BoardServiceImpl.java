@@ -1,5 +1,6 @@
 package com.green.board.service.impl;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -72,6 +73,33 @@ public class BoardServiceImpl implements BoardService {
 		List<FileVo> fileList = boardDao.getFileList(map);
 		
 		return fileList;
+	}
+
+	@Override
+	public void deleteUploadFile(HashMap<String, Object> map) {
+
+		// d:\\upload\\ sfilename 에 해당되는 파일을 삭제
+		
+		String      filepath   =  "D:\\upload\\";   
+		String      sfilename  =  (String) map.get("sfile");
+		
+		File  file  = new File( filepath + sfilename  );
+		if( file.exists()  )
+		   file.delete();
+		
+		// Files table  file_num 번 자료를 삭제		
+		boardDao.deleteUploadFile( map );
+		
+	}
+
+	@Override
+	public void setUpdate(HashMap<String, Object> map, HttpServletRequest request) {
+
+		// 넘어온 파일 저장
+		BoardFile.save(map, request);
+		
+		// db 정보 저장
+		boardDao.setUpdate(map);
 	}
 
 }

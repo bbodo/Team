@@ -26,7 +26,7 @@
 			B.NREF,
 			B.DELBOARD,
 			B.PARENT,
-			M.USERID
+			M.NICKNAME
 		FROM
 			BOARD B
 		JOIN 
@@ -81,7 +81,7 @@
 			B.NREF,
 			B.DELBOARD,
 			B.PARENT,
-			M.USERID
+			M.NICKNAME
 		FROM
 			BOARD B
 		JOIN
@@ -208,6 +208,46 @@
 			FILE_NUM  ASC 
    
    </select>
+
+	<delete   id="DeleteUploadFile">
+      
+		DELETE   
+		FROM
+			BOARD_FILES
+		WHERE
+			FILE_NUM =  #{ file_num  }
+    
+    </delete>
+
+	<update   id = "BoardUpdate">
+       
+		UPDATE
+			BOARD
+		SET
+			BOARD_TITLE  = #{ board_title },
+        	BOARD_CONT   = #{ board_cont  }
+		WHERE
+			BOARD_IDX    = #{ board_idx }    
+       
+    </update>
+
+	 <!-- 파일정보 수정 - 파일이 추가될때 idx 는 기존idx 로 저장해여함  -->
+    <insert  id="FileUpdate">
+      <foreach collection="fileList" item="file"
+           index      = "i"  
+           open       = "INSERT ALL"    
+           close      = "SELECT * FROM DUAL"
+           separator  = " " >
+           INTO  BOARD_FILES  VALUES (
+                GET_FILENUM()
+              , #{ board_idx       }
+              , #{ file.filename   }
+              , #{ file.fileext    }
+              , #{ file.sfilename  }
+           )
+      </foreach>
+   
+   </insert>
 
 </mapper>
 
