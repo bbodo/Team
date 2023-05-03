@@ -18,7 +18,7 @@
 		color:#333;
 	}
 
-	#menu {
+	#menu1 {
 		width:100%;
 		height:50px;
 		background: #ccc;
@@ -29,13 +29,13 @@
 	}
 
 
-	#menu > ul > li {
+	#menu1 > ul > li {
 		float:left;
 		width:140px;
 		position:relative;
 	}
 	
-	#menu > ul > li > ul {
+	#menu1 > ul > li > ul {
 		width:130px;
 		display:none;
 		position: absolute;
@@ -43,11 +43,11 @@
 		background: skyblue;
 	}
 	
-		#menu > ul > li:hover > ul {
+		#menu1 > ul > li:hover > ul {
 		display:block;
 	}
 	
-	#menu > ul > li > ul > li:hover {
+	#menu1 > ul > li > ul > li:hover {
 		background: orange;
 		transition: ease 1s;
 		}
@@ -55,18 +55,18 @@
 
 
 <!-- 메뉴목록 -->
-
+Board/List?submenu_id=SUBMENU01&nowpage=1
 <header>
    <div id="headerInWrap">
 	   <div id="logo"><a href="/">logo</a></div>
-	   <div id="menu">
+	   <div id="menu1">
 	 	<ul>
 	      <c:forEach var="menu" items="${ menuList }">
-	          <li><a href="/board?menu_id=${menu.menu_id}">${ menu.menu_name }</a>
+	          <li><a href="/Board?menu_id=${menu.menu_id}">${ menu.menu_name }</a>
 	              <ul>
 	              <c:forEach var="submenu" items="${ submenuList }">
 	              <c:if test="${submenu.menu_id eq menu.menu_id }">
-	               	<li><a href="/board?submenu_id=${submenu.submenu_id}">${submenu.submenu_name}</a></li>
+	               	<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">${submenu.submenu_name}</a></li>
 	               </c:if>
 	               </c:forEach>
 	               </ul> 
@@ -75,7 +75,7 @@
 	      <li><a href="login" class="right">로그인</a></li>
 	   </ul> 
 	   </div>
-   </div>
+   </div> 
 </header>
 	   
 	   
