@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.green.menus.service.MenuService;
 import com.green.menus.vo.MenuVo;
+import com.green.menus.vo.SubmenuVo;
 import com.green.user.service.UserService;
 import com.green.user.vo.UserVo;
 
@@ -28,10 +29,13 @@ public class HomeController {
 	@RequestMapping("/")
 	public ModelAndView home() {
 		List<MenuVo> menuList = menuService.getMenuList();
-		System.out.println(menuList);
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		System.out.println("MENU" + menuList);
+		System.out.println("SUBMENU" + submenuList);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("home");
 		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		
 		return mv;
 	}

@@ -9,13 +9,18 @@
    <div id="headerInWrap">
 	   <div id="logo"><a href="/">logo</a></div>
 	  <ul id="menu">
-		
 	      <c:forEach var="menu" items="${ menuList }">
-	     
-	               <li><a href="/board/submenu">${ menu.menu_name }</a></li>
-	       
-	        
+	          <li><a href="/board?menu_id=${menu.menu_id}">${ menu.menu_name }</a>
+	              <ul>
+	              <c:forEach var="submenu" items="${ submenuList }">
+	              <c:if test="${submenu.menu_id eq menu.menu_id }">
+	               	<li><a href="/board?submenu_id=${submenu.submenu_id}">${submenu.submenu_name}</a></li>
+	               </c:if>
+	               </c:forEach>
+	               </ul> 
+	          </li>
 	      </c:forEach>
+	      <li><a href="login" class="right">로그인</a></li>
 	   </ul> 
 	    <!-- 
 	      <li><a href="/board">식물연합</a>

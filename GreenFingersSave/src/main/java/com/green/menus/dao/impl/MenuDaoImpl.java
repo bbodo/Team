@@ -24,7 +24,7 @@ public class MenuDaoImpl implements MenuDao {
 		return menuList;
 	}
 
-	// 서브메뉴 목록 가져오기
+	// menu_id를 가지고 서브메뉴 목록 가져오기
 	@Override
 	public List<SubmenuVo> getSubmenuList(HashMap<String, Object> map) {
 		List<SubmenuVo> submenuList = sqlSession.selectList("Menu.SubmenuList",map);
@@ -38,6 +38,13 @@ public class MenuDaoImpl implements MenuDao {
 		String name = sqlSession.selectOne("Menu.GetSubMenuName", submenu_id);
 		
 		return name;
+	}
+
+	// 서브메뉴 목록 가져오기
+	@Override
+	public List<SubmenuVo> getSubmenuList1() {
+		List<SubmenuVo> submenuList = sqlSession.selectList("Menu.SubmenuList1");
+		return submenuList;
 	}
 
 }

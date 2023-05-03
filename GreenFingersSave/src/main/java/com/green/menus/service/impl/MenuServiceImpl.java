@@ -24,7 +24,7 @@ public class MenuServiceImpl implements MenuService {
 		return menuList;
 	}
 
-	// 서브메뉴 목록 가져오기
+	// menu_id를 가지고 서브메뉴 목록 가져오기
 	@Override
 	public List<SubmenuVo> getSubmenuList(HashMap<String, Object> map) {
 		List<SubmenuVo> submenuList = menuDao.getSubmenuList(map);
@@ -37,6 +37,13 @@ public class MenuServiceImpl implements MenuService {
 		String name = menuDao.getMenuName(submenu_id);
 		
 		return name;
+	}
+
+	// 서브메뉴 목록 가져오기
+	@Override
+	public List<SubmenuVo> getSubmenuList1() {
+		List<SubmenuVo> submenuList = menuDao.getSubmenuList1();
+		return submenuList;
 	}
 
 }

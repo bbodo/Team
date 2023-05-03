@@ -11,10 +11,13 @@ public interface MenuDao {
 	// 메뉴 목록 가져오기
 	List<MenuVo> getMenuList();
 
-	// 서브메뉴 목록 가져오기
+	// menu_id를 가지고 서브메뉴 목록 가져오기
 	List<SubmenuVo> getSubmenuList(HashMap<String, Object> map);
 
 	// 서브메뉴 이름 알아오기
 	String getMenuName(String submenu_id);
+
+	// 서브메뉴 목록 가져오기
+	List<SubmenuVo> getSubmenuList1();
 
 }

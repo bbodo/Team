@@ -6,11 +6,11 @@ public class SubmenuVo {
 	private String submenu_id;
 	private String submenu_name;
 	private int    submenu_seq;
-	private int    menu_id;
+	private String menu_id;
 	
 	// 생성자
 	public SubmenuVo() { }
-	public SubmenuVo(String submenu_id, String submenu_name, int submenu_seq, int menu_id) {
+	public SubmenuVo(String submenu_id, String submenu_name, int submenu_seq, String menu_id) {
 		this.submenu_id = submenu_id;
 		this.submenu_name = submenu_name;
 		this.submenu_seq = submenu_seq;
@@ -36,10 +36,10 @@ public class SubmenuVo {
 	public void setSubmenu_seq(int submenu_seq) {
 		this.submenu_seq = submenu_seq;
 	}
-	public int getMenu_id() {
+	public String getMenu_id() {
 		return menu_id;
 	}
-	public void setMenu_id(int menu_id) {
+	public void setMenu_id(String menu_id) {
 		this.menu_id = menu_id;
 	}
 	

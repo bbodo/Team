@@ -8,16 +8,24 @@
 <header>
    <div id="headerInWrap">
 	   <div id="logo"><a href="/">logo</a></div>
-		<ul>
+	 	<ul id="menu">
 	      <c:forEach var="menu" items="${ menuList }">
-	               <li><a href="">${ menu.menu_name }</a></li>
+	          <li><a href="/board?menu_id=${menu.menu_id}">${ menu.menu_name }</a>
+	              <ul>
+	              <c:forEach var="submenu" items="${ submenuList }">
+	              <c:if test="${submenu.menu_id eq menu.menu_id }">
+	               	<li><a href="/board?submenu_id=${submenu.submenu_id}">${submenu.submenu_name}</a></li>
+	               </c:if>
+	               </c:forEach>
+	               </ul> 
+	          </li>
 	      </c:forEach>
-	      <li><a href="login">로그인</a></li>
-	   </ul>
+	      <li><a href="login" class="right">로그인</a></li>
+	   </ul> 
 	   
 	   
 	   
-<%-- 	    
+<!-- 	    
   <ul id="menu">
 	      <li><a href="/board">식물연합</a>
 	         <ul>
@@ -62,9 +70,9 @@
 	            <li><a href="/static/html/green.html">그린위키</a></li>
 	         </ul>
 	      </li>
-	   </ul>
+	   </ul> -->
 	   
-	   <nav>
+<%-- 	   <nav>
 	      <c:if test="${  != null }">
 	         <div><a href="/">로그아웃</a></div>
 	         <div><a href="">마이페이지</a></div>
@@ -83,7 +91,7 @@
 
 
  
-<%-- <table  id="header">
+ <%-- <table  id="header">
    
 <tr>
    <td><a href="/">버튼1</a></td>
@@ -97,10 +105,7 @@
    <td class="right"><a href="login">로그인</a></td>
  </tr>
 
-</table>
- --%>
-
-
+</table> --%>
 
 
 
