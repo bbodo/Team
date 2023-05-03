@@ -2,13 +2,65 @@
     pageEncoding="UTF-8"%>
 
  <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
- 
+ <style type="text/css">
+
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
+	ul li{
+		list-style: none;
+	}
+
+	a {
+		text-decoration: none;
+		color:#333;
+	}
+
+	#menu {
+		width:100%;
+		height:50px;
+		background: #ccc;
+		color:black;
+		line-height: 50px; 
+		margin:0 auto;
+		text-align: center;
+	}
+
+
+	#menu > ul > li {
+		float:left;
+		width:140px;
+		position:relative;
+	}
+	
+	#menu > ul > li > ul {
+		width:130px;
+		display:none;
+		position: absolute;
+		font-size:14px;
+		background: skyblue;
+	}
+	
+		#menu > ul > li:hover > ul {
+		display:block;
+	}
+	
+	#menu > ul > li > ul > li:hover {
+		background: orange;
+		transition: ease 1s;
+		}
+	</style>
+
+
 <!-- 메뉴목록 -->
 
 <header>
    <div id="headerInWrap">
 	   <div id="logo"><a href="/">logo</a></div>
-	 	<ul id="menu">
+	   <div id="menu">
+	 	<ul>
 	      <c:forEach var="menu" items="${ menuList }">
 	          <li><a href="/board?menu_id=${menu.menu_id}">${ menu.menu_name }</a>
 	              <ul>
@@ -22,6 +74,9 @@
 	      </c:forEach>
 	      <li><a href="login" class="right">로그인</a></li>
 	   </ul> 
+	   </div>
+   </div>
+</header>
 	   
 	   
 	   
@@ -82,9 +137,6 @@
 	      </c:if>
 	      <div><a href="login">로그인</a></div>
 	   </nav> --%>
-	   
-   </div>
-</header>
 
 
 
