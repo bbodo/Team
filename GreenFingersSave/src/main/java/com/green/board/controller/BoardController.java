@@ -212,6 +212,7 @@ public class BoardController {
 		return mv;
 	}
 	
+	// 게시글 수정
 	@RequestMapping("/Update")
 	public ModelAndView update(
 			@RequestParam  HashMap<String, Object> map,
@@ -230,6 +231,27 @@ public class BoardController {
 		mv.setViewName(loc);
 		mv.addObject("map", map);
 		
+		return mv;
+	}
+	
+	// 게시글 삭제
+	// /Board/Delete?submenu_id=$&board_idx=&nowpage=$
+	@RequestMapping("/Delete")
+	public ModelAndView delete(
+		@RequestParam   HashMap<String,  Object>  map
+			) {
+		
+		boardService.setDelete(map);
+		
+		String submenu_id  =  map.get("submenu_id").toString();
+		String nowpage     = String.valueOf(map.get("nowpage"));
+		String fmt 		   = "redirect:/Board/List?submenu_id=%s&nowpage=%s";
+		String loc 		   = String.format(fmt, submenu_id, nowpage);
+		
+		ModelAndView   mv  = new ModelAndView();
+		mv.setViewName(loc);
+		mv.addObject("map", map);
+
 		return mv;
 	}
 	

@@ -20,4 +20,6 @@ public interface BoardDao {
 
 	void setUpdate(HashMap<String, Object> map);
 
+	void setDelete(HashMap<String, Object> map);
+
 }

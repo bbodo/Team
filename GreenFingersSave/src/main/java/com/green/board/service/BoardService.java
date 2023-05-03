@@ -22,4 +22,6 @@ public interface BoardService {
 
 	void setUpdate(HashMap<String, Object> map, HttpServletRequest request);
 
+	void setDelete(HashMap<String, Object> map);
+
 }

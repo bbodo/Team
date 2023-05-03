@@ -39,9 +39,6 @@ public class HomeController {
 	// --------------------------- 양식을 위한 주소
 	// --------------------------- 그림 다그리고 컨트롤러 다시 만들죠~
 	
-	// ---------Board---------
-	
-	
 	// ---------user---------
 	@RequestMapping("/login")
 	public String login() {

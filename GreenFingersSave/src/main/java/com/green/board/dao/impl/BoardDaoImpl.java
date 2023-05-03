@@ -90,4 +90,19 @@ public class BoardDaoImpl implements BoardDao {
 			sqlSession.insert("Board.FileUpdate", map );
 	}
 
+	@Override
+	public void setDelete(HashMap<String, Object> map) {
+		
+		sqlSession.delete( "Board.BoardDelNum", map); // delboard를 1로 만듬
+		int  childCnt = sqlSession.selectOne("Board.ChildCnt", map); // 자식있는지 확인
+		
+		List<FileVo> fileList = getFileList(map);
+		map.put("fileList", fileList);
+		if(  childCnt == 0  ) { // 자식이 없는경우 삭제
+			sqlSession.delete("Board.FileDelete", map);
+			sqlSession.delete("Board.BoardDelete", map);
+		}
+		
+	}
+
 }

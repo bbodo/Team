@@ -102,4 +102,12 @@ public class BoardServiceImpl implements BoardService {
 		boardDao.setUpdate(map);
 	}
 
+	@Override
+	public void setDelete(HashMap<String, Object> map) {
+
+		// db 제거
+		boardDao.setDelete(map);
+		
+	}
+
 }

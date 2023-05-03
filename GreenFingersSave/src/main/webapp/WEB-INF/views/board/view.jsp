@@ -107,7 +107,7 @@
 		<!-- 나중에 if 문 -->
 		<div class="right">
 		<a href="/Board/UpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
-		<a href="">삭제</a> <br />
+		<a href="/Board/Delete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&nowpage=${map.nowpage}">삭제</a> <br />
 		</div>
 	
 		<br />
