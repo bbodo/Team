@@ -29,7 +29,7 @@ public class MarketController {
 	
 	
 	
-	@RequestMapping("/List")
+	@RequestMapping("/AdoptList")
 	public ModelAndView list(
 			@RequestParam HashMap<String, Object> map
 			) {
@@ -37,7 +37,7 @@ public class MarketController {
 	// ---------------------------------------------------------------------
 	// 페이징 정보 준비
 	int           nowpage   =  Integer.parseInt( (String) map.get("nowpage") ); 
-	int           pagecount =  2;    // 한페이지 당 출력할 줄(row)수  
+	int           pagecount =  10;    // 한페이지 당 출력할 줄(row)수  
 
 	// sql 사용할 변수 : 조회할 레코드 번호
 	int           startnum  =  ( nowpage - 1 ) * pagecount + 1;
@@ -63,7 +63,7 @@ public class MarketController {
 	System.out.println("마켓맵" + map);
 	
 	ModelAndView mv = new ModelAndView();
-	mv.setViewName("market/list");
+	mv.setViewName("market/adoptList");
 	mv.addObject("adoptList", adoptList);
 	mv.addObject("marketVo", marketVo);
 	mv.addObject("map", map);

@@ -25,7 +25,7 @@
 	}
 	#aside {
 		float: left;
-		height: 1500px;
+		height: 1000px;
 		background-color: navy;
 		width: 20%;
 		padding: 10px;
@@ -37,7 +37,7 @@
 	}
 	#main {
 		width: 80%;
-		height: 1500px;
+		height: 1000px;
 		float: left;
 		padding: 10px;
 		background-color: gray;
@@ -59,16 +59,9 @@
 	#list th {
 		background-color: #666;
 	}
-	#pointlist1 { 
-	            display: flex;
-	            gap : 0.3px;
-	            text-decoration : none;
-	            margin-top: 50px;
-	            margin-left: 230px;
-    } 
-	.tag {
-		font-weight: bold;
-	}
+	.right {
+		text-align: right;
+	} 
 	
 	#main { display: block; }
 	
@@ -101,41 +94,11 @@
      </div>
      <div id="main">
      
-     <p>그린핑거는 판매 혹은 구매 회원 간의 상품 거래 정보<br>
-     및 거래에 관여하지 않으며 어떠한 의무와 책임도 부담하지 않습니다</p>
+     <p>회원 등급과 상관없이 누구나 입양 신청글 작성이 가능합니다<br>
+     입양 완료 후 답례를 하고 싶다면 포인트로 고마움을 표현하세요</p>
      
-     <div id="givelist">
-      <figure>
-      <a href="">
-     <div class="plant">
-	     <img src="/img/market/그린마켓1.png" >
-	  </div>
-	  </a>
-	     <span class="tag">나눔</span>
-	     <p>루브라 나눔합니다</p>
-	  </figure>
-      <figure>
-      <a href="">
-     <div class="plant">
-	     <img src="/img/market/그린마켓2.png" >
-	  </div>
-	  </a>
-	     <span class="tag">나눔</span>
-	     <p>제라늄 데려가실 분</p>
-	  </figure>
-      <figure>
-      <a href="">
-     <div class="plant">
-	     <img src="/img/market/그린마켓3.png">
-	  </div>
-	  </a>
-	     <span class="tag">나눔</span>
-	     <p>유니플로라 데려가세요</p> 
-	  </figure>
-	</div>
-	
     <table id="cont">
-		<caption><h2>입양원해요</h2></caption>
+		<caption><h2>입양 원해요</h2></caption>
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
@@ -202,38 +165,11 @@
 	  </tr>  
 	  </c:forEach>
 		</table> 
+    
 	
-	  <caption><h2>포인트 스토어</h2></caption>	
-	  <div id="pointlist1">
-      <figure>
-      <a href="">
-     <div class="plant">
-	     <img src="/img/market/포인트스토어1.jpg" >
-	  </div>
-	  </a>
-	     <span class="tag">3000p</span>
-	     <p>귀여운 코끼리 물뿌리개</p>
-	  </figure>
-      <figure>
-      <a href="">
-     <div class="plant">
-	     <img src="/img/market/포인트스토어2.jpg" >
-	  </div>
-	  </a>
-	     <span class="tag">4500p</span>
-	     <p>파쯔파쯔 국내생산 흙</p>
-	  </figure>
-      <figure>
-      <a href="">
-     <div class="plant">
-	     <img src="/img/market/포인트스토어3.jpg">
-	  </div>
-	  </a>
-	     <span class="tag">1800p</span>
-	     <p>원예 모종삽 3종세트</p> 
-	  </figure>
-	 </div>	
-		
+	
+		<input type="button" class="right" value="새글 작성" />
+	    <%@include file="/WEB-INF/include/paging.jsp" %>
      </div>
      
      <%@include file="/WEB-INF/include/footer.jsp" %>
