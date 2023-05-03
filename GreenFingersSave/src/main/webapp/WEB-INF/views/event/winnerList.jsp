@@ -50,14 +50,14 @@
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
      <div id="title">
-     	<p>이벤트</p>
+     	<p>당첨자</p>
      </div>
      <div id="main">
 		<table id="cont">
 			<tr>
 				<td colspan="2" style="width: 50%">
 					<div style="float: left;">
-			     		<h2>이벤트</h2>
+			     		<h2>당첨자</h2>
 			     	</div>
 				</td>
 				<td style="width: 50%">

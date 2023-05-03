@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@include file="/WEB-INF/include/comHead.jsp" %>
-<title>당첨자 리스트</title>
-
+<title>이벤트 리스트</title>
+<link rel="stylesheet" href="/css/event.css"/>
 <style type="text/css">
 
 	* {
@@ -34,7 +34,7 @@
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
-		width: 100%;
+		width: 50%;
 		padding: 50px;
 	}
 	#cont th {
@@ -50,7 +50,7 @@
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
      <div id="title">
-     	<p>당첨자</p>
+     	<p>이벤트</p>
      </div>
      <div id="main">
 		<table id="cont">
@@ -69,21 +69,18 @@
 				</td>
 			</tr>
 			<tr>
-				<th colspan="2"><a href="">이벤트</a></th>
+				<th colspan="2"><a href="eventList">이벤트</a></th>
 				<th colspan="2"><a href="/winnerList">당첨자 발표</a></th>
 			</tr>
-			<tr>
-				<td colspan="4"><a href="/eventView">a태그로 이미지 넣을것</a></td>
+
+			<tr>				
+					<td class="eventimg" colspan="4"><img onclick="javascript:location.href='http://localhost:9090/eventView'" src="/img/그린마켓3.png"  ></td>
+					<td colspan="4">제목글</td>
+				
 			</tr>
-			<tr>
-				<td colspan="4"><a href="/eventView">a태그로 이미지 넣을것</a></td>
-			</tr>
-			<tr>
-				<td colspan="4"><a href="/eventView">a태그로 이미지 넣을것</a></td>
-			</tr>
-			<tr>
-				<td colspan="4"><a href="/eventView">a태그로 이미지 넣을것</a></td>
-			</tr>
+			
+			
+						
 		</table>
 	    <%@include file="/WEB-INF/include/paging.jsp" %>
      </div>
