@@ -205,5 +205,9 @@ public class HomeController {
     public String marketView() {
     	return "/market/view";
     }
+    @RequestMapping("/marketPointList")
+    public String marketPointList() {
+    	return "/market/pointList";
+    }
     
 }
