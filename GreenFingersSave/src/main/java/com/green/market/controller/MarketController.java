@@ -27,7 +27,7 @@ public class MarketController {
 	@Autowired
 	private MarketService marketService;
 	
-	
+	 
 	
 	@RequestMapping("/AdoptList")
 	public ModelAndView list(

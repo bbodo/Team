@@ -13,7 +13,7 @@
 	* {
 		box-sizing: border-box;
 	}
-
+ 
 	#title {
 		width: 100%;
 		text-align: center;
