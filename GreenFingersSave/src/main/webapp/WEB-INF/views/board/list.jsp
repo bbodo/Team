@@ -65,9 +65,12 @@
 			<%@include file="/WEB-INF/include/header2.jsp" %>
 		</c:otherwise>
 	</c:choose>
+     
+
      <div id="title">
      	<div>식물 연합</div>
      </div>
+     
      <div id="aside">
      	포이즌<br />
      	포이즌<br />
@@ -76,6 +79,7 @@
      	포이즌<br />
      	포이즌<br />
      </div>
+     
      <div id="main">
 		<table id="cont">
 			<caption><h2>${ map.submenu_name }</h2></caption>

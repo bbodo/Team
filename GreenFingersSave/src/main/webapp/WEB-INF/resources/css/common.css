@@ -73,8 +73,13 @@ footer>div:nth-of-type(2) span a {
 
 
 @media all and (min-width:600px){
-	header {height: auto;}
-	#headerInWrap {
+	header {height: 70px;}
+	
+	
+	
+	
+	
+	/* #headerInWrap {
 		width:100%;
 		position: absolute;
 		display: flex;
@@ -112,9 +117,9 @@ footer>div:nth-of-type(2) span a {
 		margin-bottom: 10px;
 	}
 	
-	#headerInWrap:hover #menu ul{ 
-		height: 300px; 
-	}              
+	#menu ul:hover{ 
+		height: 500px; 
+	}  */             
 	
 	
 }

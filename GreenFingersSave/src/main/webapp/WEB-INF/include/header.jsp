@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
  <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
-
+ 
 <!-- 메뉴목록 -->
 
 <header>
@@ -10,12 +10,12 @@
 	   <div id="logo"><a href="/">logo</a></div>
 		<ul>
 	      <c:forEach var="menu" items="${ menuList }">
-	     
 	               <li><a href="">${ menu.menu_name }</a></li>
-	       
-	        
 	      </c:forEach>
-	   </ul> 
+	   </ul>
+	   
+	   
+	   
 <%-- 	    
   <ul id="menu">
 	      <li><a href="/board">식물연합</a>
@@ -73,8 +73,15 @@
 	      </c:if>
 	      <div><a href="login">로그인</a></div>
 	   </nav> --%>
+	   
+	   
+	   
    </div>
 </header>
+
+
+
+
 
  
 <%-- <table  id="header">

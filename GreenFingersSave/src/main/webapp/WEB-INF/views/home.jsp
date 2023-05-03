@@ -98,6 +98,8 @@
 	<a href="/myNote">쪽지</a> <br />
 	<a href="/myNoteWrite">쪽지작성</a> <br />
 	<a href="">길 찾아가세요</a> 
+	
+	<a href="/myList">마이페이지</a>
 	<h2>Home</h2>
 	
   <!-- footer -->
