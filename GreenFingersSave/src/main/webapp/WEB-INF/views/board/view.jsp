@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@include file="/WEB-INF/include/comHead.jsp" %>
-<title>식물연합 게시글 상세보기</title>
+<title>${ map.submenu_name } 게시글 보기</title>
 
 <style type="text/css">
 
@@ -73,27 +73,35 @@
      </div>
      <div id="main">
 		<table id="cont">
-			<caption class="left">게시글 열람</caption>
+			<caption class="left">${ map.submenu_name }게시글 보기</caption>
 			<tr>
 				<th>제목</th>
-				<td>땡겨올 제목</td>
+				<td>${vo.board_title }</td>
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td>땡겨올 작성자 이름</td>
+				<td>${vo.userid }</td>
 				<th>작성일</th>
-				<td>땡겨올 작성일</td>
+				<td>${vo.board_regdate }</td>
 				<th>조회수</th>
-				<td>땡겨올 조회수</td>
+				<td>${vo.readcount }</td>
 			</tr>
 				<tr><td colspan="6"><hr /></td></tr>
 			<tr>
 				<th>내용</th>
-				<td>이건 내용입니다~</td>
+				<td>${vo.board_cont }</td>
 			</tr>
 			<tr>
 				<th>파일 첨부</th>
-				<td><input type="file" name="file" /></td>
+				<td> 
+				<c:forEach var="file"  items="${ fileList }" >
+				<div>
+					<a href="/Board/download/external/${ file.sfilename }">
+					${ file.filename }
+					</a>
+				</div>
+				</c:forEach> 
+   	    	 </td>
 			</tr>
 		</table>
 		<!-- 나중에 if 문 -->

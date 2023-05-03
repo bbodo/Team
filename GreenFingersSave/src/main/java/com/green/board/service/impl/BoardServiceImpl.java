@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.green.board.dao.BoardDao;
 import com.green.board.service.BoardService;
 import com.green.board.vo.BoardVo;
+import com.green.board.vo.FileVo;
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
@@ -63,6 +64,14 @@ public class BoardServiceImpl implements BoardService {
 		// 넘어온 정보 저장
 		boardDao.setWrite(map);
 		
+	}
+
+	@Override
+	public List<FileVo> getFileList(HashMap<String, Object> map) {
+
+		List<FileVo> fileList = boardDao.getFileList(map);
+		
+		return fileList;
 	}
 
 }

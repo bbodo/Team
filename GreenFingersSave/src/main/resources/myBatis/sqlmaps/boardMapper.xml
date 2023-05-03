@@ -78,7 +78,7 @@
 			B.BNUM,
 			B.LVL,
 			B.STEP,
-			B.B.NREF,
+			B.NREF,
 			B.DELBOARD,
 			B.PARENT,
 			M.USERID
@@ -181,6 +181,33 @@
       </foreach>
    
    </insert>
+
+	<!-- 조회수 증가 (readCount++) -->
+   <update  id="UpdateReadCount">
+   
+   	    UPDATE   BOARD
+   	     SET     READCOUNT = READCOUNT + 1
+   	     WHERE   BOARD_IDX   =   #{board_idx}
+   
+   </update>
+   
+   <select   id         = "FileList" 
+             resultType = "com.green.board.vo.FileVo">
+   
+       SELECT
+		   FILE_NUM,
+		   BOARD_IDX,
+		   FILENAME,
+		   FILEEXT,
+		   SFILENAME
+		FROM
+			BOARD_FILES
+		WHERE
+			BOARD_IDX   =  #{ board_idx  } 
+		ORDER BY   
+			FILE_NUM  ASC 
+   
+   </select>
 
 </mapper>
 

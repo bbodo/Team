@@ -34,7 +34,9 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public BoardVo getBoard(HashMap<String, Object> map) {
-
+		
+		sqlSession.update("Board.UpdateReadCount", map);
+		
 		BoardVo vo = sqlSession.selectOne("Board.GetBoard", map);
 		
 		return vo;
@@ -58,6 +60,14 @@ public class BoardDaoImpl implements BoardDao {
 		if( fileList.size() != 0  )
 			sqlSession.insert("Board.FileInsert", map);
 		
+	}
+
+	@Override
+	public List<FileVo> getFileList(HashMap<String, Object> map) {
+
+		List<FileVo>  fileList  =  sqlSession.selectList("Board.FileList", map);
+		
+		return fileList;
 	}
 
 }

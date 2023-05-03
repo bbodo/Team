@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.green.board.vo.BoardVo;
+import com.green.board.vo.FileVo;
 
 public interface BoardService {
 
@@ -14,5 +15,7 @@ public interface BoardService {
 	BoardVo getBoard(HashMap<String, Object> map);
 
 	void setWrite(HashMap<String, Object> map, HttpServletRequest request);
+
+	List<FileVo> getFileList(HashMap<String, Object> map);
 
 }

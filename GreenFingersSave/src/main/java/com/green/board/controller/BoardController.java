@@ -1,18 +1,31 @@
 package com.green.board.controller;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URLConnection;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.board.service.BoardService;
 import com.green.board.vo.BoardVo;
+import com.green.board.vo.FileVo;
 import com.green.menus.service.MenuService;
 import com.green.user.service.UserService;
 
@@ -130,5 +143,98 @@ public class BoardController {
 		return mv;
 	}
 	
+	// 내용 보기
+	// /Board/View?submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}
+	@RequestMapping("/View")
+	public ModelAndView view(
+		@RequestParam HashMap<String, Object> map
+			) {
+		
+		// 메뉴이름
+		String  submenu_id   =  (String) map.get("submenu_id");
+		String  submenu_name = menuService.getMenuName(submenu_id);
+		map.put("submenu_id", submenu_id);
+		
+		// 보여줄 게시글 내용
+		BoardVo boardVo = boardService.getBoard(map);
+		
+		String content = boardVo.getBoard_cont();
+		if(content == null) {
+			boardVo.setBoard_cont("------------------------------내용이 없습니다------------------------------");
+		} else {
+			String cont = content.replace("\n", "<br>");
+			boardVo.setBoard_cont(cont);
+		}
+		/*
+		String         cont      = boardVo.getBoard_cont().replace("\n", "<br>");
+		boardVo.setBoard_cont(cont);
+		*/
+		
+		List<FileVo> fileList = boardService.getFileList(map);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/view");
+		mv.addObject("map", map);
+		mv.addObject("fileList", fileList);
+		mv.addObject("vo", boardVo);
+		
+		return mv;
+	}
+	
+	
+
+	
+	//-------------------------------------------------------------------
+	@RequestMapping(value  = "/download/{type}/{sfile:.+}",
+	        method = RequestMethod.GET )
+	public   void   downloadFile(
+		@PathVariable("type")   String type,
+		@PathVariable("sfile")  String sfile,
+		HttpServletResponse     response
+		) throws IOException {
+	
+	String     INTERNAL_FILE         =  sfile;
+	String     EXTERNAL_FILE_PATH    =  "d:\\upload\\" + sfile;
+			
+	File       file  =  null;
+	if ( type.equalsIgnoreCase("internal")  ) {
+		ClassLoader   classLoader = 
+			Thread.currentThread().getContextClassLoader();
+		file   = new File( classLoader.getResource(INTERNAL_FILE).getPath() ); 
+	} else {
+		file   = new File( EXTERNAL_FILE_PATH );
+	}
+	
+	if( !file.exists()  ) {
+		String errorMessage = "죄송합니다.파일이 없습니다";
+		OutputStream  outputStream = response.getOutputStream();
+		outputStream.write(  errorMessage.getBytes(Charset.forName("UTF-8")) );
+		outputStream.close();
+		return;
+	}
+	
+	// 실제 다운로드
+	String  mimeType = URLConnection.guessContentTypeFromName(file.getName());
+	mimeType   =  "application/octet-stream";   // 무조건 다운로드
+	
+	// 파일명의 한글처리		
+	String   fname   = new String( 
+			file.getName().getBytes("UTF-8"), "ISO-8859-1" );
+	
+	response.setContentType( mimeType );
+	response.setHeader("Content-Disposition",
+		String.format("inline; filename=\"" + fname + "\"" ));
+	
+	response.setContentLength( (int) file.length() );
+	
+	InputStream   inputStream  = new BufferedInputStream(
+		new FileInputStream( file )	);
+	
+	FileCopyUtils.copy( inputStream, response.getOutputStream() );
+	
+	inputStream.close();
+	
+	
+	}
 	
 }
