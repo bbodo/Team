@@ -61,6 +61,22 @@ section {width:100%;}
 }
 
 
+/* section2 시작 */
+#sec2>div:nth-of-type(1) p{
+	float: left;
+	margin-right:10px;
+}
+
+
+#sec2Cont {
+	width:100%;
+}
+
+#sec2Cont { border-collapse: collapse;}
+
+#sec2Cont th, #sec2Cont td {
+    border: 1px solid #444444;
+}
 
 
 

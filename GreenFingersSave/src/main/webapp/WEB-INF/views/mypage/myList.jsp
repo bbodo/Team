@@ -12,9 +12,9 @@
 
 <style type="text/css">
 
-	* {
+	/* * {
 		box-sizing: border-box;
-	}
+	} */
 
 	#title {
 		width: 100%;
@@ -133,11 +133,10 @@
 				<p>보낸 쪽지</p>
 			</div>         
 			
-			<table id="cont">
-				<caption>내가 작성 한 글</caption>
+			<table id="sec2Cont">
 				<tr>
 					<th>번호</th>
-					<th>보낸 사람</th>
+					<th>받은 사람</th>
 					<th>제목</th>
 					<th>날짜</th>
 					<th>읽음 상태</th>
