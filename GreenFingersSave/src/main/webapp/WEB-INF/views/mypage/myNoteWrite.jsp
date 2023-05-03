@@ -6,7 +6,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@include file="/WEB-INF/include/comHead.jsp" %>
+<script type="text/javascript" src="/js/myNote.js"></script>
 <title>쪽지 쓰기</title>
+
+<script>
+	alert("d");
+</script>
 
 <style type="text/css">
 
@@ -81,15 +86,15 @@
 			<table id="cont">
 				<tr>
 					<th>받는 사람</th>
-					<td><input name="receiverusercode" type="text" placeholder="유저ID를 입력하세용" />1</td>
+					<td><input name="receiverusercode" type="text" value="${myNoteVo.nickname}" />${myNoteVo.nickname}</td>
 				</tr>
 				<tr>
 					<th>제목</th>
 					<td><input name="notetitle" type="text" /></td>
 				</tr>
 				<tr>
-					<th>게시글</th>
-					<td>원래 게시글 제목:board_idx=1(변수)</td>
+					<th>그린마켓</th>
+					<td><a href="">${myNoteVo.board_title}</a></td>
 				</tr>
 				<tr>
 					<th>내용</th>

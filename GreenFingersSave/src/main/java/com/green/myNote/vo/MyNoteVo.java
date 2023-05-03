@@ -11,12 +11,13 @@ public class MyNoteVo {
 	private String readmark;
 	private String delnote;
 	private String nickname;
+	private String boardtitle;
 	
 	//Constructor
 	public MyNoteVo() {}
 
 	public MyNoteVo(int noteidx, String notetitle, String notecont, String noteregdate, String sendusercode,
-			String receiverusercode, String readmark, String delnote, String nickname) {
+			String receiverusercode, String readmark, String delnote, String nickname, String board_title) {
 		super();
 		this.noteidx = noteidx;
 		this.notetitle = notetitle;
@@ -27,9 +28,9 @@ public class MyNoteVo {
 		this.readmark = readmark;
 		this.delnote = delnote;
 		this.nickname = nickname;
+		this.boardtitle = board_title;
 	}
-	
-	//Getter/ Setter
+
 	public int getNoteidx() {
 		return noteidx;
 	}
@@ -102,11 +103,22 @@ public class MyNoteVo {
 		this.nickname = nickname;
 	}
 
+	public String getBoard_title() {
+		return boardtitle;
+	}
+
+	public void setBoard_title(String board_title) {
+		this.boardtitle = board_title;
+	}
+
 	@Override
 	public String toString() {
 		return "MyNoteVo [noteidx=" + noteidx + ", notetitle=" + notetitle + ", notecont=" + notecont + ", noteregdate="
 				+ noteregdate + ", sendusercode=" + sendusercode + ", receiverusercode=" + receiverusercode
-				+ ", readmark=" + readmark + ", delnote=" + delnote + ", nickname=" + nickname + "]";
+				+ ", readmark=" + readmark + ", delnote=" + delnote + ", nickname=" + nickname + ", board_title="
+				+ boardtitle + "]";
 	}
-	
+
+
+
 }
