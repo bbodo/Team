@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.green.board.dao.BoardDao;
 import com.green.board.vo.BoardVo;
+import com.green.board.vo.FileVo;
 
 @Repository("boardDao")
 public class BoardDaoImpl implements BoardDao {
@@ -37,6 +38,26 @@ public class BoardDaoImpl implements BoardDao {
 		BoardVo vo = sqlSession.selectOne("Board.GetBoard", map);
 		
 		return vo;
+	}
+
+	@Override
+	public void setWrite(HashMap<String, Object> map) {
+
+		// db 정보 저장
+		// Board  에 저장
+		int  bnum = Integer.parseInt( (String) map.get("bnum") );
+		if ( bnum == 0 ) {
+			sqlSession.insert("Board.BoardInsert", map); // 새글
+		} else {
+			sqlSession.update("Board.StepUpdate", map); // 새글			
+			sqlSession.insert("Board.BoardReply", map); // 새글			
+		}
+		
+		// Files  에 저장
+		List<FileVo>  fileList =  (List<FileVo>) map.get("fileList");
+		if( fileList.size() != 0  )
+			sqlSession.insert("Board.FileInsert", map);
+		
 	}
 
 }

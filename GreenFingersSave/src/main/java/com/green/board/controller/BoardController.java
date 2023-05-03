@@ -3,6 +3,8 @@ package com.green.board.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,7 +75,7 @@ public class BoardController {
 	}
 	
 	// 새글/답글 쓰기 폼으로 가기
-	// http://localhost:9090/Board/WriteForm?submenu_id=SUBMENU01&bnum=0&lvl=0&step=0&nref=0 새글
+	// http://localhost:9090/Board/WriteForm?submenu_id=SUBMENU01&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=즐기자 새글
 	// http://localhost:9090/Board/WriteForm?submenu_id=SUBMENU01&board_idx=2&bnum=2&lvl=0&step=0&nref=2 답글
 	@RequestMapping("/WriteForm")
 	public ModelAndView writeForm(
@@ -106,7 +108,23 @@ public class BoardController {
 		return mv;
 	}
 	
-	
+	@RequestMapping("/Write")
+	public ModelAndView write(
+			@RequestParam HashMap<String, Object> map,
+			HttpServletRequest request
+			) {
+		
+		
+		String  submenu_id  =  (String) map.get("submenu_id");
+		int     nowpage  =  Integer.parseInt(String.valueOf(map.get("nowpage")));
+		
+		// 글쓰기 및 파일저장
+		boardService.setWrite(map, request);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
 	
 	
 }

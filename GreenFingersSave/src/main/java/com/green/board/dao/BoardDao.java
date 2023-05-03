@@ -11,4 +11,6 @@ public interface BoardDao {
 
 	BoardVo getBoard(HashMap<String, Object> map);
 
+	void setWrite(HashMap<String, Object> map);
+
 }

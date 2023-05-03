@@ -138,7 +138,7 @@
      </td>
 	 <td>    
      <!-- 작성자 -->
-     ${ boardVo.username }
+     ${ boardVo.userid }
      </td>
      <td>
      <!-- 조회수 -->

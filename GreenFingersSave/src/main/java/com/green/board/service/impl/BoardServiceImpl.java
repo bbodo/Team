@@ -3,6 +3,8 @@ package com.green.board.service.impl;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +50,19 @@ public class BoardServiceImpl implements BoardService {
 		BoardVo vo = boardDao.getBoard(map);
 		
 		return vo;
+	}
+
+	@Override
+	public void setWrite(
+			HashMap<String, Object> map, 
+			HttpServletRequest request) {
+
+		// request 처리
+		BoardFile.save(map, request);
+		
+		// 넘어온 정보 저장
+		boardDao.setWrite(map);
+		
 	}
 
 }

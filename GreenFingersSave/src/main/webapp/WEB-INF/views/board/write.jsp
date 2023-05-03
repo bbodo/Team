@@ -116,18 +116,11 @@
 				<td><input type="text" name="board_title"/>${ vo.board_title }</td>
 			</tr>
 			<tr>
-				<th>작성자</th>
-				<td><input type="text" name="username"/>${ vo.username }</td>
-			</tr>
-			<tr>
 				<th>글 내용</th>
 				<td><textarea name="board_cont" maxlength="">${ vo.board_cont }</textarea></td>
 			</tr>
 			<tr>
 				<th>파일 첨부</th>
-				<td><input type="file" name="file" /></td>
-			</tr>
-			<tr>
 				<td id="tdfile">
 		      	 <input type="button"  id="btnAddFile" value="파일 추가(최대 100M byte)" /><br>
 		       	 <input type="file"  name="upfile"  class="upfile"/><br>
