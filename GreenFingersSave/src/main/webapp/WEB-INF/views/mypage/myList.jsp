@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@include file="/WEB-INF/include/comHead.jsp" %>
+<link rel="stylesheet" href="/css/mypage.css" />
+
 <title>게시판 양식</title>
 
 <style type="text/css">
@@ -23,9 +25,7 @@
 	#title p {
 		 line-height: 100px;
 	}
-	#main {
-		width: 100%;
-		height: 800px;
+	/* #main {
 		float: left;
 		padding: 10px;
 		background-color: gray;
@@ -41,12 +41,13 @@
 	}
 	.right {
 		text-align: right;
-	}
+	} */
 
 </style>
 
 </head>
 <body>
+<div id="wrap">
 	 <%@include file="/WEB-INF/include/header.jsp" %>
 	 
      <div id="title">
@@ -62,13 +63,13 @@
      	</div>
      	
      	<section id="sec1">
-     		<div>
-     			<div><img src="" alt="myimg"/></div>
-     			<div>아이디 님</div>
-     			<div><p>등급</p> <p>씨앗</p></div>
+     		<div id="con1">
+     			<div><img src="/img/common/profile.png" alt="myimg"/></div>
+     			<div><p>아이디 님</p></div>
+     			<div><p>등급 :</p> <p>씨앗</p></div>
      		</div>
      		
-     		<div>
+     		<div id="con2">
      			<div>
      				<img src="" alt="myimg"/>
      				<div></div>	
@@ -78,7 +79,7 @@
      				</div>
      			</div>
      			
-     			<div>
+     			<div id="con3">
      				<p>씨앗 등업에 필요한 조건을 만족시켜주세요</p>
      				<div><p>내공</p> <p>294필요</p></div>
      				<div><p>게시글 수</p> <p>10</p></div>
@@ -158,12 +159,11 @@
 				<button><a href="">쪽지보내기</a></button>
 			</div>
      	</section>
-     	
-     	
-     	
 		
 	    <%@include file="/WEB-INF/include/paging.jsp" %>
      </div>
+     
      <%@include file="/WEB-INF/include/footer.jsp" %>
+</div>
 </body>
 </html>

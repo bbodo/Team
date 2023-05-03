@@ -21,6 +21,11 @@ header {z-index: 9;}
 
 /* header */
 
+/* main */
+.title {
+	font-weight: 600;
+	font-size: 16px;
+}
 
 /* footer */
 footer {
