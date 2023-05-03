@@ -79,7 +79,7 @@
      <div id="main">
 		<h2>${ map.submenu_name }</h2>     
      <div class="right">
-		<a href="/Board/WriteForm?submenu_id=SUBMENU01&bnum=0&lvl=0&step=0&nref=0&nowpage=1">새글 작성</a>
+		<a href="/Board/WriteForm?submenu_id=SUBMENU01&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
 	 </div>
 		<table id="cont">
 			<tr>

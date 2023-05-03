@@ -108,6 +108,7 @@
 		<input type="hidden"  name="nref"       value="${ map.nref       }" /> 
 		<input type="hidden"  name="parent"     value="${ map.board_idx  }" /> 
 		<input type="hidden"  name="nowpage"    value="${ map.nowpage    }" /> 
+		<input type="hidden"  name="userid"     value="${ map.userid     }" /> 
 		     	
      	
 		<table id="cont">

@@ -121,7 +121,11 @@ public class BoardController {
 		// 글쓰기 및 파일저장
 		boardService.setWrite(map, request);
 		
+		String fmt = "redirect:/Board/List?submenu_id=%s&nowpage=%d";
+		String loc = String.format(fmt, submenu_id, nowpage);
+		
 		ModelAndView mv = new ModelAndView();
+		mv.setViewName(loc);
 		
 		return mv;
 	}

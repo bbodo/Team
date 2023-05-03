@@ -12,6 +12,7 @@
 	      <c:forEach var="menu" items="${ menuList }">
 	               <li><a href="">${ menu.menu_name }</a></li>
 	      </c:forEach>
+	      <li><a href="login">로그인</a></li>
 	   </ul>
 	   
 	   
@@ -73,8 +74,6 @@
 	      </c:if>
 	      <div><a href="login">로그인</a></div>
 	   </nav> --%>
-	   
-	   
 	   
    </div>
 </header>
