@@ -31,4 +31,12 @@ public class BoardDaoImpl implements BoardDao {
 		return boardList;
 	}
 
+	@Override
+	public BoardVo getBoard(HashMap<String, Object> map) {
+
+		BoardVo vo = sqlSession.selectOne("Board.GetBoard", map);
+		
+		return vo;
+	}
+
 }

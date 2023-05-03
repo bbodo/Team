@@ -65,12 +65,9 @@
 			<%@include file="/WEB-INF/include/header2.jsp" %>
 		</c:otherwise>
 	</c:choose>
-     
-
      <div id="title">
      	<div>식물 연합</div>
      </div>
-     
      <div id="aside">
      	포이즌<br />
      	포이즌<br />
@@ -79,10 +76,12 @@
      	포이즌<br />
      	포이즌<br />
      </div>
-     
      <div id="main">
+		<h2>${ map.submenu_name }</h2>     
+     <div class="right">
+		<a href="/Board/WriteForm?submenu_id=SUBMENU01&bnum=0&lvl=0&step=0&nref=0&nowpage=1">새글 작성</a>
+	 </div>
 		<table id="cont">
-			<caption><h2>${ map.submenu_name }</h2></caption>
 			<tr>
 				<th>번호</th>
 				<th>제목</th>
@@ -159,10 +158,6 @@
   </tr>  
   </c:forEach>
 		</table>
-		<div class="right">
-			<a href="/write">새글 작성</a>
-		</div>
-		
 	    <%@include file="/WEB-INF/include/paging.jsp" %>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>

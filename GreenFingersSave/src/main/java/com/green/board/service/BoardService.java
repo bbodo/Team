@@ -9,4 +9,6 @@ public interface BoardService {
 
 	List<BoardVo> getBoardList(HashMap<String, Object> map);
 
+	BoardVo getBoard(HashMap<String, Object> map);
+
 }

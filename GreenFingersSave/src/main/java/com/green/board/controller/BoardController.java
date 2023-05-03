@@ -72,4 +72,41 @@ public class BoardController {
 		return mv;
 	}
 	
+	// 새글/답글 쓰기 폼으로 가기
+	// http://localhost:9090/Board/WriteForm?submenu_id=SUBMENU01&bnum=0&lvl=0&step=0&nref=0 새글
+	// http://localhost:9090/Board/WriteForm?submenu_id=SUBMENU01&board_idx=2&bnum=2&lvl=0&step=0&nref=2 답글
+	@RequestMapping("/WriteForm")
+	public ModelAndView writeForm(
+		@RequestParam HashMap<String, Object> map ) {
+		
+		// 메뉴 이름 알아오기
+		String submenu_id   = (String) map.get("submenu_id");
+		String submenu_name = menuService.getMenuName(submenu_id);
+		map.put("submenu_name", submenu_name);
+		
+		// 답글구분
+		int      idx      = 0;
+		BoardVo  boardVo  = null;
+		if( map.get("board_idx") != null  ) {
+			idx    =  Integer.parseInt( String.valueOf( map.get("board_idx") ) );
+			boardVo  =  boardService.getBoard( map );
+			String title  =  ">> " + boardVo.getBoard_title();
+			String cont   =  ">> " + boardVo.getBoard_cont().replace("\n", "\n >> ");
+			cont         +=  "\n==============================\n"; 
+			boardVo.setBoard_title( title );
+			boardVo.setBoard_cont( cont );			
+		}
+		map.put("idx", idx);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("board/write");
+		mv.addObject("vo", boardVo);
+		mv.addObject("map", map);
+		
+		return mv;
+	}
+	
+	
+	
+	
 }

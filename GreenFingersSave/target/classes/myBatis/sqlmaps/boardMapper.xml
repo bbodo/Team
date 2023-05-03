@@ -61,6 +61,38 @@
 	    
 	</select>
   
+  	<!-- 답글일때 원글 정보 가져가기 -->
+	<select   id             = "GetBoard"
+	          resultType     = "com.green.board.vo.BoardVo">
+		
+		SELECT 
+			B.BOARD_IDX,
+			B.SUBMENU_ID,
+			B.BOARD_TITLE,
+			B.BOARD_CONT,
+			B.MARKET_VALUE,
+			B.USERCODE,
+			B.MANAGERCODE,
+			TO_CHAR(B.BOARD_REGDATE, 'YYYY-MM-DD HH24:MI:SS') BOARD_REGDATE,
+			B.READCOUNT,
+			B.BNUM,
+			B.LVL,
+			B.STEP,
+			B.B.NREF,
+			B.DELBOARD,
+			B.PARENT,
+			M.USERNAME
+		FROM
+			BOARD B
+		JOIN
+			MEMBER M
+		ON
+			B.USERCODE = M.USERCODE
+		WHERE
+			BOARD_IDX = #{ board_idx }
+
+	</select>  
+
 </mapper>
 
 

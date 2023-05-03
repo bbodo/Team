@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@include file="/WEB-INF/include/comHead.jsp" %>
-<title>게시판 양식</title>
+<title>${ map.submenu_name } 글쓰기</title>
 
 <style type="text/css">
 
@@ -61,6 +61,19 @@
 
 </style>
 
+<script src="https://code.jquery.com/jquery.min.js"></script>
+
+<script>
+  $( function() {
+	  let num = 1;
+	  $('#btnAddFile').on('click', function(e) {
+		  let tag = '<input type="file"  name="upfile' + num + '" class="upfile"/><br>';
+		  $('#tdfile').append( tag );		  
+		  num++;
+	  })
+  });
+</script>
+
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
@@ -76,27 +89,53 @@
      	포이즌<br />
      </div>
      <div id="main">
-     	<form action="/Board/write">
+		<c:choose>
+			<c:when test="${  map.bnum eq 0 }">    
+				<h2>${ map.submenu_name } 새글 등록</h2>
+			</c:when>
+			<c:otherwise>    
+				<h2>${ map.submenu_name } 답글 등록</h2>
+			</c:otherwise>  
+		</c:choose>
+     
+     	<form action="/Board/Write" method="POST" 
+        	  enctype="multipart/form-data">
+        	  
+     	<input type="hidden"  name="submenu_id" value="${ map.submenu_id }" />
+		<input type="hidden"  name="bnum"       value="${ map.bnum       }" />
+		<input type="hidden"  name="lvl"        value="${ map.lvl        }" />
+		<input type="hidden"  name="step"       value="${ map.step       }" />
+		<input type="hidden"  name="nref"       value="${ map.nref       }" /> 
+		<input type="hidden"  name="parent"     value="${ map.board_idx  }" /> 
+		<input type="hidden"  name="nowpage"    value="${ map.nowpage    }" /> 
+		     	
+     	
 		<table id="cont">
-			<caption class="left">게시글 등록</caption>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="board_title"/></td>
+				<td><input type="text" name="board_title"/>${ vo.board_title }</td>
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td><input type="text" name="username"/></td>
+				<td><input type="text" name="username"/>${ vo.username }</td>
 			</tr>
 			<tr>
 				<th>글 내용</th>
-				<td><textarea name="board_cont"></textarea></td>
+				<td><textarea name="board_cont" maxlength="">${ vo.board_cont }</textarea></td>
 			</tr>
 			<tr>
 				<th>파일 첨부</th>
 				<td><input type="file" name="file" /></td>
 			</tr>
+			<tr>
+				<td id="tdfile">
+		      	 <input type="button"  id="btnAddFile" value="파일 추가(최대 100M byte)" /><br>
+		       	 <input type="file"  name="upfile"  class="upfile"/><br>
+		   		</td>
+			</tr>
+			
 		</table>
-		<input type="button" value="등록" />
+		<input type="submit" value="등록" />
 		</form>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>

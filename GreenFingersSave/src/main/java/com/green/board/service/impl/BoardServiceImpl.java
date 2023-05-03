@@ -42,4 +42,12 @@ public class BoardServiceImpl implements BoardService {
 		return     boardList;
 	}
 
+	@Override
+	public BoardVo getBoard(HashMap<String, Object> map) {
+
+		BoardVo vo = boardDao.getBoard(map);
+		
+		return vo;
+	}
+
 }
