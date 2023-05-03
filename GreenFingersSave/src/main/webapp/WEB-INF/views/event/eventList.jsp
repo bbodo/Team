@@ -72,13 +72,13 @@
 				<th colspan="2"><a href="eventList">이벤트</a></th>
 				<th colspan="2"><a href="/winnerList">당첨자 발표</a></th>
 			</tr>
-
-			<tr>				
-					<td class="eventimg" colspan="4"><img onclick="javascript:location.href='http://localhost:9090/eventView'" src="/img/그린마켓3.png"  ></td>
-					<td colspan="4">제목글</td>
-				
-			</tr>
 			
+     
+			<tr>				
+					<td class="eventimg" colspan="4"><img onclick="javascript:location.href='http://localhost:9090/eventView'" src="/img/event/test.png"  ></td>
+					<td colspan="4">제목글</td>				
+			</tr>
+		
 			
 						
 		</table>
