@@ -73,29 +73,35 @@
      	작성글<br />
      	쪽지<br />
      </div>
+     
      <div id="main">
-		<table id="cont">
-			<tr>
-				<th>받는 사람</th>
-				<td><input type="text" placeholder="유저ID를 입력하세용" /></td>
-			</tr>
-			<tr>
-				<th>제목</th>
-				<td><input type="text" /></td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td><textarea></textarea></td>
-			</tr>
-		</table>
-	    <%@include file="/WEB-INF/include/paging.jsp" %>
-	    <div style="float: left;">
-			취소 버튼
-	    </div>
-	    <div style="float: right;">
-	    	전송 보내기 버튼
-	    </div>
-	    </div>
+		<form action="/myNoteWrite" method="POST">
+			<%-- <input type="hidden" name="menu_id" value="${ map.menu_id }" />  --%>
+
+			<table id="cont">
+				<tr>
+					<th>받는 사람</th>
+					<td><input name="receiverusercode" type="text" placeholder="유저ID를 입력하세용" />1</td>
+				</tr>
+				<tr>
+					<th>제목</th>
+					<td><input name="notetitle" type="text" /></td>
+				</tr>
+				<tr>
+					<th>게시글</th>
+					<td>원래 게시글 제목:board_idx=1(변수)</td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td><textarea name="notecont"></textarea></td>
+				</tr>
+			</table>
+			<%@include file="/WEB-INF/include/paging.jsp"%>
+			<div style="float: left;">취소 버튼</div>
+			<input style="float: right;" type="submit" value="전송" />
+		</form>
+	</div>
+	
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>

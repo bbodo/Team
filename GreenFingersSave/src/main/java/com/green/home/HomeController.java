@@ -126,10 +126,12 @@ public class HomeController {
 	public String myNote() {
 		return "/mypage/myNote";
 	}
-	@RequestMapping("/myNoteWrite")
+	
+	/*@RequestMapping("/myNoteWrite")
 	public String myNoteWrite() {
 		return "/mypage/myNoteWrite";
-	}
+	}*/
+	
 	@RequestMapping("/myPageCheck")
 	public String myPageCheck() {
 		return "/mypage/myPageCheck";

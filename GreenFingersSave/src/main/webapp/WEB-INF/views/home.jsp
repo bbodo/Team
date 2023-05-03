@@ -97,7 +97,7 @@
 	<a href="/marketPointList">market pointList 가는길</a> <br />
 	<a href="/myList">자기가 쓴글</a> <br />  
 	<a href="/myNote">쪽지</a> <br />
-	<a href="/myNoteWrite">쪽지작성</a> <br />
+	<a href="/myNoteWrite?board_idx=1&send_usercode=4&receiver_usercode=1">쪽지작성</a> <br />
 	<a href="">길 찾아가세요</a> 
 	
 	<a href="/myList">마이페이지</a>

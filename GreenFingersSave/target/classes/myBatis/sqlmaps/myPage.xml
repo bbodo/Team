@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Mypage">   
+	
+	<insert id="MypageNoteInsert">
+	
+		INSERT INTO
+			NOTE
+			(
+				NOTE_IDX,
+				NOTE_TITLE,
+				NOTE_CONT,
+				NOTE_REGDATE,
+				SEND_USERCODE,
+				RECEIVER_USERCODE,
+				READMARK,
+				DELNOTE
+			)
+		VALUES
+			(
+				(SELECT  NVL( MAX(NOTE_IDX), 0 ) + 1 FROM NOTE),
+				#{ submenu_id },
+				#{ board_title },
+				#{ board_cont },
+				(SELECT USERCODE FROM MEMBER WHERE USERID = #{ userid }),
+				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
+				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD)
+			)
+	</insert>
+	
+
+
+</mapper>
+
+
+
+
+
+   
