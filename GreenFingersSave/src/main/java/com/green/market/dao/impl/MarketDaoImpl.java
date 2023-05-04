@@ -27,7 +27,7 @@ public class MarketDaoImpl implements MarketDao {
 		int totalcount = sqlSession.selectOne("Market.GetTotalCount", map);
 		map.put("totalcount", totalcount);
 		
-		System.out.println(map);
+		//System.out.println("map:"+ map);
 		
 		// 메뉴 목록 조회 (페이징)
 		List<MarketVo> marketList = sqlSession.selectList("Market.MarketList", map);
@@ -39,7 +39,7 @@ public class MarketDaoImpl implements MarketDao {
 	@Override
 	public MarketVo getBoard(HashMap<String, Object> map) {
 
-		sqlSession.update("Market.UpdaateReadCount", map);
+		sqlSession.update("Market.UpdateReadCount", map);
 		
 		MarketVo vo = sqlSession.selectOne("Market.GetBoard", map);
 		
@@ -65,6 +65,15 @@ public class MarketDaoImpl implements MarketDao {
 		if( fileList.size() != 0  )
 			sqlSession.insert("Board.FileInsert", map);
 		
+	}
+
+
+	@Override
+	public List<FileVo> getFileList(HashMap<String, Object> map) {
+		
+		List<FileVo>  fileList  =  sqlSession.selectList("Market.FileList", map);
+		
+		return fileList;
 	}
 
 }

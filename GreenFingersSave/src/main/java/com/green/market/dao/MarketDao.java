@@ -3,6 +3,7 @@ package com.green.market.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import com.green.market.vo.FileVo;
 import com.green.market.vo.MarketVo;
 
 public interface MarketDao {
@@ -12,6 +13,8 @@ public interface MarketDao {
 	MarketVo getBoard(HashMap<String, Object> map);
 
 	void setWrite(HashMap<String, Object> map);
+
+	List<FileVo> getFileList(HashMap<String, Object> map);
 
 
 }

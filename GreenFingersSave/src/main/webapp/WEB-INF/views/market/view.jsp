@@ -89,6 +89,74 @@
 
 </style>
 
+<script>
+
+		function comment_display(data) {
+			console.log(data);
+			
+			let html = `<table id="commentList">`;
+			for (let comm of data) {
+				html += '<tr>';
+				html += '<td><h2>' + comm.nickname + '</h2></td>';				
+				html += '<td>' + comm.coment_cont + '</td>';				
+				html += `</tr>`;
+			}
+			html += `</table>`;
+			
+			const readCommentEl = document.getElementById("readComment");
+			readCommentEl.innerHTML = html;
+			console.log(readCommentEl);
+		}
+	
+	window.onload = function() {
+		
+		const writeBtnEl = document.getElementById("writeBtn");
+		const coment_contEl = document.getElementById("coment_cont");
+		const readCEl = document.getElementById("readC");
+		const writeCEl = document.getElementById("writeC");
+	
+		let datar = new FormData(readCEl);
+		
+		let optionR = {
+				method : "POST",
+				body : datar
+		};
+		
+		fetch("/Comment/Read", optionR)
+			.then( res => res.json() )
+			.then( data => {
+				comment_display(data);
+			})
+			.catch( err => {
+				console.log(err);
+				alert("오류발생 : " + err);
+			});
+		
+		writeBtnEl.addEventListener("click", function(e) {
+			let dataw = new FormData(writeCEl);
+			
+			let optionW = {
+					method : "POST",
+					body : dataw
+			};
+			
+			fetch("/Comment/Write", optionW)
+				.then( res => res.json() )
+				.then( data => {
+					comment_display(data);
+					coment_contEl.value = '';
+					coment_contEl.focus();
+				})
+				.catch( err => {
+					console.log(err);
+					alert("오류발생 : " + err);
+				})
+		})
+	}
+
+</script>
+
+
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
@@ -96,71 +164,76 @@
      	<p>그린 마켓</p>
      </div>
      <div id="aside">
-     	<a href="">입양원해요</a><br />
-     	<a href="">나눔합니다</a><br />
-     	<a href="">포인트 스토어</a><br />
+     	<a href="/Market/List?submenu_id=SUBMENU15&nowpage=1">입양원해요</a><br />
+     	<a href="/Market/List?submenu_id=SUBMENU16&nowpage=1">나눔합니다</a><br />
+     	<a href="/Market/List?submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a><br />
      </div>
      <div id="main">
 		<table id="cont">
-			<caption class="left">게시글 열람</caption>
+			<caption class="left">${ map.submenu_name } 게시글 보기</caption>
 			<tr>
 				<th>제목</th>
-				<td>루브라 나눔합니다</td>
+				<td>${ vo.board_title }</td>
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td>땡겨올 작성자 이름</td>
+				<td>${ vo.nickname }</td>
 				<th>작성일</th>
-				<td>땡겨올 작성일</td>
+				<td>${ vo.board_regdate }</td>
 				<th>조회수</th>
-				<td>땡겨올 조회수</td>
+				<td>${ vo.readcount }</td>
 			</tr>
 				<tr><td colspan="6"><hr /></td></tr>
 			<tr>
 				<th>내용</th>
-				<td>
-				<img src="/img/market/그린마켓1.png">
-				루브라 나눔합니다
-				얼른 데려가세요!
-				</td>
+				<td>${vo.board_cont }</td>
 			</tr>
 			<tr>
 				<th>파일 첨부</th>
-				<td><input type="file" name="file" /></td>
+				<td> 
+				<c:forEach var="file"  items="${ fileList }" >
+				<div>
+					<a href="/Market/download/external/${ file.sfilename }">
+					${ file.filename }
+					</a>
+				</div>
+				</c:forEach> 
+   	    	 </td>
 			</tr>
 		</table>
-		<!-- 나중에 if 문 -->
+		
+	<!-- 나중에 if 문 -->
 		<div class="right">
-		<a href="">수정</a>
-		<a href="">삭제</a> <br />
+		<a href="/Market/WriteForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">답글쓰기</a>
+		<a href="/Market/UpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
+		<a href="/Market/Delete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&nowpage=${map.nowpage}">삭제</a> <br />
 		</div>
 	
 		<br />
 		
 		<div id="writeComment">
+			<form id="writeC">
+			<input type="hidden"  name="board_idx" value="${ vo.board_idx }" />
+			<input type="hidden"  name="usercode" value="${ login.usercode }" />
 			<table>
 				<tr>
-					<th>달러 아이디 넣을곳</th>
-					<td><textarea></textarea></td>
-					<td><a href="">등록</a></td>
+					<th>${ login.nickname }</th>
+					<td>
+						<textarea name="coment_cont" placeholder="내용을 작성하세요."
+					     required id="coment_cont"></textarea>
+					</td>
+					<td><input type="button" id="writeBtn" value="등록"/></td>
 				</tr>
 			</table>
+			</form>
 		</div>
+		<br />
 		<div id="readComment">
-			<table>
-				<tr>
-					<th>달러 아이디 넣을곳</th>
-					<td>댓글 내용 불러올곳</td>
-				</tr>
-				<!-- 답글/수정/삭제 이 칸만 조금만 작게 -->
-				<tr>
-					<td>답글</td>
-					<!-- 나중에 if 문 -->
-					<td><a href="">수정</a></td>
-					<td><a href="">삭제</a></td>
-				</tr>
-			</table>
+			<form id="readC">
+			<input type="hidden"  name="board_idx" value="${ vo.board_idx }" />
+			</form>
 		</div>
+		
        
       	<h3>인기 마켓</h3>
 		<div id="hot">

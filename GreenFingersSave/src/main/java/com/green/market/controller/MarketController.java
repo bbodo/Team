@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.green.board.service.BoardService;
 import com.green.market.service.MarketService;
+import com.green.market.vo.FileVo;
 import com.green.market.vo.MarketVo;
 import com.green.menus.service.MenuService;
 import com.green.menus.vo.MenuVo;
@@ -66,8 +67,8 @@ public class MarketController {
 	
 	map.put("submenu_name", submenu_name);
 
-	System.out.println("마켓리스트" + marketList);
-	System.out.println("마켓맵" + map);
+	//System.out.println("마켓리스트" + marketList);
+	//System.out.println("마켓맵" + map);
 	
 	ModelAndView mv = new ModelAndView();
 	mv.setViewName("market/main");
@@ -117,7 +118,7 @@ public class MarketController {
 	map.put("submenu_name", submenu_name);
 
 	//System.out.println("마켓리스트" + adoptList);
-	//System.out.println("마켓맵" + map);
+	System.out.println("마켓맵" + map);
 	
 	ModelAndView mv = new ModelAndView();
 	mv.setViewName("market/list");
@@ -182,7 +183,7 @@ public class MarketController {
 		// 글쓰기 및 파일 저장
 		marketService.setWrite( map, request );
 		
-		String fmt = "redirect:/market/list?menu_id=%s&submenu_id=%s&nowpage=%d";
+		String fmt = "redirect:/Market/List?submenu_id=%s&nowpage=%d";
 		String loc = String.format( fmt, submenu_id, nowpage );
 		
 		ModelAndView mv = new ModelAndView();
@@ -192,16 +193,48 @@ public class MarketController {
 		return mv;
     }
   
+    // 게시글 보기
+    @RequestMapping("/View")
+    public ModelAndView view(
+    		@RequestParam HashMap<String, Object> map
+    			) {
+    	
+    	// 메뉴 목록	
+		List<MenuVo> menuList   = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		
+		// 메뉴 이름
+		String submenu_id = String.valueOf( map.get("submenu_id") );
+		String submenu_name = menuService.getMenuName(submenu_id);
+		map.put("submenu_id", submenu_id);
+    	
+		// 보여줄 게시글 내용
+		MarketVo marketVo = marketService.getBoard(map);
+		
+		String content = marketVo.getBoard_cont();
+		if(content == null) {
+			marketVo.setBoard_cont("------------------------------내용이 없습니다------------------------------");
+		} else {
+			String cont = content.replace("\n", "<br>");
+			marketVo.setBoard_cont(cont);
+		}
+		
+		List<FileVo> fileList = marketService.getFileList(map);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("market/view");
+		mv.addObject("map", map);
+		mv.addObject("fileList", fileList);
+		mv.addObject("vo", marketVo);
+		
+    	return mv;
+    }
 
-  /*  
+
+    /*  
     @RequestMapping("/marketUpdate")
     public String marketUpdate() {
     	return "/market/update";
-    }
-    
-    @RequestMapping("/marketView")
-    public String marketView() {
-    	return "/market/view";
     }
     
     @RequestMapping("/marketPointList")

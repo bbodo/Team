@@ -78,9 +78,9 @@
      	<p>그린 마켓</p>  
      </div>
      <div id="aside">
-     <a href="">입양원해요</a><br />
-     	<a href="">나눔합니다</a><br />
-     	<a href="">포인트 스토어</a><br />
+    	<a href="/Market/List?submenu_id=SUBMENU15&nowpage=1">입양원해요</a><br />
+     	<a href="/Market/List?submenu_id=SUBMENU16&nowpage=1">나눔합니다</a><br />
+     	<a href="/Market/List?submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a><br />
      </div>
      <div id="main">
 		<table id="cont">

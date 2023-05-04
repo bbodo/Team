@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<%@include file="/WEB-INF/include/comHead.jsp" %>
-<title>그린마켓 </title>
+<title>${ map.submenu_name } 글쓰기</title>
 
 <style type="text/css">
 
@@ -72,6 +71,19 @@
 
 </style>
 
+<script src="https://code.jquery.com/jquery.min.js"></script>
+
+<script>
+  $( function() {
+	  let num = 1;
+	  $('#btnAddFile').on('click', function(e) {
+		  let tag = '<input type="file"  name="upfile' + num + '" class="upfile"/><br>';
+		  $('#tdfile').append( tag );		  
+		  num++;
+	  })
+  });
+</script>
+
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
@@ -79,20 +91,36 @@
      	<p>그린 마켓</p>  
      </div>
      <div id="aside">
-     	<a href="">입양원해요</a><br />
-     	<a href="">나눔합니다</a><br />
-     	<a href="">포인트 스토어</a><br />
+     	<a href="/Market/List?submenu_id=SUBMENU15&nowpage=1">입양원해요</a><br />
+     	<a href="/Market/List?submenu_id=SUBMENU16&nowpage=1">나눔합니다</a><br />
+     	<a href="/Market/List?submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a><br />
      </div>
      <div id="main">
+		<c:choose>
+			<c:when test="${  map.bnum eq 0 }">    
+				<h2>${ map.submenu_name } 새글 등록</h2>
+			</c:when>
+			<c:otherwise>    
+				<h2>${ map.submenu_name } 답글 등록</h2>
+			</c:otherwise>  
+		</c:choose>
+     
+     	<form action="/Market/Write" method="POST" 
+        	  enctype="multipart/form-data">
+        	  
+     	<input type="hidden"  name="submenu_id" value="${ map.submenu_id }" />
+		<input type="hidden"  name="bnum"       value="${ map.bnum       }" />
+		<input type="hidden"  name="lvl"        value="${ map.lvl        }" />
+		<input type="hidden"  name="step"       value="${ map.step       }" />
+		<input type="hidden"  name="nref"       value="${ map.nref       }" /> 
+		<input type="hidden"  name="parent"     value="${ map.board_idx  }" /> 
+		<input type="hidden"  name="nowpage"    value="${ map.nowpage    }" /> 
+		<input type="hidden"  name="userid"     value="${ map.userid     }" /> 
+		     	
 		<table id="cont">
-			<h2>그린마켓 등록</h2>
 			<tr>
 				<th>제목</th>
 				<td><input type="text" name="title"/></td>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td><input type="text" name="writer"/></td>
 			</tr>
 			<tr>
 				<th>글 내용</th>
@@ -100,12 +128,16 @@
 			</tr>
 			<tr>
 				<th>파일 첨부</th>
-				<td><input type="file" name="file" /></td>
+				<td id="tdfile">
+		      	 <input type="button"  id="btnAddFile" value="파일 추가(최대 100M byte)" /><br>
+		       	 <input type="file"  name="upfile"  class="upfile"/><br>
+		   		</td>
 			</tr>
 		</table>
 		<div class="btn">
-		<input type="button" value="등록" />
+		<input type="submit" value="등록" />
 		</div>
+		</form>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

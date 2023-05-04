@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.green.market.dao.MarketDao;
 import com.green.market.service.MarketService;
+import com.green.market.vo.FileVo;
 import com.green.market.vo.MarketVo;
 
 @Service("marketService")
@@ -65,6 +66,14 @@ public class MarketServiceImpl implements MarketService {
 		// 넘어온 정보 저장
 		marketDao.setWrite(map);
 		
+	}
+
+	@Override
+	public List<FileVo> getFileList(HashMap<String, Object> map) {
+		
+		List<FileVo> fileList = marketDao.getFileList(map);
+		
+		return fileList;
 	}
 
 }

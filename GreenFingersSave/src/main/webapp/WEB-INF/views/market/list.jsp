@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>게시판 양식</title>
+<title>${ map.submenu_name } 게시판</title>
 
 <style type="text/css">
 
@@ -72,16 +73,21 @@
 	
 	#main { display: block; }
 	
+	#main a {
+		margin-right: 300px;
+	}
+	
 	img { width : 250px; 
 	      height: 250px;
 	}
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
+		margin-top: 30px;
 		margin-bottom: 30px;
 		width: 60%;
 	}
-	#cont h2 {
+	h2 {
 		margin-bottom: 20px;
 	}
 	#cont th {
@@ -93,22 +99,51 @@
 
 </head>
 <body>
-	 <%@include file="/WEB-INF/include/header.jsp" %>
+	<!-- header	 -->
+	<c:choose>
+		<c:when test="${ sessionScope.login eq null }">
+			<%@include file="/WEB-INF/include/header.jsp" %>
+		</c:when>
+		<c:otherwise>
+			<%@include file="/WEB-INF/include/header2.jsp" %>
+		</c:otherwise>
+	</c:choose>
+	
+	<%-- <form action="/Market/List" method="POST" 
+        	  enctype="multipart/form-data">
+        	  
+     	<input type="hidden"  name="submenu_id" value="${ map.submenu_id }" />
+	 --%>
+	
      <div id="title">
      	<p>그린마켓</p>
      </div>
      <div id="aside">
-     	<a href="">나눔합니다</a><br />
-     	<a href="">입양원해요</a><br />
-     	<a href="">포인트 스토어</a><br />
+     	<a href="/Market/List?submenu_id=SUBMENU15&nowpage=1">입양원해요</a><br />
+     	<a href="/Market/List?submenu_id=SUBMENU16&nowpage=1">나눔합니다</a><br />
+     	<a href="/Market/List?submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a><br />
      </div>
      <div id="main">
      
-     <p>회원 등급과 상관없이 누구나 입양 신청글 작성이 가능합니다<br>
+     <c:choose>
+       <c:when test="${ map.submenu_id == 'SUBMENU15' }">
+     <p>그린핑거 회원이라면 누구나 입양 신청글 작성이 가능합니다<br>
      입양 완료 후 답례를 하고 싶다면 포인트로 고마움을 표현하세요</p>
+       </c:when>
+       <c:when test="${ map.submenu_id == 'SUBMENU16' }">
+     <p>그린핑거 회원이라면 누구나 나눔할 수 있습니다<br>
+     나눔 후 답례를 하고 싶다면 포인트로 고마움을 표현하세요</p>
+       </c:when>
+       <c:otherwise>
+       <p>지금까지 모은 포인트로 물건을 구입하세요</p>
+       </c:otherwise>
+     </c:choose>
      
+		<h2>${ map.submenu_name }</h2>
+		<div class="right">
+		<a href="/Market/WriteForm?submenu_id=SUBMENU15&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
+	 </div>
     <table id="cont">
-		<caption><h2>${ map.submenu_name }</h2></caption>
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
@@ -175,13 +210,10 @@
 	  </tr>  
 	  </c:forEach>
 		</table> 
-    
 	
-	
-		<input type="button" class="right" value="새글 작성" />
-	    <%@include file="/WEB-INF/include/paging.jsp" %>
+	 <%@include file="/WEB-INF/include/paging.jsp" %>
      </div>
-     
+  <!--    </form> -->
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>

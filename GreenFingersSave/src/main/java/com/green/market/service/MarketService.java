@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.green.market.vo.FileVo;
 import com.green.market.vo.MarketVo;
 
 
@@ -16,6 +17,8 @@ public interface MarketService {
 	MarketVo getBoard(HashMap<String, Object> map);
 
 	void setWrite(HashMap<String, Object> map, HttpServletRequest request);
+
+	List<FileVo> getFileList(HashMap<String, Object> map);
 
 
 

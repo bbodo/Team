@@ -63,8 +63,7 @@
 	</select>
   
   	<!-- 답글일때 원글 정보 가져가기 -->
-  	<!--  
-	<select   id             = "GetMarketBoard"
+	<select   id             = "GetBoard"
 	          resultType     = "com.green.market.vo.MarketVo">
 		
 		SELECT 
@@ -80,10 +79,10 @@
 			B.BNUM,
 			B.LVL,
 			B.STEP,
-			B.B.NREF,
+			B.NREF,
 			B.DELBOARD,
 			B.PARENT,
-			M.USERID
+			M.NICKNAME
 		FROM
 			BOARD B
 		JOIN
@@ -95,7 +94,7 @@
 
 	</select>  
 	
-	<insert id="MarketBoardInsert">
+	<insert id="BoardInsert">
 	
 		INSERT INTO
 			BOARD
@@ -106,7 +105,7 @@
 				BOARD_CONT,
 				USERCODE,
 				BNUM,
-				NREF,
+				NREF
 			)
 		VALUES
 			(
@@ -119,11 +118,11 @@
 				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD)
 			)
 	</insert>
-	-->
+
 	
 	
 	<!-- 답글을 추가하기위해 기존글의 step 을 증가시킨다 -->
-	<!--  
+	 
 	<update   id="StepUpdate">
 	   
 		UPDATE
@@ -139,7 +138,7 @@
 	   
 	</update>
 
-	<insert   id="MarketBoardReply">
+	<insert   id="BoardReply">
       INSERT INTO
       	BOARD 
 			(
@@ -168,18 +167,18 @@
 	          #{ parent }
 	      )
    </insert>
-   -->
+  
    
    
    <!-- 파일 저장 -->
- <!--  
+ 
     <insert  id="FileInsert">
       <foreach collection="fileList" item="file"
            index      = "i"  
            open       = "INSERT ALL"    
            close      = "SELECT * FROM DUAL"
            separator  = " " >
-           INTO  FILES  VALUES (
+           INTO  BOARD_FILES  VALUES (
                 GET_FILENUM()
               , ( SELECT MAX(BOARD_IDX) FROM BOARD  )
               , #{ file.filename   }
@@ -189,7 +188,34 @@
       </foreach>
    
    </insert>
--->
+
+
+	<!-- 조회수 증가 (readCount++) -->
+	   <update  id="UpdateReadCount">
+	   
+	   	    UPDATE   BOARD
+	   	     SET     READCOUNT = READCOUNT + 1
+	   	     WHERE   BOARD_IDX   =   #{board_idx}
+	   
+	   </update>
+	   
+	   <select   id         = "FileList" 
+	             resultType = "com.green.market.vo.FileVo">
+	   
+	       SELECT
+			   FILE_NUM,
+			   BOARD_IDX,
+			   FILENAME,
+			   FILEEXT,
+			   SFILENAME
+			FROM
+				BOARD_FILES
+			WHERE
+				BOARD_IDX   =  #{ board_idx  } 
+			ORDER BY   
+				FILE_NUM  ASC 
+	   
+	   </select>
 
 
 
