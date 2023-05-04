@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Comment">  
+  
+   <insert id="Write">
+   
+	INSERT INTO
+		COMENT
+		(
+			COMENT_IDX,
+			COMENT_CONT,
+			BOARD_IDX,
+			USERCODE
+		)
+		VALUES
+		(
+			(SELECT NVL(MAX(COMENT_IDX),0) +1 FROM COMENT),
+			#{ coment_cont },
+			#{ board_idx },
+			#{ usercode }
+		)
+   
+   </insert>
+   
+	<select   id             = "ReadComment"
+	          resultType     = "com.green.comment.vo.CommentVo">
+		
+		SELECT
+			C.COMENT_IDX,
+			C.COMENT_CONT,
+			C.COMENT_REGDATE,
+			C.BOARD_IDX,
+			C.USERCODE,
+			C.DELCOMENT,
+			M.NICKNAME
+   		FROM
+   			COMENT C
+   		JOIN
+   			MEMBER M
+   		ON
+   			C.USERCODE = M.USERCODE
+   		WHERE
+   			C.BOARD_IDX = #{ board_idx }
+   		ORDER BY
+   			C.COMENT_IDX DESC
+
+	</select>  
+   
+</mapper>
+
+
+
+
+
+   

@@ -57,6 +57,72 @@
 
 </style>
 
+<script>
+
+		function comment_display(data) {
+			console.log(data);
+			
+			let html = `<table id="commentList">`;
+			for (let comm of data) {
+				html += '<tr>';
+				html += '<td><h2>' + comm.nickname + '</h2></td>';				
+				html += '<td>' + comm.coment_cont + '</td>';				
+				html += `</tr>`;
+			}
+			html += `</table>`;
+			
+			const readCommentEl = document.getElementById("readComment");
+			readCommentEl.innerHTML = html;
+			console.log(readCommentEl);
+		}
+	
+	window.onload = function() {
+		
+		const writeBtnEl = document.getElementById("writeBtn");
+		const coment_contEl = document.getElementById("coment_cont");
+		const readCEl = document.getElementById("readC");
+		let board_idx = "${ vo.board_idx }";
+		let usercode = "${ login.usercode }";
+		let coment_cont = coment_contEl.value;
+		let data = new FormData(readCEl);
+		
+		let optionR = {
+				method : "POST",
+				body : data
+		};
+		
+		fetch("/Comment/Read", optionR)
+			.then( res => res.json() )
+			.then( data => {
+				comment_display(data);
+			})
+			.catch( err => {
+				console.log(err);
+				alert("오류발생 : " + err);
+			});
+		
+		writeBtnEl.addEventListener("click", function(e) {
+			fetch("/Comment/Write", {
+				method : "POST",
+				body : JSON.stringify({
+					board_idx : board_idx,
+					usercode : usercode,
+					coment_cont : coment_cont,
+				}),
+			})
+				.then( res => res.json() )
+				.then( data => {
+					comment_display(data);
+				})
+				.catch( err => {
+					console.log(err);
+					alert("오류발생 : " + err);
+				})
+		})
+	}
+
+</script>
+
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
@@ -114,28 +180,37 @@
 		<br />
 		
 		<div id="writeComment">
+			<input type="hidden"  name="board_idx" value="${ vo.board_idx }" />
+			<input type="hidden"  name="usercode" value="${ login.usercode }" />
 			<table>
 				<tr>
-					<th>달러 아이디 넣을곳</th>
-					<td><textarea></textarea></td>
-					<td><a href="">등록</a></td>
+					<th>${ login.nickname }</th>
+					<td>
+						<textarea name="coment_cont" placeholder="내용을 작성하세요."
+					     required id="coment_cont"></textarea>
+					     <input type="button" id="writeBtn" value="등록"/>
+					</td>
 				</tr>
 			</table>
 		</div>
+		<br />
 		<div id="readComment">
-			<table>
+			<form id="readC">
+			<input type="hidden"  name="board_idx" value="${ vo.board_idx }" />
+			<!-- <table>
 				<tr>
 					<th>달러 아이디 넣을곳</th>
 					<td>댓글 내용 불러올곳</td>
 				</tr>
-				<!-- 답글/수정/삭제 이 칸만 조금만 작게 -->
+				답글/수정/삭제 이 칸만 조금만 작게
 				<tr>
 					<td>답글</td>
-					<!-- 나중에 if 문 -->
-					<td><a href="">수정</a></td>
-					<td><a href="">삭제</a></td>
+					?나중에 if 문
+					<td><a href="/Comment/Update">수정</a></td>
+					<td><a href="/Comment/Delete">삭제</a></td>
 				</tr>
-			</table>
+			</table> -->
+			</form>
 		</div>
 		
      <%@include file="/WEB-INF/include/paging.jsp" %>

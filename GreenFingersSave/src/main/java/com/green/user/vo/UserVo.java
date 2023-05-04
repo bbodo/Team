@@ -16,11 +16,12 @@ public class UserVo {
 	private String joindate;
 	private int    delmem;
 	private int    point;
+	private String nickname;
 	
 	// Constructor
 	public UserVo() {}
 	public UserVo(int usercode, String userid, String passwd, String username, String birthday, String gender,
-			String grade, String addr, String email, String joindate, int delmem, int point) {
+			String grade, String addr, String email, String joindate, int delmem, int point, String nickname) {
 		this.usercode = usercode;
 		this.userid = userid;
 		this.passwd = passwd;
@@ -33,6 +34,7 @@ public class UserVo {
 		this.joindate = joindate;
 		this.delmem = delmem;
 		this.point = point;
+		this.nickname = nickname;
 	}
 
 	// Getter / Setter
@@ -129,6 +131,14 @@ public class UserVo {
 		return point;
 	}
 
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	
+	public String getNickname() {
+		return nickname;
+	}
+
 	public void setPoint(int point) {
 		this.point = point;
 	}
@@ -138,7 +148,8 @@ public class UserVo {
 	public String toString() {
 		return "UserVo [usercode=" + usercode + ", userid=" + userid + ", passwd=" + passwd + ", username=" + username
 				+ ", birthday=" + birthday + ", gender=" + gender + ", grade=" + grade + ", addr=" + addr + ", email="
-				+ email + ", joindate=" + joindate + ", delmem=" + delmem + ", point=" + point + "]";
+				+ email + ", joindate=" + joindate + ", delmem=" + delmem + ", point=" + point + ", nickname="
+				+ nickname + "]";
 	}
 	
 	
