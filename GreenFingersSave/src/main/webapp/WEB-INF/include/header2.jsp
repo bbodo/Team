@@ -6,69 +6,140 @@
 <!-- 메뉴목록 -->
 
 <header>
-   <div id="headerInWrap">
-	   <div id="logo"><a href="/">logo</a></div>
-	  <ul id="menu">
-	      <c:forEach var="menu" items="${ menuList }">
-	          <li><a href="/board?menu_id=${menu.menu_id}">${ menu.menu_name }</a>
-	              <ul>
-	              <c:forEach var="submenu" items="${ submenuList }">
-	              <c:if test="${submenu.menu_id eq menu.menu_id }">
-	               	<li><a href="/board?submenu_id=${submenu.submenu_id}">${submenu.submenu_name}</a></li>
-	               </c:if>
-	               </c:forEach>
-	               </ul> 
-	          </li>
-	      </c:forEach>
-	      <li><a href="login" class="right">로그인</a></li>
-	   </ul> 
-	    <!-- 
-	      <li><a href="/board">식물연합</a>
-	         <ul>
-	            <li><a href="/board">포이즌</a></li>
-	            <li><a href="/board">이파리</a></li>
-	            <li><a href="/board">플라워</a></li>
-	            <li><a href="/board">우드</a></li>
-	            <li><a href="/board">열매</a></li>
-	            <li><a href="/board">허브</a></li>
-	            <li><a href="/board">사막</a></li>
-	            <li><a href="/board">습지</a></li>
-	            <li><a href="/board">채소</a></li>
-	            <li><a href="/board">불법단체</a></li>
-	         </ul>
-	      </li>
-	      
-	      <li><a href="#">커뮤니티</a>
-	         <ul>
-	            <li><a href="">꿀팁</a></li>
-	            <li><a href="qalist">Q&A</a></li>
-	            <li><a href="">자유</a></li>
-	            <li><a href="">초록별</a></li>
-	         </ul>
-	      </li>
-	      
-	      <li><a href="#">그린마켓</a>
-	         <ul>
-	            <li><a href="/market">입양</a></li>
-	            <li><a href="/market">분양</a></li>
-	            <li><a href="/market">소모품</a></li>
-	         </ul>
-	      </li>
-	      
-	      <li><a href="/eventList">이벤트</a>
-	         <ul>
-	            <li><a href="">이벤트</a></li>
-	         </ul>
-	      </li>
-	      
-	      <li><a href="#">그린위키</a>
-	         <ul>
-	            <li><a href="/static/html/green.html">그린위키</a></li>
-	         </ul>
-	      </li>
-	   </ul> -->
-	 <%--  
-	   <nav>
+	<div id="headerInWrap">
+	<div id="logo"><a href="/">logo</a></div>
+	<div id="menu1">
+	<ul>
+		<c:forEach var="menu" items="${ menuList }">
+		<c:choose>
+			<c:when test="${menu.menu_id eq 'MENU01'}">
+			<li><a href="/Board/List?submenu_id=${submenuList[0].submenu_id}&nowpage=1">${ menu.menu_name }</a>
+				<ul>
+				<c:forEach var="submenu" items="${ submenuList }">
+				<c:if test="${submenu.menu_id eq menu.menu_id }">
+				<c:choose>
+				<c:when	test="${(submenu.menu_id eq 'MENU01') or (submenu.menu_id eq 'MENU02')}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU03'}">
+					<li><a href="/Market/AdoptList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU04'}">
+					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU05'}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				</c:choose>	
+				</c:if>	
+				</c:forEach>
+				</ul>
+			</li>
+			</c:when>
+			<c:when test="${menu.menu_id eq 'MENU02'}">
+			<li><a href="/Board/List?submenu_id=${submenuList[10].submenu_id}&nowpage=1">${ menu.menu_name }</a>
+				<ul>
+				<c:forEach var="submenu" items="${ submenuList }">
+				<c:if test="${submenu.menu_id eq menu.menu_id }">
+				<c:choose>
+				<c:when	test="${(submenu.menu_id eq 'MENU01') or (submenu.menu_id eq 'MENU02')}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU03'}">
+					<li><a href="/Market/AdoptList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU04'}">
+					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU05'}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				</c:choose>	
+				</c:if>	
+				</c:forEach>
+				</ul>
+			</li>
+			</c:when>
+			<c:when test="${menu.menu_id eq 'MENU03'}">
+			<li><a href="/Market/AdoptList?submenu_id=${submenuList[14].submenu_id}&nowpage=1">${ menu.menu_name }</a>
+				<ul>
+				<c:forEach var="submenu" items="${ submenuList }">
+				<c:if test="${submenu.menu_id eq menu.menu_id }">
+				<c:choose>
+				<c:when	test="${(submenu.menu_id eq 'MENU01') or (submenu.menu_id eq 'MENU02')}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU03'}">
+					<li><a href="/Market/AdoptList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU04'}">
+					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU05'}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				</c:choose>	
+				</c:if>	
+				</c:forEach>
+				</ul>
+			</li>
+			</c:when>
+			<c:when test="${menu.menu_id eq 'MENU04'}">
+			<li><a href="/eventList?submenu_id=${submenuList[17].submenu_id}&nowpage=1">${ menu.menu_name }</a>
+				<ul>
+				<c:forEach var="submenu" items="${ submenuList }">
+				<c:if test="${submenu.menu_id eq menu.menu_id }">
+				<c:choose>
+				<c:when	test="${(submenu.menu_id eq 'MENU01') or (submenu.menu_id eq 'MENU02')}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU03'}">
+					<li><a href="/Market/AdoptList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU04'}">
+					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU05'}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				</c:choose>	
+				</c:if>	
+				</c:forEach>
+				</ul>
+			</li>
+			</c:when>
+			<c:when test="${menu.menu_id eq 'MENU05'}">
+			<li><a href="/Wiki/List?submenu_id=${submenuList[18].submenu_id}&nowpage=1">${ menu.menu_name }</a>
+				<ul>
+				<c:forEach var="submenu" items="${ submenuList }">
+				<c:if test="${submenu.menu_id eq menu.menu_id }">
+				<c:choose>
+				<c:when	test="${(submenu.menu_id eq 'MENU01') or (submenu.menu_id eq 'MENU02')}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU03'}">
+					<li><a href="/Market/AdoptList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU04'}">
+					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU05'}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				</c:choose>	
+				</c:if>	
+				</c:forEach>
+				</ul>
+			</li>
+			</c:when>
+		</c:choose>
+		</c:forEach>
+		<li><a href="login" class="right">로그인</a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<%-- 	   <nav>
 	      <c:if test="${ usercode != null }">
 	         <div><a href="/">로그아웃</a></div>
 	         <div><a href="">마이페이지</a></div>
@@ -78,9 +149,7 @@
 	      </c:if>
 	      <div style="display: inline-block;"><a href="/myPageCheck">마이페이지</a></div> 
 	      <div style="display: inline-block;"><a href="/logout">로그아웃</a></div>
-	   </nav> --%>
-   </div>
-</header>
+	   </nav> --%> --%>
 
  
 <%-- <table  id="header">
