@@ -57,29 +57,42 @@
 <!-- 메뉴목록 -->
 
 <header>
-   <div id="headerInWrap">
-	   <div id="logo"><a href="/">logo</a></div>
-	   <div id="menu1">
-	 	<ul>
-	      <c:forEach var="menu" items="${ menuList }">
-	          <li><a href="/Board?menu_id=${menu.menu_id}">${ menu.menu_name }</a>
-	              <ul>
-	              <c:forEach var="submenu" items="${ submenuList }">
-	              <c:if test="${submenu.menu_id eq menu.menu_id }">
-	               	<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">${submenu.submenu_name}</a></li>
-	               </c:if>
-	               </c:forEach>
-	               </ul> 
-	          </li>
-	      </c:forEach>
-	      <li><a href="login" class="right">로그인</a></li>
-	   </ul> 
-	   </div>
-   </div> 
+	<div id="headerInWrap">
+	<div id="logo"><a href="/">logo</a></div>
+	<div id="menu1">
+	<ul>
+		<c:forEach var="menu" items="${ menuList }">
+		<li><a href="/Board?menu_id=${menu.menu_id}">${ menu.menu_name }</a>
+			<ul>
+			<c:forEach var="submenu" items="${ submenuList }">
+			<c:if test="${submenu.menu_id eq menu.menu_id }">
+			<c:choose>
+			<c:when	test="${(submenu.menu_id eq 'MENU01') or (submenu.menu_id eq 'MENU02')}">
+				<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+					${submenu.submenu_name}</a></li></c:when>
+			<c:when	test="${submenu.menu_id eq 'MENU03'}">
+				<li><a href="/Market/AdoptList?submenu_id=${submenu.submenu_id}&nowpage=1">
+					${submenu.submenu_name}</a></li></c:when>
+			<c:when	test="${submenu.menu_id eq 'MENU04'}">
+				<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
+					${submenu.submenu_name}</a></li></c:when>
+			<c:when	test="${submenu.menu_id eq 'MENU05'}">
+				<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+					${submenu.submenu_name}</a></li></c:when>
+			</c:choose>	
+			</c:if>	
+			</c:forEach>
+			</ul>
+		</li>
+		</c:forEach>
+		<li><a href="login" class="right">로그인</a></li>
+			</ul>
+		</div>
+	</div>
 </header>
-	   
-	   
-	   
+
+
+
 <!-- 	    
   <ul id="menu">
 	      <li><a href="/board">식물연합</a>
