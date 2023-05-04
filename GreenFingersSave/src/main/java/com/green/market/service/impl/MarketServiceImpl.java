@@ -3,6 +3,8 @@ package com.green.market.service.impl;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +19,11 @@ public class MarketServiceImpl implements MarketService {
 	MarketDao marketDao;
 	
 	@Override
-	public List<MarketVo> getAdoptList(
+	public List<MarketVo> getMarketList(
 			HashMap<String, Object> map
 			) {
 		// 필요한 자료를 조회( rows)
-		List<MarketVo>  adoptList = marketDao.getAdoptList(map);
+		List<MarketVo>  marketList = marketDao.getMarketList(map);
 		
 		int  pagetotalcount =  10;  // paging.jsp 페이지 번호 출력 갯수
 				
@@ -40,7 +42,7 @@ public class MarketServiceImpl implements MarketService {
 		map.put("marketVo", marketVo);
 		
 		
-		return     adoptList;
+		return     marketList;
 
 	}
 
@@ -50,6 +52,19 @@ public class MarketServiceImpl implements MarketService {
 		MarketVo vo = marketDao.getBoard(map);
 		
 		return vo;
+	}
+
+	@Override
+	public void setWrite(
+			HashMap<String, Object> map, 
+			HttpServletRequest request) {
+		
+		// request 처리
+		MarketFile.save(map, request);
+		
+		// 넘어온 정보 저장
+		marketDao.setWrite(map);
+		
 	}
 
 }

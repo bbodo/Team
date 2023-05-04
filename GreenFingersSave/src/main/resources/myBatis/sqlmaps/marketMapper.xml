@@ -6,7 +6,7 @@
 <mapper namespace="Market">  
   
  	<!-- 페이징된 리스트 가져오기 -->
-	<select id="AdoptList"
+	<select id="MarketList"
 			resultType="com.green.market.vo.MarketVo">
 	
 	SELECT * FROM

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.green.market.dao.MarketDao;
 import com.green.market.service.MarketService;
+import com.green.market.vo.FileVo;
 import com.green.market.vo.MarketVo;
 
 @Repository("marketDao")
@@ -19,7 +20,7 @@ public class MarketDaoImpl implements MarketDao {
 	
 	// 입양 리스트
 	@Override
-	public List<MarketVo> getAdoptList(
+	public List<MarketVo> getMarketList(
 			HashMap<String, Object> map
 			) {
 		// 전체 자료수 조회
@@ -29,9 +30,9 @@ public class MarketDaoImpl implements MarketDao {
 		System.out.println(map);
 		
 		// 메뉴 목록 조회 (페이징)
-		List<MarketVo> adoptList = sqlSession.selectList("Market.AdoptList", map);
+		List<MarketVo> marketList = sqlSession.selectList("Market.MarketList", map);
 		
-		return adoptList;
+		return marketList;
 	}
 
 	
@@ -43,6 +44,27 @@ public class MarketDaoImpl implements MarketDao {
 		MarketVo vo = sqlSession.selectOne("Market.GetBoard", map);
 		
 		return vo;
+	}
+
+
+	@Override
+	public void setWrite(HashMap<String, Object> map) {
+
+		// db 정보 저장
+		// Board  에 저장
+		int  bnum = Integer.parseInt( (String) map.get("bnum") );
+		if ( bnum == 0 ) {
+			sqlSession.insert("Board.BoardInsert", map); // 새글
+		} else {
+			sqlSession.update("Board.StepUpdate", map); // 새글			
+			sqlSession.insert("Board.BoardReply", map); // 새글			
+		}
+		
+		// Files  에 저장
+		List<FileVo>  fileList =  (List<FileVo>) map.get("fileList");
+		if( fileList.size() != 0  )
+			sqlSession.insert("Board.FileInsert", map);
+		
 	}
 
 }

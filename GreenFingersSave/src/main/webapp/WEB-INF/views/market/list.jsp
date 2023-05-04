@@ -13,31 +13,31 @@
 	* {
 		box-sizing: border-box;
 	}
- 
+
 	#title {
 		width: 100%;
 		text-align: center;
 		height: 100px;
-		background-color: orange;
+		background-color: orange; 
 	}
 	#title p {
 		 line-height: 100px; 
 	}
 	#aside {
 		float: left;
-		height: 1500px;
+		height: 1000px;
 		background-color: navy;
 		width: 20%;
 		padding: 10px;
 	}
 	#aside a {
-        text-decoration : none;
-        color: #fff;
-        margin: 10px 30px;
+	        text-decoration : none;
+	        color: #fff;
+	        margin: 10px 30px;
 	}
 	#main {
 		width: 80%;
-		height: 1500px;
+		height: 1000px;
 		float: left;
 		padding: 10px;
 		background-color: gray;
@@ -45,17 +45,20 @@
 	}
 	
 	#main p {
-		margin-top: 40px;
+		margin-top: 30px;
+		margin-bottom: 30px;
 	}
+		
+
 	#givelist { 
-        display: flex;
-        gap : 30px;
-        text-decoration : none;
-        margin-top: 50px;
-        margin-left: 340px;
+	            display: flex;
+	            gap : 0.3px;
+	            text-decoration : none;
+	            margin-top: 50px;
+	            margin-left: 250px;
     }
     .plant  { 
-        margin: 0 0 15px 0;
+             margin: 0 0 15px 0;
     }
 	#list {
 		background-color: #fff;
@@ -63,32 +66,23 @@
 	#list th {
 		background-color: #666;
 	}
-	#pointlist { 
-        display: flex;
-        gap : 30px;
-        text-decoration : none;
-        margin-top: 50px;
-        margin-left: 340px;
-    } 
-	.tag {
-		font-weight: bold;
-	}
+	.right {
+		text-align: right;
+	} 
 	
 	#main { display: block; }
 	
 	img { width : 250px; 
 	      height: 250px;
 	}
-	
-	h2 {
-		margin-bottom: 10px;
-	}
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
-		margin-top: 50px;
 		margin-bottom: 30px;
-		width: 55%;
+		width: 60%;
+	}
+	#cont h2 {
+		margin-bottom: 20px;
 	}
 	#cont th {
 		background-color: #666;
@@ -100,52 +94,21 @@
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
-	 
      <div id="title">
      	<p>그린마켓</p>
      </div>
      <div id="aside">
-     	<a href="">입양원해요</a><br />
      	<a href="">나눔합니다</a><br />
+     	<a href="">입양원해요</a><br />
      	<a href="">포인트 스토어</a><br />
      </div>
      <div id="main">
      
-     <p>그린핑거는 회원 간의 상품 거래 정보 및 거래에<br>
-     관여하지 않으며 어떠한 의무와 책임도 부담하지 않습니다</p>
+     <p>회원 등급과 상관없이 누구나 입양 신청글 작성이 가능합니다<br>
+     입양 완료 후 답례를 하고 싶다면 포인트로 고마움을 표현하세요</p>
      
-     <div id="givelist">
-      <figure>
-      <a href="">
-     <div class="plant">
-	     <img src="/img/market/그린마켓1.png" >
-	  </div>
-	  </a>
-	     <span class="tag">나눔</span>
-	     <p>루브라 나눔합니다</p>
-	  </figure>
-      <figure>
-      <a href="">
-     <div class="plant">
-	     <img src="/img/market/그린마켓2.png" >
-	  </div>
-	  </a>
-	     <span class="tag">나눔</span>
-	     <p>제라늄 데려가실 분</p>
-	  </figure>
-      <figure>
-      <a href="">
-     <div class="plant">
-	     <img src="/img/market/그린마켓3.png">
-	  </div>
-	  </a>
-	     <span class="tag">나눔</span>
-	     <p>유니플로라 데려가세요</p> 
-	  </figure>
-	</div>
-	
     <table id="cont">
-		<caption><h2>입양원해요</h2></caption>
+		<caption><h2>${ map.submenu_name }</h2></caption>
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
@@ -154,7 +117,7 @@
 			<th>조회수</th>
 		</tr>
 		
-		<c:forEach var="marketVo" items="${ adoptList }">
+		<c:forEach var="marketVo" items="${ marketList }">
 	  <tr>
 	     <td>
 	     <!-- 번호 -->
@@ -212,42 +175,13 @@
 	  </tr>  
 	  </c:forEach>
 		</table> 
+    
 	
-	  <caption><h2>포인트 스토어</h2></caption>	
-	  <div id="pointlist">
-      <figure>
-      <a href="">
-     <div class="plant">
-	     <img src="/img/market/포인트스토어1.jpg" >
-	  </div>
-	  </a>
-	     <span class="tag">3000p</span>
-	     <p>귀여운 코끼리 물뿌리개</p>
-	  </figure>
-      <figure>
-      <a href="">
-     <div class="plant">
-	     <img src="/img/market/포인트스토어2.jpg" >
-	  </div>
-	  </a>
-	     <span class="tag">4500p</span>
-	     <p>파쯔파쯔 국내생산 흙</p>
-	  </figure>
-      <figure>
-      <a href="">
-     <div class="plant">
-	     <img src="/img/market/포인트스토어3.jpg">
-	  </div>
-	  </a>
-	     <span class="tag">1800p</span>
-	     <p>원예 모종삽 3종세트</p> 
-	  </figure>
-	 </div>	
-		
+	
+		<input type="button" class="right" value="새글 작성" />
+	    <%@include file="/WEB-INF/include/paging.jsp" %>
      </div>
      
-     
      <%@include file="/WEB-INF/include/footer.jsp" %>
-     
 </body>
 </html>

@@ -32,9 +32,9 @@ public class MarketController {
 	private MarketService marketService;
 	
 	
-	// 마켓 메인 리스트
-	@RequestMapping("/List")
-	public ModelAndView list(
+	// 마켓 메인 홈
+	@RequestMapping("/Main")
+	public ModelAndView main(
 			@RequestParam HashMap<String, Object> map
 			) {
 		
@@ -57,7 +57,7 @@ public class MarketController {
 
 	// 게시글 목록 불러오기
 	String 		  submenu_id = (String) map.get("submenu_id");
-	List<MarketVo> adoptList  = marketService.getAdoptList(map);
+	List<MarketVo> marketList  = marketService.getMarketList(map);
 	
 	MarketVo marketVo = (MarketVo) map.get("marketVo");
 	
@@ -66,12 +66,12 @@ public class MarketController {
 	
 	map.put("submenu_name", submenu_name);
 
-	System.out.println("마켓리스트" + adoptList);
+	System.out.println("마켓리스트" + marketList);
 	System.out.println("마켓맵" + map);
 	
 	ModelAndView mv = new ModelAndView();
-	mv.setViewName("market/list");
-	mv.addObject("adoptList", adoptList);
+	mv.setViewName("market/main");
+	mv.addObject("marketList", marketList);
 	mv.addObject("menuList", menuList);
 	mv.addObject("submenuList", submenuList);
 	mv.addObject("marketVo", marketVo);
@@ -81,9 +81,9 @@ public class MarketController {
 	
 	
 	//----------------------------------------------------------------------
-	// 입양 리스트
-	@RequestMapping("/AdoptList")
-	public ModelAndView adoptlist(
+	// 마켓 리스트
+	@RequestMapping("/List")
+	public ModelAndView list(
 			@RequestParam HashMap<String, Object> map
 			) {
 		
@@ -107,7 +107,7 @@ public class MarketController {
 	
 	// 게시글 목록 불러오기
 	String 		  submenu_id = (String) map.get("submenu_id");
-	List<MarketVo> adoptList  = marketService.getAdoptList(map);
+	List<MarketVo> marketList  = marketService.getMarketList(map);
 	
 	MarketVo marketVo = (MarketVo) map.get("marketVo");
 	
@@ -120,8 +120,8 @@ public class MarketController {
 	//System.out.println("마켓맵" + map);
 	
 	ModelAndView mv = new ModelAndView();
-	mv.setViewName("market/adoptList");
-	mv.addObject("adoptList", adoptList);
+	mv.setViewName("market/list");
+	mv.addObject("marketList", marketList);
 	mv.addObject("menuList", menuList);
 	mv.addObject("submenuList", submenuList);
 	mv.addObject("marketVo", marketVo);
@@ -170,7 +170,6 @@ public class MarketController {
 		return mv;
 	}
 	
-	/*
     @RequestMapping("/Write")
     public ModelAndView write(
     		@RequestParam HashMap<String, Object> map,
@@ -192,7 +191,7 @@ public class MarketController {
 		
 		return mv;
     }
-  */
+  
 
   /*  
     @RequestMapping("/marketUpdate")
