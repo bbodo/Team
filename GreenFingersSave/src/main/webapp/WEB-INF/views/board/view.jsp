@@ -69,7 +69,7 @@
 		
 		function comment_display(data) {
 			console.log(data);
-			
+			//
 			let html = '';
 			for (let comm of data) {
 				html += '<div class="floatleft"><h2>'+ comm.nickname +'</h2></div>';
