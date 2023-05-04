@@ -131,6 +131,10 @@ public class UserVo {
 		return point;
 	}
 
+	public void setPoint(int point) {
+		this.point = point;
+	}
+	
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
@@ -139,10 +143,6 @@ public class UserVo {
 		return nickname;
 	}
 
-	public void setPoint(int point) {
-		this.point = point;
-	}
-	
 	// toString
 	@Override
 	public String toString() {

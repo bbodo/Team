@@ -107,6 +107,10 @@
      <th>주소</th>
      <td><input type="text" name="addr" id="add"/></td>
    </tr>  
+   <tr>
+     <th>별명</th>
+     <td><input type="text" name="nickname" id="add"/></td>
+   </tr>  
    <tr>     
      <td colspan="2">
      <button type="submit" style="width:50pt;height:30pt; float: right; "> 가입 </button>

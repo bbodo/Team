@@ -1,37 +1,30 @@
 package com.green.home;
 
-import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.menus.service.MenuService;
 import com.green.menus.vo.MenuVo;
 import com.green.menus.vo.SubmenuVo;
-import com.green.user.service.UserService;
-import com.green.user.vo.UserVo;
 
 @Controller 
 public class HomeController {
 	
 	@Autowired
-	private UserService userService;
-	
-	@Autowired
 	private MenuService menuService;
 	
+	// home 화면에 메뉴,하위메뉴 목록 가져오기
 	@RequestMapping("/")
 	public ModelAndView home() {
 		List<MenuVo> menuList = menuService.getMenuList();
 		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
-		System.out.println("MENU" + menuList);
-		System.out.println("SUBMENU" + submenuList);
+		//System.out.println("MENU" + menuList);
+		//System.out.println("SUBMENU" + submenuList);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("home");
 		mv.addObject("menuList", menuList);

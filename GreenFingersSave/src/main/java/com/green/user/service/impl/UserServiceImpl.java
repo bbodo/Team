@@ -15,13 +15,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserDao userDao;
 	
-	@Override
-	public void userWrite(HashMap<String, Object> map) {
-
-		userDao.userWrite(map);
-		
-	}
-
+	// 가입된 회원인지 체크
 	@Override
 	public UserVo getLogin(HashMap<String, Object> map) {
 		
@@ -29,5 +23,13 @@ public class UserServiceImpl implements UserService {
 		
 		return userVo;
 	}
+	
+	@Override
+	public void userWrite(HashMap<String, Object> map) {
+
+		userDao.userWrite(map);
+		
+	}
+
 
 }

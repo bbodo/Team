@@ -21,34 +21,36 @@ public class UserController {
 	UserService userService;
 	
 	
-	// ---------user---------
+	// 로그인 화면으로 이동
 	@RequestMapping("/Login")
 	public String login() {
 		return "/user/login";
 	}
 	
+	// 로그인 할 user 정보 처리
 	@RequestMapping("/LoginProcess")
-	public String loginprocess(
-			HttpSession session,
-			@RequestParam HashMap<String, Object> map
-			) {
-		String returnURL = "";
-		
+	public ModelAndView loginprocess( HttpSession session,
+			@RequestParam HashMap<String, Object> map ) {
+		System.out.println("1" + map + session);
+		// 기존 login 정보가 존재한다면 
 		if(session.getAttribute("login") != null) {
-			// 기존 login 정보가 존재한다면 
 			session.removeAttribute("login");
 		}
 		
-		// 로그인 성공하면
+		ModelAndView mv = new ModelAndView();
+		
+		// 가입된 회원인지 체크
 		UserVo vo = userService.getLogin(map);
+		
 		if ( vo != null) {
 			session.setAttribute("login", vo);
-			returnURL = "redirect:/";
+			mv.setViewName("redirect:/");
+			mv.addObject("vo", vo);
 		} else {
-			returnURL = "redirect:/login";
+			mv.setViewName("redirect:/User/Login");
 		}
 		
-		return returnURL;
+		return mv;
 	}
 	
 	// 로그아웃

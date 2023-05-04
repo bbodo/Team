@@ -198,7 +198,7 @@
 	      </c:if>
 	      <div style="display: inline-block;"><a href="/myPageCheck">마이페이지</a></div> 
 	      <div style="display: inline-block;"><a href="/logout">로그아웃</a></div>
-	   </nav> --%> --%>
+	   </nav> --%>
 
  
 <%-- <table  id="header">

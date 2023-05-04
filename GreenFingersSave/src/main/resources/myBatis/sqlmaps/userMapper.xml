@@ -29,7 +29,8 @@
 			GRADE,
 			ADDR,
 			EMAIL,
-			POINT
+			POINT,
+			NICKNAME
 		)
 		VALUES
 		(
@@ -42,7 +43,8 @@
 			#{ grade },
 			#{ addr },
 			#{ email },
-			500
+			500,
+			#{ nickname },
 		)
 		
    
@@ -57,10 +59,13 @@
  			USERID,
 			PASSWD,
 			USERNAME,
-			EMAIL,
-			TO_CHAR( JOINDATE, 'YYYY-MM-DD HH24:MI:SS' ) AS JOINDATE,
+			BIRTHDAY,
+			GENDER,
 			GRADE,
 			ADDR,
+			EMAIL,
+			TO_CHAR( JOINDATE, 'YYYY-MM-DD HH24:MI:SS' ) AS JOINDATE,
+			POINT
 			NICKNAME
  		FROM
  			MEMBER
