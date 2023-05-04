@@ -90,7 +90,7 @@
 	<a href="/update">update 가는길</a> <br />
 	<a href="/eventList">이벤트 리스트 가는길</a> <br />
 	<a href="/Market/AdoptList?submenu_id=SUBMENU15&nowpage=1">market 입양 리스트 가는길</a> <br />
-	<a href="/market">market 메인 가는길</a> <br />
+	<a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU15&nowpage=1">market 메인 테스트 가는길</a> <br />
 	<a href="/marketWrite">market write 가는길</a> <br />
 	<a href="/marketUpdate">market update 가는길</a> <br /> 
 	<a href="/marketView">market view 가는길</a> <br />

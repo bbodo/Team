@@ -26,7 +26,7 @@
 			B.NREF,
 			B.DELBOARD,
 			B.PARENT,
-			M.USERID
+			M.NICKNAME
 		FROM
 			BOARD B
 		JOIN 
@@ -44,7 +44,6 @@
 		 NREF  DESC, STEP   ASC   
 		
 	</select>
-	
 	
 	
 	<!-- 전체 자료수 조회 -->
@@ -191,6 +190,9 @@
    
    </insert>
 -->
+
+
+
 </mapper>
 
 

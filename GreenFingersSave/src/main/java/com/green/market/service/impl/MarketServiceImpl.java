@@ -44,4 +44,12 @@ public class MarketServiceImpl implements MarketService {
 
 	}
 
+	@Override
+	public MarketVo getBoard(HashMap<String, Object> map) {
+
+		MarketVo vo = marketDao.getBoard(map);
+		
+		return vo;
+	}
+
 }
