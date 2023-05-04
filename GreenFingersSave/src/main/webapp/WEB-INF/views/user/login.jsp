@@ -42,7 +42,7 @@ div{text-align : center}
      </div>
 	<div id= "main">	
 	<h2> 로그인 </h2>
-		<form action = "/loginprocess" method="POST">
+		<form action = "User/LoginProcess" method="POST">
 		<table>
 			<tr>
 			<th>아이디</th>

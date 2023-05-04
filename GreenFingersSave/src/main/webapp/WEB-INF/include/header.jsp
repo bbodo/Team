@@ -73,7 +73,7 @@
 					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU03'}">
-					<li><a href="/Market/AdoptList?submenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Market/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU04'}">
 					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
@@ -97,7 +97,7 @@
 					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU03'}">
-					<li><a href="/Market/AdoptList?submenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Market/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU04'}">
 					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
@@ -112,7 +112,7 @@
 			</li>
 			</c:when>
 			<c:when test="${menu.menu_id eq 'MENU03'}">
-			<li><a href="/Market/AdoptList?submenu_id=${submenuList[14].submenu_id}&nowpage=1">${ menu.menu_name }</a>
+			<li><a href="/Market/Main?menu_id=${menu.menu_id}&submenu_id=${submenuList[14].submenu_id}&nowpage=1">${ menu.menu_name }</a>
 				<ul>
 				<c:forEach var="submenu" items="${ submenuList }">
 				<c:if test="${submenu.menu_id eq menu.menu_id }">
@@ -121,7 +121,7 @@
 					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU03'}">
-					<li><a href="/Market/AdoptList?submenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Market/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU04'}">
 					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
@@ -145,7 +145,7 @@
 					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU03'}">
-					<li><a href="/Market/AdoptList?submenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Market/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU04'}">
 					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
@@ -169,7 +169,7 @@
 					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU03'}">
-					<li><a href="/Market/AdoptList?submenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Market/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU04'}">
 					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
@@ -185,7 +185,7 @@
 			</c:when>
 		</c:choose>
 		</c:forEach>
-		<li><a href="login" class="right">로그인</a></li>
+		<li><a href="/User/Login" class="right">로그인</a></li>
 			</ul>
 		</div>
 	</div>
@@ -193,52 +193,7 @@
 
 
 
-<!-- 	    
-  <ul id="menu">
-	      <li><a href="/board">식물연합</a>
-	         <ul>
-	            <li><a href="/board">포이즌</a></li>
-	            <li><a href="/board">이파리</a></li>
-	            <li><a href="/board">플라워</a></li>
-	            <li><a href="/board">우드</a></li>
-	            <li><a href="/board">열매</a></li>
-	            <li><a href="/board">허브</a></li>
-	            <li><a href="/board">사막</a></li>
-	            <li><a href="/board">습지</a></li>
-	            <li><a href="/board">채소</a></li>
-	            <li><a href="/board">불법단체</a></li>
-	         </ul>
-	      </li>
-	      
-	      <li><a href="#">커뮤니티</a>
-	         <ul>
-	            <li><a href="">꿀팁</a></li>
-	            <li><a href="qalist">Q&A</a></li>
-	            <li><a href="">자유</a></li>
-	            <li><a href="">초록별</a></li>
-	         </ul>
-	      </li>
-	      
-	      <li><a href="#">그린마켓</a>
-	         <ul>
-	            <li><a href="/market">입양</a></li>
-	            <li><a href="/market">분양</a></li>
-	            <li><a href="/market">소모품</a></li>
-	         </ul>
-	      </li>
-	      
-	      <li><a href="/eventList">이벤트</a>
-	         <ul>
-	            <li><a href="">이벤트</a></li>
-	         </ul>
-	      </li>
-	      
-	      <li><a href="#">그린위키</a>
-	         <ul>
-	            <li><a href="/static/html/green.html">그린위키</a></li>
-	         </ul>
-	      </li>
-	   </ul> -->
+
 	   
 <%-- 	   <nav>
 	      <c:if test="${  != null }">

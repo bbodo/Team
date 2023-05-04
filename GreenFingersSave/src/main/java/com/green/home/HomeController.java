@@ -42,51 +42,7 @@ public class HomeController {
 	
 	// --------------------------- 양식을 위한 주소
 	// --------------------------- 그림 다그리고 컨트롤러 다시 만들죠~
-	
-	// ---------user---------
-	@RequestMapping("/login")
-	public String login() {
-		return "/user/login";
-	}
-	
-	@RequestMapping("/loginprocess")
-	public String loginprocess(
-			HttpSession session,
-			@RequestParam HashMap<String, Object> map
-			) {
-		String returnURL = "";
-		
-		if(session.getAttribute("login") != null) {
-			// 기존 login 정보가 존재한다면 
-			session.removeAttribute("login");
-		}
-		
-		// 로그인 성공하면
-		UserVo vo = userService.getLogin(map);
-		if ( vo != null) {
-			session.setAttribute("login", vo);
-			returnURL = "redirect:/";
-		} else {
-			returnURL = "redirect:/login";
-		}
-		
-		return returnURL;
-	}
-	
-	// 로그아웃
-	@RequestMapping("/logout")
-	public String logout(
-			HttpSession session) {
-		
-		session.invalidate();
-		
-		return "redirect:/login";
-	}
-	
-	@RequestMapping("/userwrite")
-	public String userwrite() {
-		return "/user/userwrite";
-	}
+
 	
 
 
