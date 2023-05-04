@@ -12,7 +12,7 @@
 
 	* {
 		box-sizing: border-box;
-	}
+	} 
 
 	#title {
 		width: 100%;

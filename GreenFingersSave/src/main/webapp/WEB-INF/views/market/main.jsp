@@ -100,7 +100,7 @@
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
-	 
+	  
      <div id="title">
      	<p>그린마켓</p>
      </div>
