@@ -82,9 +82,13 @@
 		const coment_contEl = document.getElementById("coment_cont");
 		const readCEl = document.getElementById("readC");
 		let board_idx = "${ vo.board_idx }";
-		let usercode = "${ login.usercode }";
+		let usercode = ${ login.usercode };
 		let coment_cont = coment_contEl.value;
 		let data = new FormData(readCEl);
+		
+		console.log(board_idx);
+		console.log(usercode);
+		console.log(coment_cont);
 		
 		let optionR = {
 				method : "POST",
@@ -107,8 +111,8 @@
 				body : JSON.stringify({
 					board_idx : board_idx,
 					usercode : usercode,
-					coment_cont : coment_cont,
-				}),
+					coment_cont : coment_cont
+				})
 			})
 				.then( res => res.json() )
 				.then( data => {
