@@ -1,13 +1,8 @@
-function data_post(url) {
+function data_post(url, data) {
 
 	fetch(url, {
 		method: "POST",
-		body: JSON.stringify({
-			title : "dd"
-		}),
-		headers: {
-			"content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-		},
+		body: data
 	})
 	.then(data => {
 		alert('성공:' + data );
@@ -18,8 +13,23 @@ function data_post(url) {
 
 }
 alert("d");
-window.onload = function () {
-	let url = "/myNoteWrite";
-	data_post(url);
 
+
+window.onload = function () {
+	
+	/*<c:set var="receiver_usercode" var = '${request.getParameter("receiver_usercode")}' />
+*/	
+	   
+	const  notetitle = document.getElementByName('notetitle').value;
+	const  notecont = document.getElementByName('notecont').value;
+	/*const  notetitle = document.getElementByName('보내는 사람코드 보내야 함').value;*/
+	const  receiver_usercode = document.getElementByName('receiver_usercode').value;
+	
+	let  data  =  new FormData();
+	data.append( "notetitle",   notetitle );
+	data.append( "notecont",   notecont );
+	data.append( "receiver_usercode", receiver_usercode );
+	
+
+	data_post(url, data);
 }

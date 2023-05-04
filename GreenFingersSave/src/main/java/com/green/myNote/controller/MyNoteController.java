@@ -11,8 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.green.myNote.service.MyNoteService;
 import com.green.myNote.vo.MyNoteVo;
-
 @Controller
+@RequestMapping("/myNoteWrite") 
 public class MyNoteController {
 
 	@Autowired
@@ -39,12 +39,13 @@ public class MyNoteController {
 	public ModelAndView myNoteWrite( @RequestParam HashMap<String, Object> map ) {
 		System.out.println("쪽지GET확인2:" + map.toString());
 
-		//쪽지 등록 int myNoteInsertCheck = myNoteService.insertMyNote(map);
+		//쪽지 등록 
+		int myNoteInsertCheck = myNoteService.insertMyNote(map);
 
 		ModelAndView mv = new ModelAndView();
 		//mv.addObject("name", name); return mv; }
 		mv.setViewName("mypage/myNoteWrite");
-		//mv.addObject("myNoteVo", myNoteForm);
+		mv.addObject("myNoteInsertCheck", myNoteInsertCheck);
 		return mv;
 	}
 

@@ -131,10 +131,10 @@ public class HomeController {
 		return "/mypage/myNote";
 	}
 	
-	/*@RequestMapping("/myNoteWrite")
+	@RequestMapping("/myNoteWrite")
 	public String myNoteWrite() {
 		return "/mypage/myNoteWrite";
-	}*/
+	}
 	
 	@RequestMapping("/myPageCheck")
 	public String myPageCheck() {

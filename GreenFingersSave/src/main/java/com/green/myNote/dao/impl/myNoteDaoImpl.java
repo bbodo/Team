@@ -19,7 +19,6 @@ public class myNoteDaoImpl implements MyNoteDao {
 	@Override
 	public MyNoteVo getMyNoteForm(HashMap<String, Object> map) {
 		MyNoteVo myNoteForm = sqlSession.selectOne("MyPage.MyPageNoteSelect", map);
-		System.out.println(myNoteForm);
 		return myNoteForm;
 	}
 	
@@ -27,7 +26,7 @@ public class myNoteDaoImpl implements MyNoteDao {
 	public int insertMyNote(HashMap<String, Object> map) {
 		
 		int myNoteInsertCheck = sqlSession.insert("Mypage.MyPageNoteInsert",map);
-		
+		System.out.println("쪽지Dao확인:" + map.toString());
 		return myNoteInsertCheck;
 	}
 

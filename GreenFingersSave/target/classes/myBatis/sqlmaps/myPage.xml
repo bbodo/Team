@@ -28,10 +28,10 @@
 		VALUES
 			(
 				(SELECT  NVL( MAX(NOTE_IDX), 0 ) + 1 FROM NOTE),
-				#{ submenu_id },
-				#{ board_title },
+				#{ notetitle },
+				#{ notecont },
 				#{ board_cont },
-				(SELECT USERCODE FROM MEMBER WHERE USERID = #{ userid }),
+				to_date(sysdate,'yyyy.mm.dd hh24:mi'),
 				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
 				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD)
 			)
