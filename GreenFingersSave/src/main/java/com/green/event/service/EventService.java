@@ -9,8 +9,8 @@ import com.green.event.Vo.EventVo;
 public interface EventService {
 
 
-	List<EventVo> getEventList(HashMap<String, Object> map);
-	
-	EventVo getEvent(HashMap<String, Object> map);
+	List<EventVo> getAdoptList(HashMap<String, Object> map);
+
+	EventVo getBoard(HashMap<String, Object> map);
 
 }

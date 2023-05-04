@@ -88,9 +88,9 @@
 	<a href="/write">write 가는길</a> <br />
 	<a href="/view">view 가는길</a> <br />
 	<a href="/update">update 가는길</a> <br />
-	<a href="/eventList?submenu_id=SUBMENU01&nowpage=1"">이벤트 리스트 가는길</a> <br />
-	<a href="/Market/List?submenu_id=SUBMENU15&nowpage=1">market 입양 리스트 가는길</a> <br />
-	<a href="/Market/Main?menu_id=MENU03&submenu_id=SUBMENU15&nowpage=1">market 메인 테스트 가는길</a> <br />
+	<a href="/Event/EventList?submenu_id=SUBMENU18&nowpage=1"">이벤트 리스트 가는길</a> <br />
+	<a href="/Market/AdoptList?submenu_id=SUBMENU15&nowpage=1">market 입양 리스트 가는길</a> <br />
+	<a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU15&nowpage=1">market 메인 테스트 가는길</a> <br />
 	<a href="/marketWrite">market write 가는길</a> <br />
 	<a href="/marketUpdate">market update 가는길</a> <br /> 
 	<a href="/marketView">market view 가는길</a> <br />

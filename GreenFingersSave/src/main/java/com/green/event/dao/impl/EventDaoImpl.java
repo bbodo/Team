@@ -12,6 +12,7 @@ import com.green.board.vo.FileVo;
 import com.green.event.Vo.EventVo;
 import com.green.event.dao.EventDao;
 import com.green.event.service.EventService;
+import com.green.market.vo.MarketVo;
 
 @Repository("eventDao")
 public class EventDaoImpl implements EventDao {
@@ -19,31 +20,33 @@ public class EventDaoImpl implements EventDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	// 입양 리스트
 	@Override
-	public List<EventVo> getEventList(HashMap<String, Object> map) {
-		
-		/*
+	public List<EventVo> getEventList(
+			HashMap<String, Object> map
+			) {
 		// 전체 자료수 조회
 		int totalcount = sqlSession.selectOne("Event.GetTotalCount", map);
 		map.put("totalcount", totalcount);
 		
 		System.out.println(map);
-		*/
+		
 		// 메뉴 목록 조회 (페이징)
 		List<EventVo> eventList = sqlSession.selectList("Event.EventList", map);
 		
 		return eventList;
 	}
+
+	
 	@Override
-	public EventVo getEvent(HashMap<String, Object> map) {
-		
-		sqlSession.update("Event.UpdateReadCount", map);
+	public EventVo getBoard(HashMap<String, Object> map) {
+
+		sqlSession.update("Event.UpdaateReadCount", map);
 		
 		EventVo vo = sqlSession.selectOne("Event.GetBoard", map);
 		
 		return vo;
 	}
-
 
 
 	
