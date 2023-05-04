@@ -31,9 +31,9 @@
 		padding: 10px;
 	}
 	#aside a {
-	        text-decoration : none;
-	        color: #fff;
-	        margin: 10px 30px;
+        text-decoration : none;
+        color: #fff;
+        margin: 10px 30px;
 	}
 	#main {
 		width: 80%;
@@ -43,15 +43,19 @@
 		background-color: gray;
 		text-align: center;
 	}
+	
+	#main p {
+		margin-top: 40px;
+	}
 	#givelist { 
-	            display: flex;
-	            gap : 0.3px;
-	            text-decoration : none;
-	            margin-top: 50px;
-	            margin-left: 250px;
+        display: flex;
+        gap : 30px;
+        text-decoration : none;
+        margin-top: 50px;
+        margin-left: 340px;
     }
     .plant  { 
-             margin: 0 0 15px 0;
+        margin: 0 0 15px 0;
     }
 	#list {
 		background-color: #fff;
@@ -59,12 +63,12 @@
 	#list th {
 		background-color: #666;
 	}
-	#pointlist1 { 
-	            display: flex;
-	            gap : 0.3px;
-	            text-decoration : none;
-	            margin-top: 50px;
-	            margin-left: 230px;
+	#pointlist { 
+        display: flex;
+        gap : 30px;
+        text-decoration : none;
+        margin-top: 50px;
+        margin-left: 340px;
     } 
 	.tag {
 		font-weight: bold;
@@ -75,11 +79,16 @@
 	img { width : 250px; 
 	      height: 250px;
 	}
+	
+	h2 {
+		margin-bottom: 10px;
+	}
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
+		margin-top: 50px;
 		margin-bottom: 30px;
-		width: 60%;
+		width: 55%;
 	}
 	#cont th {
 		background-color: #666;
@@ -91,18 +100,19 @@
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
+	 
      <div id="title">
      	<p>그린마켓</p>
      </div>
      <div id="aside">
-     	<a href="">나눔합니다</a><br />
      	<a href="">입양원해요</a><br />
+     	<a href="">나눔합니다</a><br />
      	<a href="">포인트 스토어</a><br />
      </div>
      <div id="main">
      
-     <p>그린핑거는 판매 혹은 구매 회원 간의 상품 거래 정보<br>
-     및 거래에 관여하지 않으며 어떠한 의무와 책임도 부담하지 않습니다</p>
+     <p>그린핑거는 회원 간의 상품 거래 정보 및 거래에<br>
+     관여하지 않으며 어떠한 의무와 책임도 부담하지 않습니다</p>
      
      <div id="givelist">
       <figure>
@@ -204,7 +214,7 @@
 		</table> 
 	
 	  <caption><h2>포인트 스토어</h2></caption>	
-	  <div id="pointlist1">
+	  <div id="pointlist">
       <figure>
       <a href="">
      <div class="plant">
@@ -236,6 +246,8 @@
 		
      </div>
      
+     
      <%@include file="/WEB-INF/include/footer.jsp" %>
+     
 </body>
 </html>

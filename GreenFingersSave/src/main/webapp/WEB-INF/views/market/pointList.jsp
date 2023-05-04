@@ -49,17 +49,17 @@
 	}
 	#pointlist1 { 
 	            display: flex;
-	            gap : 0.3px;
+	            gap : 30px;
 	            text-decoration : none;
 	            margin-top: 50px;
-	            margin-left: 230px;
+	            margin-left: 300px;
     }
 	#pointlist2 { 
 	            display: flex;
-	            gap : 0.3px;
+	            gap : 30px;
 	            text-decoration : none;
 	            margin-top: 50px;
-	            margin-left: 230px;
+	            margin-left: 300px;
     }
     
     .plant  { 
@@ -103,8 +103,8 @@
      	<p>포인트 스토어</p>
      </div>
      <div id="aside">
-     	<a href="">나눔합니다</a><br />
      	<a href="">입양원해요</a><br />
+     	<a href="">나눔합니다</a><br />
      	<a href="">포인트 스토어</a><br />
      </div>
      <div id="main">

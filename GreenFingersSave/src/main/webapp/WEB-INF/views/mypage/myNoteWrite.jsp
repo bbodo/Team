@@ -80,8 +80,8 @@
      </div>
      
      <div id="main">
-		<form action="/myNoteWrite" method="POST">
-			<%-- <input type="hidden" name="menu_id" value="${ map.menu_id }" />  --%>
+		<form action="/myNoteWrite/myNoteWrite" method="POST">
+			<input type="hidden" name="receiver_usercode" value="${param.receiver_usercode}" />
 
 			<table id="cont">
 				<tr>

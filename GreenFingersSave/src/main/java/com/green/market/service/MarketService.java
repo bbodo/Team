@@ -11,5 +11,7 @@ public interface MarketService {
 
 	List<MarketVo> getAdoptList(HashMap<String, Object> map);
 
+	MarketVo getBoard(HashMap<String, Object> map);
+
 
 }

@@ -17,6 +17,7 @@ public class MarketDaoImpl implements MarketDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	// 입양 리스트
 	@Override
 	public List<MarketVo> getAdoptList(
 			HashMap<String, Object> map
@@ -30,8 +31,18 @@ public class MarketDaoImpl implements MarketDao {
 		// 메뉴 목록 조회 (페이징)
 		List<MarketVo> adoptList = sqlSession.selectList("Market.AdoptList", map);
 		
-		
 		return adoptList;
+	}
+
+	
+	@Override
+	public MarketVo getBoard(HashMap<String, Object> map) {
+
+		sqlSession.update("Market.UpdaateReadCount", map);
+		
+		MarketVo vo = sqlSession.selectOne("Market.GetBoard", map);
+		
+		return vo;
 	}
 
 }

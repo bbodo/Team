@@ -88,16 +88,16 @@
 	<a href="/write">write 가는길</a> <br />
 	<a href="/view">view 가는길</a> <br />
 	<a href="/update">update 가는길</a> <br />
-	<a href="/eventList">이벤트 리스트 가는길</a> <br />
+	<a href="/eventList?submenu_id=SUBMENU01&nowpage=1"">이벤트 리스트 가는길</a> <br />
 	<a href="/Market/AdoptList?submenu_id=SUBMENU15&nowpage=1">market 입양 리스트 가는길</a> <br />
-	<a href="/market">market 메인 가는길</a> <br />
+	<a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU15&nowpage=1">market 메인 테스트 가는길</a> <br />
 	<a href="/marketWrite">market write 가는길</a> <br />
 	<a href="/marketUpdate">market update 가는길</a> <br /> 
 	<a href="/marketView">market view 가는길</a> <br />
 	<a href="/marketPointList">market pointList 가는길</a> <br />
 	<a href="/myList">자기가 쓴글</a> <br />  
 	<a href="/myNote">쪽지</a> <br />
-	<a href="/myNoteWriteForm?board_idx=1&send_usercode=4&receiver_usercode=1">쪽지작성</a> <br />
+	<a href="/myNoteWrite/myNoteWriteForm?board_idx=1&send_usercode=4&receiver_usercode=1">쪽지작성</a> <br />
 	<a href="">길 찾아가세요</a> 
 	
 	<a href="/myList">마이페이지</a>

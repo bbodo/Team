@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +50,14 @@
 
 </head>
 <body>
-	 <%@include file="/WEB-INF/include/header.jsp" %>
+	<c:choose>
+		<c:when test="${ sessionScope.login eq null }">
+			<%@include file="/WEB-INF/include/header.jsp" %>
+		</c:when>
+		<c:otherwise>
+			<%@include file="/WEB-INF/include/header2.jsp" %>
+		</c:otherwise>
+	</c:choose>
      <div id="title">
      	<p>이벤트</p>
      </div>
@@ -73,14 +82,12 @@
 				<th colspan="2"><a href="/winnerList">당첨자 발표</a></th>
 			</tr>
 			
-     
+    <c:forEach var="vo" items="${ eventList }">
 			<tr>				
 					<td class="eventimg" colspan="4"><img onclick="javascript:location.href='http://localhost:9090/eventView'" src="/img/event/test.png"  ></td>
-					<td colspan="4">제목글</td>				
-			</tr>
-		
-			
-						
+					<td colspan="4">${vo.board_title}</td>				
+			</tr>			
+		</c:forEach>									
 		</table>
 	    <%@include file="/WEB-INF/include/paging.jsp" %>
      </div>
