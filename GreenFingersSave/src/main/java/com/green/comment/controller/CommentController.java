@@ -25,8 +25,6 @@ public class CommentController {
 	public List<CommentVo> commentWrite(
 			@RequestParam HashMap<String, Object> map
 			) {
-		
-		System.out.println("댓글쓰기"+map);
 
 		commentService.setWrite(map);
 		
@@ -41,9 +39,8 @@ public class CommentController {
 	public List<CommentVo> commentRead(
 			@RequestParam HashMap<String, Object> map
 			) {
-		List<CommentVo> commentList = commentService.setRead(map);
 		
-		map.put("commentList", commentList);
+		List<CommentVo> commentList = commentService.setRead(map);
 		
 		return commentList;
 	}

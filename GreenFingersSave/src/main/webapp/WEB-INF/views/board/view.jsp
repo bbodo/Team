@@ -54,35 +54,40 @@
 	textarea {
 		width: 650px;
 	}
+	.floatright {
+		float:right;
+	}
 
 </style>
 
-<script>
+<script src="https://code.jquery.com/jquery.min.js"></script>
 
+<script>
+	 
 		function comment_display(data) {
 			console.log(data);
 			
 			let html = `<table id="commentList">`;
 			for (let comm of data) {
 				html += '<tr>';
-				html += '<td><h2>' + comm.nickname + '</h2></td>';				
-				html += '<td>' + comm.coment_cont + '</td>';				
-				html += `</tr>`;
+				html += '<td><h2>' + comm.nickname + '</h2></div>'
+				html += '<td><a href="" class="reComment">' + comm.coment_cont + '</a>'
+				html += '</tr>';
 			}
 			html += `</table>`;
 			
 			const readCommentEl = document.getElementById("readComment");
 			readCommentEl.innerHTML = html;
-			console.log(readCommentEl);
+			
 		}
-	
+
 	window.onload = function() {
 		
 		const writeBtnEl = document.getElementById("writeBtn");
 		const coment_contEl = document.getElementById("coment_cont");
 		const readCEl = document.getElementById("readC");
 		const writeCEl = document.getElementById("writeC");
-	
+		
 		let datar = new FormData(readCEl);
 		
 		let optionR = {
@@ -94,6 +99,11 @@
 			.then( res => res.json() )
 			.then( data => {
 				comment_display(data);
+				
+				$('.reComment').on('click', function(e) {
+					let tag = ''
+				})
+				
 			})
 			.catch( err => {
 				console.log(err);
@@ -120,6 +130,8 @@
 					alert("오류발생 : " + err);
 				})
 		})
+		
+		
 	}
 
 </script>

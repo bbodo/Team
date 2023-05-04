@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import com.green.comment.dao.CommentDao;
 import com.green.comment.vo.CommentVo;
 
-
 @Repository("commentDao")
 public class CommentDaoImpl implements CommentDao {
 

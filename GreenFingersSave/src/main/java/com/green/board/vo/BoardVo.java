@@ -63,8 +63,8 @@ public class BoardVo {
 		this.pageendnum = pageendnum;
 		this.pagegrpnum = pagegrpnum;
 	}
-	
-	
+
+
 	public int getBoard_idx() {
 		return board_idx;
 	}
@@ -204,7 +204,6 @@ public class BoardVo {
 		this.pagegrpnum = pagegrpnum;
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "BoardVo [board_idx=" + board_idx + ", submenu_id=" + submenu_id + ", board_title=" + board_title
@@ -215,6 +214,7 @@ public class BoardVo {
 				+ ", totalcount=" + totalcount + ", totalpagecount=" + totalpagecount + ", pagestartnum=" + pagestartnum
 				+ ", pageendnum=" + pageendnum + ", pagegrpnum=" + pagegrpnum + "]";
 	}
-
+	
+	
 	
 }

@@ -13,14 +13,18 @@
 			COMENT_IDX,
 			COMENT_CONT,
 			BOARD_IDX,
-			USERCODE
+			USERCODE,
+			COM_BNUM,
+			COM_NREF
 		)
 		VALUES
 		(
 			(SELECT NVL(MAX(COMENT_IDX),0) +1 FROM COMENT),
 			#{ coment_cont },
 			#{ board_idx },
-			#{ usercode }
+			#{ usercode },
+			(SELECT NVL(MAX(COMENT_IDX),0) +1 FROM COMENT),
+			(SELECT NVL(MAX(COMENT_IDX),0) +1 FROM COMENT)
 		)
    
    </insert>
@@ -35,6 +39,11 @@
 			C.BOARD_IDX,
 			C.USERCODE,
 			C.DELCOMENT,
+			C.COM_BNUM,
+			C.COM_LVL,
+			C.COM_STEP,
+			C.COM_NREF,
+			C.COM_PARENT,
 			M.NICKNAME
    		FROM
    			COMENT C
@@ -45,7 +54,7 @@
    		WHERE
    			C.BOARD_IDX = #{ board_idx }
    		ORDER BY
-   			C.COMENT_IDX DESC
+   			C.COM_NREF DESC, C.COM_STEP ASC
 
 	</select>  
    

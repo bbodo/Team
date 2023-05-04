@@ -72,9 +72,6 @@ public class BoardController {
 		
 		map.put("submenu_name", submenu_name);
 
-		System.out.println("리스트" + boardList);
-		System.out.println("맵" + map);
-		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/list");
 		mv.addObject("boardList", boardList);

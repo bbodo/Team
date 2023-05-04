@@ -12,7 +12,7 @@
 	SELECT * FROM
 	(
 		SELECT
-			ROW_NUMBER() OVER(ORDER BY NREF DESC, STEP ASC)  RNUM,
+			ROW_NUMBER() OVER(ORDER BY B.NREF DESC, B.STEP ASC)  RNUM,
 			B.BOARD_IDX,
 			B.SUBMENU_ID,
 			B.BOARD_TITLE,
@@ -40,8 +40,6 @@
 	) T 
 	WHERE 
 		T.RNUM BETWEEN #{startnum} AND #{endnum}
-	ORDER BY
-		 NREF  DESC, STEP   ASC   
 		
 	</select>
 	
