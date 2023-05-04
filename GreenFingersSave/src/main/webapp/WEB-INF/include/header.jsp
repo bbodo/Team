@@ -62,28 +62,128 @@
 	<div id="menu1">
 	<ul>
 		<c:forEach var="menu" items="${ menuList }">
-		<li><a href="/Board?menu_id=${menu.menu_id}">${ menu.menu_name }</a>
-			<ul>
-			<c:forEach var="submenu" items="${ submenuList }">
-			<c:if test="${submenu.menu_id eq menu.menu_id }">
-			<c:choose>
-			<c:when	test="${(submenu.menu_id eq 'MENU01') or (submenu.menu_id eq 'MENU02')}">
-				<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
-					${submenu.submenu_name}</a></li></c:when>
-			<c:when	test="${submenu.menu_id eq 'MENU03'}">
-				<li><a href="/Market/AdoptList?submenu_id=${submenu.submenu_id}&nowpage=1">
-					${submenu.submenu_name}</a></li></c:when>
-			<c:when	test="${submenu.menu_id eq 'MENU04'}">
-				<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
-					${submenu.submenu_name}</a></li></c:when>
-			<c:when	test="${submenu.menu_id eq 'MENU05'}">
-				<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
-					${submenu.submenu_name}</a></li></c:when>
-			</c:choose>	
-			</c:if>	
-			</c:forEach>
-			</ul>
-		</li>
+		<c:choose>
+			<c:when test="${menu.menu_id eq 'MENU01'}">
+			<li><a href="/Board/List?submenu_id=${submenuList[0].submenu_id}&nowpage=1">${ menu.menu_name }</a>
+				<ul>
+				<c:forEach var="submenu" items="${ submenuList }">
+				<c:if test="${submenu.menu_id eq menu.menu_id }">
+				<c:choose>
+				<c:when	test="${(submenu.menu_id eq 'MENU01') or (submenu.menu_id eq 'MENU02')}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU03'}">
+					<li><a href="/Market/AdoptList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU04'}">
+					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU05'}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				</c:choose>	
+				</c:if>	
+				</c:forEach>
+				</ul>
+			</li>
+			</c:when>
+			<c:when test="${menu.menu_id eq 'MENU02'}">
+			<li><a href="/Board/List?submenu_id=${submenuList[10].submenu_id}&nowpage=1">${ menu.menu_name }</a>
+				<ul>
+				<c:forEach var="submenu" items="${ submenuList }">
+				<c:if test="${submenu.menu_id eq menu.menu_id }">
+				<c:choose>
+				<c:when	test="${(submenu.menu_id eq 'MENU01') or (submenu.menu_id eq 'MENU02')}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU03'}">
+					<li><a href="/Market/AdoptList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU04'}">
+					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU05'}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				</c:choose>	
+				</c:if>	
+				</c:forEach>
+				</ul>
+			</li>
+			</c:when>
+			<c:when test="${menu.menu_id eq 'MENU03'}">
+			<li><a href="/Market/AdoptList?submenu_id=${submenuList[14].submenu_id}&nowpage=1">${ menu.menu_name }</a>
+				<ul>
+				<c:forEach var="submenu" items="${ submenuList }">
+				<c:if test="${submenu.menu_id eq menu.menu_id }">
+				<c:choose>
+				<c:when	test="${(submenu.menu_id eq 'MENU01') or (submenu.menu_id eq 'MENU02')}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU03'}">
+					<li><a href="/Market/AdoptList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU04'}">
+					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU05'}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				</c:choose>	
+				</c:if>	
+				</c:forEach>
+				</ul>
+			</li>
+			</c:when>
+			<c:when test="${menu.menu_id eq 'MENU04'}">
+			<li><a href="/eventList?submenu_id=${submenuList[17].submenu_id}&nowpage=1">${ menu.menu_name }</a>
+				<ul>
+				<c:forEach var="submenu" items="${ submenuList }">
+				<c:if test="${submenu.menu_id eq menu.menu_id }">
+				<c:choose>
+				<c:when	test="${(submenu.menu_id eq 'MENU01') or (submenu.menu_id eq 'MENU02')}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU03'}">
+					<li><a href="/Market/AdoptList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU04'}">
+					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU05'}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				</c:choose>	
+				</c:if>	
+				</c:forEach>
+				</ul>
+			</li>
+			</c:when>
+			<c:when test="${menu.menu_id eq 'MENU05'}">
+			<li><a href="/Wiki/List?submenu_id=${submenuList[18].submenu_id}&nowpage=1">${ menu.menu_name }</a>
+				<ul>
+				<c:forEach var="submenu" items="${ submenuList }">
+				<c:if test="${submenu.menu_id eq menu.menu_id }">
+				<c:choose>
+				<c:when	test="${(submenu.menu_id eq 'MENU01') or (submenu.menu_id eq 'MENU02')}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU03'}">
+					<li><a href="/Market/AdoptList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU04'}">
+					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				<c:when	test="${submenu.menu_id eq 'MENU05'}">
+					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li></c:when>
+				</c:choose>	
+				</c:if>	
+				</c:forEach>
+				</ul>
+			</li>
+			</c:when>
+		</c:choose>
 		</c:forEach>
 		<li><a href="login" class="right">로그인</a></li>
 			</ul>
