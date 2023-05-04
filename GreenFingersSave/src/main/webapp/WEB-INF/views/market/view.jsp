@@ -25,7 +25,7 @@
 	}
 	#aside {
 		float: left;
-		height: 1200px;
+		height: 1500px;
 		background-color: navy;
 		width: 20%;
 		padding: 10px;
@@ -36,7 +36,7 @@
 	
 	#main {
 		width: 80%;
-		height: 1200px;
+		height: 1500px;
 		float: left;
 		padding: 10px;
 		background-color: gray;
@@ -85,6 +85,10 @@
     img {
     	width : 250px; 
 	    height: 250px;
+    }
+    
+    #bc {
+    	height: 500px;
     }
 
 </style>
@@ -186,7 +190,7 @@
 				<tr><td colspan="6"><hr /></td></tr>
 			<tr>
 				<th>내용</th>
-				<td>${vo.board_cont }</td>
+				<td id="bc">${vo.board_cont }</td>
 			</tr>
 			<tr>
 				<th>파일 첨부</th>

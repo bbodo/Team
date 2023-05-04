@@ -116,7 +116,7 @@
      
      <div id="givelist">
       <figure>
-      <a href="">
+      <a href="/Market/View?submenu_id=SUBMENU16&board_idx=20">
      <div class="plant">
 	     <img src="/img/market/그린마켓1.png" >
 	  </div>
@@ -125,7 +125,7 @@
 	     <p>루브라 나눔합니다</p>
 	  </figure>
       <figure>
-      <a href="">
+      <a href="/Market/View?submenu_id=SUBMENU16&board_idx=21">
      <div class="plant">
 	     <img src="/img/market/그린마켓2.png" >
 	  </div>
@@ -134,7 +134,7 @@
 	     <p>제라늄 데려가실 분</p>
 	  </figure>
       <figure>
-      <a href="">
+      <a href="/Market/View?submenu_id=SUBMENU16&board_idx=22">
      <div class="plant">
 	     <img src="/img/market/그린마켓3.png">
 	  </div>
