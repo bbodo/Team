@@ -53,6 +53,7 @@
  			resultType = "com.green.user.vo.UserVo" >
  	
  		SELECT
+ 			USERCODE,
  			USERID,
 			PASSWD,
 			USERNAME,

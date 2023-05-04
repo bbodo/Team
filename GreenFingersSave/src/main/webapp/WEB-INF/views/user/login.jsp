@@ -46,7 +46,7 @@ div{text-align : center}
 		<table>
 			<tr>
 			<th>아이디</th>
-			<td><input type="text" name="userid" id="id" value="admin"/></td>
+			<td><input type="text" name="userid" id="id" value="sky"/></td>
 			</tr>
 			<tr>
 			<th>암호</th>

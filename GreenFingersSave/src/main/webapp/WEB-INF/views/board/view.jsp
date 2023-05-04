@@ -81,18 +81,13 @@
 		const writeBtnEl = document.getElementById("writeBtn");
 		const coment_contEl = document.getElementById("coment_cont");
 		const readCEl = document.getElementById("readC");
-		let board_idx = "${ vo.board_idx }";
-		let usercode = ${ login.usercode };
-		let coment_cont = coment_contEl.value;
-		let data = new FormData(readCEl);
-		
-		console.log(board_idx);
-		console.log(usercode);
-		console.log(coment_cont);
+		const writeCEl = document.getElementById("writeC");
+	
+		let datar = new FormData(readCEl);
 		
 		let optionR = {
 				method : "POST",
-				body : data
+				body : datar
 		};
 		
 		fetch("/Comment/Read", optionR)
@@ -106,17 +101,19 @@
 			});
 		
 		writeBtnEl.addEventListener("click", function(e) {
-			fetch("/Comment/Write", {
-				method : "POST",
-				body : JSON.stringify({
-					board_idx : board_idx,
-					usercode : usercode,
-					coment_cont : coment_cont
-				})
-			})
+			let dataw = new FormData(writeCEl);
+			
+			let optionW = {
+					method : "POST",
+					body : dataw
+			};
+			
+			fetch("/Comment/Write", optionW)
 				.then( res => res.json() )
 				.then( data => {
 					comment_display(data);
+					coment_contEl.value = '';
+					coment_contEl.focus();
 				})
 				.catch( err => {
 					console.log(err);
@@ -184,6 +181,7 @@
 		<br />
 		
 		<div id="writeComment">
+			<form id="writeC">
 			<input type="hidden"  name="board_idx" value="${ vo.board_idx }" />
 			<input type="hidden"  name="usercode" value="${ login.usercode }" />
 			<table>
@@ -192,28 +190,16 @@
 					<td>
 						<textarea name="coment_cont" placeholder="내용을 작성하세요."
 					     required id="coment_cont"></textarea>
-					     <input type="button" id="writeBtn" value="등록"/>
 					</td>
+					<td><input type="button" id="writeBtn" value="등록"/></td>
 				</tr>
 			</table>
+			</form>
 		</div>
 		<br />
 		<div id="readComment">
 			<form id="readC">
 			<input type="hidden"  name="board_idx" value="${ vo.board_idx }" />
-			<!-- <table>
-				<tr>
-					<th>달러 아이디 넣을곳</th>
-					<td>댓글 내용 불러올곳</td>
-				</tr>
-				답글/수정/삭제 이 칸만 조금만 작게
-				<tr>
-					<td>답글</td>
-					?나중에 if 문
-					<td><a href="/Comment/Update">수정</a></td>
-					<td><a href="/Comment/Delete">삭제</a></td>
-				</tr>
-			</table> -->
 			</form>
 		</div>
 		

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.green.comment.service.CommentService;
 import com.green.comment.vo.CommentVo;
@@ -23,15 +22,17 @@ public class CommentController {
 	// 댓글 작성
 	@ResponseBody
 	@RequestMapping("/Write")
-	public ModelAndView commentWrite(
+	public List<CommentVo> commentWrite(
 			@RequestParam HashMap<String, Object> map
 			) {
 		
+		System.out.println("댓글쓰기"+map);
+
 		commentService.setWrite(map);
 		
-		ModelAndView mv = new ModelAndView();
+		List<CommentVo> commentList = commentService.setRead(map);
 		
-		return mv;
+		return commentList;
 	}
 	
 	// 댓글 불러오기
@@ -40,7 +41,6 @@ public class CommentController {
 	public List<CommentVo> commentRead(
 			@RequestParam HashMap<String, Object> map
 			) {
-		
 		List<CommentVo> commentList = commentService.setRead(map);
 		
 		map.put("commentList", commentList);

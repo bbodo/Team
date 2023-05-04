@@ -118,7 +118,7 @@
 			</tr>
 			<tr>
 				<th>글 내용</th>
-				<td><textarea name="board_cont" maxlength="">${ vo.board_cont }</textarea></td>
+				<td><textarea name="board_cont" maxlength="1000">${ vo.board_cont }</textarea></td>
 			</tr>
 			<tr>
 				<th>파일 첨부</th>
