@@ -57,30 +57,34 @@
 	.floatright {
 		float:right;
 	}
+	.floatleft {
+		float:left;
+	}
 
 </style>
 
 <script src="https://code.jquery.com/jquery.min.js"></script>
 
 <script>
-	 
+		
 		function comment_display(data) {
 			console.log(data);
 			
-			let html = `<table id="commentList">`;
+			let html = '';
 			for (let comm of data) {
-				html += '<tr>';
-				html += '<td><h2>' + comm.nickname + '</h2></div>'
-				html += '<td><a href="" class="reComment">' + comm.coment_cont + '</a>'
-				html += '</tr>';
+				html += '<div class="floatleft"><h2>'+ comm.nickname +'</h2></div>';
+				html += '<div class="floatright"><h2>'+ comm.coment_regdate +'</h2></div><br />';
+				html += '<div class="floatleft reComment">'+ comm.coment_cont +'</div>';
+				html += '<div class="floatright"><input type="button" value="수정" /> <input type="button" value="삭제" /></div><br />';
+				html += '<div id="replyComment" style="display:none;">';
+				html += '<textarea id="reply_coment_cont"></textarea>';
+				html += '<button id="replyBtn">작성</button></div>';
 			}
-			html += `</table>`;
 			
-			const readCommentEl = document.getElementById("readComment");
-			readCommentEl.innerHTML = html;
+			const commentZoneEl = document.getElementById("commentZone");
+			commentZoneEl.innerHTML = html;
 			
 		}
-
 	window.onload = function() {
 		
 		const writeBtnEl = document.getElementById("writeBtn");
@@ -100,9 +104,15 @@
 			.then( data => {
 				comment_display(data);
 				
-				$('.reComment').on('click', function(e) {
-					let tag = ''
-				})
+				const commentZoneEl = document.getElementById("commentZone");
+				commentZoneEl.addEventListener("click", function(e) {
+				    e.preventDefault();
+				    const target = e.target;
+				    if (target.classList.contains("reComment")) {
+				        const replyCommentEl = document.getElementById("replyComment");
+				        replyCommentEl.style.display = "block";
+				    }
+				});
 				
 			})
 			.catch( err => {
@@ -212,10 +222,9 @@
 		<div id="readComment">
 			<form id="readC">
 			<input type="hidden"  name="board_idx" value="${ vo.board_idx }" />
+			<div id="commentZone"></div>
 			</form>
 		</div>
-		
-     <%@include file="/WEB-INF/include/paging.jsp" %>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
