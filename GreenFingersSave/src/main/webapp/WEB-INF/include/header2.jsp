@@ -183,22 +183,15 @@
 			</c:when>
 		</c:choose>
 		</c:forEach>
-		<li><a href="login" class="right">로그인</a></li>
+		<!-- <li><a href="/User/Login" class="right">로그인</a></li> -->
+		
+	 			<li><a href="">${vo.nickname}  님의 마이페이지</a></li>
+	 			<li> <a href="/User/Logout">로그아웃</a></li>
 			</ul>
+	  
 		</div>
 	</div>
 </header>
-<%-- 	   <nav>
-	      <c:if test="${ usercode != null }">
-	         <div><a href="/">로그아웃</a></div>
-	         <div><a href="">마이페이지</a></div>
-	      </c:if>
-	      
-	      <c:if test="${  usercode== null }">
-	      </c:if>
-	      <div style="display: inline-block;"><a href="/myPageCheck">마이페이지</a></div> 
-	      <div style="display: inline-block;"><a href="/logout">로그아웃</a></div>
-	   </nav> --%>
 
  
 <%-- <table  id="header">
