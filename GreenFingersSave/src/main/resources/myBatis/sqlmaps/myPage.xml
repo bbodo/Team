@@ -30,10 +30,11 @@
 				(SELECT  NVL( MAX(NOTE_IDX), 0 ) + 1 FROM NOTE),
 				#{ notetitle },
 				#{ notecont },
-				#{ board_cont },
 				to_date(sysdate,'yyyy.mm.dd hh24:mi'),
-				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
-				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD)
+				4,
+				#{ receiver_usercode },
+				0,
+				0
 			)
 	</insert>
 	

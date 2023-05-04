@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@include file="/WEB-INF/include/comHead.jsp" %>
-<script type="text/javascript" src="/js/myNote.js"></script>
+<!-- <script type="text/javascript" src="/js/myNote.js"></script> -->
 <title>쪽지 쓰기</title>
 
 <script>
@@ -86,7 +86,7 @@
 			<table id="cont">
 				<tr>
 					<th>받는 사람</th>
-					<td><input name="receiverusercode" type="text" value="${myNoteVo.nickname}" />${myNoteVo.nickname}</td>
+					<td><input name="nickname" type="text" value="${myNoteVo.nickname}" />${myNoteVo.nickname}</td>
 				</tr>
 				<tr>
 					<th>제목</th>

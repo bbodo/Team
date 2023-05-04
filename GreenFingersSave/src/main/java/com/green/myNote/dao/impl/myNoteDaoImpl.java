@@ -1,7 +1,6 @@
 package com.green.myNote.dao.impl;
 
 import java.util.HashMap;
-import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ public class myNoteDaoImpl implements MyNoteDao {
 	@Override
 	public int insertMyNote(HashMap<String, Object> map) {
 		
-		int myNoteInsertCheck = sqlSession.insert("Mypage.MyPageNoteInsert",map);
+		int myNoteInsertCheck = sqlSession.insert("MyPage.MyPageNoteInsert",map);
 		System.out.println("쪽지Dao확인:" + map.toString());
 		return myNoteInsertCheck;
 	}

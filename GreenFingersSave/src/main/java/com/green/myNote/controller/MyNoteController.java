@@ -1,7 +1,6 @@
 package com.green.myNote.controller;
 
 import java.util.HashMap;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,17 +8,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.green.menus.service.MenuService;
 import com.green.myNote.service.MyNoteService;
 import com.green.myNote.vo.MyNoteVo;
 @Controller
 @RequestMapping("/myNoteWrite") 
 public class MyNoteController {
-
+	
+	@Autowired
+	private MenuService menuService;
+	
 	@Autowired
 	MyNoteService myNoteService;
 
 	@RequestMapping("/myNoteWriteForm")
 	public ModelAndView myNoteWriteForm(@RequestParam HashMap<String, Object> map) {
+		
+		// 메뉴 목록	
+		/*
+		 * List<MenuVo> menuList = menuService.getMenuList(); List<SubmenuVo>
+		 * submenuList = menuService.getSubmenuList1();
+		 */
 
 		System.out.println("쪽지GET확인:" + map.toString());
 
@@ -31,6 +40,9 @@ public class MyNoteController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mypage/myNoteWrite");
 		mv.addObject("myNoteVo", myNoteForm);
+		/*
+		 * mv.addObject("myNoteVo", menuList); mv.addObject("myNoteVo", submenuList);
+		 */
 		return mv;
 	}
 
@@ -38,7 +50,14 @@ public class MyNoteController {
 	@RequestMapping("/myNoteWrite") 
 	public ModelAndView myNoteWrite( @RequestParam HashMap<String, Object> map ) {
 		System.out.println("쪽지GET확인2:" + map.toString());
-
+		
+		// 메뉴 목록	
+		/*
+		 * List<MenuVo> menuList = menuService.getMenuList(); List<SubmenuVo>
+		 * submenuList = menuService.getSubmenuList1();
+		 */
+		
+		
 		//쪽지 등록 
 		int myNoteInsertCheck = myNoteService.insertMyNote(map);
 
@@ -46,6 +65,9 @@ public class MyNoteController {
 		//mv.addObject("name", name); return mv; }
 		mv.setViewName("mypage/myNoteWrite");
 		mv.addObject("myNoteInsertCheck", myNoteInsertCheck);
+		/*
+		 * mv.addObject("myNoteVo", menuList); mv.addObject("myNoteVo", submenuList);
+		 */
 		return mv;
 	}
 
