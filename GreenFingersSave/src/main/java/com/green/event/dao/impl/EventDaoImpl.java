@@ -21,19 +21,28 @@ public class EventDaoImpl implements EventDao {
 	
 	@Override
 	public List<EventVo> getEventList(HashMap<String, Object> map) {
-			
+		
+		/*
 		// 전체 자료수 조회
-		int totalcount = sqlSession.selectOne("Board.GetTotalCount", map);
+		int totalcount = sqlSession.selectOne("Event.GetTotalCount", map);
 		map.put("totalcount", totalcount);
 		
 		System.out.println(map);
-		
+		*/
 		// 메뉴 목록 조회 (페이징)
-		List<EventVo> eventList = sqlSession.selectList("Board.BoardList", map);
+		List<EventVo> eventList = sqlSession.selectList("Event.EventList", map);
 		
 		return eventList;
 	}
-
+	@Override
+	public EventVo getEvent(HashMap<String, Object> map) {
+		
+		sqlSession.update("Event.UpdateReadCount", map);
+		
+		EventVo vo = sqlSession.selectOne("Event.GetBoard", map);
+		
+		return vo;
+	}
 
 
 

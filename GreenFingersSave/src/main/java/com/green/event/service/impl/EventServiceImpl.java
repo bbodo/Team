@@ -34,15 +34,22 @@ public class EventServiceImpl implements EventService {
 		int        totalcount     =  Integer.parseInt( String.valueOf( map.get("totalcount") ) );   
 	
 		String     submenu_id  =  String.valueOf(map.get("submenu_id")); 
-		BoardPaging   bp    =  new BoardPaging(
+		EventPaging   bp    =  new EventPaging(
 			submenu_id, nowpage, pagecount, totalcount, pagetotalcount);
 
-		BoardVo   eventVo  = bp.getPdsPagingInfo();
+		EventVo   eventVo  = bp.getPdsPagingInfo();
 		
 		map.put("eventVo", eventVo);
 		
 		
 		return     eventList;
+	}
+
+	@Override
+	public EventVo getEvent(HashMap<String, Object> map) {
+		EventVo vo = eventDao.getEvent(map);
+		
+		return vo;
 	}
 
 }
