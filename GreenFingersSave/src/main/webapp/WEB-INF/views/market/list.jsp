@@ -49,8 +49,18 @@
 		margin-top: 30px;
 		margin-bottom: 30px;
 	}
-		
-
+	table {
+		border-collapse: collapse;
+	}
+	#cont th {
+		background-color: #666;
+		border: 1px solid black;
+		padding: 10px 10px;
+	}
+	#cont td {
+		padding-left: 10px;
+		border: 1px solid black;
+	}
 	#givelist { 
 	            display: flex;
 	            gap : 0.3px;
@@ -90,9 +100,7 @@
 	h2 {
 		margin-bottom: 20px;
 	}
-	#cont th {
-		background-color: #666;
-	}
+
 	
 
 </style>
@@ -109,12 +117,6 @@
 		</c:otherwise>
 	</c:choose>
 	
-	<%-- <form action="/Market/List" method="POST" 
-        	  enctype="multipart/form-data">
-        	  
-     	<input type="hidden"  name="submenu_id" value="${ map.submenu_id }" />
-	 --%>
-	
      <div id="title">
      	<p>그린마켓</p>
      </div>
@@ -128,11 +130,11 @@
      <c:choose>
        <c:when test="${ map.submenu_id == 'SUBMENU15' }">
      <p>그린핑거 회원이라면 누구나 입양 신청글 작성이 가능합니다<br>
-     입양 완료 후 답례를 하고 싶다면 포인트로 고마움을 표현하세요</p>
+     입양 완료 후 답례를 원한다면 포인트나 후기글로 고마움을 표현하세요</p>
        </c:when>
        <c:when test="${ map.submenu_id == 'SUBMENU16' }">
      <p>그린핑거 회원이라면 누구나 나눔할 수 있습니다<br>
-     나눔 후 답례를 하고 싶다면 포인트로 고마움을 표현하세요</p>
+     나눔 후 답례를 원한다면 포인트나 후기글로 고마움을 표현하세요</p>
        </c:when>
        <c:otherwise>
        <p>지금까지 모은 포인트로 물건을 구입하세요</p>
@@ -141,7 +143,7 @@
      
 		<h2>${ map.submenu_name }</h2>
 		<div class="right">
-		<a href="/Market/WriteForm?submenu_id=SUBMENU15&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
+		<a href="/Market/WriteForm?submenu_id=${ map.submenu_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
 	 </div>
     <table id="cont">
 		<tr>
@@ -181,7 +183,7 @@
 	            <b style="display:inline-block; width:${marketVo.lvl*20}px"></b> 
 	            
 	            <c:choose>
-	              <c:when test="${ marketVo.delnum eq 0 }">
+	              <c:when test="${ marketVo.delboard eq 0 }">
 	                <a href="/Market/View?submenu_id=${marketVo.submenu_id}&board_idx=${marketVo.board_idx}&nowpage=${map.nowpage}">
 	              	  [답글] ${ marketVo.board_title }
 	         	    </a>

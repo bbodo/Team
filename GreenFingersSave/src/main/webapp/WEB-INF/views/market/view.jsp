@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@include file="/WEB-INF/include/comHead.jsp" %>
-<title>그린마켓 게시글 상세보기</title>
+<title>${ map.submenu_name } 게시글 상세보기</title>
 
 <style type="text/css">
 
@@ -46,8 +46,17 @@
 		margin: 0 auto;
 		width: 80%;
 	}
+	table {
+		border-collapse: collapse;
+	}
 	#cont th {
 		background-color: #666;
+		border: 1px solid black;
+		padding: 10px 10px;
+	}
+	#cont td {
+		padding-left: 10px;
+		border: 1px solid black;
 	}
 	.right {
 		text-align: right;
@@ -58,6 +67,7 @@
 		text-align: left;
 		padding: 20px;
 		font-weight: bold;
+		font-size: 20px;
 	}
 	h3 {
 		font-size: 30px;
@@ -89,7 +99,9 @@
     
     #bc {
     	height: 500px;
-    }
+    	vertical-align: top;
+    	padding-top: 10px;
+    }  
 
 </style>
 
@@ -165,7 +177,7 @@
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
      <div id="title">
-     	<p>그린 마켓</p>
+     	<p>그린마켓</p>
      </div>
      <div id="aside">
      	<a href="/Market/List?submenu_id=SUBMENU15&nowpage=1">입양원해요</a><br />
@@ -177,7 +189,7 @@
 			<caption class="left">${ map.submenu_name } 게시글 보기</caption>
 			<tr>
 				<th>제목</th>
-				<td>${ vo.board_title }</td>
+				<td colspan="5">${ vo.board_title }</td>
 			</tr>
 			<tr>
 				<th>작성자</th>
@@ -187,14 +199,13 @@
 				<th>조회수</th>
 				<td>${ vo.readcount }</td>
 			</tr>
-				<tr><td colspan="6"><hr /></td></tr>
 			<tr>
 				<th>내용</th>
-				<td id="bc">${vo.board_cont }</td>
+				<td colspan="5" id="bc">${ vo.board_cont }</td>
 			</tr>
 			<tr>
 				<th>파일 첨부</th>
-				<td> 
+				<td colspan="5"> 
 				<c:forEach var="file"  items="${ fileList }" >
 				<div>
 					<a href="/Market/download/external/${ file.sfilename }">
@@ -208,9 +219,10 @@
 		
 	<!-- 나중에 if 문 -->
 		<div class="right">
+		<a href="">쪽지</a>
 		<a href="/Market/WriteForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">답글쓰기</a>
 		<a href="/Market/UpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
-		<a href="/Market/Delete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&nowpage=${map.nowpage}">삭제</a> <br />
+		<a href="/Market/Delete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&nowpage=${map.nowpage}">삭제</a> 
 		</div>
 	
 		<br />

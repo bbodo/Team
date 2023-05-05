@@ -47,6 +47,7 @@
 	}
 	#cont th {
 		background-color: #666;
+		padding: 10px 10px;
 	}
 	.right {
 		text-align: right;
@@ -66,7 +67,8 @@
 	}
 	.btn {
 		margin-top : 30px;
-		text-align: center;
+		text-align: right;
+		margin-right: 130px;
 	}
 
 </style>
@@ -88,7 +90,7 @@
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
      <div id="title">
-     	<p>그린 마켓</p>  
+     	<p>그린마켓</p>  
      </div>
      <div id="aside">
      	<a href="/Market/List?submenu_id=SUBMENU15&nowpage=1">입양원해요</a><br />
@@ -120,11 +122,11 @@
 		<table id="cont">
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title"/></td>
+				<td><input type="text" name="board_title" value="${ vo.board_title }"/></td>
 			</tr>
 			<tr>
 				<th>글 내용</th>
-				<td><textarea name="content"></textarea></td>
+				<td><textarea name="board_cont" maxlength="1000">${ vo.board_cont }</textarea></td>
 			</tr>
 			<tr>
 				<th>파일 첨부</th>

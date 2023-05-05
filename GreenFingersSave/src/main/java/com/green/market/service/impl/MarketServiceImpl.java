@@ -1,5 +1,6 @@
 package com.green.market.service.impl;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -55,6 +56,8 @@ public class MarketServiceImpl implements MarketService {
 		return vo;
 	}
 
+	//-------------------------------------------------------------
+	// 새글쓰기
 	@Override
 	public void setWrite(
 			HashMap<String, Object> map, 
@@ -74,6 +77,48 @@ public class MarketServiceImpl implements MarketService {
 		List<FileVo> fileList = marketDao.getFileList(map);
 		
 		return fileList;
+	}
+
+	//-------------------------------------------------------------
+	// 게시글 수정할 때 기존 파일 삭제
+	@Override
+	public void deleteUploadFile(HashMap<String, Object> map) {
+		
+		// d:\\upload\\ sfilename 에 해당되는 파일을 삭제
+		
+		String      filepath   =  "D:\\upload\\";   
+		String      sfilename  =  (String) map.get("sfile");
+		
+		File  file  = new File( filepath + sfilename  );
+		if( file.exists()  )
+		   file.delete();
+		
+		// Files table  file_num 번 자료를 삭제		
+		marketDao.deleteUploadFile( map );
+		
+	}
+	
+	// 게시글 수정
+	@Override
+	public void setUpdate(
+			HashMap<String, Object> map, 
+			HttpServletRequest request) {
+		
+		// 넘어온 파일 저장
+		MarketFile.save(map, request);
+				
+		// db 정보 저장
+		marketDao.setUpdate(map);
+		
+	}
+
+	//-------------------------------------------------------------
+	// 게시글 삭제
+	@Override
+	public void setDelete(HashMap<String, Object> map) {
+		
+		// db 제거
+		marketDao.setDelete(map);	
 	}
 
 }
