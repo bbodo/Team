@@ -70,6 +70,7 @@ div{text-align : center}
 	<div id= "main">	
 	<h2> 로그인 </h2>
 		<form action = "/User/LoginProcess" method="POST">
+		<input type="hidden" name="uri" value="${uri}">
 		<table>
 			<tr>
 			<th>아이디</th>
