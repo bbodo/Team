@@ -5,7 +5,7 @@
   
   <footer>
 	 <div>
-	 	<div id="footerLogo"><a href="/">logo</a></div>
+	 	<div id="footerLogo"><a href="/"><img src="./img/common/logo.png" alt="logo" /></a></div>
 	 	<div>고객문의: 02 - 1234 - 1234</div>
 	 </div>
 	 

@@ -59,7 +59,7 @@
 
 <header>
 	<div id="headerInWrap">
-	<div id="logo"><a href="/">logo</a></div>
+	<div id="logo"><a href="/"><img src="./img/common/logo.png" alt="logo" /></a></div>
 	<div id="menu1">
 	<nav>
 		<c:forEach var="menu" items="${ menuList }">
