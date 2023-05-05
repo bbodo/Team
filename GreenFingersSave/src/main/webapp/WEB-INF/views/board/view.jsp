@@ -67,38 +67,34 @@
 
 <script>
 
-		function comment_up() {
-			const reCommentEls = document.querySelectorAll(".reComment");
-		    reCommentEls.forEach(function(rec,idx) {
-	        	rec.addEventListener("click", function(e) {
-	        		e.preventDefault()
-	        		console.log(e);
-	        		const replyCommentEls = document.querySelectorAll(".replyComment");
-				    if (replyCommentEls[idx].style.display = "none") {
-				      replyCommentEls[idx].style.display = "block";
-				    } else {
-				    	 replyCommentEls[idx].style.display = "none";
-				    }
-	        	})
-	        })
+		function c(data) {
+			if($("#comment_empty_" + data).length) {
+				
+				$("#comment_empty_" + data).remove()
+			} else {
+				const commentEl = $("#comment_li_" + data);
+				let html  = '<li id=comment_empty_' + data + '>'
+					html += '<div id="replyComment">'
+				    html += '<textarea id="reply_coment_cont"></textarea>'
+					html += '<button id="replyBtn">작성</button>'
+					html += '</div></li>';
+				
+					commentEl.append(html);
+			}
 		}
 		
 		function comment_display(data) {
 			console.log(data);
 			//
-			let html = '<li>';
-			let num = 1;
+			let html = '';
 			for (let comm of data) {
+				html += '<li id="comment_li_' + comm.coment_idx +'">';
 				html += '<div class="floatleft"><p><h2>'+ comm.nickname +'</h2></p></div>';
 				html += '<div class="floatright"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
-				html += '<div class="floatleft reComment">'+ comm.coment_cont +'</div>';
-				html += '<div class="floatright"><input type="button" value="수정" /> <input type="button" value="삭제" /></div><br />';
-				html += '<div class="replyComment" style="display:none;">';
-				html += '<textarea id="reply_coment_cont"></textarea>';
-				html += '<button id="replyBtn">작성</button></div>';
-				num ++;
+				html += '<div class="floatleft reComment" onclick="c(' + comm.coment_idx + ')">'+ comm.coment_cont +'</div>';
+				html += '<div class="floatright"><input type="button" value="수정" /> <input type="button" value="삭제" /></div><br /><br />';
+				html += '</li>';
 			}
-			html += '</li>';
 			
 			const commentListEl = document.getElementById("commentList");
 			commentListEl.innerHTML = html;
@@ -122,10 +118,6 @@
 			.then( res => res.json() )
 			.then( data => {
 				comment_display(data);
-				const commentListEl = document.getElementById("commentList");
-				commentListEl.addEventListener("click", function(e) {
-					comment_up();
-				});
 				    
 				})
 			.catch( err => {
