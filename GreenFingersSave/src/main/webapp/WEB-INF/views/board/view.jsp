@@ -66,23 +66,42 @@
 <script src="https://code.jquery.com/jquery.min.js"></script>
 
 <script>
+
+		function comment_up() {
+			const reCommentEls = document.querySelectorAll(".reComment");
+		    reCommentEls.forEach(function(rec,idx) {
+	        	rec.addEventListener("click", function(e) {
+	        		e.preventDefault()
+	        		console.log(e);
+	        		const replyCommentEls = document.querySelectorAll(".replyComment");
+				    if (replyCommentEls[idx].style.display = "none") {
+				      replyCommentEls[idx].style.display = "block";
+				    } else {
+				    	 replyCommentEls[idx].style.display = "none";
+				    }
+	        	})
+	        })
+		}
 		
 		function comment_display(data) {
 			console.log(data);
 			//
-			let html = '';
+			let html = '<li>';
+			let num = 1;
 			for (let comm of data) {
-				html += '<div class="floatleft"><h2>'+ comm.nickname +'</h2></div>';
-				html += '<div class="floatright"><h2>'+ comm.coment_regdate +'</h2></div><br />';
+				html += '<div class="floatleft"><p><h2>'+ comm.nickname +'</h2></p></div>';
+				html += '<div class="floatright"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
 				html += '<div class="floatleft reComment">'+ comm.coment_cont +'</div>';
 				html += '<div class="floatright"><input type="button" value="수정" /> <input type="button" value="삭제" /></div><br />';
-				html += '<div id="replyComment" style="display:none;">';
+				html += '<div class="replyComment" style="display:none;">';
 				html += '<textarea id="reply_coment_cont"></textarea>';
 				html += '<button id="replyBtn">작성</button></div>';
+				num ++;
 			}
+			html += '</li>';
 			
-			const commentZoneEl = document.getElementById("commentZone");
-			commentZoneEl.innerHTML = html;
+			const commentListEl = document.getElementById("commentList");
+			commentListEl.innerHTML = html;
 			
 		}
 	window.onload = function() {
@@ -103,18 +122,12 @@
 			.then( res => res.json() )
 			.then( data => {
 				comment_display(data);
-				
-				const commentZoneEl = document.getElementById("commentZone");
-				commentZoneEl.addEventListener("click", function(e) {
-				    e.preventDefault();
-				    const target = e.target;
-				    if (target.classList.contains("reComment")) {
-				        const replyCommentEl = document.getElementById("replyComment");
-				        replyCommentEl.style.display = "block";
-				    }
+				const commentListEl = document.getElementById("commentList");
+				commentListEl.addEventListener("click", function(e) {
+					comment_up();
 				});
-				
-			})
+				    
+				})
 			.catch( err => {
 				console.log(err);
 				alert("오류발생 : " + err);
@@ -222,7 +235,8 @@
 		<div id="readComment">
 			<form id="readC">
 			<input type="hidden"  name="board_idx" value="${ vo.board_idx }" />
-			<div id="commentZone"></div>
+			<!-- <div id="commentZone"></div> -->
+			<ul id="commentList"></ul>
 			</form>
 		</div>
      </div>
