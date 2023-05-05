@@ -12,22 +12,103 @@ a {text-decoration: none; color:#252525;}
 
 #wrap, header, footer {width:100%; position: relative;}
 
-header {z-index: 9;}
-
-
 :root {
 	
 }
 
-/* header */
+/* header 시작*/
+header {
+	height: 50px;
+	z-index: 9;
+	padding-top:10px;
+	box-sizing: border-box;
+}
 
-/* main */
+#headerInWrap {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 20px;
+	box-sizing: border-box;
+	background-color:#ffffff52;
+	overflow: hidden;
+}
+
+#menu1 {
+	background-color:#fff;
+}
+
+#menu1 ul, #menu nav {
+	padding-left:0px;
+}
+
+#menu1>nav {
+	display: flex;
+	justify-content: space-between;
+	gap: 40px;
+	text-align: center;
+}
+
+#menu1>nav>li {
+	width: 70px;
+	position: relative;
+}
+
+#menu1>nav>li>ul {
+	height:0;
+	background-color:#fff;
+	transition: all 0.5s;
+}
+
+#menu1:hover>nav>li>ul {
+	height:340px;
+	background-color:#fff;
+}
+
+
+#menu1>nav>li>ul li{
+	padding-top:10px;
+	box-sizing: border-box;
+}
+
+#menu1>nav>li>ul>li>a{
+	font-size: 14px;
+}
+
+#menu1>nav>li>ul li:nth-of-type(1) {
+	padding-top:20px;
+}
+
+#menu1>nav>li>ul li a:hover {
+	color: #A2A378;
+	font-size: 15px;
+}
+
+#menu1>nav>li:hover>a{
+	border-bottom: 2px solid #83764F;
+	padding-bottom: 10px;
+	box-sizing: border-box;
+}
+
+
+
+/* #headerInWrap>div:nth-of-type(1) {
+	width: 10%;
+}
+
+#headerInWrap>div:nth-of-type(2) {
+	width: 90%;
+} */
+
+/* header 끝*/
+
+/* main 시작*/
 .title {
 	font-weight: 600;
 	font-size: 16px;
 }
+/* main 끝*/
 
-/* footer */
+/* footer 시작*/
 footer {
 	color: #666666;
 	height: 70px;
@@ -75,56 +156,19 @@ footer>div:nth-of-type(2) span a {
   color: #fff;
   cursor: pointer;
 }
+/* footer 끝 */
 
+/* home 시작 */
+
+.swiper-slide>a>p {
+	position: relative;
+	top:300px;
+	font-size: 40px;
+}
+
+/* home 끝 */
 
 @media all and (min-width:600px){
-	header {height: 70px;}
-	
-	
-	
-	
-	
-	 #headerInWrap {
-		width:100%;
-		position: absolute;
-		display: flex;
-		justify-content: space-between;
-		padding: 30px 2% 0 2%;
-		box-sizing: border-box;
-		transition-property: background-color;
-		transition: all ease 1s;
-		background-color: transparent;
-	}
-	
-	#headerInWrap:hover {
-		 background-color: rgba( 255, 255, 255, 1 );
-	}
-	
-	#menu{
-		 display: flex;
-		 gap: 0 50px;
-	}
-	
-	#menu> li {
-		position: relative;
-	}
-	
-	#menu ul {
-	    width:100%;
-		margin-top: 30px;
-		height : 0;
-		transition-property: height;
-		transition: all ease 1s;
-		overflow: hidden;
-	}
-	
-	#menu ul>li {
-		margin-bottom: 10px;
-	}
-	
-	#menu ul:hover{ 
-		height: 500px; 
-	}           
 	 
 	
 }

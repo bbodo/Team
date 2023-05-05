@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 
  <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
- <style type="text/css">
+ 
+<!--  <style type="text/css">
 
 	* {
 		margin: 0;
@@ -52,7 +53,7 @@
 		transition: ease 1s;
 		}
 	</style>
-
+ -->
 
 <!-- 메뉴목록 -->
 
@@ -60,7 +61,7 @@
 	<div id="headerInWrap">
 	<div id="logo"><a href="/">logo</a></div>
 	<div id="menu1">
-	<ul>
+	<nav>
 		<c:forEach var="menu" items="${ menuList }">
 		<c:choose>
 			<c:when test="${menu.menu_id eq 'MENU01'}">
@@ -185,10 +186,10 @@
 			</c:when>
 		</c:choose>
 		</c:forEach>
-		 <li><a href="/User/Login" class="right">로그인</a></li> 
-			</ul>
-	   
+		</nav>
 		</div>
+
+		<div><a href="login" class="right">로그인</a></div>
 	</div>
 </header>
 

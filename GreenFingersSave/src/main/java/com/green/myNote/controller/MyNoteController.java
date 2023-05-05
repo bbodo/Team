@@ -30,12 +30,12 @@ public class MyNoteController {
 		 * submenuList = menuService.getSubmenuList1();
 		 */
 
-		System.out.println("쪽지GET확인:" + map.toString());
+		/* System.out.println("쪽지GET확인:" + map.toString()); */
 
 		//쪽지등록 전 필요한 값 들고오기
 		MyNoteVo myNoteForm =  myNoteService.getmyNoteForm(map);
 
-		System.out.println("쪽지FORM확인:" + myNoteForm);
+		/* System.out.println("쪽지FORM확인:" + myNoteForm); */
 
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mypage/myNoteWrite");
@@ -49,25 +49,14 @@ public class MyNoteController {
 
 	@RequestMapping("/myNoteWrite") 
 	public ModelAndView myNoteWrite( @RequestParam HashMap<String, Object> map ) {
-		System.out.println("쪽지GET확인2:" + map.toString());
-		
-		// 메뉴 목록	
-		/*
-		 * List<MenuVo> menuList = menuService.getMenuList(); List<SubmenuVo>
-		 * submenuList = menuService.getSubmenuList1();
-		 */
-		
 		
 		//쪽지 등록 
 		int myNoteInsertCheck = myNoteService.insertMyNote(map);
-
+		
 		ModelAndView mv = new ModelAndView();
-		//mv.addObject("name", name); return mv; }
-		mv.setViewName("mypage/myNoteWrite");
+		mv.setViewName("mypage/myList");
 		mv.addObject("myNoteInsertCheck", myNoteInsertCheck);
-		/*
-		 * mv.addObject("myNoteVo", menuList); mv.addObject("myNoteVo", submenuList);
-		 */
+
 		return mv;
 	}
 

@@ -11,11 +11,6 @@
 <title>게시판 양식</title>
 
 <style type="text/css">
-
-	/* * {
-		box-sizing: border-box;
-	} */
-
 	#title {
 		width: 100%;
 		text-align: center;
@@ -25,25 +20,20 @@
 	#title p {
 		 line-height: 100px;
 	}
-	/* #main {
-		float: left;
-		padding: 10px;
-		background-color: gray;
-		text-align: center;
-	}
-	#cont {
-		background-color: #fff;
-		margin: 0 auto;
-		width: 85%;
-	}
-	#cont th {
-		background-color: #666;
-	}
-	.right {
-		text-align: right;
-	} */
-
 </style>
+
+<script type="text/javascript">
+	window.onload = function() {
+		//쪽지 성공여부 확인
+		let myNoteInsertCheck = ${myNoteInsertCheck};
+		
+		if(myNoteInsertCheck == 1){
+			alert("쪽지 전송 완료!");
+		}else{
+			alert("쪽지 전송 실패!");
+		}
+	}
+</script>
 
 </head>
 <body>
@@ -155,7 +145,7 @@
 			
 			<div>
 				<button>삭제</button>
-				<button><a href="">쪽지보내기</a></button>
+				<button><a href="/myNoteWrite/myNoteWriteForm?board_idx=1&send_usercode=4&receiver_usercode=1">쪽지보내기</a></button>
 			</div>
      	</section>
 		

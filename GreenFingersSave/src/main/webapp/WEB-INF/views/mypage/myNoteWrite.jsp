@@ -9,10 +9,6 @@
 <!-- <script type="text/javascript" src="/js/myNote.js"></script> -->
 <title>쪽지 쓰기</title>
 
-<script>
-	alert("d");
-</script>
-
 <style type="text/css">
 
 	* {
@@ -67,6 +63,42 @@
 
 </style>
 
+<script>
+	window.onload = function() {
+		const  submitBtn = document.getElementById('submitBtn');
+		const  notetitle = document.getElementById('notetitle');
+		const  notecont = document.getElementById('notecont');
+		
+		console.log(notetitle);
+		
+		//빈칸 채우기 작업중
+		function nullCheck(e) {
+			e.preventDefault();
+			console.log(notetitle);
+			if(notetitle.value.length == 0){
+				alert("빈칸을 채워주세요");
+				return false;
+			}
+			return true;
+		}
+		
+		/* submitBtn.onclick = function(){
+			if(notetitle == null || notecont == null){
+				alert("빈칸을 채워주세요");
+				return false;
+			}
+		}; */
+		
+		//취소 버튼
+		document.getElementById('cencelBtn').onclick = function(){
+			notetitle.value = null;
+			notecont.value = null;
+			console.log("ddd" + notetitle.append);
+			/* e.preventDefault(); */
+		}; 		
+	}
+</script>
+
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
@@ -80,7 +112,7 @@
      </div>
      
      <div id="main">
-		<form action="/myNoteWrite/myNoteWrite" method="POST">
+		<form action="/myNoteWrite/myNoteWrite" method="POST" onsubmit="return nullCheck();">
 			<input type="hidden" name="receiver_usercode" value="${param.receiver_usercode}" />
 
 			<table id="cont">
@@ -90,7 +122,7 @@
 				</tr>
 				<tr>
 					<th>제목</th>
-					<td><input name="notetitle" type="text" /></td>
+					<td><input id="notetitle" name="notetitle" type="text" /></td>
 				</tr>
 				<tr>
 					<th>그린마켓</th>
@@ -98,13 +130,13 @@
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td><textarea name="notecont"></textarea></td>
+					<td><textarea id="notecont" name="notecont"></textarea></td>
 				</tr>
 			</table>
 			<%@include file="/WEB-INF/include/paging.jsp"%>
-			<div style="float: left;">취소 버튼</div>
-			<input style="float: right;" type="submit" value="전송" />
+			<input style="float: right;" id="submitBtn" type="submit" value="전송"/>
 		</form>
+		<button id="cencelBtn" style="float: left;">취소 버튼</button>
 	</div>
 	
      <%@include file="/WEB-INF/include/footer.jsp" %>

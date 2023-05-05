@@ -25,9 +25,8 @@ public class myNoteDaoImpl implements MyNoteDao {
 	public int insertMyNote(HashMap<String, Object> map) {
 		
 		int myNoteInsertCheck = sqlSession.insert("MyPage.MyPageNoteInsert",map);
-		System.out.println("쪽지Dao확인:" + map.toString());
+		/* System.out.println("쪽지Dao확인:" + map.toString()); */
 		return myNoteInsertCheck;
 	}
-
 
 }
