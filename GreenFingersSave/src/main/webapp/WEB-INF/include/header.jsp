@@ -189,7 +189,7 @@
 		</nav>
 		</div>
 
-		<div><a href="login" class="right">로그인</a></div>
+		<div><a href="/User/Login" class="right">로그인</a></div>
 	</div>
 </header>
 
