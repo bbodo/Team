@@ -7,11 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.authenticator.SavedRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.menus.service.MenuService;
@@ -59,6 +60,8 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		
 		// 가입된 회원인지 체크
+		String userid = (String) map.get("userid");
+		int idExist = userService.idCheck(userid);
 		UserVo vo = userService.getLogin(map);
 		
 		if ( vo != null) {
@@ -70,10 +73,71 @@ public class UserController {
 		} else {
 			mv.setViewName("user/login");
 			mv.addObject("message", "fail");
+			mv.addObject("idExist", idExist);
+			mv.addObject("uri", uri);
 		}
 		
 		return mv;
 	}
+
+	// 회원가입창으로 이동
+	@RequestMapping("/WriteForm")
+	public ModelAndView writeForm(@RequestParam HashMap<String, Object> map) {
+		
+		ModelAndView mv = new ModelAndView("/user/userwrite");
+		mv.addObject("map", map);
+		return mv;
+	}
+	
+	// 아이디 중복체크
+	@RequestMapping(value="/IdCheck", method= {RequestMethod.POST})
+	@ResponseBody
+	public int idCheck(HttpServletRequest req, HttpServletResponse resp, 
+			HttpSession session, String userid) {
+		
+		int idCheckresult = userService.idCheck(userid);
+		return idCheckresult;   
+	}
+	
+	// 이메일 중복체크
+	@RequestMapping(value="/EmailCheck", method= {RequestMethod.POST})
+	@ResponseBody
+	public int emailCheck(HttpServletRequest req, HttpServletResponse resp, 
+			HttpSession session, String email) {
+		
+		int emailCheckresult = userService.emailCheck(email);
+		return emailCheckresult;   
+	}
+	// 닉네임 중복체크
+	@RequestMapping(value="/NicknameCheck", method= {RequestMethod.POST})
+	@ResponseBody
+	public int nicknameCheck(HttpServletRequest req, HttpServletResponse resp, 
+			HttpSession session, String nickname) {
+		
+		int nicknameCheckresult = userService.nicknameCheck(nickname);
+		return nicknameCheckresult;   
+	}
+	
+	
+	// DB 에 가입하는 회원정보 저장하고 로그인된 홈화면으로 이동
+	@RequestMapping("/Write")
+	public ModelAndView write(HttpSession session,
+			@RequestParam HashMap<String, Object> map) {
+		String uri = (String) map.get("uri"); 
+		System.out.println("uri: " + uri);
+		System.out.println("in : " + map);
+		
+		userService.userWrite(map);
+		System.out.println("out : " + map);
+		UserVo vo = userService.getLogin(map);
+		
+		ModelAndView mv = new ModelAndView();
+		session.setAttribute("login", vo);
+		mv.setViewName("redirect:" + uri);
+		mv.addObject("map", map);
+		return mv;
+	}
+	
 	
 	// 로그아웃
 	@RequestMapping("/Logout")
@@ -84,27 +148,4 @@ public class UserController {
 		return "redirect:/";
 	}
 	
-	// 회원가입창으로 이동
-	@RequestMapping("/WriteForm")
-	public ModelAndView writeForm() {
-		
-		ModelAndView mv = new ModelAndView("/user/userwrite");
-		
-		return mv;
-	}
-	
-	// DB 에 가입하는 회원정보 저장하고 로그인된 홈화면으로 이동
-	@RequestMapping("/Write")
-	public ModelAndView write(@RequestParam HashMap<String, Object> map) {
-		
-		System.out.println("in : " + map);
-		
-		userService.userWrite(map);
-		System.out.println("out : " + map);
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("home");
-		mv.addObject("map", map);
-		return mv;
-	}
 }

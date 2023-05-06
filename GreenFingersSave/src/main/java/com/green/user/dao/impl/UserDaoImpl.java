@@ -24,6 +24,28 @@ public class UserDaoImpl implements UserDao {
 		return userVo;
 	}
 	
+	// 아이디 중복체크
+	@Override
+	public int idCheck(String userid) {
+		int idCheckresult = sqlSession.selectOne("User.UseridCheck", userid);
+		return idCheckresult; 
+	}
+	
+	// 이메일 중복체크
+	@Override
+	public int emailCheck(String email) {
+		int emailCheckresult = sqlSession.selectOne("User.EmailCheck", email);
+		return emailCheckresult;   
+	}
+	
+	// 닉네임 중복체크
+	@Override
+	public int nicknameCheck(String nickname) {
+		int nicknameCheckresult = sqlSession.selectOne("User.NicknameCheck", nickname);
+		return nicknameCheckresult;
+	}
+	
+	
 	@Override
 	public void userWrite(HashMap<String, Object> map) {
 		
@@ -31,6 +53,7 @@ public class UserDaoImpl implements UserDao {
 		sqlSession.insert("User.UserWrite", map);
 		
 	}
+
 
 
 }

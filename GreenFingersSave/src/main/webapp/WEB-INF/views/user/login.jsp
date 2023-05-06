@@ -23,9 +23,9 @@ div{text-align : center}
 		width: 100%;
 		text-align: center;
 		height: 100px;
-		background-color: orange;
+		background-color: limegreen;
 	}
-#title p {
+#title p { font-size: 20px; font-weight: bolder;
 		 line-height: 100px;
 	}
 #id {
@@ -41,23 +41,45 @@ div{text-align : center}
 }
 
 </style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+	/* a 태그 post방식으로 보내기 */
+	function gouri(uri) {
+		let f=document.createElement('form');
+		
+		let obj;
+		obj = document.createElement('input');
+		obj.setAttribute('type', 'hidden');
+		obj.setAttribute('name', 'uri');
+		obj.setAttribute('value', uri);
+		
+		f.appendChild(obj);
+		f.setAttribute('method', 'POST');
+		f.setAttribute('action', '/User/WriteForm');
+		document.body.appendChild(f);
+		f.submit();
+		
+	}
+
 	window.onload = function() {
 		const formEl = document.getElementsByTagName('form')[0];
+		let userid = document.querySelector('[name=userid]');
+		let passwd = document.querySelector('[name=passwd]');
+		
 		//alert(formEl);
 		formEl.onsubmit = function(e) {
-			let userid = document.querySelector('[name=userid]');
-			let passwd = document.querySelector('[name=passwd]');
 			if(userid.value.trim() == '') {
 				event.preventDefault();
 				event.stopPropagation();
 				alert('아이디를 입력하세요');
-			} else if(passwd.value.trim() == '') {
-				event.preventDefault();
-				event.stopPropagation();
-				alert('암호를 입력하세요');
+			} else {
+				if(passwd.value.trim() == '') {
+					event.preventDefault();
+					event.stopPropagation();
+					alert('암호를 입력하세요');
+				
+				} 
 			} 
-			
 		}
 	} 
 
@@ -70,7 +92,7 @@ div{text-align : center}
 	<div id= "main">	
 	<h2> 로그인 </h2>
 		<form action = "/User/LoginProcess" method="POST">
-		<input type="hidden" name="uri" value="${uri}">
+		<input type="hidden" name="uri" value="${uri}" />
 		<table>
 			<tr>
 			<th>아이디</th>
@@ -85,17 +107,24 @@ div{text-align : center}
 			<input type="submit" value="로그인"/>
 			<td>
 			</tr>
-			<c:if test="${message eq 'fail' }">
 			<tr>
-			 <td colspan="2" style="color:red;">
-			아이디 또는 암호가 일치하지 않습니다
+			<c:choose>
+				<c:when test="${idExist eq '0' }">
+					 <td colspan="2" style="color:red;">
+						없는 아이디 입니다<td>
+				</c:when>
+				<c:when test="${message eq 'fail' }">
+					 <td colspan="2" style="color:red;">
+						비밀번호가 틀립니다<td>
+				</c:when>
 			
-			<td>
+			</c:choose>
+		
 			</tr>
-			</c:if>
 			</table>
 			</form>
-			<a href="/User/WriteForm">회원가입</a>
+			<%-- <a href="/User/WriteForm?uri=${uri}">회원가입</a> --%>
+			<a href="javascript:gouri('${uri}')">회원가입</a>
 	</div>
 </body>
 	
