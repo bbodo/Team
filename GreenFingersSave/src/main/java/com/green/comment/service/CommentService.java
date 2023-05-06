@@ -11,4 +11,6 @@ public interface CommentService {
 
 	List<CommentVo> setRead(HashMap<String, Object> map);
 
+	int setDelete(HashMap<String, Object> map);
+
 }

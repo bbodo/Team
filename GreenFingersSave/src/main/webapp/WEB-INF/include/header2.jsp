@@ -187,7 +187,7 @@
 		</nav>
 		</div>
 
-		<div><a href="">${vo.nickname}  님의 마이페이지</a></div>
+		<div><a href="">${login.nickname}  님의 마이페이지</a></div>
 		<div> <a href="/User/Logout">로그아웃</a></div>
 	</div>
 </header>

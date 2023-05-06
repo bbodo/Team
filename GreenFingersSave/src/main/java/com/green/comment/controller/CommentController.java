@@ -45,4 +45,20 @@ public class CommentController {
 		return commentList;
 	}
 	
+	// 댓글 삭제
+	@ResponseBody
+	@RequestMapping("/Delete")
+	public String commentDelete(
+			@RequestParam HashMap<String, Object> map
+			) {
+		System.out.println(map);
+		int cnf = commentService.setDelete(map);
+		System.out.println(cnf);
+		if(cnf == 1)
+			return "suc";
+		else
+			return "fail";
+		}
+		
+	
 }

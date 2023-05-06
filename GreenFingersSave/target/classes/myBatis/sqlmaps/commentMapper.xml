@@ -57,6 +57,16 @@
    			C.COM_NREF DESC, C.COM_STEP ASC
 
 	</select>  
+	
+	<delete id="DeleteComment">
+	
+		DELETE
+		FROM
+			COMENT
+		WHERE
+			COMENT_IDX = #{ coment_idx }
+	
+	</delete>
    
 </mapper>
 

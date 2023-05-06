@@ -31,4 +31,13 @@ public class CommentDaoImpl implements CommentDao {
 		return commentList;
 	}
 
+	@Override
+	public int setDelete(HashMap<String, Object> map) {
+
+		int cnf = sqlSession.delete("Comment.DeleteComment", map);
+		
+		return cnf;
+		
+	}
+
 }

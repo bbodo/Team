@@ -28,6 +28,8 @@ import com.green.board.service.BoardService;
 import com.green.board.vo.BoardVo;
 import com.green.board.vo.FileVo;
 import com.green.menus.service.MenuService;
+import com.green.menus.vo.MenuVo;
+import com.green.menus.vo.SubmenuVo;
 
 @RequestMapping("/Board")
 @Controller
@@ -70,9 +72,16 @@ public class BoardController {
 		// 메뉴 이름 알아오기
 		String submenu_name = menuService.getMenuName(submenu_id);
 		
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		//System.out.println("MENU" + menuList);
+		//System.out.println("SUBMENU" + submenuList);
+		
 		map.put("submenu_name", submenu_name);
 
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		mv.setViewName("board/list");
 		mv.addObject("boardList", boardList);
 		mv.addObject("boardVo", boardVo);

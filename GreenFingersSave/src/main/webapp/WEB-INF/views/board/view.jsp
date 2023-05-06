@@ -67,6 +67,39 @@
 
 <script>
 
+		function updateForm_comment(coment_idx, coment_cont) {
+			let html = '';
+				html += '<div>';
+			    html += '<textarea name="coment_cont" id="comment_update_'+ coment_idx +'">'+ coment_cont +'</textarea>';
+			    html += '</div>';
+			
+			    console.log($('#commentCont_' + coment_idx));
+			$('#comment_Cont_' + coment_idx).replaceWith(html);
+			$('#comment_update_' + coment_idx).focus();
+		}
+
+		function delete_comment(comm) {
+				if(window.confirm("정말 삭제하시겠습니까?")) {
+					fetch("/Comment/Delete?coment_idx=" + comm)
+						.then(res => res.text())
+						.then(data => {
+							if(data == "suc") {
+								alert("삭제되었습니다");
+								$("#comment_li_" + comm).remove()
+							} else {
+								alert("삭제가 되지않았습니다");
+							}
+						})
+						.catch( err => {
+							console.log(err);
+							alert("오류발생 : " + err);
+						});
+				} else {
+					console.log("취소")
+				}
+			
+		}
+
 		function c(data) {
 			if($("#comment_empty_" + data).length) {
 				
@@ -84,15 +117,13 @@
 		}
 		
 		function comment_display(data) {
-			console.log(data);
-			//
 			let html = '';
 			for (let comm of data) {
 				html += '<li id="comment_li_' + comm.coment_idx +'">';
 				html += '<div class="floatleft"><p><h2>'+ comm.nickname +'</h2></p></div>';
 				html += '<div class="floatright"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
-				html += '<div class="floatleft reComment" onclick="c(' + comm.coment_idx + ')">'+ comm.coment_cont +'</div>';
-				html += '<div class="floatright"><input type="button" value="수정" /> <input type="button" value="삭제" /></div><br /><br />';
+				html += '<div class="floatleft id="commentCont_'+ comm.coment_idx +'" reComment" onclick="c(' + comm.coment_idx + ')">'+ comm.coment_cont +'</div>';
+				html += '<div class="floatright"><input type="button" onclick="updateForm_comment('+ comm.coment_idx +',\'' + comm.coment_cont + '\')" value="수정" /> <input type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br /><br />';
 				html += '</li>';
 			}
 			
@@ -145,6 +176,7 @@
 					alert("오류발생 : " + err);
 				})
 		})
+		
 		
 		
 	}

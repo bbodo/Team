@@ -31,4 +31,13 @@ public class CommentServiceImpl implements CommentService {
 		return commentList;
 	}
 
+	@Override
+	public int setDelete(HashMap<String, Object> map) {
+
+		int cnf = commentDao.setDelete(map);
+		
+		return cnf;
+		
+	}
+
 }
