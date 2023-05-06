@@ -66,15 +66,24 @@
 <script src="https://code.jquery.com/jquery.min.js"></script>
 
 <script>
+		function comment_back(coment_idx, coment_cont) {
+			let html  = '';
+				html += '<div>';
+				html += '<div class="floatleft" id="commentCont_'+ coment_idx +'" onclick="c(' + coment_idx + ')">'+ coment_cont +'</div>';
+				html += '</div>';
+				
+			console.log($('#comment_updateForm_'+ coment_idx));
+			$('#comment_updateForm_'+ coment_idx).replaceWith(html);
+		}
 
 		function updateForm_comment(coment_idx, coment_cont) {
-			let html = '';
-				html += '<div>';
+			let html  = '';
+				html += '<div id="comment_updateForm_'+ coment_idx +'">';
 			    html += '<textarea name="coment_cont" id="comment_update_'+ coment_idx +'">'+ coment_cont +'</textarea>';
+			    html += '<input type="button" value="취소" onclick="comment_back('+ coment_idx +',\'' + coment_cont + '\')" />';
 			    html += '</div>';
 			
-			    console.log($('#commentCont_' + coment_idx));
-			$('#comment_Cont_' + coment_idx).replaceWith(html);
+			$('#commentCont_'+ coment_idx).replaceWith(html);
 			$('#comment_update_' + coment_idx).focus();
 		}
 
@@ -122,8 +131,9 @@
 				html += '<li id="comment_li_' + comm.coment_idx +'">';
 				html += '<div class="floatleft"><p><h2>'+ comm.nickname +'</h2></p></div>';
 				html += '<div class="floatright"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
-				html += '<div class="floatleft id="commentCont_'+ comm.coment_idx +'" reComment" onclick="c(' + comm.coment_idx + ')">'+ comm.coment_cont +'</div>';
-				html += '<div class="floatright"><input type="button" onclick="updateForm_comment('+ comm.coment_idx +',\'' + comm.coment_cont + '\')" value="수정" /> <input type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br /><br />';
+				html += '<div class="floatleft" id="commentCont_'+ comm.coment_idx +'" onclick="c(' + comm.coment_idx + ')">'+ comm.coment_cont +'</div>';
+				html += '<div class="floatright"><input type="button" onclick="updateForm_comment('+ comm.coment_idx +',\'' + comm.coment_cont + '\')" value="수정" />';
+				html += '<input type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br /><br />';
 				html += '</li>';
 			}
 			
