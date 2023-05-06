@@ -75,15 +75,14 @@ public class HomeController {
 	public String myList() {
 		return "/mypage/myList";
 	}
-	@RequestMapping("/myNote")
-	public String myNote() {
-		return "/mypage/myNote";
-	}
-	
-	@RequestMapping("/myNoteWrite")
-	public String myNoteWrite() {
-		return "/mypage/myNoteWrite";
-	}
+	/*
+	 * @RequestMapping("/myNote") public String myNote() { return "/mypage/myNote";
+	 * }
+	 */
+	/*
+	 * @RequestMapping("/myNoteWrite") public String myNoteWrite() { return
+	 * "/mypage/myNoteWrite"; }
+	 */
 	
 	@RequestMapping("/myPageCheck")
 	public String myPageCheck() {

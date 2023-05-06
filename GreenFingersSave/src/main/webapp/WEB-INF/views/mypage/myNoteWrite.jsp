@@ -112,7 +112,7 @@
      </div>
      
      <div id="main">
-		<form action="/myNoteWrite/myNoteWrite" method="POST" onsubmit="return nullCheck();">
+		<form action="/myPage/myNoteWrite" method="POST" onsubmit="return nullCheck();">
 			<input type="hidden" name="receiver_usercode" value="${param.receiver_usercode}" />
 
 			<table id="cont">

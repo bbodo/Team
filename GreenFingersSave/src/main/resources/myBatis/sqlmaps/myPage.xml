@@ -5,7 +5,7 @@
 
 <mapper namespace="MyPage">   
 
-	<select id="MyPageNoteSelect" resultType = "com.green.myNote.vo.MyNoteVo">
+	<select id="MyPageNoteSelect" resultType = "com.green.myPage.vo.MyPageVo">
 		SELECT  b.BOARD_TITLE, m.NICKNAME
 		FROM	BOARD b INNER JOIN MEMBER m ON b.USERCODE = m.USERCODE
 		WHERE	b.BOARD_IDX = #{board_idx} 
@@ -38,7 +38,12 @@
 			)
 	</insert>
 	
-
+	<select id="MyPageList" resultType = "com.green.myPage.vo.MyPageVo">
+		SELECT 	NOTE_IDX, NOTE_TITLE, NOTE_CONT, NOTE_REGDATE, 
+				SEND_USERCODE, RECEIVER_USERCODE, READMARK, DELNOTE
+		FROM	NOTE
+		WHERE	SEND_USERCODE = #{usercode} 
+	</select>
 
 </mapper>
 

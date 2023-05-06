@@ -56,7 +56,7 @@
      		<div id="con1">
      			<div><img src="/img/common/profile.png" alt="myimg"/></div>
      			<div><p>아이디 님</p></div>
-     			<div><p>등급 :</p> <p>씨앗</p></div>
+     			<div><p>등급 :</p> <p></p></div>
      		</div>
      		
      		<div id="con2">

@@ -150,11 +150,11 @@ html, body {
 	<a href="/marketView">market view 가는길</a> <br />
 	<a href="/marketPointList">market pointList 가는길</a> <br />
 	<a href="/myList">자기가 쓴글</a> <br />  
-	<a href="/myNote">쪽지</a> <br />
-	<a href="/myNoteWrite/myNoteWriteForm?board_idx=1&send_usercode=4&receiver_usercode=1">쪽지작성</a> <br />
+	<a href="/myPage/myNote">쪽지</a> <br />
+	<a href="/myPage/myNoteWriteForm?board_idx=1&send_usercode=4&receiver_usercode=1">쪽지작성</a> <br />
 	<a href="">길 찾아가세요</a> 
 	
-	<a href="/myList">마이페이지</a>
+	<a href="/myPage/myList">마이페이지</a>
 	<h2>Home</h2>
 	
   <!-- footer -->

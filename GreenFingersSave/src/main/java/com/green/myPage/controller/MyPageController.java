@@ -1,6 +1,9 @@
-package com.green.myNote.controller;
+package com.green.myPage.controller;
 
 import java.util.HashMap;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,17 +12,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.menus.service.MenuService;
-import com.green.myNote.service.MyNoteService;
-import com.green.myNote.vo.MyNoteVo;
+import com.green.myPage.service.MyPageService;
+import com.green.myPage.vo.MyPageVo;
+import com.green.user.vo.UserVo;
 @Controller
-@RequestMapping("/myNoteWrite") 
-public class MyNoteController {
+@RequestMapping("myPage")
+public class MyPageController {
 	
 	@Autowired
 	private MenuService menuService;
 	
 	@Autowired
-	MyNoteService myNoteService;
+	MyPageService myPageService;
 
 	@RequestMapping("/myNoteWriteForm")
 	public ModelAndView myNoteWriteForm(@RequestParam HashMap<String, Object> map) {
@@ -33,7 +37,7 @@ public class MyNoteController {
 		/* System.out.println("쪽지GET확인:" + map.toString()); */
 
 		//쪽지등록 전 필요한 값 들고오기
-		MyNoteVo myNoteForm =  myNoteService.getmyNoteForm(map);
+		MyPageVo myNoteForm =  myPageService.getmyNoteForm(map);
 
 		/* System.out.println("쪽지FORM확인:" + myNoteForm); */
 
@@ -51,12 +55,30 @@ public class MyNoteController {
 	public ModelAndView myNoteWrite( @RequestParam HashMap<String, Object> map ) {
 		
 		//쪽지 등록 
-		int myNoteInsertCheck = myNoteService.insertMyNote(map);
+		int myNoteInsertCheck = myPageService.insertMyNote(map);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mypage/myList");
 		mv.addObject("myNoteInsertCheck", myNoteInsertCheck);
 
+		return mv;
+	}
+	
+	@RequestMapping("/myNote")
+	public ModelAndView myNoteList (@RequestParam HashMap<String, Object> map,
+			HttpSession session) {
+		
+		System.out.println("mylist" + session.getAttribute("login"));
+		UserVo userVo = (UserVo) session.getAttribute("login");
+		int usercode = userVo.getUsercode();
+		
+		//쪽지 목록
+		List<MyPageVo> myPageVo = myPageService.getRecSendNote(usercode);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("mypage/myList");
+		mv.addObject("userVo", userVo);
+		mv.addObject("myPageVo", myPageVo);
 		return mv;
 	}
 

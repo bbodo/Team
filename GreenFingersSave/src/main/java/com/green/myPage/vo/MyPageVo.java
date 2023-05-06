@@ -1,7 +1,11 @@
-package com.green.myNote.vo;
+package com.green.myPage.vo;
 
-public class MyNoteVo {
+public class MyPageVo {
 	//Fields
+	//usercode
+	private int usercode;
+	
+	//쪽지
 	private int noteidx;
 	private String notetitle;
 	private String notecont;
@@ -14,10 +18,10 @@ public class MyNoteVo {
 	private String boardtitle;
 	
 	//Constructor
-	public MyNoteVo() {}
+	public MyPageVo() {}
 
-	public MyNoteVo(int noteidx, String notetitle, String notecont, String noteregdate, String sendusercode,
-			String receiverusercode, String readmark, String delnote, String nickname, String board_title) {
+	public MyPageVo(int noteidx, String notetitle, String notecont, String noteregdate, String sendusercode,
+			String receiverusercode, String readmark, String delnote, String nickname, String board_title, int usercode) {
 		super();
 		this.noteidx = noteidx;
 		this.notetitle = notetitle;
@@ -29,6 +33,7 @@ public class MyNoteVo {
 		this.delnote = delnote;
 		this.nickname = nickname;
 		this.boardtitle = board_title;
+		this.usercode = usercode;
 	}
 
 	public int getNoteidx() {
@@ -110,13 +115,21 @@ public class MyNoteVo {
 	public void setBoard_title(String board_title) {
 		this.boardtitle = board_title;
 	}
+	
+	public int getUsercode() {
+		return usercode;
+	}
+
+	public void setUsercode(int usercode) {
+		this.usercode = usercode;
+	}
 
 	@Override
 	public String toString() {
 		return "MyNoteVo [noteidx=" + noteidx + ", notetitle=" + notetitle + ", notecont=" + notecont + ", noteregdate="
 				+ noteregdate + ", sendusercode=" + sendusercode + ", receiverusercode=" + receiverusercode
 				+ ", readmark=" + readmark + ", delnote=" + delnote + ", nickname=" + nickname + ", board_title="
-				+ boardtitle + "]";
+				+ boardtitle + ", usercode=" + usercode + "]";
 	}
 
 
