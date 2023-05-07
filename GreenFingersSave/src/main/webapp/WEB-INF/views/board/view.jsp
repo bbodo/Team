@@ -1,5 +1,6 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -118,7 +119,7 @@
 				let html  = '<li id=comment_empty_' + data + '>'
 					html += '<div id="replyComment">'
 				    html += '<textarea id="reply_coment_cont"></textarea>'
-					html += '<button id="replyBtn">작성</button>'
+					html += '<button id="replyBtn" onclick="">작성</button>'
 					html += '</div></li>';
 				
 					commentEl.append(html);
@@ -129,14 +130,30 @@
 			let html = '';
 			for (let comm of data) {
 				html += '<li id="comment_li_' + comm.coment_idx +'">';
-				html += '<div class="floatleft"><p><h2>'+ comm.nickname +'</h2></p></div>';
-				html += '<div class="floatright"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
-				html += '<div class="floatleft" id="commentCont_'+ comm.coment_idx +'" onclick="c(' + comm.coment_idx + ')">'+ comm.coment_cont +'</div>';
-				html += '<div class="floatright"><input type="button" onclick="updateForm_comment('+ comm.coment_idx +',\'' + comm.coment_cont + '\')" value="수정" />';
-				html += '<input type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br /><br />';
+				if(comm.com_lvl == 0) {
+					if(comm.delcoment == 0) {
+						html += '<div class="floatleft"><p><h2>'+ comm.nickname +'</h2></p></div>';
+						html += '<div class="floatright"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
+						html += '<div class="floatleft" id="commentCont_'+ comm.coment_idx +'" onclick="c(' + comm.coment_idx + ')">'+ comm.coment_cont +'</div>';
+						html += '<div class="floatright"><input type="button" onclick="updateForm_comment('+ comm.coment_idx +',\'' + comm.coment_cont + '\')" value="수정" />';
+						html += '<input type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br /><br />';
+					} else {
+						html += '<b>삭제된 댓글입니다.</b>';
+					}					
+				} else {
+					if(comm.delcoment == 0) {
+						html += '<div class="floatleft"><p><h2>'+ comm.nickname +'</h2></p></div>';
+						html += '<div class="floatright"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
+						html += '<div class="floatleft" id="commentCont_'+ comm.coment_idx +'" onclick="c(' + comm.coment_idx + ')"><b style="display:inline-block; width:${'+ comm.com_lvl*20 +'}px"></b>'+ comm.coment_cont +'</div>';
+						html += '<div class="floatright"><input type="button" onclick="updateForm_comment('+ comm.coment_idx +',\'' + comm.coment_cont + '\')" value="수정" />';
+						html += '<input type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br /><br />';
+					} else {
+						html += '<b style="display:inline-block; width:${'+ comm.com_lvl*20 +'}px">삭제된 댓글입니다.</b>';
+					}
+				}
 				html += '</li>';
 			}
-			
+			console.log(html)
 			const commentListEl = document.getElementById("commentList");
 			commentListEl.innerHTML = html;
 			

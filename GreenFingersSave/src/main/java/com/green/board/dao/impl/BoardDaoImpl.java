@@ -73,7 +73,6 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public void deleteUploadFile(HashMap<String, Object> map) {
 
-		System.out.println("지우러가는길" + map);
 		sqlSession.delete("Board.DeleteUploadFile", map);
 		
 	}

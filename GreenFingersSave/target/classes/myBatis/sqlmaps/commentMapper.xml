@@ -58,6 +58,7 @@
 
 	</select>  
 	
+	<!-- 댓글 삭제 -->
 	<delete id="DeleteComment">
 	
 		DELETE
@@ -67,6 +68,67 @@
 			COMENT_IDX = #{ coment_idx }
 	
 	</delete>
+   
+   <!--  delnum = 1 -->
+   <delete  id="CommentDelNum">
+       
+		UPDATE
+			COMNET
+		SET
+			DELCOMENT = 1
+		WHERE
+			COMENT_IDX    = #{ coment_idx }
+       
+   </delete>
+   
+   <!-- 자식이 있는지 확인 -->
+   <select  id="ChildCnt"
+            resultType = "int" >
+      
+       SELECT
+          CASE
+            WHEN
+              EXISTS (
+                 SELECT
+                 	COM_PARENT
+                 FROM
+                 	COMENT
+                 WHERE
+                 	COM_PARENT = #{ coment_idx }
+              ) 
+             THEN  1
+             ELSE  0
+          END
+        FROM DUAL
+      
+   </select>
+   
+   <select   id             = "GetComment"
+	         resultType     = "com.green.comment.vo.CommentVo">
+		
+		SELECT
+			C.COMENT_IDX,
+			C.COMENT_CONT,
+			C.COMENT_REGDATE,
+			C.BOARD_IDX,
+			C.USERCODE,
+			C.DELCOMENT,
+			C.COM_BNUM,
+			C.COM_LVL,
+			C.COM_STEP,
+			C.COM_NREF,
+			C.COM_PARENT,
+			M.NICKNAME
+   		FROM
+   			COMENT C
+   		JOIN
+   			MEMBER M
+   		ON
+   			C.USERCODE = M.USERCODE
+   		WHERE
+   			C.COMENT_IDX = #{ coment_idx }
+
+	</select>  
    
 </mapper>
 
