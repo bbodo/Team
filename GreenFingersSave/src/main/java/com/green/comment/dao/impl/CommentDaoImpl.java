@@ -54,4 +54,13 @@ public class CommentDaoImpl implements CommentDao {
 		
 	}
 
+	@Override
+	public void reWrite(HashMap<String, Object> map) {
+		
+		
+		
+		sqlSession.insert("Comment.ReWrite", map);
+		
+	}
+
 }

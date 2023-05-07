@@ -175,8 +175,13 @@ public class BoardController {
 		
 		List<FileVo> fileList = boardService.getFileList(map);
 		
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/view");
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		mv.addObject("map", map);
 		mv.addObject("fileList", fileList);
 		mv.addObject("vo", boardVo);

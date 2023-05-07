@@ -13,4 +13,6 @@ public interface CommentService {
 
 	int setDelete(HashMap<String, Object> map);
 
+	void reWrite(HashMap<String, Object> map);
+
 }

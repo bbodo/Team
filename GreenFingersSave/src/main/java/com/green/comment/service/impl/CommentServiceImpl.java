@@ -40,4 +40,11 @@ public class CommentServiceImpl implements CommentService {
 		
 	}
 
+	@Override
+	public void reWrite(HashMap<String, Object> map) {
+
+		commentDao.reWrite(map);
+		
+	}
+
 }

@@ -60,5 +60,19 @@ public class CommentController {
 			return "fail";
 		}
 		
+	// 대댓글 작성
+	@ResponseBody
+	@RequestMapping("/ReCommentWrite")
+	public List<CommentVo> reCommentWrite(
+			@RequestParam HashMap<String, Object> map
+			) {
+		System.out.println("대댓"+map);
+		
+		commentService.reWrite(map);
+		
+		List<CommentVo> commentList = commentService.setRead(map);
+		
+		return commentList;
+	}
 	
 }

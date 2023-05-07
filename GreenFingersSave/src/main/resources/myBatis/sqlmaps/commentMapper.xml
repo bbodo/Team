@@ -130,6 +130,37 @@
 
 	</select>  
    
+   <!-- 대댓글 작성 -->
+   <insert id="ReWrite">
+   
+		INSERT INTO
+			COMENT
+			(
+				COMENT_IDX,
+				COMENT_CONT,
+				BOARD_IDX,
+				USERCODE,
+				COM_BNUM,
+				COM_LVL,
+				COM_STEP,
+				COM_NREF,
+				COM_PARENT
+			)
+			VALUES
+			(
+				(SELECT NVL(MAX(COMENT_IDX),0) +1 FROM COMENT),
+				#{ coment_cont },
+				#{ board_idx },
+				#{ usercode },
+				#{ com_bnum },
+				#{ com_lvl } + 1,
+				#{ com_step } + 1,
+				#{ com_nref },
+				#{ com_parent }
+			)
+   
+   </insert>
+   
 </mapper>
 
 
