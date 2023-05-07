@@ -71,10 +71,10 @@ public class HomeController {
 
 	// ---------mypage---------
 	
-	@RequestMapping("/myList")
-	public String myList() {
-		return "/mypage/myList";
-	}
+	/*
+	 * @RequestMapping("/myPage/myList") public String myList() { return
+	 * "/mypage/myList"; }
+	 */
 	/*
 	 * @RequestMapping("/myNote") public String myNote() { return "/mypage/myNote";
 	 * }

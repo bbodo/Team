@@ -11,7 +11,7 @@ import com.green.myPage.dao.MyPageDao;
 import com.green.myPage.vo.MyPageVo;
 
 @Repository("MyPageDao")
-public class myPageDaoImpl implements MyPageDao {
+public class MyPageDaoImpl implements MyPageDao {
 	
 	@Autowired
 	private SqlSession  sqlSession;
@@ -30,10 +30,40 @@ public class myPageDaoImpl implements MyPageDao {
 		return myNoteInsertCheck;
 	}
 
+	/*
+	 * @Override public List<MyPageVo> getMyPageList(int usercode) { List<MyPageVo>
+	 * myPageVo = sqlSession.selectList("MyPage.MyPageList", usercode); return
+	 * myPageVo; }
+	 */
+
 	@Override
-	public List<MyPageVo> getMyPageList(int usercode) {
-		List<MyPageVo> myPageVo = sqlSession.selectList("MyPage.MyPageList", usercode);
-		return myPageVo;
+	public List<MyPageVo> getSendPageList(HashMap<String, Object> map) {
+		map.put("sendData",  "sendData");
+		// 전체 자료수 조회
+		int      totalcount              =  sqlSession.selectOne("MyPage.GetTotalCount", map);
+		map.put("totalcount",  totalcount);
+		
+		// 메뉴 목록 조회 (paging)
+		List<MyPageVo> pdsPagingList  =  sqlSession.selectList("MyPage.GetMyPageList", map);  
+		map.remove("sendData");
+		
+		return   pdsPagingList;
+	}
+
+	@Override
+	public List<MyPageVo> getRecPageList(HashMap<String, Object> map) {
+		map.put("recData",  "recData");
+		// 전체 자료수 조회
+		int      totalcount              =  sqlSession.selectOne("MyPage.GetTotalCount", map);
+		map.put("totalcount",  totalcount);
+		System.out.println("ddd"+map.get("totalcount"));
+		
+		
+		// 메뉴 목록 조회 (paging)
+		List<MyPageVo> pdsPagingList  =  sqlSession.selectList("MyPage.GetMyPageList", map);  
+		map.remove("recData");
+		
+		return   pdsPagingList;
 	}
 
 }

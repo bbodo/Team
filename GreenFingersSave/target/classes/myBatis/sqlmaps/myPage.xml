@@ -6,7 +6,7 @@
 <mapper namespace="MyPage">   
 
 	<select id="MyPageNoteSelect" resultType = "com.green.myPage.vo.MyPageVo">
-		SELECT  b.BOARD_TITLE, m.NICKNAME
+		SELECT  b.BOARD_TITLE, m.NICKNAME, m.GRADE, b.USERCODE 
 		FROM	BOARD b INNER JOIN MEMBER m ON b.USERCODE = m.USERCODE
 		WHERE	b.BOARD_IDX = #{board_idx} 
 	</select>
@@ -31,19 +31,72 @@
 				#{ notetitle },
 				#{ notecont },
 				to_date(sysdate,'yyyy.mm.dd hh24:mi'),
-				4,
+				#{sendusercode},
 				#{ receiver_usercode },
 				0,
 				0
 			)
 	</insert>
 	
-	<select id="MyPageList" resultType = "com.green.myPage.vo.MyPageVo">
-		SELECT 	NOTE_IDX, NOTE_TITLE, NOTE_CONT, NOTE_REGDATE, 
-				SEND_USERCODE, RECEIVER_USERCODE, READMARK, DELNOTE
-		FROM	NOTE
-		WHERE	SEND_USERCODE = #{usercode} 
-	</select>
+	<!-- <select id="MyPageList" resultType = "com.green.myPage.vo.MyPageVo">
+		SELECT 	n.NOTE_IDX, n.NOTE_TITLE, n.NOTE_CONT, n.NOTE_REGDATE, 
+				n.SEND_USERCODE, n.RECEIVER_USERCODE, n.READMARK, n.DELNOTE, m.NICKNAME
+		FROM	NOTE n JOIN MEMBER m ON n.RECEIVER_USERCODE = m.USERCODE
+		WHERE	n.SEND_USERCODE = #{usercode} 
+	</select> -->
+	
+	<!-- 전체 자료수 조회 -->
+   <select   id             = "GetTotalCount"
+             parameterType  = "hashmap"
+             resultType     = "_int">
+      SELECT
+         COUNT( NOTE_IDX )  AS   TOTALCOUNT
+       FROM   
+         NOTE
+       <if test ="sendData == 'sendData'">
+       WHERE     
+          SEND_USERCODE = #{usercode}
+       </if>
+       
+       <if test = "recData == 'recData'" >
+       WHERE     
+          RECEIVER_USERCODE = #{usercode}
+       </if>
+   </select>
+   
+   <!-- 페이징 list  -->
+   <select  id="GetMyPageList"
+            resultType="com.green.myPage.vo.MyPageVo">
+   	  SELECT * FROM	
+	  (		SELECT 		ROW_NUMBER() OVER(ORDER BY n.NOTE_REGDATE ASC, n.READMARK DESC)  RNUM
+	  					, n.NOTE_IDX
+	  					, n.NOTE_TITLE
+	  					, n.NOTE_CONT
+	  					, n.NOTE_REGDATE
+	  					, n.SEND_USERCODE
+	  					, n.RECEIVER_USERCODE
+	  					, n.READMARK
+	  					, n.DELNOTE
+				        <if test = "sendData == 'sendData'">
+				          , m.NICKNAME
+				        </if>
+				        
+				        <if test = "recData == 'recData'" >
+				         , m.NICKNAME
+				        </if>
+				        
+	  		FROM	    NOTE n JOIN MEMBER m ON n.RECEIVER_USERCODE = m.USERCODE
+	  		<if test = "sendData == 'sendData'">
+	           WHERE	n.SEND_USERCODE = #{usercode}
+	        </if>
+	       
+	        <if test = "recData == 'recData'" >
+	         WHERE	    n.RECEIVER_USERCODE = #{usercode}
+	        </if>
+	  ) T 
+      WHERE     T.RNUM  
+                BETWEEN  #{startnum}  AND  #{endnum}  
+   </select>
 
 </mapper>
 

@@ -12,7 +12,11 @@ public interface MyPageDao {
 
 	int insertMyNote(HashMap<String, Object> map);
 
-	List<MyPageVo> getMyPageList(int usercode);
+	/* List<MyPageVo> getMyPageList(int usercode); */
+
+	List<MyPageVo> getSendPageList(HashMap<String, Object> map);
+
+	List<MyPageVo> getRecPageList(HashMap<String, Object> map);
 
 
 

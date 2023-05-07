@@ -69,32 +69,24 @@
 		const  notetitle = document.getElementById('notetitle');
 		const  notecont = document.getElementById('notecont');
 		
-		console.log(notetitle);
+		//쪽지 성공여부 확인
+		let myNoteInsertCheck = "${myNoteInsertCheck}";
 		
-		//빈칸 채우기 작업중
-		function nullCheck(e) {
-			e.preventDefault();
-			console.log(notetitle);
-			if(notetitle.value.length == 0){
-				alert("빈칸을 채워주세요");
-				return false;
-			}
-			return true;
+		if(myNoteInsertCheck == 1){
+			alert("쪽지 전송 완료!");
 		}
 		
-		/* submitBtn.onclick = function(){
-			if(notetitle == null || notecont == null){
-				alert("빈칸을 채워주세요");
-				return false;
-			}
-		}; */
+		//빈 칸 체크
+		let nullNote = "${nullNote}";
+		
+		if(nullNote == "값없음"){
+			alert("빈 칸을 채워주세요");
+		}
 		
 		//취소 버튼
 		document.getElementById('cencelBtn').onclick = function(){
 			notetitle.value = null;
 			notecont.value = null;
-			console.log("ddd" + notetitle.append);
-			/* e.preventDefault(); */
 		}; 		
 	}
 </script>
@@ -113,7 +105,8 @@
      
      <div id="main">
 		<form action="/myPage/myNoteWrite" method="POST" onsubmit="return nullCheck();">
-			<input type="hidden" name="receiver_usercode" value="${param.receiver_usercode}" />
+			<input type="hidden" name="receiver_usercode" value="${myNoteVo.usercode}" />
+			<input type="hidden" name="board_idx" value="${param.board_idx}" />
 
 			<table id="cont">
 				<tr>
@@ -133,7 +126,6 @@
 					<td><textarea id="notecont" name="notecont"></textarea></td>
 				</tr>
 			</table>
-			<%@include file="/WEB-INF/include/paging.jsp"%>
 			<input style="float: right;" id="submitBtn" type="submit" value="전송"/>
 		</form>
 		<button id="cencelBtn" style="float: left;">취소 버튼</button>

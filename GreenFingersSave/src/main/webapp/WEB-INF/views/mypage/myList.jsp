@@ -24,14 +24,55 @@
 
 <script type="text/javascript">
 	window.onload = function() {
-		//쪽지 성공여부 확인
-		let myNoteInsertCheck = ${myNoteInsertCheck};
+		//쪽지 읽음 여부 확인
+		let readMark = "${readmark}";
+		let sendPagingVo = "${sendPagePaingList}";
+		let readMarkTag = document.querySelectorAll('.readMark');
 		
-		if(myNoteInsertCheck == 1){
-			alert("쪽지 전송 완료!");
-		}else{
-			alert("쪽지 전송 실패!");
+		for (var i = 0; i < sendPagingVo.length; i++) {
+			if(readMark == 1){
+				readMarkTag[i].innerHTML = "o";
+			}else{
+				readMarkTag[i].innerHTML = "x";
+			}
 		}
+	}
+	
+	//받는 쪽지 보낸 쪽지 구분
+	function recClick(){
+		let recPaing = document.getElementById('recPaing');
+		let sendPaing = document.getElementById('sendPaing');
+		let recList = document.getElementsByClassName('recList');
+		let sendList = document.getElementsByClassName('sendList');
+		
+		for (var i = 0; i < recList.length; i++) {
+			recList[i].style.display = "table-row";
+		}
+		
+		for (var i = 0; i < sendList.length; i++) {
+			sendList[i].style.display = "none";
+		}
+		
+		recPaing.style.display = "block";
+		sendPaing.style.display = "none";
+	}
+	
+	function sendClick(){
+		let recPaing = document.getElementById('recPaing');
+		let sendPaing = document.getElementById('sendPaing');
+		let recList = document.getElementsByClassName('recList');
+		let sendList = document.getElementsByClassName('sendList');
+		
+		for (var i = 0; i < recList.length; i++) {
+			recList[i].style.display = "none";
+		}
+		
+		for (var i = 0; i < sendList.length; i++) {
+			sendList[i].style.display = "table-row";
+		}
+		
+		recPaing.style.display = "none";
+		sendPaing.style.display = "block";
 	}
 </script>
 
@@ -55,8 +96,8 @@
      	<section id="sec1">
      		<div id="con1">
      			<div><img src="/img/common/profile.png" alt="myimg"/></div>
-     			<div><p>아이디 님</p></div>
-     			<div><p>등급 :</p> <p></p></div>
+     			<div><p>${userVo.userid} 님</p></div>
+     			<div><p>등급 :</p> <p>${userVo.usercode}</p></div>
      		</div>
      		
      		<div id="con2">
@@ -112,45 +153,60 @@
      	</section>
      	
      	<!-- <section2 시작> -->
-     	<div class="titleWrap">
-     		<p class="title">쪽지</p>
-     		<p><a href="">전체보기</a></p>
-     	</div>
      	
      	<section id="sec2">
+	     	<div class="titleWrap">
+	     		<p class="title">쪽지</p>
+	     	</div>
+     	
 			<div>
-				<p>받은 쪽지</p>
-				<p>보낸 쪽지</p>
+				<button id="recBtn" onclick="recClick();">받은 쪽지</button>
+				<button id="sendBtn"  onclick="sendClick();">보낸 쪽지</button>
 			</div>         
 			
 			<table id="sec2Cont">
 				<tr>
 					<th>번호</th>
-					<th>받은 사람</th>
+					<th>받는 사람</th>
 					<th>제목</th>
 					<th>날짜</th>
 					<th>읽음 상태</th>
 				</tr>
 				
-				<tr>
+				<c:forEach var = "sendNoteVo" items="${sendPagePaingList}">
+				<tr class="sendList">
 					<a href="">
-						<td>1</td>
-						<td>독초애호가</td>
-						<td>독초사겠습니다</td>
-						<td>2022-02-17</td>
-						<td>읽음</td>
+						<td>${sendNoteVo.rnum}</td>
+						<td>${sendNoteVo.nickname}</td>
+						<td>${sendNoteVo.note_title}</td>
+						<td>${sendNoteVo.note_regdate}</td>
+						<td class="readMark"></td>
 					</a>
 				</tr>
+				</c:forEach>
+
+				<c:forEach var = "recNoteVo" items="${recPagePaingList}">
+				<tr class="recList">
+					<a href="">
+						<td>${recNoteVo.rnum}</td>
+						<td>${recNoteVo.send_usercode}</td>
+						<td>${recNoteVo.note_title}</td>
+						<td>${recNoteVo.note_regdate}</td>
+						<td class="readMark"></td>
+					</a>
+				</tr>
+				</c:forEach>
 			</table>
 			
 			<div>
 				<button>삭제</button>
-				<button><a href="/myNoteWrite/myNoteWriteForm?board_idx=1&send_usercode=4&receiver_usercode=1">쪽지보내기</a></button>
+				<button><a href="/myPage/myNoteWriteForm?board_idx=5">쪽지보내기</a></button>
 			</div>
      	</section>
 		
-	    <%@include file="/WEB-INF/include/paging.jsp" %>
-     </div>
+	    <%@include file="/WEB-INF/include/myPagePaging.jsp" %>
+	    
+    </div><!-- main -->
      
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </div>
