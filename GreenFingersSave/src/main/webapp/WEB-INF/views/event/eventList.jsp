@@ -97,6 +97,9 @@
      	이벤트<br />
      	당첨자<br />
      </div>
+      <div class="right">
+		<a href="/Event/WriteForm?submenu_id=${ eventVo.submenu_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
+	 </div>
      <div id="main">
 		<table id="cont">
 			<tr>
@@ -113,6 +116,7 @@
      				</div>
 				</td>
 			</tr>
+			
 			<tr>
 				<th colspan="2"><a href="/eventList">이벤트</a></th>
 				<th colspan="2"><a href="/winnerList">당첨자 발표</a></th>
@@ -121,7 +125,7 @@
 		<c:forEach var="eventVo" items="${ eventList }">
 	  <tr>
 
-	  <td  colspan="2" ><img onclick="javascript:location.href='http://localhost:9090/Event/EventView?submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}'"  src="/img/event/test.png"   ></td>
+	  <td  colspan="2" ><img onclick="javascript:location.href='http://localhost:9090/Event/EventView?submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}'"  src="<d:uplode: value='narp/${fileName}'"   ></td>
 
 	     <td colspan="2" >
 	       <!-- 제목(새글/답글) -->

@@ -11,7 +11,7 @@
 
 <style type="text/css">
 
-	* {
+* {
 		box-sizing: border-box;
 	}
 
@@ -74,6 +74,34 @@
 	#writeComment {
 		border-bottom: 1px solid #228B22;
 	}
+	#sidemenu {
+		padding: 30px;
+	}
+	#sidemenu li {
+		padding: 10px;
+	}
+	#sidemenu li a {
+		position: relative;
+		display: block;
+		font-size: 20px;
+	}
+	#sidemenu li a:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: 24px;
+		width: 0px;
+		height: 3px;
+		margin: 5px 0 0;
+		transition: all 0.2s ease-in-out;
+		transition-duration: 0.3s;
+		opacity: 0;
+		background-color: #2E8B57;
+	}
+	#sidemenu li a:hover:after {
+		width: 100%;
+		opacity: 1;
+	}
 	.nameSpace {
 		padding: 30px;
 	}
@@ -111,9 +139,8 @@
 </style>
 	
 
-</style>
-
 <script src="https://code.jquery.com/jquery.min.js"></script>
+
 
 
 <script>
@@ -246,6 +273,7 @@
 			}
 			const commentListEl = document.getElementById("commentList");
 			commentListEl.innerHTML = html;
+			console.log(commentListEl);
 			
 		}
 	window.onload = function() {
@@ -300,6 +328,8 @@
 
 </script>
 
+
+
 </head>
 <body>
 	<!-- header -->
@@ -329,11 +359,11 @@
 			</tr>
 			<tr>
 				<th class="padd8">작성자</th>
-				<td>${vo.nickname }</td>
+				<td class="padd8">${vo.nickname }</td>
 				<th class="padd8">작성일</th>
-				<td>${vo.board_regdate }</td>
+				<td class="padd8">${vo.board_regdate }</td>
 				<th class="padd8">조회수</th>
-				<td>${vo.readcount }</td>
+				<td class="padd8">${vo.readcount }</td>
 			</tr>
 				<tr><td colspan="6"><hr /></td></tr>
 			<tr>
@@ -353,13 +383,15 @@
 			</tr>
 		</table>
 		<div class="right">
+		<!-- 이벤트는 답글은 필요없지않나
 			<a href="/Event/WriteForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">답글쓰기</a>
+			 -->
 			<c:if test="${vo.usercode eq login.usercode}">
 				<a href="/Event/UpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
 				<a href="/Event/Delete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&nowpage=${map.nowpage}">삭제</a> <br />
 			</c:if>
 		</div>
-	
+		<div id="commentNoti">댓글</div>
 		<br />
 		
 		<div id="writeComment">
@@ -384,6 +416,7 @@
 		<div id="readComment">
 			<form id="readC">
 			<input type="hidden"  name="board_idx" value="${ vo.board_idx }" />
+			<ul id="commentList"></ul>
 			</form>
 		</div>
      </div>

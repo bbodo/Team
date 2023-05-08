@@ -128,7 +128,7 @@ public class EventController {
 		map.put("idx", idx);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("event/write");
+		mv.setViewName("event/eventWrite");
 		mv.addObject("menuList", menuList);
 		mv.addObject("submenuList", submenuList);
 		mv.addObject("vo",      eventVo);
