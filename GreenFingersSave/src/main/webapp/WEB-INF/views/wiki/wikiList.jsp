@@ -11,11 +11,23 @@
 <title>그린 위키</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="/js/home.js"></script>
+
 <script>
 	function data_display(data) {
-		let html = '하gkdk하';
-		
+		console.log(data);
+		let body = data.response.body;
+		let totalCount = body.totalCount
+		let arr        = body.items.item;
+		let html = '';
+		arr.forEach(function(item, index) {
+			html += '</div>';
+			html += '<ul>ㅎㅎㅎㅎㅎ';
+			html += '<li>과국명 : ' + item.familyKorNm + '</li>';
+			html += '<li>과명 : ' + item.familyNm + '</li>';
+			html += '</ul>';
+			html += '</div>';
+			
+		})
 		return html;
 	}
 
@@ -34,7 +46,8 @@
 					success : function(data) {
 						console.log(data);
 						let html = data_display(data);
-						$('#div1').innerHTML = html;
+						alert(data);
+						$('#div1').html(html);
 					},
 					error : function(xhr) {
 						console.log(xhr);
@@ -58,8 +71,8 @@
 		</c:otherwise>
 	</c:choose>
 	
+	<div class="search" style="height: 500px; padding: 20px 20px;" >
 	<h2>그린 위키</h2>
-	<div class="search" style="height: 200px;" >
 	  <input type="text" id="search" />
 	  <button id="btnOk" >검색</button>
 	  <div id="div1"></div> 

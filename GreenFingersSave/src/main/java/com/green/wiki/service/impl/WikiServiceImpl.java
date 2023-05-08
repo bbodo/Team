@@ -7,6 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import org.json.JSONObject;
+import org.json.XML;
 import org.springframework.stereotype.Service;
 
 import com.green.wiki.service.WikiService;
@@ -47,8 +49,12 @@ public class WikiServiceImpl implements WikiService {
         conn.disconnect();
         
         System.out.println("제발 : " +  sb.toString());
+        JSONObject jsonObject = XML.toJSONObject(sb.toString());
+        String jsonStr = jsonObject.toString();
+        System.out.println("제발2222 : " +  jsonStr);
         
-        return sb.toString();
+        
+        return jsonStr;
 	}
 
 }

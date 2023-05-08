@@ -57,10 +57,10 @@ public class WikiController {
 		PrintWriter out = null;
 		
 		try {
-			response.setContentType("application/xml; charset=utf-8");
-			String xml = wikiService.search(keyword, 10, 1);
+			response.setContentType("application/json; charset=utf-8");
+			String json = wikiService.search(keyword, 10, 1);
 			out = response.getWriter();
-			out.print(xml);
+			out.print(json);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
