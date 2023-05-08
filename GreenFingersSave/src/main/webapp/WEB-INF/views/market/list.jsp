@@ -11,8 +11,7 @@
 <%@include file="/WEB-INF/include/comHead.jsp" %>
 <title>${ map.submenu_name } 게시판</title>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-<script src="/js/home.js"></script>
+<!-- <script src="/js/home.js"></script> -->
 
 <style type="text/css">
 
@@ -32,21 +31,44 @@
 	#aside {
 		float: left;
 		height: 1000px;
-		background-color: navy;
+		background-color: white;
 		width: 20%;
 		padding: 10px;
 	}
-	#aside a {
-	        text-decoration : none;
-	        color: #fff;
-	        margin: 10px 30px;
+	#sidemenu {
+		padding: 30px;
+	}
+	#sidemenu li {
+		padding: 10px;
+	}
+	#sidemenu li a {
+		position: relative;
+		display: block;
+		font-size: 20px;
+	}
+	#sidemenu li a:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: 24px;
+		width: 0px;
+		height: 3px;
+		margin: 5px 0 0;
+		transition: all 0.2s ease-in-out;
+		transition-duration: 0.3s;
+		opacity: 0;
+		background-color: #2E8B57;
+	}
+	#sidemenu li a:hover:after {
+		width: 100%;
+		opacity: 1;
 	}
 	#main {
 		width: 80%;
 		height: 1000px;
 		float: left;
 		padding: 10px;
-		background-color: gray;
+		background-color: white;
 		text-align: center;
 	}
 	
@@ -54,59 +76,46 @@
 		margin-top: 30px;
 		margin-bottom: 30px;
 	}
-	table {
-		border-collapse: collapse;
-	}
-	#cont th {
-		background-color: #666;
-		border: 1px solid black;
-		padding: 10px 10px;
-	}
-	#cont td {
-		padding-left: 10px;
-		border: 1px solid black;
-	}
-	#givelist { 
-	            display: flex;
-	            gap : 0.3px;
-	            text-decoration : none;
-	            margin-top: 50px;
-	            margin-left: 250px;
-    }
-    .plant  { 
-             margin: 0 0 15px 0;
-    }
-	#list {
-		background-color: #fff;
-	}
-	#list th {
-		background-color: #666;
-	}
-	.right {
-		text-align: right;
-	} 
-	
-	#main { display: block; }
-	
-	#main a {
-		margin-right: 300px;
-	}
-	
-	img { width : 250px; 
-	      height: 250px;
+	#tt {
+		text-align: left;
 	}
 	#cont {
 		background-color: #fff;
+		padding: 10px;
 		margin: 0 auto;
-		margin-top: 30px;
-		margin-bottom: 30px;
-		width: 60%;
+		width: 90%;
+		border-collapse: collapse;
+	}
+	#cont th {
+		background-color: white;
+		border-top: 3px solid #C0C0C0;
+		border-bottom: 1px solid #C0C0C0;
+		padding: 20px;
+	}
+	#cont tr td {
+		padding: 15px;
+		border-bottom: 1px solid #C0C0C0;
+	}
+	#cont tr:hover {
+		background-color: #D3D3D3;
+	}	
+	.right {
+		text-align: right;
+	} 
+	#main { 
+		display: block; 
+		}
+	
+	#main a {
+		margin-right: 100px;
 	}
 	h2 {
-		margin-bottom: 20px;
+		padding: 30px;
 	}
+	
 </style>
-
+</head>
+<body>
 	<!-- header	 -->
 	<c:choose>
 		<c:when test="${ sessionScope.login eq null }">
@@ -116,35 +125,34 @@
 			<%@include file="/WEB-INF/include/header2.jsp" %>
 		</c:otherwise>
 	</c:choose>
-</head>
-<body>	
+	
      <div id="title">
-     	<p>그린마켓</p>
+     	<p style="font-size: 40px; font-weight: bold;">그린마켓</p>
      </div>
      <div id="aside">
-     	<a href="/Market/List?submenu_id=SUBMENU15&nowpage=1">입양원해요</a><br />
-     	<a href="/Market/List?submenu_id=SUBMENU16&nowpage=1">나눔합니다</a><br />
-     	<a href="/Market/List?submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a><br />
+      <ul id="sidemenu">
+     	<li><a href="/Market/List?submenu_id=SUBMENU15&nowpage=1">입양원해요</a></li><br />
+     	<li><a href="/Market/List?submenu_id=SUBMENU16&nowpage=1">나눔합니다</a></li><br />
+     	<li><a href="/Market/List?submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a></li><br />
+      </ul>
      </div>
      <div id="main">
-     
+     <h2 style="font-size: 24px;">${ map.submenu_name }</h2>
      <!-- 하위 메뉴 바뀔 때마다 내용 달라지게  -->
      <c:choose>
        <c:when test="${ map.submenu_id == 'SUBMENU15' }">
-     <p>그린핑거 회원이라면 누구나 입양 신청글 작성이 가능합니다<br>
+     <p style="font-size:15px;">그린핑거 회원이라면 누구나 입양 신청글 작성이 가능합니다<br>
      입양 완료 후 답례를 원한다면 포인트나 후기글로 고마움을 표현하세요</p>
        </c:when>
        <c:when test="${ map.submenu_id == 'SUBMENU16' }">
-     <p>그린핑거 회원이라면 누구나 나눔할 수 있습니다<br>
+     <p style="font-size:15px;">그린핑거 회원이라면 누구나 나눔할 수 있습니다<br>
      나눔 후 답례를 원한다면 포인트나 후기글로 고마움을 표현하세요</p>
        </c:when>
        <c:otherwise>
-       <p>지금까지 모은 포인트로 물건을 구입하세요</p>
+       <p style="font-size:15px;">지금까지 모은 포인트로 물건을 구입하세요</p>
        </c:otherwise>
      </c:choose>
      
-		<h2>${ map.submenu_name }</h2>
-		
 		<!-- 포인트 스토어에서만 비활성화  -->
 		<c:choose>	
 			<c:when test="${ map.submenu_id != 'SUBMENU17' }">
@@ -158,13 +166,13 @@
 		
     <table id="cont">
 		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>작성일</th>
+			<th class="padd8">번호</th>
+			<th class="padd8">제목</th>
+			<th class="padd8">작성일</th>
 		<!-- 포인트 스토어일 때만 가격 뜨게 -->
 		<c:choose>	
 		<c:when test="${ map.submenu_id == 'SUBMENU17' }">
-			<th>가격</th>
+			<th class="padd8">가격</th>
 		</c:when>
 			<c:otherwise>
 			</c:otherwise>
@@ -173,13 +181,13 @@
 		 <!-- 포인트 스토어일 때 작성자 비활성화 -->
 	     <c:choose>	
 		<c:when test="${ map.submenu_id != 'SUBMENU17' }">		
-			<th>작성자</th>
+			<th class="padd8">작성자</th>
 		 </c:when>
 			<c:otherwise>
 			</c:otherwise>
 		</c:choose>	
 			
-			<th>조회수</th>
+			<th class="padd8">조회수</th>
 			
 		</tr>
 		
@@ -191,7 +199,7 @@
 	          ${ marketVo.board_idx }
 	      </c:if> 
 	     </td>
-	     <td>
+	     <td id="tt">
 	       <!-- 제목(새글/답글) -->
 	       <c:choose>
 	         <c:when test="${ marketVo.lvl eq 0 }">
@@ -259,14 +267,11 @@
 	  </tr>  
 	  </c:forEach>
 		</table> 
-	
+	<br>
 	 <%@include file="/WEB-INF/include/paging.jsp" %>
      </div>
      
   <!--    footer -->
      <%@include file="/WEB-INF/include/footer.jsp" %>
-     
-   <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>  
 </body>
 </html>

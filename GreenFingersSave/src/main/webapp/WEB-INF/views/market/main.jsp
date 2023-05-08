@@ -7,10 +7,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<title>게시판 양식</title>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
- <script src="/js/home.js"></script>
+<%@include file="/WEB-INF/include/comHead.jsp" %>
+<title>그린마켓 메인</title>
 
 <style type="text/css">
 
@@ -30,21 +28,44 @@
 	#aside {
 		float: left;
 		height: 1500px;
-		background-color: navy;
+		background-color: white;
 		width: 20%;
 		padding: 10px;
 	}
-	#aside a {
-        text-decoration : none;
-        color: #fff;
-        margin: 10px 30px;
+	#sidemenu {
+		padding: 30px;
+	}
+	#sidemenu li {
+		padding: 10px;
+	}
+	#sidemenu li a {
+		position: relative;
+		display: block;
+		font-size: 20px;
+	}
+	#sidemenu li a:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: 24px;
+		width: 0px;
+		height: 3px;
+		margin: 5px 0 0;
+		transition: all 0.2s ease-in-out;
+		transition-duration: 0.3s;
+		opacity: 0;
+		background-color: #2E8B57;
+	}
+	#sidemenu li a:hover:after {
+		width: 100%;
+		opacity: 1;
 	}
 	#main {
 		width: 80%;
 		height: 1500px;
 		float: left;
 		padding: 10px;
-		background-color: gray;
+		background-color: white;
 		text-align: center;
 	}
 	
@@ -56,7 +77,9 @@
         gap : 30px;
         text-decoration : none;
         margin-top: 50px;
-        margin-left: 340px;
+        margin-left: 200px;
+        margin-bottm: 50px;
+        
     }
     .plant  { 
         margin: 0 0 15px 0;
@@ -71,8 +94,8 @@
         display: flex;
         gap : 30px;
         text-decoration : none;
-        margin-top: 50px;
-        margin-left: 340px;
+        margin-top: 20px; 
+        margin-left: 200px;     
     } 
 	.tag {
 		font-weight: bold;
@@ -85,34 +108,56 @@
 	}
 	
 	h2 {
+		font-size: 24px;
 		margin-bottom: 10px;
 	}
 	#cont {
 		background-color: #fff;
+		padding: 10px;
 		margin: 0 auto;
-		margin-top: 50px;
-		margin-bottom: 30px;
-		width: 55%;
+		margin-bottom: 50px;
+		width: 90%;
+		border-collapse: collapse;
 	}
 	#cont th {
-		background-color: #666;
+		background-color: white;
+		border-top: 3px solid #C0C0C0;
+		border-bottom: 1px solid #C0C0C0;
+		padding: 20px;
 	}
+	#cont tr td {
+		padding: 15px;
+		border-bottom: 1px solid #C0C0C0;
+	}
+	#cont tr:hover {
+		background-color: #D3D3D3;
+	}	
 	
 
 </style>
 
 </head>
 <body>
-	 <%@include file="/WEB-INF/include/header.jsp" %>
+	 <!-- header	 -->
+	<c:choose>
+		<c:when test="${ sessionScope.login eq null }">
+			<%@include file="/WEB-INF/include/header.jsp" %>
+		</c:when>
+		<c:otherwise>
+			<%@include file="/WEB-INF/include/header2.jsp" %>
+		</c:otherwise>
+	</c:choose>
 	  
      <div id="title">
      	<p>그린마켓</p>
      </div>
      <div id="aside">
-     	<a href="/Market/List?submenu_id=SUBMENU15&nowpage=1">입양원해요</a><br />
-     	<a href="/Market/List?submenu_id=SUBMENU16&nowpage=1">나눔합니다</a><br />
-     	<a href="/Market/List?submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a><br />
+      <ul id="sidemenu">
+     	<li><a href="/Market/List?submenu_id=SUBMENU15&nowpage=1">입양원해요</a></li><br />
+     	<li><a href="/Market/List?submenu_id=SUBMENU16&nowpage=1">나눔합니다</a></li><br />
+     	<li><a href="/Market/List?submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a></li><br />
      </div>
+     </ul>
      <div id="main">
      
      <p>그린핑거는 회원 간의 상품 거래 정보 및 거래에<br>
@@ -149,7 +194,7 @@
 	</div>
 	
     <table id="cont">
-		<caption><h2>입양원해요</h2></caption>
+		<h2 style="font-size: 24px;">${ map.submenu_name }</h2>
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
