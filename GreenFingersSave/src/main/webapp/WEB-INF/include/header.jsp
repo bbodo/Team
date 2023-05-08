@@ -80,7 +80,7 @@
 					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU05'}">
-					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Wiki/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				</c:choose>	
 				</c:if>	
@@ -104,7 +104,7 @@
 					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU05'}">
-					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Wiki/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				</c:choose>	
 				</c:if>	
@@ -128,7 +128,7 @@
 					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU05'}">
-					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Wiki/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				</c:choose>	
 				</c:if>	
@@ -152,7 +152,7 @@
 					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU05'}">
-					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Wiki/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				</c:choose>	
 				</c:if>	
@@ -176,7 +176,7 @@
 					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU05'}">
-					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Wiki/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				</c:choose>	
 				</c:if>	
