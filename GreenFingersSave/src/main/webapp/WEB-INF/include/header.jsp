@@ -77,7 +77,7 @@
 					<li><a href="/Market/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU04'}">
-					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Event/EventList?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU05'}">
 					<li><a href="/Wiki/List?submenu_id=${submenu.submenu_id}&nowpage=1">
@@ -101,7 +101,7 @@
 					<li><a href="/Market/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU04'}">
-					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Event/EventList?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU05'}">
 					<li><a href="/Wiki/List?submenu_id=${submenu.submenu_id}&nowpage=1">
@@ -125,7 +125,7 @@
 					<li><a href="/Market/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU04'}">
-					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Event/EventList?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU05'}">
 					<li><a href="/Wiki/List?submenu_id=${submenu.submenu_id}&nowpage=1">
@@ -137,7 +137,7 @@
 			</li>
 			</c:when>
 			<c:when test="${menu.menu_id eq 'MENU04'}">
-			<li><a href="/eventList?submenu_id=${submenuList[17].submenu_id}&nowpage=1">${ menu.menu_name }</a>
+			<li><a href="/Event/EventList?submenu_id=${submenuList[17].submenu_id}&nowpage=1">${ menu.menu_name }</a>
 				<ul>
 				<c:forEach var="submenu" items="${ submenuList }">
 				<c:if test="${submenu.menu_id eq menu.menu_id }">
@@ -149,7 +149,7 @@
 					<li><a href="/Market/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU04'}">
-					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Event/EventList?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU05'}">
 					<li><a href="/Wiki/List?submenu_id=${submenu.submenu_id}&nowpage=1">
@@ -173,7 +173,7 @@
 					<li><a href="/Market/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU04'}">
-					<li><a href="/eventList?submenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Event/EventList?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU05'}">
 					<li><a href="/Wiki/List?submenu_id=${submenu.submenu_id}&nowpage=1">

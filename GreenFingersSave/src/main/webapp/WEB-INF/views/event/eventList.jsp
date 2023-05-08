@@ -99,8 +99,16 @@
 
 </head>
 <body>
-	 <%@include file="/WEB-INF/include/header.jsp" %>
-	 
+	 <!-- header	 -->
+	<c:choose>
+		<c:when test="${ sessionScope.login eq null }">
+			<%@include file="/WEB-INF/include/header.jsp" %>
+		</c:when>
+		<c:otherwise>
+			<%@include file="/WEB-INF/include/header2.jsp" %>
+		</c:otherwise>
+	</c:choose>
+
  <div id="title">
      	<p>이벤트</p>
      </div>
