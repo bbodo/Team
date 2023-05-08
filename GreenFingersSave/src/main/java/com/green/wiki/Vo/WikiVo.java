@@ -1,6 +1,6 @@
-package com.green.rest.Vo;
+package com.green.wiki.Vo;
 
-public class greenVo {
+public class WikiVo {
 	
 private String	ntntsNo;
 private String	cntntsSj;
