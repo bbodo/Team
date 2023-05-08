@@ -127,6 +127,7 @@
      </div>
      <div id="main">
      
+     <!-- 하위 메뉴 바뀔 때마다 내용 달라지게  -->
      <c:choose>
        <c:when test="${ map.submenu_id == 'SUBMENU15' }">
      <p>그린핑거 회원이라면 누구나 입양 신청글 작성이 가능합니다<br>
@@ -142,16 +143,43 @@
      </c:choose>
      
 		<h2>${ map.submenu_name }</h2>
-		<div class="right">
-		<a href="/Market/WriteForm?submenu_id=${ map.submenu_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
-	 </div>
+		
+		<!-- 포인트 스토어에서만 비활성화  -->
+		<c:choose>	
+			<c:when test="${ map.submenu_id != 'SUBMENU17' }">
+			<div class="right">
+			<a href="/Market/WriteForm?submenu_id=${ map.submenu_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
+	 		</div>
+	 	</c:when>
+		<c:otherwise>
+		</c:otherwise>
+		</c:choose>	
+		
     <table id="cont">
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
 			<th>작성일</th>
+		<!-- 포인트 스토어일 때만 가격 뜨게 -->
+		<c:choose>	
+		<c:when test="${ map.submenu_id == 'SUBMENU17' }">
+			<th>가격</th>
+		</c:when>
+			<c:otherwise>
+			</c:otherwise>
+		</c:choose>
+		
+		 <!-- 포인트 스토어일 때 작성자 비활성화 -->
+	     <c:choose>	
+		<c:when test="${ map.submenu_id != 'SUBMENU17' }">		
 			<th>작성자</th>
+		 </c:when>
+			<c:otherwise>
+			</c:otherwise>
+		</c:choose>	
+			
 			<th>조회수</th>
+			
 		</tr>
 		
 		<c:forEach var="marketVo" items="${ marketList }">
@@ -196,15 +224,33 @@
 	         </c:otherwise>
 	       </c:choose>
 	     </td>
-	     <td>
+	      <td>
 	     <!-- 작성일 -->
-	     <!-- 날짜 -->
 	     ${fn:substring( marketVo.board_regdate, 0, 10) }
 	     </td>
+	     <!-- 포인트 스토어일 때만 가격 활성화 -->
+	     <c:choose>	
+		<c:when test="${ map.submenu_id == 'SUBMENU17' }">
+	     <td>
+	     ${ marketVo.market_value }
+	     </td>
+	     </c:when>
+			<c:otherwise>
+			</c:otherwise>
+		</c:choose>		
+	     
+	     <!-- 포인트 스토어일 때 작성자 비활성화 -->
+	     <c:choose>	
+		<c:when test="${ map.submenu_id != 'SUBMENU17' }">
 		 <td>    
 	     <!-- 작성자 -->
 	     ${ marketVo.nickname }
 	     </td>
+	     </c:when>
+			<c:otherwise>
+			</c:otherwise>
+		</c:choose>		
+		
 	     <td>
 	     <!-- 조회수 -->
 	     ${ marketVo.readcount }

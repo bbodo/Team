@@ -1,11 +1,12 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<%@include file="/WEB-INF/include/comHead.jsp" %>
+
 <title>${ map.submenu_name } 게시글 상세보기</title>
 
 <style type="text/css">
@@ -192,13 +193,45 @@
 				<td colspan="5">${ vo.board_title }</td>
 			</tr>
 			<tr>
+				<!-- 포인트 스토어일 때 작성자 비활성화 -->
+	     	<c:choose>	
+			<c:when test="${ map.submenu_id != 'SUBMENU17' }">
 				<th>작성자</th>
 				<td>${ vo.nickname }</td>
+			 </c:when>
+			<c:otherwise>
+			</c:otherwise>
+			</c:choose>		
 				<th>작성일</th>
 				<td>${ vo.board_regdate }</td>
 				<th>조회수</th>
 				<td>${ vo.readcount }</td>
 			</tr>
+		
+		<!-- 포인트 스토에서만 활성화  -->	
+		<c:choose>	
+			<c:when test="${ map.submenu_id == 'SUBMENU17' }">
+			<tr>
+			   <th>가격</th>
+			   <td colspan="5">${ vo.market_value }</td>
+			</tr>
+			<tr>
+			   <th>수량</th>
+			   <td colspan="5">
+			     <select name="amount">
+					<option value="">최대 3개 제한</option>
+					<option value="1개">1</option>
+					<option value="2개">2</option>
+					<option value="3개">3</option>
+			     </select>
+			     <button>구매</button>
+			   </td>
+			</tr>
+			</c:when>
+			<c:otherwise>
+			</c:otherwise>
+		</c:choose>	
+		
 			<tr>
 				<th>내용</th>
 				<td colspan="5" id="bc">${ vo.board_cont }</td>
@@ -221,8 +254,17 @@
 		<div class="right">
 		<a href="">쪽지</a>
 		<a href="/Market/WriteForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">답글쓰기</a>
-		<a href="/Market/UpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
-		<a href="/Market/Delete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&nowpage=${map.nowpage}">삭제</a> 
+		
+		<!-- 관리자일 때만 활성화되게 나중에 추가 -->
+		<%-- <c:choose>	
+			<c:when test="${ login.userid == 'admin' }"> --%>
+			<a href="/Market/UpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">수정</a>
+			<a href="/Market/Delete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">삭제</a> 
+	<%-- 	</c:when>
+			<c:otherwise>
+			</c:otherwise>
+		</c:choose>	 --%>
+
 		</div>
 	
 		<br />
