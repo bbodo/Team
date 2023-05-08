@@ -15,7 +15,7 @@ import com.green.comment.vo.CommentVo;
 public class CommentDaoImpl implements CommentDao {
 
 	@Autowired
-	SqlSession sqlSession;
+	private SqlSession sqlSession;
 	
 	@Override
 	public void setWrite(HashMap<String, Object> map) {
@@ -35,9 +35,10 @@ public class CommentDaoImpl implements CommentDao {
 	@Override
 	public int setDelete(HashMap<String, Object> map) {
 		
+		System.out.println(map);
 		sqlSession.delete("Comment.CommentDelNum", map);
 		int  childCnt = sqlSession.selectOne("Comment.ChildCnt", map); // 자식있는지 확인
-		CommentVo vo = sqlSession.selectOne("Commente.GetComment", map);
+		CommentVo vo = sqlSession.selectOne("Comment.GetComment", map);
 
 		int cnf = 0;
 		if ( childCnt == 0) { // 자식이 없는 경우 삭제
@@ -45,6 +46,7 @@ public class CommentDaoImpl implements CommentDao {
 		}
 		
 		CommentVo vo1 = sqlSession.selectOne("Commente.GetComment", vo.getCom_parent());
+		System.out.println(vo1);
 		childCnt = sqlSession.selectOne("Comment.ChildCnt", vo1);
 		if(  childCnt == 0  ) { // 자식이 없는경우 삭제
 			cnf = sqlSession.delete("Comment.DeleteComment", map);

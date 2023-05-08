@@ -51,7 +51,6 @@ public class CommentController {
 	public String commentDelete(
 			@RequestParam HashMap<String, Object> map
 			) {
-		System.out.println(map);
 		int cnf = commentService.setDelete(map);
 		System.out.println(cnf);
 		if(cnf == 1)

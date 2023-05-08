@@ -73,11 +73,11 @@
    <delete  id="CommentDelNum">
        
 		UPDATE
-			COMNET
+			COMENT
 		SET
 			DELCOMENT = 1
 		WHERE
-			COMENT_IDX    = #{ coment_idx }
+			COMENT_IDX = #{ coment_idx }
        
    </delete>
    
