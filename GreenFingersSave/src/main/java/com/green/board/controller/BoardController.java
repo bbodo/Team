@@ -168,10 +168,6 @@ public class BoardController {
 			String cont = content.replace("\n", "<br>");
 			boardVo.setBoard_cont(cont);
 		}
-		/*
-		String         cont      = boardVo.getBoard_cont().replace("\n", "<br>");
-		boardVo.setBoard_cont(cont);
-		*/
 		
 		List<FileVo> fileList = boardService.getFileList(map);
 		

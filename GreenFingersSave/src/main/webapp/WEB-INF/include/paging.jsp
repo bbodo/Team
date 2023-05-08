@@ -10,8 +10,8 @@
 
 <!-- 메뉴목록 -->
 
-<div>
-    <table width="500" height="25"  align="center"  >
+<div style="text-align: center;">
+    <table style="margin: 0 auto;">
      <tr>
        <td width="500" height="25"  align="center" >
      

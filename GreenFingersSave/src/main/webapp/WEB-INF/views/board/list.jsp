@@ -47,13 +47,21 @@
 		background-color: #fff;
 		margin: 0 auto;
 		width: 90%;
+		border-collapse: collapse;
 	}
 	#cont th {
 		background-color: #666;
 	}
+	#cont tr {
+		border-bottom: 
+	}
+	#cont tr:hover {
+		background-color: #D3D3D3;
+	}
 	.right {
 		text-align: right;
 	}
+	
 
 </style>
 
@@ -86,11 +94,11 @@
 	 </div>
 		<table id="cont">
 			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성일</th>
-				<th>작성자</th>
-				<th>조회수</th>
+				<th class="padd8">번호</th>
+				<th class="padd8">제목</th>
+				<th class="padd8">작성일</th>
+				<th class="padd8">작성자</th>
+				<th class="padd8">조회수</th>
 			</tr>
 <c:forEach var="boardVo" items="${ boardList }">
   <tr>
@@ -161,7 +169,7 @@
   </tr>  
   </c:forEach>
 		</table>
-	    <%@include file="/WEB-INF/include/paging.jsp" %>
+	    	<%@include file="/WEB-INF/include/paging.jsp" %>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

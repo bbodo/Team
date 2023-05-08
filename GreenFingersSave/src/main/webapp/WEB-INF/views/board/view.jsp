@@ -42,9 +42,32 @@
 		background-color: #fff;
 		margin: 0 auto;
 		width: 100%;
+		border-collapse: collapse;
 	}
 	#cont th {
 		background-color: #666;
+	}
+	#reply_coment_cont {
+		widows: 875px;
+		height: 60px;
+		resize: none;
+	}
+	.nameSpace {
+		padding: 30px;
+	}
+	.coment_cont {
+		margin: 0 20px;
+		width: 95%;
+		padding: 3px;
+		height: 70px;
+		resize: none;
+	}
+	.contSpace {
+		width: 70%;
+		padding: 10px;
+	}
+	.comment_empty {
+		padding-left: 80px;
 	}
 	.right {
 		text-align: right;
@@ -61,6 +84,7 @@
 	.floatleft {
 		float:left;
 	}
+	
 
 </style>
 
@@ -133,7 +157,6 @@
 							} else {
 								location.reload();
 							}
-							
 						})
 						.catch( err => {
 							console.log(err);
@@ -151,10 +174,10 @@
 				$("#comment_empty_" + coment_idx).remove()
 			} else {
 				const commentEl = $("#comment_li_" + coment_idx);
-				let html  = '<li id=comment_empty_' + coment_idx + '>'
+				let html  = '<li class="comment_empty" id=comment_empty_' + coment_idx + '>'
 					html += '<div id="replyComment">'
-				    html += '<textarea id="reply_coment_cont" name="comment_cont"></textarea>'
-					html += `<input type="button" value="대댓작성" id="replyBtn" onclick="reply_comment( \${coment_idx}, \${board_idx}, \${com_bnum}, \${com_lvl}, \${com_step}, \${com_nref}, \${com_parent})">`
+				    html += `<b style="display:inline-block; width:\${com_lvl * 40}px"></b><textarea id="reply_coment_cont" name="comment_cont"></textarea><br />`;
+					html += `<b style="display:inline-block; width:\${com_lvl * 40}px"></b><input type="button" value="대댓작성" id="replyBtn" onclick="reply_comment( \${coment_idx}, \${board_idx}, \${com_bnum}, \${com_lvl}, \${com_step}, \${com_nref}, \${com_parent})">`
 					html += '</div></li>';
 				
 					commentEl.append(html);
@@ -167,22 +190,26 @@
 				html += '<li id="comment_li_' + comm.coment_idx +'">';
 				if(comm.com_lvl == 0) {
 					if(comm.delcoment == 0) {
-						html += '<div class="floatleft"><p><h2>'+ comm.nickname +'</h2></p></div>';
-						html += '<div class="floatright"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
-						html += `<div class="floatleft" id="commentCont_\${comm.coment_idx}" onclick="c(\${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})">\${comm.coment_cont}</div><br />`;
-						html += '<div class="floatright" id="btns"><input type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
-						html += '<input type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br />';
+						html += '<div class="floatleft nameSpace"><p><h2>'+ comm.nickname +'</h2></p></div>';
+						html += '<div class="floatright dateSpace"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
+						html += `<div class="floatleft contSpace" id="commentCont_\${comm.coment_idx}" onclick="c(\${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})">\${comm.coment_cont}</div><br />`;
+						if(comm.usercode == ${login.usercode}) {
+							html += '<div class="floatright btns"><input type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
+							html += '<input type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br />';
+						}						
 					} else {
 						html += '<b>삭제된 댓글입니다.</b>';
 					}					
 				} else {
 					if(comm.delcoment == 0) {
 						html += `<b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>`;
-						html += `<div class="floatleft"><p><h2><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.nickname}</h2></p></div>`;
-						html += '<div class="floatright"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
-						html += `<div class="floatleft" id="commentCont_\${ comm.coment_idx }" onclick="c( \${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})"><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.coment_cont}</div><br />`;
-						html += '<div class="floatright" id="btns"><input type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
-						html += '<input type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br /><br />';
+						html += `<div class="floatleft nameSpace"><p><h2><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.nickname}</h2></p></div>`;
+						html += '<div class="floatright dateSpace"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
+						html += `<div class="floatleft contSpace" id="commentCont_\${ comm.coment_idx }" onclick="c( \${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})"><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.coment_cont}</div><br />`;
+						if(comm.usercode == ${login.usercode}) {
+							html += '<div class="floatright btns"><input type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
+							html += '<input type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br />';
+						}	
 					} else {
 						html += `<div class="floatleft"><p><h2><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.nickname}</h2></p></div>`;
 						html += '<div class="floatright"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
@@ -249,7 +276,15 @@
 
 </head>
 <body>
-	 <%@include file="/WEB-INF/include/header.jsp" %>
+	<!-- header -->
+	 <c:choose>
+		<c:when test="${ sessionScope.login eq null }">
+			<%@include file="/WEB-INF/include/header.jsp" %>
+		</c:when>
+		<c:otherwise>
+			<%@include file="/WEB-INF/include/header2.jsp" %>
+		</c:otherwise>
+	</c:choose>
      <div id="title">
      	<p>식물 연합</p>
      </div>
@@ -265,24 +300,24 @@
 		<table id="cont">
 			<caption class="left">${ map.submenu_name }게시글 보기</caption>
 			<tr>
-				<th>제목</th>
-				<td>${vo.board_title }</td>
+				<th class="padd8">제목</th>
+				<td class="padd8">${vo.board_title }</td>
 			</tr>
 			<tr>
-				<th>작성자</th>
-				<td>${vo.nickname }</td>
-				<th>작성일</th>
-				<td>${vo.board_regdate }</td>
-				<th>조회수</th>
-				<td>${vo.readcount }</td>
+				<th class="padd8">작성자</th>
+				<td class="padd8">${vo.nickname }</td>
+				<th class="padd8">작성일</th>
+				<td class="padd8">${vo.board_regdate }</td>
+				<th class="padd8">조회수</th>
+				<td class="padd8">${vo.readcount }</td>
 			</tr>
 				<tr><td colspan="6"><hr /></td></tr>
 			<tr>
 				<th>내용</th>
-				<td>${vo.board_cont }</td>
+				<td style="height: 600px; padding: 8px;">${vo.board_cont }</td>
 			</tr>
 			<tr>
-				<th>파일 첨부</th>
+				<th class="padd8">파일 첨부</th>
 				<td> 
 				<c:forEach var="file"  items="${ fileList }" >
 				<div>
@@ -294,11 +329,12 @@
    	    	 </td>
 			</tr>
 		</table>
-		<!-- 나중에 if 문 -->
 		<div class="right">
-		<a href="/Board/WriteForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">답글쓰기</a>
-		<a href="/Board/UpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
-		<a href="/Board/Delete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&nowpage=${map.nowpage}">삭제</a> <br />
+			<a href="/Board/WriteForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">답글쓰기</a>
+			<c:if test="${vo.usercode eq login.usercode}">
+				<a href="/Board/UpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
+				<a href="/Board/Delete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&nowpage=${map.nowpage}">삭제</a> <br />
+			</c:if>
 		</div>
 	
 		<br />
@@ -309,12 +345,14 @@
 			<input type="hidden"  name="usercode" value="${ login.usercode }" />
 			<table>
 				<tr>
-					<th>${ login.nickname }</th>
-					<td>
+					<th><div class="nameSpace">${ login.nickname }</div></th>
+					<td style="width: 1000px;">
 						<textarea name="coment_cont" placeholder="내용을 작성하세요."
-					     required id="coment_cont"></textarea>
+					     required class="coment_cont" id="coment_cont"></textarea>
 					</td>
-					<td><input type="button" id="writeBtn" value="등록"/></td>
+					<td style="width: 100px;">
+						<input type="button" id="writeBtn" value="등록"/>
+					</td>
 				</tr>
 			</table>
 			</form>
@@ -323,7 +361,6 @@
 		<div id="readComment">
 			<form id="readC">
 			<input type="hidden"  name="board_idx" value="${ vo.board_idx }" />
-			<!-- <div id="commentZone"></div> -->
 			<ul id="commentList"></ul>
 			</form>
 		</div>
