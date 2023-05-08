@@ -24,33 +24,55 @@
 	#title p {
 		 line-height: 100px;
 	}
+	#section {
+		height: auto;
+	}
 	#aside {
 		float: left;
-		height: 800px;
-		background-color: navy;
+		height: auto;
+		background-color: white;
 		width: 20%;
 		padding: 10px;
 	}
 	#main {
 		width: 80%;
-		height: 800px;
+		height: auto;
 		float: left;
-		padding: 10px;
-		background-color: gray;
+		padding: 50px 200px 50px 50px;
 	}
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
 		width: 100%;
 		border-collapse: collapse;
+		margin-top: 10px;
+		border-top: 3px solid #228B22;
 	}
 	#cont th {
 		background-color: #666;
+		margin-top: 20px;
+	}
+	#cont tr:nth-of-type(2) {
+		border-bottom: 1px solid #228B22;
 	}
 	#reply_coment_cont {
 		widows: 875px;
 		height: 60px;
 		resize: none;
+	}
+	#board_title {
+		font-size: 32px;
+		font-weight: bold;
+	}
+	#commentNoti {
+		border-bottom: 3px solid #228B22;
+		padding: 20px;
+	}
+	#readComment {
+		margin-bottom: 50px;
+	}
+	#writeComment {
+		border-bottom: 1px solid #228B22;
 	}
 	.nameSpace {
 		padding: 30px;
@@ -84,6 +106,9 @@
 	.floatleft {
 		float:left;
 	}
+	
+
+</style>
 	
 
 </style>
@@ -286,17 +311,18 @@
 			<%@include file="/WEB-INF/include/header2.jsp" %>
 		</c:otherwise>
 	</c:choose>
+	<div id="section">
      <div id="title">
-     	<p>이벤트</p>
+     	<p  style="font-size: 40px; font-weight: bold;" >이벤트</p>
      </div>
      <div id="aside">
-     	이벤트<br />
-     	당첨자<br />
-
+		<c:forEach var="subname" items="">
+	    </c:forEach>
      </div>
+
      <div id="main">
+     <div><a id="board_title" href="/Event/EventList?submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 게시판</a></div>
 		<table id="cont">
-			<caption class="left">${ map.submenu_name }게시글 보기</caption>
 			<tr>
 				<th class="padd8">제목</th>
 				<td class="padd8">${vo.board_title }</td>
@@ -311,8 +337,7 @@
 			</tr>
 				<tr><td colspan="6"><hr /></td></tr>
 			<tr>
-				<th>내용</th>
-				<td style="height: 600px; padding: 8px;">${vo.board_cont }</td>
+				<td colspan="6" style="height: 600px; padding: 8px;">${vo.board_cont }</td>
 			</tr>
 			<tr>
 				<th>파일 첨부</th>
