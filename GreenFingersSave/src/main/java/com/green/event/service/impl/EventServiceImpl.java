@@ -1,14 +1,19 @@
 package com.green.event.service.impl;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.green.board.dao.BoardDao;
+import com.green.board.service.impl.BoardFile;
 import com.green.board.service.impl.BoardPaging;
 import com.green.board.vo.BoardVo;
+import com.green.board.vo.FileVo;
 import com.green.event.Vo.EventVo;
 import com.green.event.dao.EventDao;
 import com.green.event.service.EventService;
@@ -58,6 +63,59 @@ public class EventServiceImpl implements EventService {
 		EventVo vo = eventDao.getBoard(map);
 		
 		return vo;
+	}
+
+	@Override
+	public void setWrite(HashMap<String, Object> map, HttpServletRequest request) {
+		// request 처리
+		EventFile.save(map, request);
+		
+		// 넘어온 정보 저장
+		eventDao.setWrite(map);
+		
+	}
+	
+	@Override
+	public List<FileVo> getFileList(HashMap<String, Object> map) {
+
+		List<FileVo> fileList = eventDao.getFileList(map);
+		
+		return fileList;
+	}
+
+	@Override
+	public void deleteUploadFile(HashMap<String, Object> map) {
+
+		// d:\\upload\\ sfilename 에 해당되는 파일을 삭제
+		
+		String      filepath   =  "D:\\upload\\";   
+		String      sfilename  =  (String) map.get("sfile");
+		
+		File  file  = new File( filepath + sfilename  );
+		if( file.exists()  )
+		   file.delete();
+		
+		// Files table  file_num 번 자료를 삭제		
+		eventDao.deleteUploadFile( map );
+		
+	}
+
+	@Override
+	public void setUpdate(HashMap<String, Object> map, HttpServletRequest request) {
+
+		// 넘어온 파일 저장
+		EventFile.save(map, request);
+		
+		// db 정보 저장
+		eventDao.setUpdate(map);
+	}
+
+	@Override
+	public void setDelete(HashMap<String, Object> map) {
+
+		// db 제거
+		eventDao.setDelete(map);
+		
 	}
 
 

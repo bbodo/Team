@@ -140,7 +140,7 @@
 		<c:forEach var="eventVo" items="${ eventList }">
 	  <tr>
 
-	  <td class="product-img-div" colspan="2" ><img onclick="javascript:location.href='http://localhost:9090/eventView'"  src="/img/event/test.png" class="product-img"  ></td>
+	  <td class="product-img-div" colspan="2" ><img onclick="javascript:location.href='http://localhost:9090/Event/EventView?submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}'"  src="/img/event/test.png" class="product-img"  ></td>
 
 	     <td colspan="2">
 	       <!-- 제목(새글/답글) -->
@@ -148,7 +148,7 @@
 	         <c:when test="${ eventVo.lvl eq 0 }">
 	           <c:choose>
 	            <c:when test="${ eventVo.delboard eq 0 }">
-	              <a href="/Event/View?submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}">
+	              <a href="/Event/EventView?submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}">
 	       		   ${ eventVo.board_title }
 	       		  </a>
 	       		</c:when>
@@ -164,7 +164,7 @@
 	            
 	            <c:choose>
 	              <c:when test="${ eventVo.delnum eq 0 }">
-	                <a href="/Event/View?submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}">
+	                <a href="/Event/EventView?submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}">
 	              	  [답글] ${ eventVo.board_title }
 	         	    </a>
 	         	  </c:when>

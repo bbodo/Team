@@ -41,11 +41,83 @@ public class EventDaoImpl implements EventDao {
 	@Override
 	public EventVo getBoard(HashMap<String, Object> map) {
 
-		sqlSession.update("Event.UpdaateReadCount", map);
+		sqlSession.update("Event.UpdateReadCount", map);
 		
 		EventVo vo = sqlSession.selectOne("Event.GetBoard", map);
 		
 		return vo;
+	}
+
+
+	@Override
+	public void setWrite(HashMap<String, Object> map) {
+		// db 정보 저장
+		// Board  에 저장
+		int  bnum = Integer.parseInt( (String) map.get("bnum") );
+		if ( bnum == 0 ) {
+			sqlSession.insert("Event.EventInsert", map); // 새글
+		} else {
+			sqlSession.update("Event.StepUpdate", map); // 새글			
+			sqlSession.insert("Event.EventReply", map); // 새글			
+		}
+		
+		// Files  에 저장
+		List<FileVo>  fileList =  (List<FileVo>) map.get("fileList");
+		if( fileList.size() != 0  )
+			sqlSession.insert("Event.FileInsert", map);
+		
+		
+	}
+	
+	@Override
+	public List<FileVo> getFileList(HashMap<String, Object> map) {
+
+		List<FileVo>  fileList  =  sqlSession.selectList("Event.FileList", map);
+		
+		return fileList;
+	}
+
+	@Override
+	public void deleteUploadFile(HashMap<String, Object> map) {
+
+		sqlSession.delete("Event.DeleteUploadFile", map);
+		
+	}
+
+	@Override
+	public void setUpdate(HashMap<String, Object> map) {
+
+		// Board 정보 수정
+		sqlSession.update("Event.EventUpdate", map);
+		
+		// File 정보 수정
+		List<FileVo>  fileList  =  (List<FileVo>) map.get("fileList");
+		if( fileList.size() > 0 )
+			sqlSession.insert("Event.FileUpdate", map );
+	}
+
+	@Override
+	public void setDelete(HashMap<String, Object> map) {
+		
+		sqlSession.delete( "Event.BoardDelNum", map); // delboard를 1로 만듬
+		int  childCnt = sqlSession.selectOne("Event.ChildCnt", map); // 자식있는지 확인
+		BoardVo vo = sqlSession.selectOne("Event.GetBoard", map);
+		
+		List<FileVo> fileList = getFileList(map);
+		map.put("fileList", fileList);
+		if(  childCnt == 0  ) { // 자식이 없는경우 삭제
+			sqlSession.delete("Event.FileDelete", map);
+			sqlSession.delete("Event.EventDelete", map);
+		}
+		int board_idx = vo.getParent();
+		BoardVo vo1 = sqlSession.selectOne("Event.GetBoard", board_idx);
+		
+		childCnt = sqlSession.selectOne("Event.ChildCnt", vo1);
+		if(  childCnt == 0  ) { // 자식이 없는경우 삭제
+			sqlSession.delete("Event.FileDelete", vo1);
+			sqlSession.delete("Event.EventDelete", vo1);
+		}
+		
 	}
 
 

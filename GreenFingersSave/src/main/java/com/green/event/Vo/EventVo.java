@@ -19,6 +19,7 @@ public class EventVo {
 		private int 	delboard;
 		private int 	parent;
 		private String	userid;
+		private String  nickname;
 		
 		// paging 처리를 위한 추가 정보
 		// sql 문을 위한 변수
@@ -35,8 +36,8 @@ public class EventVo {
 	public EventVo() {}
 	public EventVo(int board_idx, String submenu_id, String board_title, String board_cont, int market_value,
 			int usercode, int managercode, String board_regdate, int readcount, int bnum, int lvl, int step, int nref,
-			int delboard, int parent, String userid, int nowpage, int pagecount, int totalcount, int totalpagecount,
-			int pagestartnum, int pageendnum, int pagegrpnum) {
+			int delboard, int parent, String userid, String nickname, int nowpage, int pagecount, int totalcount,
+			int totalpagecount, int pagestartnum, int pageendnum, int pagegrpnum) {
 		super();
 		this.board_idx = board_idx;
 		this.submenu_id = submenu_id;
@@ -54,6 +55,7 @@ public class EventVo {
 		this.delboard = delboard;
 		this.parent = parent;
 		this.userid = userid;
+		this.nickname = nickname;
 		this.nowpage = nowpage;
 		this.pagecount = pagecount;
 		this.totalcount = totalcount;
@@ -158,6 +160,12 @@ public class EventVo {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	public int getNowpage() {
 		return nowpage;
 	}
@@ -206,12 +214,12 @@ public class EventVo {
 				+ ", board_cont=" + board_cont + ", market_value=" + market_value + ", usercode=" + usercode
 				+ ", managercode=" + managercode + ", board_regdate=" + board_regdate + ", readcount=" + readcount
 				+ ", bnum=" + bnum + ", lvl=" + lvl + ", step=" + step + ", nref=" + nref + ", delboard=" + delboard
-				+ ", parent=" + parent + ", userid=" + userid + ", nowpage=" + nowpage + ", pagecount=" + pagecount
-				+ ", totalcount=" + totalcount + ", totalpagecount=" + totalpagecount + ", pagestartnum=" + pagestartnum
-				+ ", pageendnum=" + pageendnum + ", pagegrpnum=" + pagegrpnum + "]";
+				+ ", parent=" + parent + ", userid=" + userid + ", nickname=" + nickname + ", nowpage=" + nowpage
+				+ ", pagecount=" + pagecount + ", totalcount=" + totalcount + ", totalpagecount=" + totalpagecount
+				+ ", pagestartnum=" + pagestartnum + ", pageendnum=" + pageendnum + ", pagegrpnum=" + pagegrpnum + "]";
 	}
 	
-	
+
 	
 		
 }
