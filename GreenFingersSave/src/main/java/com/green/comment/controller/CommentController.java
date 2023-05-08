@@ -52,7 +52,6 @@ public class CommentController {
 			@RequestParam HashMap<String, Object> map
 			) {
 		int cnf = commentService.setDelete(map);
-		System.out.println(cnf);
 		if(cnf == 1)
 			return "suc";
 		else
@@ -65,9 +64,24 @@ public class CommentController {
 	public List<CommentVo> reCommentWrite(
 			@RequestParam HashMap<String, Object> map
 			) {
-		System.out.println("대댓"+map);
 		
 		commentService.reWrite(map);
+		
+		List<CommentVo> commentList = commentService.setRead(map);
+		
+		return commentList;
+	}
+	
+	// 댓글 수정
+	@ResponseBody
+	@RequestMapping("/CommentUpdate")
+	public List<CommentVo> commentUpdate(
+			@RequestParam HashMap<String, Object> map
+			) {
+
+		System.out.println("댓수"+map);
+		
+		commentService.setUpdate(map);
 		
 		List<CommentVo> commentList = commentService.setRead(map);
 		

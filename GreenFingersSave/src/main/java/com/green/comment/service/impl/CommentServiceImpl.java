@@ -47,4 +47,11 @@ public class CommentServiceImpl implements CommentService {
 		
 	}
 
+	@Override
+	public void setUpdate(HashMap<String, Object> map) {
+
+		commentDao.setUpdate(map);
+		
+	}
+
 }

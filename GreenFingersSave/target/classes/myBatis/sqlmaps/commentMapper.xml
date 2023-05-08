@@ -156,10 +156,21 @@
 				#{ com_lvl } + 1,
 				#{ com_step } + 1,
 				#{ com_nref },
-				#{ com_parent }
+				#{ coment_idx }
 			)
    
    </insert>
+   
+   <update id="UpdateComment">
+   
+		UPDATE
+			COMENT
+		SET
+			COMENT_CONT = #{ coment_cont }
+		WHERE
+			COMENT_IDX = #{ coment_idx }
+   
+   </update>
    
 </mapper>
 

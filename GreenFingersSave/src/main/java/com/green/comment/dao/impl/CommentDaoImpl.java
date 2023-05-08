@@ -35,7 +35,6 @@ public class CommentDaoImpl implements CommentDao {
 	@Override
 	public int setDelete(HashMap<String, Object> map) {
 		
-		System.out.println(map);
 		sqlSession.delete("Comment.CommentDelNum", map);
 		int  childCnt = sqlSession.selectOne("Comment.ChildCnt", map); // 자식있는지 확인
 		CommentVo vo = sqlSession.selectOne("Comment.GetComment", map);
@@ -45,13 +44,15 @@ public class CommentDaoImpl implements CommentDao {
 			cnf = sqlSession.delete("Comment.DeleteComment", map);
 		}
 		
-		CommentVo vo1 = sqlSession.selectOne("Commente.GetComment", vo.getCom_parent());
-		System.out.println(vo1);
+		int comment_idx = vo.getCom_parent();
+		CommentVo vo1 = sqlSession.selectOne("Comment.GetComment", comment_idx);
+		
 		childCnt = sqlSession.selectOne("Comment.ChildCnt", vo1);
 		if(  childCnt == 0  ) { // 자식이 없는경우 삭제
-			cnf = sqlSession.delete("Comment.DeleteComment", map);
+			
+			cnf = sqlSession.delete("Comment.DeleteComment", vo1);
 		}
-		
+		System.out.println(cnf);
 		return cnf;
 		
 	}
@@ -59,9 +60,17 @@ public class CommentDaoImpl implements CommentDao {
 	@Override
 	public void reWrite(HashMap<String, Object> map) {
 		
-		
-		
 		sqlSession.insert("Comment.ReWrite", map);
+		
+	}
+
+	@Override
+	public void setUpdate(HashMap<String, Object> map) {
+
+		CommentVo vo = sqlSession.selectOne("Comment.GetComment", map);
+		int board_idx = vo.getBoard_idx();
+		map.put("board_idx", board_idx);
+		sqlSession.update("Comment.UpdateComment", map);
 		
 	}
 

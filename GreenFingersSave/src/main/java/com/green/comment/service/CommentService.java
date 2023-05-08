@@ -15,4 +15,6 @@ public interface CommentService {
 
 	void reWrite(HashMap<String, Object> map);
 
+	void setUpdate(HashMap<String, Object> map);
+
 }
