@@ -158,7 +158,6 @@ html, body {
 	<h2>Home</h2>
 	
   <!-- footer -->
-  <%@include file="/WEB-INF/include/footer.jsp" %>
 
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>

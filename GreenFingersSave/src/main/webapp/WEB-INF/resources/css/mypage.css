@@ -92,6 +92,64 @@ section {width:100%;}
     border: 1px solid #444444;
 }
 
+/* PointMain 창 시작 */
+#sendPointWrap {
+	width:100%;
+	height: 100%;
+	background-color:  rgba(188, 188, 188, 0.5);
+	position: absolute;
+	top:0;
+	display: none;
+}
+
+#sendPointInWrap {
+	width:80%; 
+	height: 200px;
+	position: absolute;
+	top:50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index:12;
+	background-color: #fff;
+	border-radius: 8px;
+	
+}
+
+#PointHeader {
+	width:100%;
+	background-color:#f8faad;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 20px;
+	box-sizing: border-box;
+}
+
+#PointHeader>div p {
+	font-size:15px;
+	font-weight: 600;
+}
+
+#PointMain {
+	padding: 20px 0 20px 0;
+	box-sizing: border-box;
+}
+
+#PointMain div {
+	text-align: center;
+}
+
+#PointMain div:nth-of-type(2) {
+	margin: 20px 0 20px 0;
+}
+
+#PointMain div:nth-of-type(3) button{
+	margin:0 10px;
+}
+/* PointMain 창 끝 */
+
+
 
 
 

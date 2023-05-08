@@ -75,6 +75,14 @@
 		//쪽지 전체 보기
 		document.getElementById("NoteSelect").href = "/myPage/noteSendList?nowpage=1";
 	}
+	
+	//내공 보답
+	function sendPointBtn() {
+		let sendPointWrap = document.getElementById('sendPointWrap');
+		let sendPointBtn = document.getElementsByClassName('sendPointBtn');
+		
+		sendPointWrap.style.display = "block";
+	}
 </script>
 
 </head>
@@ -218,9 +226,8 @@
 				<tr>
 					<th>번호</th>
 					<th>받는 사람</th>
-					<th>제목</th>
-					<th>날짜</th>
-					<th>읽음 상태</th>
+					<th>내공상태</th>
+					<th>내공 보답하기</th>
 				</tr>
 				
 				<c:forEach var = "sendPointList" items="${sendPointList}">
@@ -228,7 +235,8 @@
 					<a href="">
 						<td>${sendPointList.rnum}</td>
 						<td>${sendPointList.nickname}</td>
-						<td></td>
+						<td>내공상태</td>
+						<td><button class="sendPointBtn" onclick="sendPointBtn()">내공 전송</button></td>
 					</a>
 				</tr>
 				</c:forEach>
@@ -239,10 +247,44 @@
 				<button><a href="/myPage/myNoteWriteForm?board_idx=5">쪽지보내기</a></button>
 			</div>
      	</section>
+     	
 	    
     </div><!-- main -->
+    
+    <!-- 내공 주기 창 -->
+   	<div id="sendPointWrap">
+   		<div id="sendPointInWrap">
+   			<div id="PointHeader">
+   				<div><p>내공 주기</p></div>
+   				<div>X</div>
+   			</div>
+   		
+    		<div id="PointMain">
+    			<div class="con1">
+    			 	내공을 선택해주세요.
+    			</div>
+    			
+    			<div>
+					<label for="selectPoint1">50점</label>
+	               	<input type="radio" name="selectPoint" value="s2" id="selectPoint1" checked />
+	    			<label for="selectPoint2">40점</label>
+	               	<input type="radio" name="selectPoint" value="s2" id="selectPoint2" />
+	               	<label for="selectPoint3">30점</label>
+	               	<input type="radio" name="selectPoint" value="s2" id="selectPoint3" />
+	               	<label for="selectPoint4">20점</label>
+	               	<input type="radio" name="selectPoint" value="s2" id="selectPoint4" />
+	               	<label for="selectPoint5">10점</label>
+	               	<input type="radio" name="selectPoint" value="s2" id="selectPoint5" />    			
+    			</div>
+    			
+    			<div>
+    				<button>전송</button>
+    				<button>취소</button>
+    			</div>
+    		</div>
+   		</div>	
+   	</div>
      
-     <%@include file="/WEB-INF/include/footer.jsp" %>
 </div>
 </body>
 </html>
