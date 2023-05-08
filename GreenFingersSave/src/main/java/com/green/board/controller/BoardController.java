@@ -156,6 +156,7 @@ public class BoardController {
 		// 메뉴이름
 		String  submenu_id   =  (String) map.get("submenu_id");
 		String  submenu_name = menuService.getMenuName(submenu_id);
+		map.put("submenu_name", submenu_name);
 		map.put("submenu_id", submenu_id);
 		
 		// 보여줄 게시글 내용
@@ -173,6 +174,8 @@ public class BoardController {
 		
 		List<MenuVo> menuList = menuService.getMenuList();
 		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		
+		System.out.println(submenuList);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/view");

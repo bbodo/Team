@@ -37,7 +37,7 @@
 		height: 800px;
 		float: left;
 		padding: 10px;
-		background-color: gray;
+		background-color: white;
 		text-align: center;
 	}
 	#tt {
@@ -50,11 +50,15 @@
 		border-collapse: collapse;
 	}
 	#cont th {
-		background-color: #666;
+		background-color: white;
+		border-top: 3px solid #C0C0C0;
+		border-bottom: 1px solid #C0C0C0;
+		padding: 20px;
 	}
-	#cont tr {
-		border-bottom: 
-	}
+	#cont tr td {
+		padding: 15px;
+		border-bottom: 1px solid #C0C0C0;
+	} 
 	#cont tr:hover {
 		background-color: #D3D3D3;
 	}
@@ -90,14 +94,14 @@
      <div id="main">
 		<h2>${ map.submenu_name }</h2>     
      <div class="right">
-		<a href="/Board/WriteForm?submenu_id=SUBMENU01&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
+		<a href="/Board/WriteForm?submenu_id=${ boardVo.submenu_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
 	 </div>
 		<table id="cont">
 			<tr>
 				<th class="padd8">번호</th>
 				<th class="padd8">제목</th>
-				<th class="padd8">작성일</th>
 				<th class="padd8">작성자</th>
+				<th class="padd8">작성일</th>
 				<th class="padd8">조회수</th>
 			</tr>
 <c:forEach var="boardVo" items="${ boardList }">
@@ -115,7 +119,7 @@
            <c:choose>
             <c:when test="${ boardVo.delboard eq 0 }">
               <a href="/Board/View?submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}">
-       		   ${ boardVo.board_title }
+       		   <h2>${ boardVo.board_title }</h2>
        		  </a>
        		</c:when>
        		<c:otherwise>
@@ -130,7 +134,7 @@
             
             <c:choose>
               <c:when test="${ boardVo.delboard eq 0 }">
-                <a href="/Board/View?submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}">
+                <a style="font-weight: bold;" href="/Board/View?submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}">
               	  [답글] ${ boardVo.board_title }
          	    </a>
          	  </c:when>
@@ -143,13 +147,12 @@
        </c:choose>
      </td>
      <td>
-     <!-- 작성일 -->
-     <!-- 날짜 -->
-     ${fn:substring( boardVo.board_regdate, 0, 10) }
-     </td>
-	 <td>    
      <!-- 작성자 -->
      ${ boardVo.nickname }
+     </td>
+	 <td>    
+     <!-- 날짜 -->
+     ${fn:substring( boardVo.board_regdate, 0, 10) }
      </td>
      <td>
      <!-- 조회수 -->
