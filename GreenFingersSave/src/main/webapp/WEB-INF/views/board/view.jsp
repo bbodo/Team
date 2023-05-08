@@ -71,6 +71,9 @@
 	#readComment {
 		margin-bottom: 50px;
 	}
+	#writeComment {
+		border-bottom: 1px solid #228B22;
+	}
 	.nameSpace {
 		padding: 30px;
 	}
@@ -306,7 +309,7 @@
 	</c:choose>
 	<div id="section">
      <div id="title">
-     	<p>식물 연합</p>
+     	<p style="font-size: 40px; font-weight: bold;">식물 연합</p>
      </div>
      <div id="aside">
 		<c:forEach var="subname" items="">
