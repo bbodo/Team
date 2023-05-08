@@ -74,6 +74,34 @@
 	#writeComment {
 		border-bottom: 1px solid #228B22;
 	}
+	#sidemenu {
+		padding: 30px;
+	}
+	#sidemenu li {
+		padding: 10px;
+	}
+	#sidemenu li a {
+		position: relative;
+		display: block;
+		font-size: 20px;
+	}
+	#sidemenu li a:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: 24px;
+		width: 0px;
+		height: 3px;
+		margin: 5px 0 0;
+		transition: all 0.2s ease-in-out;
+		transition-duration: 0.3s;
+		opacity: 0;
+		background-color: #2E8B57;
+	}
+	#sidemenu li a:hover:after {
+		width: 100%;
+		opacity: 1;
+	}
 	.nameSpace {
 		padding: 30px;
 	}
@@ -290,8 +318,6 @@
 				})
 		})
 		
-		
-		
 	}
 
 </script>
@@ -312,9 +338,16 @@
      	<p style="font-size: 40px; font-weight: bold;">식물 연합</p>
      </div>
      <div id="aside">
-		<c:forEach var="subname" items="">
-		
-		</c:forEach>
+		<ul id="sidemenu">
+     	<c:forEach var="menu" items="${ submenuList }">
+     		<c:choose>
+			<c:when test="${menu.menu_id eq map.menu_id }">
+				<li><a href="/Board/List?menu_id=${ menu.menu_id }&submenu_id=${menu.submenu_id}&nowpage=1">
+						${menu.submenu_name}</a></li>
+			</c:when>
+			</c:choose>
+     	</c:forEach>
+     	</ul>
      </div>
      <div id="main">
      <div><a id="board_title" href="/Board/List?submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 게시판</a></div>

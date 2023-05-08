@@ -47,6 +47,4 @@ public class MenuServiceImpl implements MenuService {
 		return submenuList;
 	}
 
-
-
 }
