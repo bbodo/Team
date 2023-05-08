@@ -24,6 +24,11 @@
 			html += '<ul>ㅎㅎㅎㅎㅎ';
 			html += '<li>과국명 : ' + item.familyKorNm + '</li>';
 			html += '<li>과명 : ' + item.familyNm + '</li>';
+			html += '<li>속국명 : ' + item.genusKorNm + '</li>';
+			html += '<li>속명 : ' + item.genusNm + '</li>';
+			html += '<li><img src="' + item.imgUrl + '"/></li>';
+			html += '<li>국명 : ' + item.plantGnrlNm + '</li>';
+			html += '<li>도감번호 : ' + item.plantPilbkNo + '</li>';
 			html += '</ul>';
 			html += '</div>';
 			
@@ -37,7 +42,7 @@
 		
 		$(btnOkEl).on({
 			click : function(e) {
-				alert('클릭확인');
+				//alert('클릭확인');
 				$.ajax({
 					url : 'http://localhost:9090/Wiki/Service',
 					data : {
@@ -46,7 +51,7 @@
 					success : function(data) {
 						console.log(data);
 						let html = data_display(data);
-						alert(data);
+						//alert(data);
 						$('#div1').html(html);
 					},
 					error : function(xhr) {
