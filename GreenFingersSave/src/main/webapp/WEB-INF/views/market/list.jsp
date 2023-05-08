@@ -7,14 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<%@include file="/WEB-INF/include/comHead.jsp" %>
 <title>${ map.submenu_name } 게시판</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<script src="/js/home.js"></script>
 
 <style type="text/css">
 
 	* {
 		box-sizing: border-box;
 	}
-
+	
 	#title {
 		width: 100%;
 		text-align: center;
@@ -100,13 +105,8 @@
 	h2 {
 		margin-bottom: 20px;
 	}
-
-	
-
 </style>
 
-</head>
-<body>
 	<!-- header	 -->
 	<c:choose>
 		<c:when test="${ sessionScope.login eq null }">
@@ -116,7 +116,8 @@
 			<%@include file="/WEB-INF/include/header2.jsp" %>
 		</c:otherwise>
 	</c:choose>
-	
+</head>
+<body>	
      <div id="title">
      	<p>그린마켓</p>
      </div>
@@ -261,7 +262,11 @@
 	
 	 <%@include file="/WEB-INF/include/paging.jsp" %>
      </div>
-  <!--    </form> -->
+     
+  <!--    footer -->
      <%@include file="/WEB-INF/include/footer.jsp" %>
+     
+   <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>  
 </body>
 </html>

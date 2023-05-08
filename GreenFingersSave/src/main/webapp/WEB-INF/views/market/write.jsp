@@ -24,7 +24,7 @@
 	}
 	#aside {
 		float: left;
-		height: 800px;
+		height: 1200px;
 		background-color: navy;
 		width: 20%;
 		padding: 10px;
@@ -35,7 +35,7 @@
 	}
 	#main {
 		width: 80%;
-		height: 800px;
+		height: 1200px;
 		float: left;
 		padding: 10px;
 		background-color: gray;
@@ -73,8 +73,10 @@
 
 </style>
 
+<!-- 파일 첨부 -->
 <script src="https://code.jquery.com/jquery.min.js"></script>
 
+<!-- 버튼 파일/이미지 추가 -->
 <script>
   $( function() {
 	  let num = 1;
@@ -85,6 +87,25 @@
 	  })
   });
 </script>
+
+<!-- 이미지 파일 첨부 -->
+<script type="text/javascript">
+
+   function readURL(input) {
+      var file = input.files[0] 
+      console.log(file)
+      if (file != '') {
+         var reader = new FileReader();
+         reader.readAsDataURL(file);
+         reader.onload = function (e) { 
+	     console.log(e.target)
+		console.log(e.target.result)
+           $('#preview').attr('src', e.target.result);
+          }
+      }
+  }  
+</script>
+
 
 </head>
 <body>
@@ -128,6 +149,19 @@
 				<th>글 내용</th>
 				<td><textarea name="board_cont" maxlength="1000">${ vo.board_cont }</textarea></td>
 			</tr>
+			
+			<form method="post" action="${contextPath}/market/writeSave" enctype="multipart/form-data">
+				<div class="form-group" >
+					<th>이미지 첨부</th>
+					<td id="imgplus"> 
+           			<input type="button"  id="btnAddImgFile" value="파일 추가(최대 100M byte)" /><br>
+           			<input type="file" name="imgFile" onchange="readURL(this);"/>
+					<img id="preview" src="#" width=200 height=180 alt="선택된 이미지가 없습니다" style="align-content: flex-end; ">
+					</td>
+			</div>
+			</form>
+			
+			
 			<tr>
 				<th>파일 첨부</th>
 				<td id="tdfile">

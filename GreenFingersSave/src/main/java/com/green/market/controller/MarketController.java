@@ -317,9 +317,22 @@ public class MarketController {
 
  		return mv;
  	}
-   
+
+ 	//첨부 이미지 처리
  	//----------------------------------------------------------------------
- 	// 파일 처리
+ 	/*
+ 	@GetMapping("imageView")
+	public void imgView(@RequestParam("imgFile") String imgFile,
+		HttpServletResponse response) throws IOException {
+	    response.addHeader(
+		"Content-disposition","attachment;fileName="+imgFile); //파일을 다운받고, 브라우저로 표현하고, 다운될 파일이름
+	    File file = new File(marketFileService.IMAGE_REPO+"/"+imgFile);
+	    FileInputStream in = new FileInputStream(file);
+	    FileCopyUtils.copy(in, response.getOutputStream());
+	    in.close();
+	*/
+ 	//----------------------------------------------------------------------
+ 	// 첨부 파일 처리
  	@RequestMapping(value  = "/download/{type}/{sfile:.+}",
 	        method = RequestMethod.GET )
 	public   void   downloadFile(
