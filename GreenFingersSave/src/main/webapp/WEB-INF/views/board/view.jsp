@@ -27,18 +27,11 @@
 	#section {
 		height: auto;
 	}
-	#aside {
-		float: left;
-		height: auto;
-		background-color: white;
-		width: 20%;
-		padding: 10px;
-	}
 	#main {
-		width: 80%;
+		width: 100%;
 		height: auto;
 		float: left;
-		padding: 50px 200px 50px 50px;
+		padding: 50px 200px 50px 200px;
 	}
 	#cont {
 		background-color: #fff;
@@ -47,10 +40,6 @@
 		border-collapse: collapse;
 		margin-top: 10px;
 		border-top: 3px solid #228B22;
-	}
-	#cont th {
-		background-color: #666;
-		margin-top: 20px;
 	}
 	#cont tr:nth-of-type(2) {
 		border-bottom: 1px solid #228B22;
@@ -73,34 +62,6 @@
 	}
 	#writeComment {
 		border-bottom: 1px solid #228B22;
-	}
-	#sidemenu {
-		padding: 30px;
-	}
-	#sidemenu li {
-		padding: 10px;
-	}
-	#sidemenu li a {
-		position: relative;
-		display: block;
-		font-size: 20px;
-	}
-	#sidemenu li a:after {
-		content: "";
-		position: absolute;
-		left: 0;
-		bottom: 24px;
-		width: 0px;
-		height: 3px;
-		margin: 5px 0 0;
-		transition: all 0.2s ease-in-out;
-		transition-duration: 0.3s;
-		opacity: 0;
-		background-color: #2E8B57;
-	}
-	#sidemenu li a:hover:after {
-		width: 100%;
-		opacity: 1;
 	}
 	.nameSpace {
 		padding: 30px;
@@ -336,18 +297,6 @@
 	<div id="section">
      <div id="title">
      	<p style="font-size: 40px; font-weight: bold;">식물 연합</p>
-     </div>
-     <div id="aside">
-		<ul id="sidemenu">
-     	<c:forEach var="menu" items="${ submenuList }">
-     		<c:choose>
-			<c:when test="${menu.menu_id eq map.menu_id }">
-				<li><a href="/Board/List?menu_id=${ menu.menu_id }&submenu_id=${menu.submenu_id}&nowpage=1">
-						${menu.submenu_name}</a></li>
-			</c:when>
-			</c:choose>
-     	</c:forEach>
-     	</ul>
      </div>
      <div id="main">
      <div><a id="board_title" href="/Board/List?submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 게시판</a></div>

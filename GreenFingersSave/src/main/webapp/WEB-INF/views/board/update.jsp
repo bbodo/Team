@@ -23,27 +23,30 @@
 	#title p {
 		 line-height: 100px;
 	}
-	#aside {
-		float: left;
-		height: 800px;
-		background-color: navy;
-		width: 20%;
-		padding: 10px;
-	}
 	#main {
-		width: 80%;
+		width: 100%;
 		height: 800px;
-		float: left;
 		padding: 10px;
-		background-color: gray;
+		padding: 50px 200px 50px 200px;
 	}
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
 		width: 100%;
+		border-collapse: collapse;
+		margin-top: 10px;
+		border-top: 3px solid #228B22;
 	}
-	#cont th {
-		background-color: #666;
+	#cont tr td {
+		padding: 15px;
+		border-bottom: 1px solid #C0C0C0;
+	} 
+	#cont tr:nth-of-type(2) {
+		border-bottom: 1px solid #228B22;
+	}
+	#board_title {
+		font-size: 32px;
+		font-weight: bold;
 	}
 	.right {
 		text-align: right;
@@ -56,10 +59,12 @@
 	}
 	input[type=text] {
 		width: 100%;
+		padding: 5px;
 	}
 	textarea {
 		width: 100%;
 		height: 400px;
+		padding: 20px;
 	}
 
 </style>
@@ -114,18 +119,12 @@
      <div id="title">
      	<p style="font-size: 40px; font-weight: bold;">식물 연합</p>
      </div>
-     <div id="aside">
-     	포이즌<br />
-     	포이즌<br />
-     	포이즌<br />
-     	포이즌<br />
-     	포이즌<br />
-     	포이즌<br />
-     </div>
      <div id="main">
+	     <div><a id="board_title" href="/Board/List?submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 게시판</a></div>
      	
 	  <form action="/Board/Update" method="POST" 
-       enctype="multipart/form-data"   >   
+       enctype="multipart/form-data"   >
+          
 	  <input type="hidden"  name="board_idx"  value="${ map.board_idx  }" />
 	  <input type="hidden"  name="submenu_id" value="${ map.submenu_id }" />
 	  <input type="hidden"  name="bnum"       value="${ map.bnum       }" />
@@ -136,18 +135,17 @@
 	  <input type="hidden"  name="nowpage"    value="${ map.nowpage    }" /> 
      
 		<table id="cont">
-			<caption class="left">게시글 수정</caption>
 			<tr>
-				<th>제목</th>
+				<td style="text-align: center;">제목</td>
 				<td><input type="text" name="board_title" value="${ vo.board_title }"/></td>
 			</tr>
 			<tr>   
-				<th>글 내용</th>
-				<td><textarea name="board_cont">${ vo.board_cont }</textarea></td>
+				<td style="text-align: center;">글 내용</td>
+				<td><textarea name="board_cont" maxlength="1000">${ vo.board_cont }</textarea></td>
 			</tr>
 			<tr>
-				<th>파일 첨부</th>
-			<td id="tdfile" colspan="3">
+				<td style="text-align: center;">파일 첨부</td>
+				<td id="tdfile">
 			    <!-- 기존 파일 목록, 삭제버튼 -->
 				<c:forEach  var="file"   items="${ fileList }">
 				<div>

@@ -117,8 +117,13 @@ public class BoardController {
 		}
 		map.put("idx", idx);
 		
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/write");
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		mv.addObject("vo", boardVo);
 		mv.addObject("map", map);
 		
@@ -211,11 +216,16 @@ public class BoardController {
 			boardVo.setBoard_cont(content);
 		}
 		
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		
 		// fileList
 		List<FileVo>  fileList =  boardService.getFileList( map ); 
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("board/update");
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		mv.addObject("map", map);
 		mv.addObject("fileList", fileList);
 		mv.addObject("vo", boardVo);
