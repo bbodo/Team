@@ -12,11 +12,11 @@ public interface MyPageService {
 	
 	int insertMyNote(HashMap<String, Object> map);
 
-	/* List<MyPageVo> getRecSendNote(int usercode); */
-
 	List<MyPageVo> getSendPageList(HashMap<String, Object> map);
 
 	List<MyPageVo> getRecPageList(HashMap<String, Object> map);
+
+	List<MyPageVo> getSendPointList(HashMap<String, Object> map);
 
 	
 }

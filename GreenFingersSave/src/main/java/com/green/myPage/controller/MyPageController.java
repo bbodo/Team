@@ -86,7 +86,6 @@ public class MyPageController {
 	public ModelAndView myNoteList (@RequestParam HashMap<String, Object> map,
 			HttpSession session) {
 		
-		System.out.println("mylist" + session.getAttribute("login"));
 		UserVo userVo = (UserVo) session.getAttribute("login");
 		int usercode = userVo.getUsercode();
 		map.put("usercode", usercode);
@@ -108,29 +107,153 @@ public class MyPageController {
 		// ---------------------------------------------------------------------
 		// 보낸 쪽지
 		List<MyPageVo>   sendPagePaingList  =  myPageService.getSendPageList( map );
-		System.out.println("sendPagePaingList" + sendPagePaingList);
 		
 		// 받은 쪽지
 		List<MyPageVo>   recPagePaingList  =  myPageService.getRecPageList( map );
-		System.out.println("recPagePaingList" + recPagePaingList);
+		
+		// 내공 보답 할 사람 리스트
+		List<MyPageVo>   sendPointList  =  myPageService.getSendPointList( map );
 		
 		//paging가 사용할 변수
 		MyPageVo         sendNotePagingVo   =  (MyPageVo) map.get("sendNotePaging");
 		MyPageVo         recNotePagingVo   =  (MyPageVo) map.get("recNotePaging");
-		
-		//쪽지 목록
-		//List<MyPageVo> myPageVo = myPageService.getRecSendNote(usercode);	//보낸 사람 쪽지 정보
+		MyPageVo         sendPointPagingVo   =  (MyPageVo) map.get("SendPointPaging");
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mypage/myList");
 		mv.addObject("userVo", userVo);
 		mv.addObject("sendPagePaingList", sendPagePaingList);
 		mv.addObject("recPagePaingList", recPagePaingList);
+		mv.addObject("sendPointList", sendPointList);
 		mv.addObject("sendPagingVo", sendNotePagingVo);
 		mv.addObject("recPagingVo", recNotePagingVo);
-		//mv.addObject("myPageVo", myPageVo);
+		mv.addObject("sendPointPagingVo", sendPointPagingVo);
 		return mv;
 	}
+	
+	//쪽지 보내기 전체 보기
+	@RequestMapping("/noteSendList")
+	public ModelAndView noteSendList (@RequestParam HashMap<String, Object> map,
+			HttpSession session) {
+		
+		UserVo userVo = (UserVo) session.getAttribute("login");
+		int usercode = userVo.getUsercode();
+		map.put("usercode", usercode);
+		
+		// ---------------------------------------------------------------------
+		// 페이징 정보 준비
+		int           nowpage   =  Integer.parseInt( (String) map.get("nowpage") ); 
+		int           pagecount =  10;    // 한페이지 당 출력할 줄(row)수  - 10
+
+		// sql 사용할 변수 : 조회할 레코드 번호
+		int           startnum  =  ( nowpage - 1 ) * pagecount + 1;
+		int           endnum    =  nowpage  *  pagecount;
+		
+		map.put("nowpage",   nowpage );
+		map.put("pagecount", pagecount );
+		map.put("startnum",  startnum );
+		map.put("endnum",    endnum );		
+		
+		// ---------------------------------------------------------------------
+		// 보낸 쪽지
+		List<MyPageVo>   sendPagePaingList  =  myPageService.getSendPageList( map );
+		
+		// 받은 쪽지
+		List<MyPageVo>   recPagePaingList  =  myPageService.getRecPageList( map );
+		
+		//paging가 사용할 변수
+		MyPageVo         sendNotePagingVo   =  (MyPageVo) map.get("sendNotePaging");
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("mypage/noteSendList");
+		mv.addObject("userVo", userVo);
+		mv.addObject("sendPagePaingList", sendPagePaingList);
+		mv.addObject("recPagePaingList", recPagePaingList);
+		mv.addObject("sendPagingVo", sendNotePagingVo);
+		return mv;
+	}
+	
+	//쪽지 받기 전체 보기
+	@RequestMapping("/noteRecList")
+	public ModelAndView noteRecList (@RequestParam HashMap<String, Object> map,
+			HttpSession session) {
+		
+		UserVo userVo = (UserVo) session.getAttribute("login");
+		int usercode = userVo.getUsercode();
+		map.put("usercode", usercode);
+		
+		// ---------------------------------------------------------------------
+		// 페이징 정보 준비
+		int           nowpage   =  Integer.parseInt( (String) map.get("nowpage") ); 
+		int           pagecount =  10;    // 한페이지 당 출력할 줄(row)수  - 10
+
+		// sql 사용할 변수 : 조회할 레코드 번호
+		int           startnum  =  ( nowpage - 1 ) * pagecount + 1;
+		int           endnum    =  nowpage  *  pagecount;
+		
+		map.put("nowpage",   nowpage );
+		map.put("pagecount", pagecount );
+		map.put("startnum",  startnum );
+		map.put("endnum",    endnum );		
+		
+		// ---------------------------------------------------------------------
+		// 보낸 쪽지
+		List<MyPageVo>   sendPagePaingList  =  myPageService.getSendPageList( map );
+		
+		// 받은 쪽지
+		List<MyPageVo>   recPagePaingList  =  myPageService.getRecPageList( map );
+		
+		//paging가 사용할 변수
+		MyPageVo         recNotePagingVo   =  (MyPageVo) map.get("recNotePaging");
+		
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("mypage/noteRecList");
+		mv.addObject("userVo", userVo);
+		mv.addObject("sendPagePaingList", sendPagePaingList);
+		mv.addObject("recPagePaingList", recPagePaingList);
+		mv.addObject("recPagingVo", recNotePagingVo);
+		return mv;
+	}
+	
+	//내공 주기
+	/*@RequestMapping("/sendPoint")
+	public ModelAndView sendPoint (@RequestParam HashMap<String, Object> map,
+			HttpSession session) {
+		
+		UserVo userVo = (UserVo) session.getAttribute("login");
+		int usercode = userVo.getUsercode();
+		map.put("usercode", usercode);
+		
+		// ---------------------------------------------------------------------
+		// 페이징 정보 준비
+		int           nowpage   =  Integer.parseInt( (String) map.get("nowpage") ); 
+		int           pagecount =  10;    // 한페이지 당 출력할 줄(row)수  - 10
+
+		// sql 사용할 변수 : 조회할 레코드 번호
+		int           startnum  =  ( nowpage - 1 ) * pagecount + 1;
+		int           endnum    =  nowpage  *  pagecount;
+		
+		map.put("nowpage",   nowpage );
+		map.put("pagecount", pagecount );
+		map.put("startnum",  startnum );
+		map.put("endnum",    endnum );		
+		
+		// ---------------------------------------------------------------------
+		// 내공 보답 할 사람 리스트
+		List<MyPageVo>   sendPointList  =  myPageService.getSendPointList( map );
+		
+		//paging가 사용할 변수
+		MyPageVo         sendPointPagingVo   =  (MyPageVo) map.get("SendPointPaging");
+		
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("mypage/noteRecList");
+		mv.addObject("userVo", userVo);
+		mv.addObject("sendPointList", sendPointList);
+		mv.addObject("sendPointPagingVo", sendPointPagingVo);
+		return mv;
+	}*/
 	
 	
 	

@@ -30,12 +30,6 @@ public class MyPageDaoImpl implements MyPageDao {
 		return myNoteInsertCheck;
 	}
 
-	/*
-	 * @Override public List<MyPageVo> getMyPageList(int usercode) { List<MyPageVo>
-	 * myPageVo = sqlSession.selectList("MyPage.MyPageList", usercode); return
-	 * myPageVo; }
-	 */
-
 	@Override
 	public List<MyPageVo> getSendPageList(HashMap<String, Object> map) {
 		map.put("sendData",  "sendData");
@@ -43,7 +37,7 @@ public class MyPageDaoImpl implements MyPageDao {
 		int      totalcount              =  sqlSession.selectOne("MyPage.GetTotalCount", map);
 		map.put("totalcount",  totalcount);
 		
-		// 메뉴 목록 조회 (paging)
+		// 보낸 쪽지 조회 (paging)
 		List<MyPageVo> pdsPagingList  =  sqlSession.selectList("MyPage.GetMyPageList", map);  
 		map.remove("sendData");
 		
@@ -56,14 +50,26 @@ public class MyPageDaoImpl implements MyPageDao {
 		// 전체 자료수 조회
 		int      totalcount              =  sqlSession.selectOne("MyPage.GetTotalCount", map);
 		map.put("totalcount",  totalcount);
-		System.out.println("ddd"+map.get("totalcount"));
 		
-		
-		// 메뉴 목록 조회 (paging)
+		// 받은 쪽지 조회 (paging)
 		List<MyPageVo> pdsPagingList  =  sqlSession.selectList("MyPage.GetMyPageList", map);  
 		map.remove("recData");
 		
 		return   pdsPagingList;
 	}
+
+	@Override
+	public List<MyPageVo> getSendPointList(HashMap<String, Object> map) {
+		// 전체 자료수 조회
+		int      totalcount              =  sqlSession.selectOne("MyPage.GetTotalSendPointCount", map);
+		map.put("totalcount",  totalcount);
+		
+		// 내공 줄 리스트 (paging)
+		List<MyPageVo> SendPointList  =  sqlSession.selectList("MyPage.GetSendPointList", map);  
+		
+		return SendPointList;
+	}
+	
+	
 
 }

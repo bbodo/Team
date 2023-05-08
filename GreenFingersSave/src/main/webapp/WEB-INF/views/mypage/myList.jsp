@@ -36,14 +36,14 @@
 				readMarkTag[i].innerHTML = "x";
 			}
 		}
-	}
+		
+	}/*  window */
 	
 	//받는 쪽지 보낸 쪽지 구분
+	let noteTitle = document.getElementsByClassName('title');
+	let recList = document.getElementsByClassName('recList');
+	let sendList = document.getElementsByClassName('sendList');
 	function recClick(){
-		let recPaing = document.getElementById('recPaing');
-		let sendPaing = document.getElementById('sendPaing');
-		let recList = document.getElementsByClassName('recList');
-		let sendList = document.getElementsByClassName('sendList');
 		
 		for (var i = 0; i < recList.length; i++) {
 			recList[i].style.display = "table-row";
@@ -53,15 +53,14 @@
 			sendList[i].style.display = "none";
 		}
 		
-		recPaing.style.display = "block";
-		sendPaing.style.display = "none";
+		noteTitle[1].innerHTML = "받은 쪽지";
+		console.log(noteTitle);
+		
+		//쪽지 전체 보기
+		document.getElementById("NoteSelect").href = "/myPage/noteRecList?nowpage=1";
 	}
 	
 	function sendClick(){
-		let recPaing = document.getElementById('recPaing');
-		let sendPaing = document.getElementById('sendPaing');
-		let recList = document.getElementsByClassName('recList');
-		let sendList = document.getElementsByClassName('sendList');
 		
 		for (var i = 0; i < recList.length; i++) {
 			recList[i].style.display = "none";
@@ -71,8 +70,10 @@
 			sendList[i].style.display = "table-row";
 		}
 		
-		recPaing.style.display = "none";
-		sendPaing.style.display = "block";
+		noteTitle[1].innerHTML = "보낸 쪽지";
+		
+		//쪽지 전체 보기
+		document.getElementById("NoteSelect").href = "/myPage/noteSendList?nowpage=1";
 	}
 </script>
 
@@ -156,7 +157,8 @@
      	
      	<section id="sec2">
 	     	<div class="titleWrap">
-	     		<p class="title">쪽지</p>
+	     		<p class="title">받은 쪽지</p>
+	     		<p><a id="NoteSelect" href="/myPage/noteRecList?nowpage=1">전체보기</a></p>
 	     	</div>
      	
 			<div>
@@ -203,8 +205,40 @@
 				<button><a href="/myPage/myNoteWriteForm?board_idx=5">쪽지보내기</a></button>
 			</div>
      	</section>
-		
-	    <%@include file="/WEB-INF/include/myPagePaging.jsp" %>
+     	
+     	<!-- <section3 시작> -->
+     	
+     	<section id="sec3">
+	     	<div class="titleWrap">
+	     		<p class="title">내공 보답</p>
+	     		<p><a id="NoteSelect" href="/myPage/noteRecList?nowpage=1">전체보기</a></p>
+	     	</div>     
+			
+			<table id="sec2Cont">
+				<tr>
+					<th>번호</th>
+					<th>받는 사람</th>
+					<th>제목</th>
+					<th>날짜</th>
+					<th>읽음 상태</th>
+				</tr>
+				
+				<c:forEach var = "sendPointList" items="${sendPointList}">
+				<tr>
+					<a href="">
+						<td>${sendPointList.rnum}</td>
+						<td>${sendPointList.nickname}</td>
+						<td></td>
+					</a>
+				</tr>
+				</c:forEach>
+			</table>
+			
+			<div>
+				<button>삭제</button>
+				<button><a href="/myPage/myNoteWriteForm?board_idx=5">쪽지보내기</a></button>
+			</div>
+     	</section>
 	    
     </div><!-- main -->
      

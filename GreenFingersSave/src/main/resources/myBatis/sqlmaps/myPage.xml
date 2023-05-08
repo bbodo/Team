@@ -38,13 +38,6 @@
 			)
 	</insert>
 	
-	<!-- <select id="MyPageList" resultType = "com.green.myPage.vo.MyPageVo">
-		SELECT 	n.NOTE_IDX, n.NOTE_TITLE, n.NOTE_CONT, n.NOTE_REGDATE, 
-				n.SEND_USERCODE, n.RECEIVER_USERCODE, n.READMARK, n.DELNOTE, m.NICKNAME
-		FROM	NOTE n JOIN MEMBER m ON n.RECEIVER_USERCODE = m.USERCODE
-		WHERE	n.SEND_USERCODE = #{usercode} 
-	</select> -->
-	
 	<!-- 전체 자료수 조회 -->
    <select   id             = "GetTotalCount"
              parameterType  = "hashmap"
@@ -64,7 +57,7 @@
        </if>
    </select>
    
-   <!-- 페이징 list  -->
+   <!-- 쪽지 페이징 list  -->
    <select  id="GetMyPageList"
             resultType="com.green.myPage.vo.MyPageVo">
    	  SELECT * FROM	
@@ -93,6 +86,34 @@
 	        <if test = "recData == 'recData'" >
 	         WHERE	    n.RECEIVER_USERCODE = #{usercode}
 	        </if>
+	  ) T 
+      WHERE     T.RNUM  
+                BETWEEN  #{startnum}  AND  #{endnum}  
+   </select>
+   
+   <!-- 전체 자료수 조회 -->
+   <select   id             = "GetTotalSendPointCount"
+             parameterType  = "hashmap"
+             resultType     = "_int">
+      SELECT
+         COUNT( SEND_USERCODE )  AS   TOTALCOUNT
+       FROM   
+         NOTE
+       WHERE     
+          SEND_USERCODE = #{usercode}
+
+   </select>
+   
+   <!-- 내공 페이징 list  -->
+    <select  id="GetSendPointList"
+            resultType="com.green.myPage.vo.MyPageVo">
+   	  SELECT * FROM	
+	  (		SELECT 		ROW_NUMBER() OVER(ORDER BY n.NOTE_REGDATE ASC, n.READMARK DESC)  RNUM
+				        ,m.NICKNAME
+				        
+	  		FROM	    NOTE n JOIN MEMBER m ON n.RECEIVER_USERCODE = m.USERCODE
+	        
+	        WHERE	n.SEND_USERCODE = #{usercode}
 	  ) T 
       WHERE     T.RNUM  
                 BETWEEN  #{startnum}  AND  #{endnum}  
