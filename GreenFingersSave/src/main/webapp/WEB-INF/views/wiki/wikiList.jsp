@@ -22,12 +22,10 @@
 	#title p {
 		 line-height: 100px;
 	}
-	#div1 { margin: 20px;}
-	.box {  border:1px solid black;
-       margin:5px; }
-    
-   
-       
+	#div1 { margin: 20px; width: 800px;}
+    .box { display: flex;
+    	margin: 20px;}
+    #btn1Ok { width: 100px;}     
 	#plantimg {
 		  width: 400px;
 		  height: 300px;
@@ -41,11 +39,11 @@
 		let totalCount = body.totalCount
 		let arr        = body.items.item;
 		let html = '';
-			html += '<h5>총 자료 수 : ' + body.totalCount  + '개</h5>';
+			html += '<h5>총 자료 수 : ' + totalCount  + '개</h5>';
 		arr.forEach(function(item, index) {
-			html += '<div id="box">';
-			html += '<div id="left"><img id="plantimg" src="' + item.imgUrl + '"/></div>';
-			html += '<div id="right"><ul>';
+			html += '<div class="box">';
+			html += '<div><img id="plantimg" src="' + item.imgUrl + '"/></div>';
+			html += '<div class="inbox"><ul>';
 			html += '<li>과명 : ' + item.familyKorNm ;
 			html += '(' + item.familyNm + ')' + '</li>';
 			html += '<li>속명 : ' + item.genusKorNm ;
@@ -53,7 +51,7 @@
 			html += '<li>국명 : ' + item.plantGnrlNm + '</li>';
 			html += '<li>최종수정일시 : ' + item.lastUpdtDtm + '</li>';
 			if (item.detailYn=='Y'){
-				html += '<li>상세정보유무 : <a href="">상세정보보기</a></li>';}
+				html += '<li>상세정보유무 : <button id="btn1Ok">상세정보조회</button></li>';}
 			else {
 				html += '<li>상세정보유무 : 상세정보 없음 </li>';}
 			
@@ -118,7 +116,7 @@
 	
 	
 	<!-- footer -->
-    <%@include file="/WEB-INF/include/footer.jsp" %>
+<%--     <%@include file="/WEB-INF/include/footer.jsp" %> --%>
     
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
