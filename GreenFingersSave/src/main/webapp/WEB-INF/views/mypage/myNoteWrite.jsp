@@ -27,25 +27,64 @@
 	#aside {
 		float: left;
 		height: 800px;
-		background-color: navy;
-		width: 20%;
+		background-color: white;
+		width: 15%;
 		padding: 10px;
 	}
 	#main {
-		width: 80%;
+		width: 85%;
 		height: 800px;
 		float: left;
 		padding: 10px;
-		background-color: gray;
-		text-align: center;
+		padding-right : 15%;
+		background-color: white;
 	}
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
 		width: 100%;
+		border-collapse: collapse;
+		margin-top: 10px;
+		border-top: 3px solid #228B22;
 	}
-	#cont th {
-		background-color: #666;
+	#cont tr td {
+		padding: 15px;
+		border-bottom: 1px solid #C0C0C0;
+	} 
+	#cont tr:nth-of-type(2) {
+		border-bottom: 1px solid #228B22;
+	}
+	#board_title {
+		font-size: 32px;
+		font-weight: bold;
+	}
+	#sidemenu {
+		padding: 30px;
+	}
+	#sidemenu li {
+		padding: 10px;
+	}
+	#sidemenu li a {
+		position: relative;
+		display: block;
+		font-size: 20px;
+	}
+	#sidemenu li a:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: 24px;
+		width: 0px;
+		height: 3px;
+		margin: 5px 0 0;
+		transition: all 0.2s ease-in-out;
+		transition-duration: 0.3s;
+		opacity: 0;
+		background-color: #2E8B57;
+	}
+	#sidemenu li a:hover:after {
+		width: 100%;
+		opacity: 1;
 	}
 	.right {
 		text-align: right;
@@ -53,12 +92,14 @@
 	.left {
 		text-align: left;
 	}
-	textarea {
-		width: 100%;
-		height: 500px;
-	}
 	input[type=text] {
 		width: 100%;
+		padding: 5px;
+	}
+	textarea {
+		width: 100%;
+		height: 400px;
+		padding: 20px;
 	}
 
 </style>
@@ -104,7 +145,7 @@
      </div>
      
      <div id="main">
-		<form action="/myPage/myNoteWrite?nowpage=1" method="POST">
+		<form action="/mypage/myNoteWrite?nowpage=1" method="POST">
 			<input type="hidden" name="receiver_usercode" value="${myNoteVo.usercode}" />
 			<input type="hidden" name="board_idx" value="${param.board_idx}" />
 

@@ -1,27 +1,22 @@
-package com.green.myPage.controller;
+package com.green.mypage.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.menus.service.MenuService;
-import com.green.myPage.service.MyPageService;
-import com.green.myPage.vo.MyPageVo;
+import com.green.mypage.service.MyPageService;
+import com.green.mypage.vo.MyPageVo;
 import com.green.user.vo.UserVo;
 @Controller
-@RequestMapping("myPage")
+@RequestMapping("mypage")
 public class MyPageController {
 	
 	@Autowired
@@ -82,7 +77,7 @@ public class MyPageController {
 		return mv;
 	}
 	
-	//쪽지답장 //수정
+	//쪽지답장형식
 	@RequestMapping("/myNoteAnswer") 
 	public ModelAndView myNoteAnswer( @RequestParam HashMap<String, Object> map, 
 			HttpSession session) {
@@ -94,8 +89,44 @@ public class MyPageController {
 		
 		//쪽지등록 전 필요한 값 들고오기
 		MyPageVo myNoteAnswerForm =  myPageService.getMyNoteAnswerForm(map);
+		
+		mv.setViewName("/mypage/myNoteAnswer");
+		mv.addObject("userVo", userVo);
+		mv.addObject("myNoteAnswerForm", myNoteAnswerForm);
+		return mv;
+	}
+	
+	//쪽지답장
+	@RequestMapping("/myNoteAnswerSend") 
+	public ModelAndView myNoteAnswerSend( @RequestParam HashMap<String, Object> map, 
+			HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
+		UserVo userVo = (UserVo) session.getAttribute("login");
+		Object usercode = userVo.getUsercode();
+		map.put("sendusercode", usercode);
+		
+		System.out.println("wkadhsek"+map.toString());
+		
+		//쪽지등록 전 필요한 값 들고오기
+		MyPageVo myNoteAnswerForm =  myPageService.getMyNoteAnswerForm(map);
+		
+		//쪽지 빈 칸이 있을 경우
+		String notetitle = (String) map.get("notetitle"); 
+		String notecont  = (String) map.get("notecont");
+		if(notetitle == "" || notecont == "") {
+			mv.addObject("nullNote", "값없음");
+			mv.addObject("myNoteAnswerForm", myNoteAnswerForm);
+			mv.setViewName("/mypage/myNoteWrite");
+			return mv;
+		}
+		
+		//쪽지 등록
+		map.put("sendusercode", usercode);
+		int myNoteAnswer=  myPageService.myNoteAnswer(map);
 
 		mv.setViewName("/mypage/myNoteAnswer");
+		mv.addObject("myNoteAnswer", myNoteAnswer);
 		mv.addObject("userVo", userVo);
 		mv.addObject("myNoteAnswerForm", myNoteAnswerForm);
 		return mv;
@@ -231,7 +262,6 @@ public class MyPageController {
 	@RequestMapping("/myNoteView")
 	public ModelAndView sendNoteView (@RequestParam HashMap<String, Object> map,
 			HttpSession session) {
-		
 		UserVo userVo = (UserVo) session.getAttribute("login");
 		int usercode = userVo.getUsercode();
 		map.put("usercode", usercode);
@@ -352,7 +382,7 @@ public class MyPageController {
 		myPageService.updatePoint(map);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/myPage/myList?nowpage=1");
+		mv.setViewName("redirect:/mypage/myList?nowpage=1");
 		mv.addObject("userVo", userVo);
 		return mv;
 	}

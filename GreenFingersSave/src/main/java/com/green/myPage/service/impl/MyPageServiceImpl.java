@@ -1,14 +1,15 @@
-package com.green.myPage.service.impl;
+package com.green.mypage.service.impl;
 
 import java.util.HashMap;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.green.myPage.dao.MyPageDao;
-import com.green.myPage.service.MyPageService;
-import com.green.myPage.vo.MyPageVo;
+import com.green.mypage.dao.MyPageDao;
+import com.green.mypage.service.MyPageService;
+import com.green.mypage.vo.MyPageVo;
 
 @Service("MyPageService")
 public class MyPageServiceImpl implements MyPageService {
@@ -112,6 +113,12 @@ public class MyPageServiceImpl implements MyPageService {
 	public MyPageVo getMyNoteAnswerForm(HashMap<String, Object> map) {
 		MyPageVo getMyNoteAnswerForm = myPageDao.getMyNoteAnswerForm(map);
 		return getMyNoteAnswerForm;
+	}
+
+	@Override
+	public int myNoteAnswer(HashMap<String, Object> map) {
+		int myNoteAnswer = myPageDao.myNoteAnswer(map);
+		return myNoteAnswer;
 	}
 
 

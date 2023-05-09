@@ -64,32 +64,42 @@
 			<table id="sec2Cont">
 				<tr>
 					<th>번호</th>
-					<th>받는 사람</th>
+					<th>보낸 사람</th>
 					<th>제목</th>
 					<th>날짜</th>
 					<th>읽음 상태</th>
 				</tr>
 
-				<c:forEach var = "recNoteVo" items="${recPagePaingList}">
-				<tr class="recList">
-					<a href="">
-						<td>${recNoteVo.rnum}</td>
-						<td>${recNoteVo.send_usercode}</td>
-						<td>${recNoteVo.note_title}</td>
-						<td>${recNoteVo.note_regdate}</td>
+				<c:forEach var = "recNoteVo" items="${recPagePaingList}">	
+					<c:if test="${recNoteVo.delnote eq 1}" var="delnote">
+					<tr class="recList">
+						<td><a href="#" onclick="return false;">${recNoteVo.rnum}</a></td>
+						<td><a href="#" onclick="return false;">${recNoteVo.send_usercode}</a></td>
+						<td style="text-decoration: line-through;"><a href="#" style="color:#959595;" onclick="return false;">삭제 된 쪽지입니다</a></td>
+						<td><a href="#" onclick="return false;">${recNoteVo.note_regdate}</a></td>
+						<td class="readMark"><a href="#" onclick="return false;"></a></td>
+					</tr>
+					</c:if>
+				
+					<c:if test="${recNoteVo.delnote eq 0}" var="delnote">
+					<tr class="recList">
+						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.rnum}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.send_usercode}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.note_title}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.note_regdate}</a></td>
 						<td class="readMark"></td>
-					</a>
-				</tr>
+					</tr>
+					</c:if>
 				</c:forEach>
 			</table>
 			
 			<div>
 				<button>삭제</button>
-				<!-- <button><a href="/myPage/myNoteWriteForm?board_idx=5">쪽지보내기</a></button> -->
+				<!-- <button><a href="/mypage/myNoteWriteForm?board_idx=5">쪽지보내기</a></button> -->
 			</div>
      	</section>
 		
-	     <%@include file="/WEB-INF/include/myPagePaging.jsp" %>
+	     <%@include file="/WEB-INF/include/mypagePaging.jsp" %>
     </div><!-- main -->
      
 </div>

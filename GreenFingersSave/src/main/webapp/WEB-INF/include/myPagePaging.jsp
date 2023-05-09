@@ -13,25 +13,25 @@
    
    <!-- 처음/ 이전 -->     
    <c:if test="${ startnum gt 1 }">
-     <a href="/myPage/myList?nowpage=1">처음</a>
-     <a href="/myPage/myList?nowpage=${ startnum - 1 }">
+     <a href="/mypage/noteSendList?nowpage=1">처음</a>
+     <a href="/myPage/noteSendList?nowpage=${ startnum - 1 }">
      [이전]
      </a>
    </c:if>
    
    <!-- 1 2 3 4 5 6 [7] 8 9 10  -->
    <c:forEach  var="pagenum"  begin="${startnum}"  end="${endnum}"  step="1">
-      <a href="/myPage/myList?nowpage=${ pagenum }">
+      <a href="/mypage/noteSendList?nowpage=${ pagenum }">
       ${ pagenum }
       </a>&nbsp;&nbsp;     
    </c:forEach>    
    
    <!-- 다음 / 마지막 -->
    <c:if test="${ totalpagecount ne endnum }">
-     <a href="/myPage/myList?nowpage=${ endnum + 1 }">
+     <a href="/mypage/noteSendList?nowpage=${ endnum + 1 }">
      [다음]
      </a>
-     <a href="/myPage/myList?nowpage=${ totalpagecount }">마지막</a>
+     <a href="/mypage/noteSendList?nowpage=${ totalpagecount }">마지막</a>
    </c:if>    
    
     </td>
@@ -50,25 +50,25 @@
    
    <!-- 처음/ 이전 -->     
    <c:if test="${ startnum1 gt 1 }">
-     <a href="/myPage/myList?nowpage=1">처음</a>
-     <a href="/myPage/myList?nowpage=${ startnum1 - 1 }">
+     <a href="/mypage/noteRecList?nowpage=1">처음</a>
+     <a href="/mypage/noteRecList?nowpage=${ startnum1 - 1 }">
      [이전]
      </a>
    </c:if>
    
    <!-- 1 2 3 4 5 6 [7] 8 9 10  -->
    <c:forEach  var="pagenum"  begin="${startnum1}"  end="${endnum1}"  step="1">
-      <a href="/myPage/myList?nowpage=${ pagenum }">
+      <a href="/mypage/noteRecList?nowpage=${ pagenum }">
       ${ pagenum }
       </a>&nbsp;&nbsp;     
    </c:forEach>    
    
    <!-- 다음 / 마지막 -->
    <c:if test="${ totalpagecount1 ne endnum1 }">
-     <a href="/myPage/myList?nowpage=${ endnum1 + 1 }">
+     <a href="/mypage/noteRecList?nowpage=${ endnum1 + 1 }">
      [다음]
      </a>
-     <a href="/myPage/myList?nowpage=${ totalpagecount1 }">마지막</a>
+     <a href="/mypage/noteRecList?nowpage=${ totalpagecount1 }">마지막</a>
    </c:if>    
    
     </td>

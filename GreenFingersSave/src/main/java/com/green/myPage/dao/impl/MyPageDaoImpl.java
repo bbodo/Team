@@ -1,14 +1,15 @@
-package com.green.myPage.dao.impl;
+package com.green.mypage.dao.impl;
 
 import java.util.HashMap;
+
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.green.myPage.dao.MyPageDao;
-import com.green.myPage.vo.MyPageVo;
+import com.green.mypage.dao.MyPageDao;
+import com.green.mypage.vo.MyPageVo;
 
 @Repository("MyPageDao")
 public class MyPageDaoImpl implements MyPageDao {
@@ -91,6 +92,13 @@ public class MyPageDaoImpl implements MyPageDao {
 	public MyPageVo getMyNoteAnswerForm(HashMap<String, Object> map) {
 		MyPageVo getMyNoteAnswerForm = sqlSession.selectOne("MyPage.GetNoteView", map); 
 		return getMyNoteAnswerForm;
+	}
+
+	@Override
+	public int myNoteAnswer(HashMap<String, Object> map) {
+		int myNoteAnswer = sqlSession.insert("MyPage.MyPageNoteInsert", map);
+		System.out.println("myNoteAnswer"+myNoteAnswer);
+		return myNoteAnswer;
 	}
 	
 	

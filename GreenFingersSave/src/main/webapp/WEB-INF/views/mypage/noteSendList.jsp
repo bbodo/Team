@@ -72,25 +72,36 @@
 				</tr>
 				
 				<c:forEach var = "sendNoteVo" items="${sendPagePaingList}">
-				<tr>
-					<a href="">
-						<td>${sendNoteVo.rnum}</td>
-						<td>${sendNoteVo.nickname}</td>
-						<td>${sendNoteVo.note_title}</td>
-						<td>${sendNoteVo.note_regdate}</td>
-						<td class="readMark"></td>
-					</a>
-				</tr>
+					<c:if test="${sendNoteVo.delnote eq 1}" var="delnote">
+					<tr class="sendList">
+						<td><a href="#" onclick="return false;">${sendNoteVo.rnum}</a></td>
+						<td><a href="#" onclick="return false;">${sendNoteVo.nickname}</a></td>
+						<td style="text-decoration: line-through;"><a href="#" style="color:#959595;" onclick="return false;">삭제 된 쪽지입니다</a></td>
+						<td><a href="#" onclick="return false;">${sendNoteVo.note_regdate}</a></td>
+						<td class="readMark"><a href="#" onclick="return false;"></a></td>
+					</tr>
+					</c:if>
+				
+					<c:if test="${sendNoteVo.delnote eq 0}" var="delnote">
+					<tr class="sendList">
+						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.rnum}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.nickname}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.note_title}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.note_regdate}</a></td>
+						<td class="readMark"><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}"></a></td>
+					</tr>
+					</c:if>
 				</c:forEach>
+				
 			</table>
 			
 			<div>
 				<button>삭제</button>
-				<!-- <button><a href="/myPage/myNoteWriteForm?board_idx=5">쪽지보내기</a></button> -->
+				<!-- <button><a href="/mypage/myNoteWriteForm?board_idx=5">쪽지보내기</a></button> -->
 			</div>
      	</section>
 		
-	    <%@include file="/WEB-INF/include/myPagePaging.jsp" %>
+	    <%@include file="/WEB-INF/include/mypagePaging.jsp" %>
 	    
     </div><!-- main -->
      

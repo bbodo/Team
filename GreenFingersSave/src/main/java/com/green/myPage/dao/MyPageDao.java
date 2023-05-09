@@ -1,9 +1,9 @@
-package com.green.myPage.dao;
+package com.green.mypage.dao;
 
 import java.util.HashMap;
 import java.util.List;
 
-import com.green.myPage.vo.MyPageVo;
+import com.green.mypage.vo.MyPageVo;
 
 public interface MyPageDao {
 	
@@ -25,5 +25,7 @@ public interface MyPageDao {
 	int noteDelete(HashMap<String, Object> map);
 
 	MyPageVo getMyNoteAnswerForm(HashMap<String, Object> map);
+
+	int myNoteAnswer(HashMap<String, Object> map);
 
 }

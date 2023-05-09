@@ -20,6 +20,15 @@
 	#title p {
 		 line-height: 100px;
 	}
+	
+	/*현 페이지에서만 쓰는 것*/
+	.sendList {
+	display: none;
+	}
+	
+	.recList {
+		display: table-row;
+	}
 </style>
 
 <script type="text/javascript">
@@ -31,6 +40,7 @@
 		if(noteDeleteCheck == 1){
 			alert("쪽지 삭제 완료!");
 		}
+		
 		
 		//쪽지 읽음 여부 확인
 		let sendPagingVo = "${sendPagePaingList}";
@@ -65,7 +75,7 @@
 		noteTitle[1].innerHTML = "받은 쪽지";
 		
 		//쪽지 전체 보기
-		document.getElementById("NoteSelect").href = "/myPage/noteRecList?nowpage=1";
+		document.getElementById("NoteSelect").href = "/mypage/noteRecList?nowpage=1";
 	}
 	
 	function sendClick(){
@@ -81,7 +91,7 @@
 		noteTitle[1].innerHTML = "보낸 쪽지";
 		
 		//쪽지 전체 보기
-		document.getElementById("NoteSelect").href = "/myPage/noteSendList?nowpage=1";
+		document.getElementById("NoteSelect").href = "/mypage/noteSendList?nowpage=1";
 	}
 	
 	//내공 보답
@@ -97,7 +107,6 @@
 		
 		sendPointNic.value = pointNickNameResult;
 		
-		//console.log(pointNickName.textContent);
 	}
 	
 	//내공 보답 닫기
@@ -193,7 +202,7 @@
      	<section id="sec2">
 	     	<div class="titleWrap">
 	     		<p class="title">받은 쪽지</p>
-	     		<p><a id="NoteSelect" href="/myPage/noteRecList?nowpage=1">전체보기</a></p>
+	     		<p><a id="NoteSelect" href="/mypage/noteRecList?nowpage=1">전체보기</a></p>
 	     	</div>
      	
 			<div>
@@ -210,24 +219,48 @@
 					<th>읽음 상태</th>
 				</tr>
 				
-				<c:forEach var = "sendNoteVo" items="${sendPagePaingList}">
-				<tr class="sendList">
-					<td><a href="/myPage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.rnum}</a></td>
-					<td><a href="/myPage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.nickname}</a></td>
-					<td><a href="/myPage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.note_title}</a></td>
-					<td><a href="/myPage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.note_regdate}</a></td>
-					<td class="readMark"><a href="/myPage/myNoteView?note_idx=${sendNoteVo.note_idx}"></a></td>
-				</tr>
+				<c:forEach var = "recNoteVo" items="${recPagePaingList}">	
+					<c:if test="${recNoteVo.delnote eq 1}" var="delnote">
+					<tr class="recList">
+						<td><a href="#" onclick="return false;">${recNoteVo.rnum}</a></td>
+						<td><a href="#" onclick="return false;">${recNoteVo.send_usercode}</a></td>
+						<td style="text-decoration: line-through;"><a href="#" style="color:#959595;" onclick="return false;">삭제 된 쪽지입니다</a></td>
+						<td><a href="#" onclick="return false;">${recNoteVo.note_regdate}</a></td>
+						<td class="readMark"><a href="#" onclick="return false;"></a></td>
+					</tr>
+					</c:if>
+				
+					<c:if test="${recNoteVo.delnote eq 0}" var="delnote">
+					<tr class="recList">
+						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.rnum}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.send_usercode}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.note_title}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.note_regdate}</a></td>
+						<td class="readMark"></td>
+					</tr>
+					</c:if>
 				</c:forEach>
 
-				<c:forEach var = "recNoteVo" items="${recPagePaingList}">
-				<tr class="recList">
-					<td><a href="/myPage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.rnum}</a></td>
-					<td><a href="/myPage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.send_usercode}</a></td>
-					<td><a href="/myPage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.note_title}</a></td>
-					<td><a href="/myPage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.note_regdate}</a></td>
-					<td class="readMark"></td>
-				</tr>
+				<c:forEach var = "sendNoteVo" items="${sendPagePaingList}">
+					<c:if test="${sendNoteVo.delnote eq 1}" var="delnote">
+					<tr class="sendList">
+						<td><a href="#" onclick="return false;">${sendNoteVo.rnum}</a></td>
+						<td><a href="#" onclick="return false;">${sendNoteVo.nickname}</a></td>
+						<td style="text-decoration: line-through;"><a href="#" style="color:#959595;" onclick="return false;">삭제 된 쪽지입니다</a></td>
+						<td><a href="#" onclick="return false;">${sendNoteVo.note_regdate}</a></td>
+						<td class="readMark"><a href="#" onclick="return false;"></a></td>
+					</tr>
+					</c:if>
+				
+					<c:if test="${sendNoteVo.delnote eq 0}" var="delnote">
+					<tr class="sendList">
+						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.rnum}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.nickname}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.note_title}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.note_regdate}</a></td>
+						<td class="readMark"><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}"></a></td>
+					</tr>
+					</c:if>
 				</c:forEach>
 			</table>
 			
@@ -241,7 +274,7 @@
      	<section id="sec3">
 	     	<div class="titleWrap">
 	     		<p class="title">내공 보답</p>
-	     		<p><a id="NoteSelect" href="/myPage/noteRecList?nowpage=1">전체보기</a></p>
+	     		<p><a id="NoteSelect" href="/mypage/noteRecList?nowpage=1">전체보기</a></p>
 	     	</div>     
 			
 			<table id="sec2Cont">
@@ -283,7 +316,7 @@
     			 	내공을 선택해주세요.
     			</div>
     			<div>
-    			<form action="/myPage/sendPoint" method="POST">
+    			<form action="/mypage/sendPoint" method="POST">
 					<input id="sendPointNic" type="hidden" name="nickname" value="" />
 					
 					<label for="selectPoint1">50점</label>

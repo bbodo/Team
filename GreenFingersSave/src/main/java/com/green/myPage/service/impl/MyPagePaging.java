@@ -1,6 +1,6 @@
-package com.green.myPage.service.impl;
+package com.green.mypage.service.impl;
 
-import com.green.myPage.vo.MyPageVo;
+import com.green.mypage.vo.MyPageVo;
 
 public class MyPagePaging {
 	private   int     nowpage;
