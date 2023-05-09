@@ -292,6 +292,10 @@ public class MarketController {
     	
     marketService.setUpdate(map, request);
     
+    // 메뉴 목록	
+    List<MenuVo>    menuList    = menuService.getMenuList();
+    List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+ 		
     int     board_idx   =  Integer.parseInt( String.valueOf(map.get("board_idx")) );  
 	String  submenu_id  =  (String) map.get( "submenu_id" );
 	String  nowpage     =  String.valueOf(map.get("nowpage"));
@@ -300,6 +304,8 @@ public class MarketController {
 	
 	ModelAndView mv = new ModelAndView();
 	mv.setViewName(loc);
+	mv.addObject("menuList", menuList);
+	mv.addObject("submenuList", submenuList);
 	mv.addObject("map", map);
     
 	return mv;

@@ -23,23 +23,12 @@
 	#title p {
 		 line-height: 100px;
 	}
-	#aside {
-		float: left;
-		height: 800px;
-		background-color: navy;
-		width: 20%;
-		padding: 10px;
-	}
-	#aside a {
-	    text-decoration : none;
-	    color: #fff;
-	}
 	#main {
-		width: 80%;
-		height: 800px;
+		width: 100%;
+		height: 1300px;
 		float: left;
 		padding: 10px;
-		background-color: gray;
+		padding: 50px 200px 50px 200px;
 	}
 	table {
 		border-collapse: collapse;
@@ -47,16 +36,21 @@
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
-		width: 80%;
+		width: 100%;
+		border-collapse: collapse;
+		margin-top: 10px;
+		border-top: 3px solid #228B22;
 	}
-	#cont th {
-		background-color: #666;
-		border: 1px solid black;
-		padding: 10px 10px;
+	#cont tr td {
+		padding: 15px;
+		border-bottom: 1px solid #C0C0C0;
+	} 
+	#cont tr:nth-of-type(2) {
+		border-bottom: 1px solid #228B22;
 	}
-	#cont td {
-		padding-left: 10px;
-		border: 1px solid black;
+	#board_title {
+		font-size: 32px;
+		font-weight: bold;
 	}
 	.right {
 		text-align: right;
@@ -68,10 +62,12 @@
 	}
 	input[type=text] {
 		width: 100%;
+		padding: 5px;
 	}
 	textarea {
 		width: 100%;
 		height: 400px;
+		padding: 20px;
 	}
 	.update {
 		margin-top : 30px;
@@ -80,6 +76,24 @@
 	}
 
 </style>
+
+<!-- 이미지 파일 -->
+<script type="text/javascript">
+
+   function readURL(input) {
+      var file = input.files[0] 
+      console.log(file)
+      if (file != '') {
+         var reader = new FileReader();
+         reader.readAsDataURL(file);
+         reader.onload = function (e) { 
+	     console.log(e.target)
+		console.log(e.target.result)
+           $('#preview').attr('src', e.target.result);
+          }
+      }
+  }  
+</script>
 
 <script src="https://code.jquery.com/jquery.min.js"></script>
 
@@ -120,20 +134,32 @@
 
 </head>
 <body>
-	 <%@include file="/WEB-INF/include/header.jsp" %>
+	 <!-- header -->
+	 <c:choose>
+		<c:when test="${ sessionScope.login eq null }">
+			<%@include file="/WEB-INF/include/header.jsp" %>
+		</c:when>
+		<c:otherwise>
+			<%@include file="/WEB-INF/include/header2.jsp" %>
+		</c:otherwise>
+	</c:choose>
      <div id="title">
-     	<p>그린마켓</p>  
+     	<p style="font-size: 40px; font-weight: bold;">그린마켓</p>  
      </div>
-     <div id="aside">
-    	<a href="/Market/List?submenu_id=SUBMENU15&nowpage=1">입양원해요</a><br />
-     	<a href="/Market/List?submenu_id=SUBMENU16&nowpage=1">나눔합니다</a><br />
-     	<a href="/Market/List?submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a><br />
-     </div>
-     
+	
      <div id="main">
-     
+	     <c:choose>	
+		  <c:when test="${ map.submenu_id == 'SUBMENU17' }">
+		   <div><a id="board_title" href="/Board/List?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1">포인트 ${ map.submenu_name }</a></div>
+		    </c:when>
+		<c:otherwise>
+			<div><a id="board_title" href="/Board/List?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 원해요</a></div>
+		</c:otherwise>
+		</c:choose>	
+			
      <form action="/Market/Update" method="POST" 
        enctype="multipart/form-data"   >   
+       
 	  <input type="hidden"  name="board_idx"  value="${ map.board_idx  }" />
 	  <input type="hidden"  name="submenu_id" value="${ map.submenu_id }" />
 	  <input type="hidden"  name="bnum"       value="${ map.bnum       }" />
@@ -145,18 +171,28 @@
      
      
 	 <table id="cont">
-		<caption class="left">게시글 수정</caption>
 		<tr>
-			<th>제목</th>
+			<td style="text-align: center;">제목</td>
 			<td><input type="text" name="board_title" value="${ vo.board_title }"/></td>
 		</tr>
 		<tr>
-			<th>글 내용</th>
+			<td style="text-align: center;">글 내용</td>
 			<td><textarea name="board_cont">${ vo.board_cont }</textarea></td>
 		</tr>
+		
+		<form method="post" action="${contextPath}/market/writeSave" enctype="multipart/form-data">
+				<div class="form-group" >
+					<td style="text-align: center;">이미지 첨부</td>
+					<td id="imgplus"> 
+           			<input type="file" name="imgFile" onchange="readURL(this);"/>
+					<img id="preview" src="#" width=200 height=180 alt="선택된 이미지가 없습니다" style="align-content: flex-end; ">
+					</td>
+			</div>
+			</form>
+		
 		<tr>
-			<th>파일 첨부</th>
-			<td id="tdfile" colspan="3">
+			<td style="text-align: center;">파일 첨부</td>
+			<td id="tdfile">
 		    <!-- 기존 파일 목록, 삭제버튼 -->
 			<c:forEach  var="file"   items="${ fileList }">
 			<div>

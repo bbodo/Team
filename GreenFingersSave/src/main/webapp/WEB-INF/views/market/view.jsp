@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
 <%@include file="/WEB-INF/include/comHead.jsp" %>
 
 <title>${ map.submenu_name } 게시글 상세보기</title>
@@ -36,6 +36,46 @@
 		width: 15%;
 		padding: 10px;
 	}
+	#main {
+		width: 85%;
+		height: 1500px;
+		float: left;
+		padding: 10px;
+		background-color: white;
+		padding-right : 15%;
+		min-height: calc(100% - 120px);
+		padding-bottom: 100%;
+	}
+	#cont {
+		background-color: #fff;
+		margin: 0 auto;
+		width: 90%;
+		border-collapse: collapse;
+		margin-top: 10px;
+		border-top: 3px solid #228B22;
+	}
+	#cont tr:nth-of-type(2) {
+		border-bottom: 1px solid #228B22;
+	}
+	#reply_coment_cont {
+		widows: 875px;
+		height: 60px;
+		resize: none;
+	}
+	#board_title {
+		font-size: 32px;
+		font-weight: bold;
+	}
+	#commentNoti {
+		border-bottom: 3px solid #228B22;
+		padding: 20px;
+	}
+	#readComment {
+		margin-bottom: 50px;
+	}
+	#writeComment {
+		border-bottom: 1px solid #228B22;
+	}
 	#sidemenu {
 		padding: 30px;
 	}
@@ -64,78 +104,6 @@
 		width: 100%;
 		opacity: 1;
 	}
-	
-	#main {
-		width: 85%;
-		height: 1500px;
-		float: left;
-		padding: 10px;
-		background-color: white;
-		padding-right : 15%;
-		min-height: calc(100% - 120px);
-		padding-bottom: 100%;
-	}
-	#cont {
-		/* background-color: #fff;
-		padding: 10px;
-		margin: 0 auto;
-		width: 90%;
-		border-collapse: collapse; */
-		background-color: #fff;
-		margin: 0 auto;
-		width: 90%;
-		border-collapse: collapse;
-		margin-top: 10px;
-		border-top: 3px solid #228B22;
-	}
-	#cont tr:nth-of-type(2) {
-		border-bottom: 1px solid #228B22;
-	}
-	#reply_coment_cont {
-		widows: 875px;
-		height: 60px;
-		resize: none;
-	}
-	/* table {
-		border-collapse: collapse;
-	} */
-	#cont th td {
-		padding: 15px;
-		border-bottom: 1px solid #C0C0C0;
-	}
-	.right {
-		text-align: right;
-		margin-top: 20px;
-		margin-right: 150px;
-	}
-	#board_title {
-		font-size: 32px;
-		font-weight: bold;
-	}
-	h3 {
-		font-size: 30px;
-		margin-left: 650px;
-		padding: 20px;
-		font-weight: bold;
-	}
-	textarea {
-		width: 1000px;
-	}
-	#reply_coment_cont {
-		widows: 875px;
-		height: 60px;
-		resize: none;
-	}
-	#commentNoti {
-		border-bottom: 3px solid #228B22;
-		padding: 20px;
-	}
-	#readComment {
-		margin-bottom: 50px;
-	}
-	#writeComment {
-		border-bottom: 1px solid #228B22;
-	}
 	.nameSpace {
 		padding: 30px;
 	}
@@ -153,26 +121,25 @@
 	.comment_empty {
 		padding-left: 80px;
 	}
+
+	#cont th td {
+		padding: 15px;
+		border-bottom: 1px solid #C0C0C0;
+	}
+	.right {
+		text-align: right;
+		margin-top: 20px;
+		margin-right: 150px;
+	}
+	textarea {
+		width: 1000px;
+	}
 	.floatright {
 		float:right;
 	}
 	.floatleft {
 		float:left;
 	}
-	
-	#hot { 
-        display: flex; 
-        gap : 30px;
-        text-decoration : none;
-        text-align: center;
-        margin-top: 50px;
-        margin-left: 300px;
-    }
-    .hotimg {
-    	width : 250px; 
-	    height: 250px;
-    }
-    
     #bc {
     	height: 500px;
     	vertical-align: top;
@@ -389,38 +356,45 @@
      </div>
      
      <div id="main">
-	   <div><a style="padding-left: 80px;" id="board_title" href="/Board/List?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 원해요</a></div>
+     <c:choose>	
+	  <c:when test="${ map.submenu_id == 'SUBMENU17' }">
+	   <div><a style="padding-left: 80px;" id="board_title" href="/Board/List?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1">포인트 ${ map.submenu_name }</a></div>
+	    </c:when>
+	<c:otherwise>
+		<div><a style="padding-left: 80px;" id="board_title" href="/Board/List?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 원해요</a></div>
+	</c:otherwise>
+	</c:choose>		
 		<table id="cont">
 			<tr>
-				<th>제목</th>
-				<td colspan="5">${ vo.board_title }</td>
+				<td class="padd8">제목</td>
+				<td class="padd8">${ vo.board_title }</td>
 			</tr>
 			<tr>
 				<!-- 포인트 스토어일 때 작성자 비활성화 -->
 	     	<c:choose>	
 			<c:when test="${ map.submenu_id != 'SUBMENU17' }">
-				<th>작성자</th>
-				<td>${ vo.nickname }</td>
+				<td class="padd8">작성자</td>
+				<td class="padd8">${ vo.nickname }</td>
 			 </c:when>
 			<c:otherwise>
 			</c:otherwise>
 			</c:choose>		
-				<th>작성일</th>
-				<td>${ vo.board_regdate }</td>
-				<th>조회수</th>
-				<td>${ vo.readcount }</td>
+				<td class="padd8">작성일</td>
+				<td class="padd8">${ vo.board_regdate }</td>
+				<td class="padd8" >조회수</td>
+				<td class="padd8">${ vo.readcount }</td>
 			</tr>
 		
 		<!-- 포인트 스토에서만 활성화  -->	
 		<c:choose>	
 			<c:when test="${ map.submenu_id == 'SUBMENU17' }">
 			<tr>
-			   <th>가격</th>
-			   <td colspan="5">${ vo.market_value }</td>
+			   <td class="padd8">가격</td>
+			   <td class="padd8">${ vo.market_value }</td>
 			</tr>
 			<tr>
-			   <th>수량</th>
-			   <td colspan="5">
+			   <td class="padd8">수량</td>
+			   <td>
 			     <select name="amount">
 					<option value="">최대 3개 제한</option>
 					<option value="1개">1</option>
