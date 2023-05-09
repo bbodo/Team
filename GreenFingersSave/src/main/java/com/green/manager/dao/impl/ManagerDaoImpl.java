@@ -47,4 +47,19 @@ public class ManagerDaoImpl implements ManagerDao {
 		return cnf;
 	}
 
+	@Override
+	public void addMenu(HashMap<String, Object> map) {
+		
+		sqlSession.insert("Manager.AddMenu", map);
+		
+	}
+
+	@Override
+	public void addSimpleMenu(HashMap<String, Object> map) {
+
+		System.out.println(map);
+		sqlSession.insert("Manager.AddMenu2", map);
+		
+	}
+
 }

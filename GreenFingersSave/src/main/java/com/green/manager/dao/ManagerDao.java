@@ -15,4 +15,8 @@ public interface ManagerDao {
 
 	int deleteUser(HashMap<String, Object> map);
 
+	void addMenu(HashMap<String, Object> map);
+
+	void addSimpleMenu(HashMap<String, Object> map);
+
 }

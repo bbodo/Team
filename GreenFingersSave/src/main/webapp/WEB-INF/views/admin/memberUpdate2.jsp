@@ -112,34 +112,6 @@
 
 </style>
 
-<script src="https://code.jquery.com/jquery.min.js"></script>
-
-<script type="text/javascript">
-	
-	$(function(){
-		$('#gender').val('${vo.gender}').prop("selected", true);
-		$('#grade').val('${vo.grade}').prop("selected", true);
-	})
-
-	function memberDelete() {
-		if(window.confirm("정말 탈퇴시키겠습니까?")) {
-			$.ajax({
-				url : "/Manager/memberDelete",
-				data : {usercode : ${vo.usercode}},
-				type : "POST",
-				success : function(data) {
-					alert("탈퇴되었습니다 !");
-					location.replace("/Manager/Member");
-				},
-				error : function() {
-					alert("에러!!")
-				}
-			});
-		};
-	}
-
-</script>
-
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
@@ -148,101 +120,124 @@
      </div>
       <div id="aside">
        <ul id="sidemenu">
-     		<li><a href="/Manager/Member">회원 관리</a><br /></li>
-       		<li><a href="/Manager/Menu">메뉴 관리</a> <br /></li>
+     		<li><a href="">회원 관리</a><br /></li>
+       		<li><a href="">메뉴 관리</a> <br /></li>
      		<li><a href=""> - 하위 메뉴</a><br /></li>
      		<li><a href="">이벤트 등록</a><br /></li>
      		<li><a href="">마켓 등록</a><br /></li>
        </ul>
      </div>
      <div id="main">
-     	<form action="/Manager/memberUpdate" method="POST">
-     	<input type="hidden" value="${ vo.userid }" name="userid"/>
-     	<input type="hidden" value="${ vo.usercode }" name="usercode" id="usercode"/>
 		<table id="cont">
 			<tr>
 				<!-- id는 수정불가하게 -->
-				<td class="left"><h2>아이디</h2></td>
+				<td colspan="4" class="left"><h2>아이디</h2></td>
 			</tr>
 			<tr>
-				<td class="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${ vo.userid }</td>
+				<td colspan="4" class="left"><span style="width: 40px;"></span>${ vo.userid }</td>
 			</tr>
 			<tr>
 				<!-- 자물쇠 버튼 눌러서 보이게하는 기능 ?? -->
 				<!-- admin은 그냥 수정할 수 있게 -->
-				<td class="left"><h2>비밀번호</h2></td>
+				<td colspan="4" class="left"><h2>비밀번호</h2></td>
 			</tr>
 			<tr>
-				<td class="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" value="${ vo.passwd }" name="passwd"/></td>
+				<td colspan="4" class="left"><input type="password" value="${ vo.passwd }"/></td>
 			</tr>
 			<tr>
-				<td class="left"><h2>이름</h2></td>
+				<td colspan="4" class="left"><h2>이름</h2></td>
 			</tr>
 			<tr>
-				<td class="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="${ vo.username }" name="username"/></td>
+				<td colspan="4" class="left"><input type="text" value="${ vo.username }"/></td>
 			</tr>
 			<tr>
-				<td class="left"><h2>생년월일</h2></td>
+				<td colspan="4" class="left"><h2>생년월일</h2></td>
 			</tr>
 			<tr>
+				<td><input type="text" placeholder="년(4자)" /></td>
+				<td colspan="2">
+					<select name="" id="">
+						<option value="">월</option>					
+						<option value="">1</option>					
+						<option value="">2</option>					
+						<option value="">3</option>					
+						<option value="">4</option>					
+						<option value="">5</option>					
+						<option value="">6</option>					
+						<option value="">7</option>					
+						<option value="">8</option>					
+						<option value="">9</option>					
+						<option value="">10</option>					
+						<option value="">11</option>					
+						<option value="">12</option>					
+					</select>
+				</td>
 				<td>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="${ vo.birthday }" name="birthday"/>
+					<input type="text" placeholder="일"/>
 				</td>
 			</tr>
 			<tr>
-				<td><h2>성별</h2></td>
+				<td colspan="4"><h2>성별</h2></td>
 			</tr>
 			<tr>
-				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<select name="gender" id="gender">
+				<td>
+					<select name="" id="">
 						<option value="">성별</option>
-						<option value="남">남자</option>
-						<option value="여">여자</option>
-						<option value="뭔데">둘다아닌 무언가</option>
-						<option value="외계인">외계인</option>
+						<option value="">남자</option>
+						<option value="">여자</option>
+						<option value="">둘다아닌 무언가</option>
+						<option value="">외계인</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td class="left"><h2>이메일</h2></td>
+				<td colspan="4" class="left"><h2>이메일</h2></td>
 			</tr>
 			<tr>
-				<td class="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="${ vo.email }" name="email"/></td>
+				<td colspan="4" class="left"><input type="text" /></td>
 			</tr>
 			<tr>
-				<td class="left"><h2>주소</h2></td>
+				<td colspan="4" class="left"><h2>주소</h2></td>
 			</tr>
 			<tr>
 				<td>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="${ vo.addr }" name="addr"/>
+					<select name="" id="">
+						<option value="">시/군/구</option>
+						<option value="">근데 이거 다해야함??</option>
+					</select>
 				</td>
-			</tr>
-			<tr>
-				<td ><h2>등급</h2></td>
-			</tr>
-			<tr>
-				<td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<select name="grade" id="grade">
-						<option value="씨앗">씨앗</option>
-						<option value="새싹">새싹</option>
-						<option value="잎새">잎새</option>
-						<option value="가지">가지</option>
-						<option value="나무">나무</option>
+				<td >
+					<select name="" id="">
+						<option value="">동</option>
+						<option value="">이것도 ㄷㄷ</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td ><h2>보유 포인트</h2></td>
+				<td colspan="4" class="left"><h2>상세주소</h2></td>
 			</tr>
 			<tr>
-				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="point" value="${ vo.point }"/></td>
+				<td colspan="4" class="left"><input type="text" /></td>
+			</tr>
+			<tr>
+				<td><h2>등급</h2></td>
+				<td>
+					<select name="" id="">
+						<option value="">A</option>
+						<option value="">B</option>
+						<option value="">C</option>
+						<option value="">D</option>
+						<option value="">E</option>
+					</select>
+				</td>
+				<td><h2>보유 포인트</h2></td>
+				<td>포인트 불러오기</td>
 			</tr>
 		</table>
 	    <div style="float: right;">
-	    	<input type="submit" value="수정 하기"/> &nbsp; &nbsp;
-	    	<input type="button" value="탈퇴 시키기" onclick=memberDelete() />
+	    	<a href="">수정 하기</a> &nbsp; &nbsp;
+	    	<a href="">탈퇴 시키기</a>
 	    </div>
-		</form>
      </div>
      <%-- <%@include file="/WEB-INF/include/footer.jsp" %> --%>
 </body>

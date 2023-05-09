@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.manager.service.ManagerService;
+import com.green.menus.service.MenuService;
+import com.green.menus.vo.MenuVo;
+import com.green.menus.vo.SubmenuVo;
 import com.green.user.vo.UserVo;
 
 @RequestMapping("/Manager")
@@ -20,16 +23,80 @@ public class ManagerController {
 	@Autowired
 	private ManagerService managerService;
 	
+	@Autowired
+	private MenuService menuService;
+	
 	@RequestMapping("/Home")
 	public String managerHome() {
 		
 		return "/admin/homeM";
 	}
+	
+	//-------------- 메뉴 --------------
 	@RequestMapping("/Menu")
-	public String managerMenu() {
+	public ModelAndView managerMenu() {
 		
-		return "/admin/menuManagement";
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/admin/menuManagement");
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
+		
+		return mv;
 	}
+	@RequestMapping("/menuWriteForm")
+	public ModelAndView menuWriteForm() {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/admin/menuWrite");
+		
+		return mv;
+	}
+	@RequestMapping("/menuSimpleWriteForm")
+	public ModelAndView menuSimpleWriteForm() {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/admin/menuSimpleWrite");
+		
+		return mv;
+	}
+	@RequestMapping("/menuWrite")
+	public ModelAndView menuWrite(
+			@RequestParam HashMap<String, Object> map
+			) {
+		
+		managerService.addMenu(map);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/Manager/Menu");
+		
+		return mv;
+	}
+	@RequestMapping("/menuSimpleWrite")
+	public ModelAndView menuSimpleWrite(
+			@RequestParam HashMap<String, Object> map
+			) {
+		
+		managerService.addSimpleMenu(map);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/Manager/Menu");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/subMenuManagement")
+	public String subMenuManagement() {
+		return "/admin/subMenuManagement";
+	}
+	@RequestMapping("/subMenuWrite")
+	public String subMenuWrite() {
+		return "/admin/subMenuWrite";
+	}
+	
+	//-------------- 멤버 --------------
 	@RequestMapping("/Member")
 	public ModelAndView managerMember() {
 		
@@ -71,6 +138,7 @@ public class ManagerController {
 		return mv;
 	}
 	
+	// 유저 탈퇴 시켜버리기
 	@ResponseBody
 	@RequestMapping("/memberDelete")
 	public int memberDelete(
@@ -80,19 +148,6 @@ public class ManagerController {
 		int cnf = managerService.deleteUser(map);
 		
 		return cnf;
-	}
-	
-	@RequestMapping("/menuWrite")
-	public String menuWrite() {
-		return "/admin/menuWrite";
-	}
-	@RequestMapping("/subMenuManagement")
-	public String subMenuManagement() {
-		return "/admin/subMenuManagement";
-	}
-	@RequestMapping("/subMenuWrite")
-	public String subMenuWrite() {
-		return "/admin/subMenuWrite";
 	}
 	
 }

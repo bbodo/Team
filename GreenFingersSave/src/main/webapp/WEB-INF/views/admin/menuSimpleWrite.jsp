@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@include file="/WEB-INF/include/comHead.jsp" %>
-<title>회원관리</title>
+<%@include file="/WEB-INF/include/adminHeader.jsp" %>
+<title>메뉴 관리</title>
 
 <style type="text/css">
 	* {
@@ -36,7 +36,6 @@
 		padding: 10px;
 		padding-right: 15%;
 		background-color: white;
-		text-align: center;
 	}
 	#tt {
 		text-align: left;
@@ -116,11 +115,10 @@
 
 </head>
 <body>
-	 <%@include file="/WEB-INF/include/adminHeader.jsp" %>
      <div id="title">
-     	<p>회원관리</p>
+     	<p>상위 메뉴 관리</p>
      </div>
-       <div id="aside">
+    <div id="aside">
        <ul id="sidemenu">
 			<li><a href="/Manager/Member">회원 관리</a><br /></li>
        		<li><a href="/Manager/Menu">메뉴 관리</a> <br /></li>
@@ -130,25 +128,20 @@
        </ul>
      </div>
      <div id="main">
+     	<form action="/Manager/menuSimpleWrite" method="POST">
 		<table id="cont">
 			<tr>
-				<th>유저코드</th>
-				<th>이름</th>
-				<th>아이디</th>
-				<th>유저등급</th>
-				<th>포인트</th>
+				<td>* 메뉴 이름</td>
 			</tr>
-			<c:forEach var="user" items="${ userList }">
 			<tr>
-				<td>${ user.usercode }</td>
-				<td>${ user.username }</td>
-				<td><a href="/Manager/memberUpdateForm?usercode=${ user.usercode }">${ user.userid }</a></td>
-				<td>${ user.grade }</td>
-				<td>${ user.point }</td>
+				<td><input type="text" name="menu_name" placeholder="필수사항" required="required"/></td>
 			</tr>
-			</c:forEach>
 		</table>
-	    <%@include file="/WEB-INF/include/paging.jsp" %>
+		<div style="float: right;">
+			<a href="">취소버튼</a>
+			<input type="submit" value="등록버튼"/>
+		</div>
+		</form>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

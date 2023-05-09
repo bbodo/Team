@@ -32,6 +32,7 @@
 			
 	</select>
  	
+ 	<!-- 유저 정보 담아가기 -->
  	<select id="GetUser"
  			resultType="com.green.user.vo.UserVo">
  	
@@ -56,6 +57,7 @@
  	
  	</select>
  	
+ 	<!-- 유저 정보 수정 -->
  	<update id="UpdateUser">
  	
  		UPDATE
@@ -74,6 +76,7 @@
  			
  	</update>
  	
+ 	<!-- 유저 탈퇴 처리 -->
  	<delete id="DeleteUser">
  	
  		UPDATE
@@ -84,6 +87,53 @@
  			USERCODE = #{ usercode }
  	
  	</delete>
+ 	
+ 	<insert id="AddMenu">
+ 	
+ 		INSERT INTO
+ 			MENUS
+ 			(
+	 			MENU_ID,
+				MENU_NAME,
+				MENU_SEQ
+ 			)
+ 			VALUES
+ 			(
+ 				#{ menu_id },
+ 				#{ menu_name },
+ 				#{ menu_seq }
+ 			)
+ 		
+ 	
+ 	</insert>
+ 	
+ 	<insert id="AddMenu2" >
+      <selectKey keyProperty="menu_id,menu_seq"
+         resultType="com.green.menus.vo.MenuVo" 
+		 order="BEFORE" >
+         SELECT menu_id,menu_seq
+			 FROM
+			( SELECT  'MENU' ||
+			   TRIM( TO_CHAR( SUBSTR( NVL( MAX(MENU_ID), 'MENU00'), 5, 2 ) +1, '00') )  AS MENU_ID
+			  FROM MENUS) menu_id, 			
+			(SELECT   NVL( MAX(MENU_SEQ), 0 ) + 1 as menu_seq
+			  FROM   MENUS) menu_seq
+      </selectKey>           
+		INSERT INTO
+			MENUS 
+			( 
+				MENU_ID, 
+				MENU_NAME,
+				MENU_SEQ 
+			)
+			VALUES
+			(
+				#{menu_id},
+				#{menu_name},
+				#{menu_seq}
+			)
+
+    </insert>
  	
 </mapper>
 

@@ -48,4 +48,18 @@ public class ManagerServiceImpl implements ManagerService {
 		return cnf;
 	}
 
+	@Override
+	public void addMenu(HashMap<String, Object> map) {
+
+		managerDao.addMenu(map);
+		
+	}
+
+	@Override
+	public void addSimpleMenu(HashMap<String, Object> map) {
+
+		managerDao.addSimpleMenu(map);
+		
+	}
+
 }

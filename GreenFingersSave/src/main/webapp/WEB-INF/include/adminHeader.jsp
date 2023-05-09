@@ -10,8 +10,8 @@
 	   <div id="logo">logo</div>
 		
 		<div>
-			<a href="">회원관리</a>
-			<a href="">메뉴관리</a>
+			<a href="/Manager/Member">회원관리</a>
+			<a href="/Manager/Menu">메뉴관리</a>
 			<a href="">이벤트등록</a>
 			<a href="">소모품등록</a>
 		</div>
