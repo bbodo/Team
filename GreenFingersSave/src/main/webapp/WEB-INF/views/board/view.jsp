@@ -27,16 +27,27 @@
 	#section {
 		height: auto;
 	}
-	#main {
-		width: 100%;
-		height: auto;
+	#aside {
 		float: left;
-		padding: 50px 200px 50px 200px;
+		height: 800px;
+		background-color: white;
+		width: 15%;
+		padding: 10px;
+	}
+	#main {
+		width: 85%;
+		height: 800px;
+		float: left;
+		padding: 10px;
+		padding-right : 15%;
+		background-color: white;
+		min-height: calc(100% - 120px);
+		padding-bottom: 100%;
 	}
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
-		width: 100%;
+		width: 90%;
 		border-collapse: collapse;
 		margin-top: 10px;
 		border-top: 3px solid #228B22;
@@ -62,6 +73,34 @@
 	}
 	#writeComment {
 		border-bottom: 1px solid #228B22;
+	}
+	#sidemenu {
+		padding: 30px;
+	}
+	#sidemenu li {
+		padding: 10px;
+	}
+	#sidemenu li a {
+		position: relative;
+		display: block;
+		font-size: 20px;
+	}
+	#sidemenu li a:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: 24px;
+		width: 0px;
+		height: 3px;
+		margin: 5px 0 0;
+		transition: all 0.2s ease-in-out;
+		transition-duration: 0.3s;
+		opacity: 0;
+		background-color: #2E8B57;
+	}
+	#sidemenu li a:hover:after {
+		width: 100%;
+		opacity: 1;
 	}
 	.nameSpace {
 		padding: 30px;
@@ -298,8 +337,20 @@
      <div id="title">
      	<p style="font-size: 40px; font-weight: bold;">식물 연합</p>
      </div>
+     <div id="aside">
+     	<ul id="sidemenu">
+     	<c:forEach var="menu" items="${ submenuList }">
+     		<c:choose>
+			<c:when test="${menu.menu_id eq map.menu_id }">
+				<li><a href="/Board/List?menu_id=${ menu.menu_id }&submenu_id=${menu.submenu_id}&nowpage=1">
+						${menu.submenu_name}</a></li>
+			</c:when>
+			</c:choose>
+     	</c:forEach>
+     	</ul>
+     </div>
      <div id="main">
-     <div><a id="board_title" href="/Board/List?submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 게시판</a></div>
+     <div><a style="padding-left: 80px;" id="board_title" href="/Board/List?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 게시판</a></div>
 		<table id="cont">
 			<tr>
 				<td class="padd8">제목</td>
@@ -333,8 +384,8 @@
 		<div class="right">
 			<a href="/Board/WriteForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">답글쓰기</a>
 			<c:if test="${vo.usercode eq login.usercode}">
-				<a href="/Board/UpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
-				<a href="/Board/Delete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&nowpage=${map.nowpage}">삭제</a> <br />
+				<a class="btns" href="/Board/UpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
+				<a class="btns" href="/Board/Delete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&nowpage=${map.nowpage}">삭제</a> <br />
 			</c:if>
 		</div>
 		<div id="commentNoti">댓글</div>
@@ -352,7 +403,7 @@
 					     required class="coment_cont" id="coment_cont"></textarea>
 					</td>
 					<td style="width: 100px;">
-						<input type="button" id="writeBtn" value="등록"/>
+						<input class="btns" type="button" id="writeBtn" value="등록"/>
 					</td>
 				</tr>
 			</table>

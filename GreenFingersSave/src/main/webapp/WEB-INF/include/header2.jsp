@@ -63,7 +63,7 @@
 		<c:forEach var="menu" items="${ menuList }">
 		<c:choose>
 			<c:when test="${menu.menu_id eq 'MENU01'}">
-			<li><a href="/Board/List?submenu_id=${submenuList[0].submenu_id}&nowpage=1">${ menu.menu_name }</a>
+			<li><a href="/Board/List?menu_id=${ menu.menu_id }&submenu_id=${submenuList[0].submenu_id}&nowpage=1">${ menu.menu_name }</a>
 				<ul>
 				<c:forEach var="submenu" items="${ submenuList }">
 				<c:if test="${submenu.menu_id eq menu.menu_id }">
@@ -87,7 +87,7 @@
 			</li>
 			</c:when>
 			<c:when test="${menu.menu_id eq 'MENU02'}">
-			<li><a href="/Board/List?submenu_id=${submenuList[10].submenu_id}&nowpage=1">${ menu.menu_name }</a>
+			<li><a href="/Board/List?menu_id=${ menu.menu_id }&submenu_id=${submenuList[10].submenu_id}&nowpage=1">${ menu.menu_name }</a>
 				<ul>
 				<c:forEach var="submenu" items="${ submenuList }">
 				<c:if test="${submenu.menu_id eq menu.menu_id }">

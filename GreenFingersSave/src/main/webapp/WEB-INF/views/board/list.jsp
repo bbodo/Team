@@ -11,11 +11,9 @@
 <title>${ map.submenu_name } 게시판</title>
 
 <style type="text/css">
-
 	* {
 		box-sizing: border-box;
-	}
-
+	} 
 	#title {
 		width: 100%;
 		text-align: center;
@@ -29,14 +27,15 @@
 		float: left;
 		height: 800px;
 		background-color: white;
-		width: 20%;
+		width: 15%;
 		padding: 10px;
 	}
 	#main {
-		width: 80%;
+		width: 85%;
 		height: 800px;
 		float: left;
 		padding: 10px;
+		padding-right: 15%;
 		background-color: white;
 		text-align: center;
 	}
@@ -93,6 +92,26 @@
 	.right {
 		text-align: right;
 	}
+	.as {
+		position: relative;
+	}
+	.as:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: -10px;
+		width: 0px;
+		height: 2px;
+		margin: 5px 0 0;
+		transition: all 0.2s ease-in-out;
+		transition-duration: 0.3s;
+		opacity: 0;
+		background-color: #8fd3f4;
+	}
+	.as:hover:after {
+		width: 100%;
+ 		opacity: 1;
+	}
 	
 
 </style>
@@ -125,8 +144,8 @@
      </div>
      <div id="main">
 		<h2 style="font-size: 24px;">${ map.submenu_name }</h2>     
-     <div class="right">
-		<a href="/Board/WriteForm?submenu_id=${ boardVo.submenu_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
+     <div class="right" style="padding: 20px; padding-right: 80px;">
+		<a class="as" style="font-size: 20px;" href="/Board/WriteForm?menu_id=${ map.menu_id }&submenu_id=${ boardVo.submenu_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
 	 </div>
 		<table id="cont">
 			<tr>
@@ -150,7 +169,7 @@
          <c:when test="${ boardVo.lvl eq 0 }">
            <c:choose>
             <c:when test="${ boardVo.delboard eq 0 }">
-              <a href="/Board/View?submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}">
+              <a href="/Board/View?menu_id=${ map.menu_id }&submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}">
        		   <h2>${ boardVo.board_title }</h2>
        		  </a>
        		</c:when>
@@ -166,7 +185,7 @@
             
             <c:choose>
               <c:when test="${ boardVo.delboard eq 0 }">
-                <a style="font-weight: bold;" href="/Board/View?submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}">
+                <a style="font-weight: bold;" href="/Board/View?menu_id=${ map.menu_id }&submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}">
               	  [답글] ${ boardVo.board_title }
          	    </a>
          	  </c:when>
