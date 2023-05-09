@@ -78,6 +78,8 @@ public class EventController {
 	String 		  submenu_id = (String) map.get("submenu_id");
 	List<EventVo> eventList  = eventService.getAdoptList(map);
 	
+	map.put("submenu_id",submenu_id);
+	
 	EventVo eventVo = (EventVo) map.get("EventVo");
 	
 	// 메뉴 이름 알아오기
@@ -104,12 +106,8 @@ public class EventController {
 		@RequestParam HashMap<String, Object> map
 		) {
 		
-		// 메뉴 목록	
-		List<MenuVo> menuList   = menuService.getMenuList();
-		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
-		
-		// 메뉴 이름
-		String submenu_id = String.valueOf( map.get("submenu_id") );
+		// 메뉴 이름 알아오기
+		String submenu_id   = (String) map.get("submenu_id");
 		String submenu_name = menuService.getMenuName(submenu_id);
 		map.put("submenu_name", submenu_name);
 		
@@ -127,12 +125,17 @@ public class EventController {
 		}
 		map.put("idx", idx);
 		
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		
+		System.out.println(eventVo);
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("event/eventWrite");
 		mv.addObject("menuList", menuList);
 		mv.addObject("submenuList", submenuList);
-		mv.addObject("vo",      eventVo);
-		mv.addObject("map",     map);
+		mv.addObject("vo", eventVo);
+		mv.addObject("map", map);
 		
 		return mv;
 	}
@@ -146,11 +149,10 @@ public class EventController {
 		
 		String  submenu_id  =  (String) map.get("submenu_id");
 		int     nowpage  =  Integer.parseInt(String.valueOf(map.get("nowpage")));
-		
 		// 글쓰기 및 파일저장
 		eventService.setWrite(map, request);
 		
-		String fmt = "redirect:/Board/List?submenu_id=%s&nowpage=%d";
+		String fmt = "redirect:/Event/EventList?submenu_id=%s&nowpage=%d";
 		String loc = String.format(fmt, submenu_id, nowpage);
 		
 		ModelAndView mv = new ModelAndView();

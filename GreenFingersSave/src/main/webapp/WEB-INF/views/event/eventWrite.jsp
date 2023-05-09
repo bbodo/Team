@@ -74,6 +74,23 @@
   });
 </script>
 
+<script type="text/javascript">
+
+   function readURL(input) {
+      var file = input.files[0] 
+      console.log(file)
+      if (file != '') {
+         var reader = new FileReader();
+         reader.readAsDataURL(file);
+         reader.onload = function (e) { 
+	     console.log(e.target)
+		console.log(e.target.result)
+           $('#preview').attr('src', e.target.result);
+          }
+      }
+  }  
+</script>
+
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
@@ -84,15 +101,9 @@
      	이벤트<br />
      	당첨자<br />
      </div>
+     
      <div id="main">
-		<c:choose>
-			<c:when test="${  map.bnum eq 0 }">    
-				<h2>${ map.submenu_name } 새글 등록</h2>
-			</c:when>
-			<c:otherwise>    
-				<h2>${ map.submenu_name } 답글 등록</h2>
-			</c:otherwise>  
-		</c:choose>
+		<div><a id="board_title" href="/Event/EventList?submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 게시판</a></div>
      
      	<form action="/Event/Write" method="POST" 
         	  enctype="multipart/form-data">
@@ -109,15 +120,15 @@
      	
 		<table id="cont">
 			<tr>
-				<th>제목</th>
+				<td style="text-align: center;">제목</td>
 				<td><input type="text" name="board_title" value="${ vo.board_title }"/></td>
 			</tr>
 			<tr>
-				<th>글 내용</th>
+				<td style="text-align: center;">글 내용</td>
 				<td><textarea name="board_cont" maxlength="1000">${ vo.board_cont }</textarea></td>
 			</tr>
 			<tr>
-				<th>파일 첨부</th>
+				<td style="text-align: center;">파일 첨부</td>
 				<td id="tdfile">
 		      	 <input type="button"  id="btnAddFile" value="파일 추가(최대 100M byte)" /><br>
 		       	 <input type="file"  name="upfile"  class="upfile"/><br>
@@ -125,7 +136,7 @@
 			</tr>
 			
 		</table>
-		<input type="submit" value="등록" />
+		<input type="submit" value="올리기" />
 		</form>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
