@@ -226,7 +226,7 @@ public class EventController {
 			List<FileVo>  fileList =  eventService.getFileList( map ); 
 			
 			ModelAndView mv = new ModelAndView();
-			mv.setViewName("event/update");
+			mv.setViewName("event/eventUpdate");
 			mv.addObject("map", map);
 			mv.addObject("fileList", fileList);
 			mv.addObject("vo", eventVo);
@@ -246,7 +246,7 @@ public class EventController {
 			int     board_idx   =  Integer.parseInt( String.valueOf(map.get("board_idx")) );  
 			String  submenu_id  =  (String) map.get( "submenu_id" );
 			String  nowpage     =  String.valueOf(map.get("nowpage"));
-			String  fmt      	=  "redirect:/Event/View?board_idx=%d&submenu_id=%s&nowpage=%s";
+			String  fmt      	=  "redirect:/Event/EventView?board_idx=%d&submenu_id=%s&nowpage=%s";
 			String  loc      	=  String.format(fmt, board_idx, submenu_id, nowpage);
 			
 			ModelAndView mv = new ModelAndView();
