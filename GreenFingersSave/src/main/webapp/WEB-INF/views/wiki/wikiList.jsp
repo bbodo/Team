@@ -11,7 +11,23 @@
 <title>그린 위키</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<style>
 
+	#title {
+		width: 100%;
+		text-align: center;
+		height: 100px;
+		background-color: orange;
+	}
+	#title p {
+		 line-height: 100px;
+	}
+	#plantimg {
+		  width: 400px;
+		  height: 300px;
+		  object-fit: cover;
+	}
+</style>
 <script>
 	function data_display(data) {
 		console.log(data);
@@ -20,16 +36,40 @@
 		let arr        = body.items.item;
 		let html = '';
 		arr.forEach(function(item, index) {
-			html += '</div>';
-			html += '<ul>ㅎㅎㅎㅎㅎ';
-			html += '<li>과국명 : ' + item.familyKorNm + '</li>';
-			html += '<li>과명 : ' + item.familyNm + '</li>';
-			html += '<li>속국명 : ' + item.genusKorNm + '</li>';
-			html += '<li>속명 : ' + item.genusNm + '</li>';
-			html += '<li><img src="' + item.imgUrl + '"/></li>';
-			html += '<li>국명 : ' + item.plantGnrlNm + '</li>';
-			html += '<li>도감번호 : ' + item.plantPilbkNo + '</li>';
-			html += '</ul>';
+			html += '<div>';
+			html += '<table>';
+			html += '<tr>';
+			html += '<td colspan="2"> 총 검색 수 : ' + body.totalCount;
+			html += '<td>';
+				
+			html += '</tr>';
+			html += '<tr>';
+			html += '<td rowspan=""><img id="plantimg" src="' + item.imgUrl + '"/></td>';
+			html += '<td>과명 : ' + item.familyKorNm ;
+			html += '(' + item.familyNm + ')' + '</td>';
+			html += '</tr>';
+			html += '<tr>';
+			html += '<td></td>';
+			html += '<td>속명 : ' + item.genusKorNm ;
+			html += '(' + item.genusNm + ')' + '</td>';
+			html += '</tr>';
+			html += '<tr>';
+			html += '<td></td>';
+			html += '<td>국명 : ' + item.plantGnrlNm + '</td>';
+			html += '</tr>';
+			html += '<tr>';
+			html += '<td></td>';
+			html += '<td>최종수정일시 : ' + item.lastUpdtDtm + '</td>';
+			html += '</tr>';
+			html += '<tr>';
+			html += '<td></td>';
+			html += '<td>상세정보유무 : ' + item.detailYn + '</td>';
+			html += '</tr>';
+			html += '<tr>';
+			html += '<td></td>';
+			html += '<td>도감번호 : ' + item.plantPilbkNo + '</td>';
+			html += '</tr>';
+			html += '</table>';
 			html += '</div>';
 			
 		})
@@ -76,7 +116,11 @@
 		</c:otherwise>
 	</c:choose>
 	
-	<div class="search" style="height: 500px; padding: 20px 20px;" >
+	 <div id="title">
+     	<p style="font-size: 40px; font-weight: bold;">그린 위키</p>
+     </div>
+	
+	<div class="search" style="height: 800px; padding: 20px 20px;" >
 	<h2>그린 위키</h2>
 	  <input type="text" id="search" />
 	  <button id="btnOk" >검색</button>
