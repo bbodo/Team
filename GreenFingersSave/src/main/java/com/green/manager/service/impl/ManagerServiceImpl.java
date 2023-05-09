@@ -1,5 +1,7 @@
 package com.green.manager.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,14 +13,14 @@ import com.green.user.vo.UserVo;
 public class ManagerServiceImpl implements ManagerService {
 
 	@Autowired
-	ManagerDao managerDao;
+	private ManagerDao managerDao;
 	
 	@Override
-	public UserVo getAllUser() {
+	public List<UserVo> getAllUser() {
 
-		UserVo vo = managerDao.getAlluser();
+		List<UserVo> userList = managerDao.getAlluser();
 		
-		return vo;
+		return userList;
 	}
 
 }

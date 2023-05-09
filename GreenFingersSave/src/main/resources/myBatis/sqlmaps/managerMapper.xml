@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Manager">  
+  
+  	<!-- 유저 정보 가져가기 -->
+	<select id=""
+			resultType="com.green.user.vo.UserVo">
+	
+		SELECT
+			USERCODE,
+			USERID,
+			PASSWD,
+			USERNAME,
+			BIRTHDAY,
+			GENDER,
+			GRADE,
+			ADDR,
+			EMAIL,
+			TO_CHAR(JOINDATE, 'YYYY-MM-DD HH24:MI:SS') JOINDATE,
+			DELMEM,
+			POINT,
+			NICKNAME
+		FROM
+			MEMBER
+		ORDER BY
+			USERCODE DESC;
+			
+	</select>
+ 	
+</mapper>
+
+
+
+
+
+   

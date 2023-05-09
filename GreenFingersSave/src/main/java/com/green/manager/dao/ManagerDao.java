@@ -1,9 +1,11 @@
 package com.green.manager.dao;
 
+import java.util.List;
+
 import com.green.user.vo.UserVo;
 
 public interface ManagerDao {
 
-	UserVo getAlluser();
+	List<UserVo> getAlluser();
 
 }

@@ -1,8 +1,11 @@
 package com.green.manager.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.green.manager.service.ManagerService;
 import com.green.user.vo.UserVo;
@@ -25,11 +28,16 @@ public class ManagerController {
 		return "/admin/menuManagement";
 	}
 	@RequestMapping("/Member")
-	public String managerMember() {
+	public ModelAndView managerMember() {
 		
-		UserVo vo = managerService.getAllUser();
+		// 유저 정보 가져오기
+		List<UserVo> userList = managerService.getAllUser();
 		
-		return "/admin/memberManagement";
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/admin/memberManagement");
+		mv.addObject(userList);
+		
+		return mv;
 	}
 	
 	@RequestMapping("/memberUpdate")
