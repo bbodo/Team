@@ -375,6 +375,19 @@ public class MarketController {
 		return;
 	}
 	
+	// <img> 태그로 첨부 이미지 조회할 때 사용
+	
+	/*
+	@ResponseBody
+	@GetMapping("/images/{sfilename}") 
+	public Resource showImage(
+	@PathVariable String sfilename) 
+			throws MalformedURLException {
+	return new UrlResource( "file:" + file.getFullPath(sfilename) );
+	}
+	*/
+	
+	
 	// 실제 다운로드
 	String  mimeType = URLConnection.guessContentTypeFromName(file.getName());
 	mimeType   =  "application/octet-stream";   // 무조건 다운로드

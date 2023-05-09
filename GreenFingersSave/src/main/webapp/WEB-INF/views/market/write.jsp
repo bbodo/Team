@@ -109,11 +109,21 @@
 <!-- 파일 첨부 -->
 <script src="https://code.jquery.com/jquery.min.js"></script>
 
-<!-- 버튼 파일/이미지 추가 -->
+<!-- 이미지/파일 추가 버튼 -->
 <script>
   $( function() {
 	  let num = 1;
-	  $('#btnAddFile').on('click', function(e) {
+	  $('#btnAddFile1').on('click', function(e) {
+		  let tag = '<input type="file"  name="upfile' + num + '" class="upfile"/><br>';
+		  $('#imgplus').append( tag );		  
+		  num++;
+	  })
+  });
+</script>
+<script>
+  $( function() {
+	  let num = 1;
+	  $('#btnAddFile2').on('click', function(e) {
 		  let tag = '<input type="file"  name="upfile' + num + '" class="upfile"/><br>';
 		  $('#tdfile').append( tag );		  
 		  num++;
@@ -187,21 +197,22 @@
 				<td><textarea name="board_cont" maxlength="1000">${ vo.board_cont }</textarea></td>
 			</tr>
 			
-			<form method="post" action="${contextPath}/market/writeSave" enctype="multipart/form-data">
+			<%-- <form method="post" action="${contextPath}/market/writeSave" enctype="multipart/form-data"> --%>
 				<div class="form-group" >
 					<td style="text-align: center;">이미지 첨부</td>
 					<td id="imgplus"> 
-           			<input type="file" name="imgFile" onchange="readURL(this);"/>
+					<input type="button"  id="btnAddFile1" value="파일 추가(최대 100M byte)" /><br>
+           			<input type="file" name="upFile" class="upfile" onchange="readURL(this);"/>
 					<img id="preview" src="#" width=200 height=180 alt="선택된 이미지가 없습니다" style="align-content: flex-end; ">
 					</td>
 			</div>
-			</form>
+			<!-- </form> -->
 			
 			
 			<tr>
 				<td style="text-align: center;">파일 첨부</td>
 				<td id="tdfile">
-		      	 <input type="button"  id="btnAddFile" value="파일 추가(최대 100M byte)" /><br>
+		      	 <input type="button"  id="btnAddFile2" value="파일 추가(최대 100M byte)" /><br>
 		       	 <input type="file"  name="upfile"  class="upfile"/><br>
 		   		</td>
 			</tr>

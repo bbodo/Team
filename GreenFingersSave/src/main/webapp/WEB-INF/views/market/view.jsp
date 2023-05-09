@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -331,6 +332,24 @@
 
 </script>
 
+<!-- 이미지 파일 첨부 -->
+<!-- <script type="text/javascript">
+
+   function readURL(input) {
+      var file = input.files[0] 
+      console.log(file)
+      if (file != '') {
+         var reader = new FileReader();
+         reader.readAsDataURL(file);
+         reader.onload = function (e) { 
+	     console.log(e.target)
+		console.log(e.target.result)
+           $('#preview').attr('src', e.target.result);
+          }
+      }
+  }  
+</script> -->
+
 
 </head>
 <body>
@@ -411,7 +430,16 @@
 		
 			<tr>
 				<th>내용</th>
-				<td colspan="5" id="bc">${ vo.board_cont }</td>
+				<td colspan="5" id="bc">
+				<c:forEach var="file"  items="${ fileList }" >
+				<div>
+					<!-- <input type="file" name="upFile" class="upfile" onchange="readURL(this);"/> -->
+					<%-- <img src="../upload/${ file.sfilename }" id="preview" src="#" width=300 height=280;"> --%>
+					<img src="<spring:url value='../upload/${ file.sfilename }'/>">
+				</div>
+				</c:forEach> 
+				${ vo.board_cont }
+				</td>
 			</tr>
 			<tr>
 				<th>파일 첨부</th>
@@ -427,20 +455,16 @@
 			</tr>
 		</table>
 		
-	<!-- 나중에 if 문 -->
+
 		<div class="right">
-		<a href="">쪽지</a>
+		
 		<a href="/Market/WriteForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">답글쓰기</a>
 		
-		<!-- 관리자일 때만 활성화되게 나중에 추가 -->
-		<%-- <c:choose>	
-			<c:when test="${ login.userid == 'admin' }"> --%>
+			<c:if test="${vo.usercode eq login.usercode}">
+			<a href="/myPage/myNoteWriteForm?board_idx=${vo.board_idx}">쪽지</a>
 			<a href="/Market/UpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
-			<a href="/Market/Delete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&nowpage=${map.nowpage}">삭제</a> 
-	<%-- 	</c:when>
-			<c:otherwise>
-			</c:otherwise>
-		</c:choose>	 --%>
+			<a href="/Market/Delete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&nowpage=${map.nowpage}">삭제</a>
+			</c:if> 
 
 		</div>
 	
