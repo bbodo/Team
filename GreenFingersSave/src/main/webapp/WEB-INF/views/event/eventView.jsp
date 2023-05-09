@@ -145,187 +145,183 @@
 
 <script>
 
-		function comment_update(coment_idx, coment_cont) {
+function comment_update(coment_idx, coment_cont) {
 
-			let cont = $("#comment_update_" + coment_idx).val();
-			
-			fetch("/Comment/CommentUpdate?coment_idx=" + coment_idx + "&coment_cont="+ cont +"&usercode=" + ${login.usercode})
-				.then(res => res.json())
-				.then(data => {
-					comment_display(data);
-				})
-				.catch( err => {
-					console.log(err);
-					alert("오류발생 : " + err);
-				});
-		}
-
-		function reply_comment(coment_idx, board_idx, com_bnum, com_lvl, com_step, com_nref, com_parent) {
-			let coment_cont = $("#reply_coment_cont").val();
-			
-			fetch("/Comment/ReCommentWrite?coment_idx=" + coment_idx + "&board_idx=" + board_idx + "&coment_cont=" + coment_cont + "&usercode=" + ${login.usercode}
-				  +"&com_bnum=" + com_bnum + "&com_lvl=" + com_lvl + "&com_step=" + com_step + "&com_nref=" + com_nref +
-				  "&com_parent=" + com_parent)
-				.then(res => res.json())
-				.then(data => {
-					comment_display(data);
-				})
-				.catch( err => {
-					console.log(err);
-					alert("오류발생 : " + err);
-				});
-		}
-		
-		function comment_back(coment_idx, coment_cont) {
-			let html  = '';
-				html += '<div>';
-				html += '<div class="floatleft" id="commentCont_'+ coment_idx +'" onclick="c(' + coment_idx + ')">'+ coment_cont +'</div>';
-				html += '</div>';
-				
-			console.log($('#comment_updateForm_'+ coment_idx));
-			$('#comment_updateForm_'+ coment_idx).replaceWith(html);
-		}
-
-		function updateForm_comment(coment_idx, coment_cont) {
-			let html  = '';
-				html += `<div id="comment_updateForm_\${coment_idx}">`;
-			    html += `<textarea name="coment_cont" id="comment_update_\${coment_idx}">\${coment_cont}</textarea>`;
-			    html += `<input type="button" value="수정" onclick="comment_update(\${coment_idx})"/>`;
-			    html += `<input type="button" value="취소" onclick="comment_back(\${coment_idx}, '\${coment_cont}')"/>`;
-			    html += '</div>';
-			
-			$('#commentCont_'+ coment_idx).replaceWith(html);
-			$('#comment_update_' + coment_idx).focus();
-		}
-
-		function delete_comment(comm) {
-				if(window.confirm("정말 삭제하시겠습니까?")) {
-					fetch("/Comment/Delete?coment_idx=" + comm)
-						.then(res => res.text())
-						.then(data => {
-							if(data == "suc") {
-								alert("삭제되었습니다");
-								$("#comment_li_" + comm).remove()
-								location.reload();
-							} else {
-								location.reload();
-							}
-						})
-						.catch( err => {
-							console.log(err);
-							alert("오류발생 : " + err);
-						});
-				} else {
-					console.log("취소")
-				}
-			
-		}
-
-		function c(coment_idx, board_idx, com_bnum, com_lvl, com_step, com_nref, com_parent) {
-			if($("#comment_empty_" + coment_idx).length) {
-				
-				$("#comment_empty_" + coment_idx).remove()
-			} else {
-				const commentEl = $("#comment_li_" + coment_idx);
-				let html  = '<li class="comment_empty" id=comment_empty_' + coment_idx + '>'
-					html += '<div id="replyComment">'
-				    html += `<b style="display:inline-block; width:\${com_lvl * 40}px"></b><textarea id="reply_coment_cont" name="comment_cont"></textarea><br />`;
-					html += `<b style="display:inline-block; width:\${com_lvl * 40}px"></b><input type="button" value="대댓작성" id="replyBtn" onclick="reply_comment( \${coment_idx}, \${board_idx}, \${com_bnum}, \${com_lvl}, \${com_step}, \${com_nref}, \${com_parent})">`
-					html += '</div></li>';
-				
-					commentEl.append(html);
-			}
-		}
-		
-		function comment_display(data) {
-			let html = '';
-			for (let comm of data) {
-				html += '<li id="comment_li_' + comm.coment_idx +'">';
-				if(comm.com_lvl == 0) {
-					if(comm.delcoment == 0) {
-						html += '<div class="floatleft nameSpace"><p><h2>'+ comm.nickname +'</h2></p></div>';
-						html += '<div class="floatright dateSpace"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
-						html += `<div class="floatleft contSpace" id="commentCont_\${comm.coment_idx}" onclick="c(\${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})">\${comm.coment_cont}</div><br />`;
-						if(comm.usercode == ${login.usercode}) {
-							html += '<div class="floatright btns"><input type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
-							html += '<input type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br />';
-						}						
-					} else {
-						html += '<b>삭제된 댓글입니다.</b>';
-					}					
-				} else {
-					if(comm.delcoment == 0) {
-						html += `<b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>`;
-						html += `<div class="floatleft nameSpace"><p><h2><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.nickname}</h2></p></div>`;
-						html += '<div class="floatright dateSpace"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
-						html += `<div class="floatleft contSpace" id="commentCont_\${ comm.coment_idx }" onclick="c( \${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})"><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.coment_cont}</div><br />`;
-						if(comm.usercode == ${login.usercode}) {
-							html += '<div class="floatright btns"><input type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
-							html += '<input type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br />';
-						}	
-					} else {
-						html += `<div class="floatleft"><p><h2><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.nickname}</h2></p></div>`;
-						html += '<div class="floatright"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
-						html += `<s><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>삭제된 댓글입니다.</s><br />`;
-					}
-				}
-				html += '<br /></li>';
-			}
-			const commentListEl = document.getElementById("commentList");
-			commentListEl.innerHTML = html;
-			console.log(commentListEl);
-			
-		}
-	window.onload = function() {
-		
-		const writeBtnEl = document.getElementById("writeBtn");
-		const coment_contEl = document.getElementById("coment_cont");
-		const readCEl = document.getElementById("readC");
-		const writeCEl = document.getElementById("writeC");
-		
-		let datar = new FormData(readCEl);
-		
-		let optionR = {
-				method : "POST",
-				body : datar
-		};
-		
-		fetch("/Comment/Read", optionR)
-			.then( res => res.json() )
-			.then( data => {
-				comment_display(data);
-				    
-				})
-			.catch( err => {
-				console.log(err);
-				alert("오류발생 : " + err);
-			});
-		
-		writeBtnEl.addEventListener("click", function(e) {
-			let dataw = new FormData(writeCEl);
-			
-			let optionW = {
-					method : "POST",
-					body : dataw
-			};
-			
-			fetch("/Comment/Write", optionW)
-				.then( res => res.json() )
-				.then( data => {
-					comment_display(data);
-					coment_contEl.value = '';
-					coment_contEl.focus();
-				})
-				.catch( err => {
-					console.log(err);
-					alert("오류발생 : " + err);
-				})
+	let cont = $("#comment_update_" + coment_idx).val();
+	
+	fetch("/Comment/CommentUpdate?coment_idx=" + coment_idx + "&coment_cont="+ cont +"&usercode=" + ${login.usercode})
+		.then(res => res.json())
+		.then(data => {
+			comment_display(data);
 		})
-		
-		
-		
-	}
+		.catch( err => {
+			console.log(err);
+			alert("오류발생 : " + err);
+		});
+}
 
+function reply_comment(coment_idx, board_idx, com_bnum, com_lvl, com_step, com_nref, com_parent) {
+	let coment_cont = $("#reply_coment_cont").val();
+	
+	fetch("/Comment/ReCommentWrite?coment_idx=" + coment_idx + "&board_idx=" + board_idx + "&coment_cont=" + coment_cont + "&usercode=" + ${login.usercode}
+		  +"&com_bnum=" + com_bnum + "&com_lvl=" + com_lvl + "&com_step=" + com_step + "&com_nref=" + com_nref +
+		  "&com_parent=" + com_parent)
+		.then(res => res.json())
+		.then(data => {
+			comment_display(data);
+		})
+		.catch( err => {
+			console.log(err);
+			alert("오류발생 : " + err);
+		});
+}
+
+function comment_back(coment_idx, coment_cont) {
+	let html  = '';
+		html += '<div>';
+		html += '<div class="floatleft" id="commentCont_'+ coment_idx +'" onclick="c(' + coment_idx + ')">'+ coment_cont +'</div>';
+		html += '</div>';
+		
+	console.log($('#comment_updateForm_'+ coment_idx));
+	$('#comment_updateForm_'+ coment_idx).replaceWith(html);
+}
+
+function updateForm_comment(coment_idx, coment_cont) {
+	let html  = '';
+		html += `<div id="comment_updateForm_\${coment_idx}">`;
+	    html += `<textarea name="coment_cont" id="comment_update_\${coment_idx}">\${coment_cont}</textarea>`;
+	    html += `<input type="button" value="수정" onclick="comment_update(\${coment_idx})"/>`;
+	    html += `<input type="button" value="취소" onclick="comment_back(\${coment_idx}, '\${coment_cont}')"/>`;
+	    html += '</div>';
+	
+	$('#commentCont_'+ coment_idx).replaceWith(html);
+	$('#comment_update_' + coment_idx).focus();
+}
+
+function delete_comment(comm) {
+		if(window.confirm("정말 삭제하시겠습니까?")) {
+			fetch("/Comment/Delete?coment_idx=" + comm)
+				.then(res => res.text())
+				.then(data => {
+					if(data == "suc") {
+						alert("삭제되었습니다");
+						$("#comment_li_" + comm).remove()
+						location.reload();
+					} else {
+						location.reload();
+					}
+				})
+				.catch( err => {
+					console.log(err);
+					alert("오류발생 : " + err);
+				});
+		} else {
+			console.log("취소")
+		}
+	
+}
+
+function c(coment_idx, board_idx, com_bnum, com_lvl, com_step, com_nref, com_parent) {
+	if($("#comment_empty_" + coment_idx).length) {
+		
+		$("#comment_empty_" + coment_idx).remove()
+	} else {
+		const commentEl = $("#comment_li_" + coment_idx);
+		let html  = '<li class="comment_empty" id=comment_empty_' + coment_idx + '>'
+			html += '<div id="replyComment">'
+		    html += `<b style="display:inline-block; width:\${com_lvl * 40}px"></b><textarea id="reply_coment_cont" name="comment_cont"></textarea><br />`;
+			html += `<b style="display:inline-block; width:\${com_lvl * 40}px"></b><input type="button" value="대댓작성" id="replyBtn" onclick="reply_comment( \${coment_idx}, \${board_idx}, \${com_bnum}, \${com_lvl}, \${com_step}, \${com_nref}, \${com_parent})">`
+			html += '</div></li>';
+		
+			commentEl.append(html);
+	}
+}
+
+function comment_display(data) {
+	let html = '';
+	for (let comm of data) {
+		html += '<li id="comment_li_' + comm.coment_idx +'">';
+		if(comm.com_lvl == 0) {
+			if(comm.delcoment == 0) {
+				html += '<div class="floatleft nameSpace"><p><h2>'+ comm.nickname +'</h2></p></div>';
+				html += '<div class="floatright dateSpace"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
+				html += `<div class="floatleft contSpace" id="commentCont_\${comm.coment_idx}" onclick="c(\${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})">\${comm.coment_cont}</div><br />`;
+				if(comm.usercode == ${login.usercode}) {
+					html += '<div class="floatright btns"><input type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
+					html += '<input type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br />';
+				}						
+			} else {
+				html += '<b>삭제된 댓글입니다.</b>';
+			}					
+		} else {
+			if(comm.delcoment == 0) {
+				html += `<b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>`;
+				html += `<div class="floatleft nameSpace"><p><h2><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.nickname}</h2></p></div>`;
+				html += '<div class="floatright dateSpace"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
+				html += `<div class="floatleft contSpace" id="commentCont_\${ comm.coment_idx }" onclick="c( \${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})"><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.coment_cont}</div><br />`;
+				if(comm.usercode == ${login.usercode}) {
+					html += '<div class="floatright btns"><input type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
+					html += '<input type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br />';
+				}	
+			} else {
+				html += `<div class="floatleft"><p><h2><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.nickname}</h2></p></div>`;
+				html += '<div class="floatright"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
+				html += `<s><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>삭제된 댓글입니다.</s><br />`;
+			}
+		}
+		html += '<br /></li>';
+	}
+	const commentListEl = document.getElementById("commentList");
+	commentListEl.innerHTML = html;
+	
+}
+window.onload = function() {
+
+const writeBtnEl = document.getElementById("writeBtn");
+const coment_contEl = document.getElementById("coment_cont");
+const readCEl = document.getElementById("readC");
+const writeCEl = document.getElementById("writeC");
+
+let datar = new FormData(readCEl);
+
+let optionR = {
+		method : "POST",
+		body : datar
+};
+
+fetch("/Comment/Read", optionR)
+	.then( res => res.json() )
+	.then( data => {
+		comment_display(data);
+		    
+		})
+	.catch( err => {
+		console.log(err);
+		alert("오류발생 : " + err);
+	});
+
+writeBtnEl.addEventListener("click", function(e) {
+	let dataw = new FormData(writeCEl);
+	
+	let optionW = {
+			method : "POST",
+			body : dataw
+	};
+	
+	fetch("/Comment/Write", optionW)
+		.then( res => res.json() )
+		.then( data => {
+			comment_display(data);
+			coment_contEl.value = '';
+			coment_contEl.focus();
+		})
+		.catch( err => {
+			console.log(err);
+			alert("오류발생 : " + err);
+		})
+})
+
+}
 </script>
 
 
@@ -382,15 +378,14 @@
    	    	 </td>
 			</tr>
 		</table>
-		<div class="right">
-		<!-- 이벤트는 답글은 필요없지않나
-			<a href="/Event/WriteForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">답글쓰기</a>
-			 -->
+		<div class="right">	
+			<a href="/Event/WriteForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">답글쓰기</a>			 			
 			<c:if test="${vo.usercode eq login.usercode}">
-				<a href="/Event/UpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
-				<a href="/Event/Delete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&nowpage=${map.nowpage}">삭제</a> <br />
-			</c:if>
+				<a class="btns" href="/Event/UpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
+				<a class="btns" href="/Event/Delete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&nowpage=${map.nowpage}">삭제</a> <br />
+			</c:if>		
 		</div>
+		
 		<div id="commentNoti">댓글</div>
 		<br />
 		

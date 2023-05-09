@@ -108,14 +108,7 @@
 					<div style="float: left;">
 			     		<h2>이벤트</h2>
 			     	</div>
-				</td>
-				<td style="width: 50%">
-					<div style="float: right;">
-			     		총 X개 &nbsp;&nbsp;
-			     		<input type="text" placeholder="검색"/> &nbsp;&nbsp;
-		     		<a href="">돋보기버튼</a>
-     				</div>
-				</td>
+				</td>				
 			</tr>
 			
 			<tr>

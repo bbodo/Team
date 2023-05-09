@@ -101,7 +101,7 @@ public class EventDaoImpl implements EventDao {
 		
 		sqlSession.delete( "Event.BoardDelNum", map); // delboard를 1로 만듬
 		int  childCnt = sqlSession.selectOne("Event.ChildCnt", map); // 자식있는지 확인
-		BoardVo vo = sqlSession.selectOne("Event.GetBoard", map);
+		EventVo vo = sqlSession.selectOne("Event.GetBoard", map);
 		
 		List<FileVo> fileList = getFileList(map);
 		map.put("fileList", fileList);
