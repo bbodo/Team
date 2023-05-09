@@ -64,27 +64,46 @@ public class UserController {
 		String userid = (String) map.get("userid");
 		int idExist = userService.idCheck(userid);
 		UserVo vo = userService.getLogin(map);
+		System.out.println(idExist);
+		System.out.println(vo);
 		
 		// 관리자 체크
 		ManagerVo mVo = userService.getManager(map);
 		
-		if ( vo != null) {
-			session.setAttribute("login", vo);
-			mv.setViewName("redirect:" + uri);
-			mv.addObject("menuList", menuList);
-			mv.addObject("submenuList", submenuList);
-			mv.addObject("vo", vo);
-		} else if( mVo != null) {
+		if( mVo != null) {
 			session.setAttribute("login", mVo);
 			mv.setViewName("redirect:" + uri);
 			mv.addObject("menuList", menuList);
 			mv.addObject("submenuList", submenuList);
 			mv.addObject("mvo", mVo);
 		} else {
-			mv.setViewName("user/login");
-			mv.addObject("message", "fail");
-			mv.addObject("idExist", idExist);
-			mv.addObject("uri", uri);
+			if(vo != null) {
+				int delmem = vo.getDelmem();
+				if(delmem == 0) {
+					session.setAttribute("login", vo);
+					mv.setViewName("redirect:" + uri);
+					mv.addObject("menuList", menuList);
+					mv.addObject("submenuList", submenuList);
+					mv.addObject("vo", vo);
+				} else {
+					mv.setViewName("user/login");
+					mv.addObject("idExist", idExist);
+					mv.addObject("uri", uri);
+				}
+				
+			} else {
+				if(idExist == 1) {
+					mv.setViewName("user/login");
+					mv.addObject("idExist", idExist);
+					mv.addObject("uri", uri);
+				} else {
+					mv.setViewName("user/login");
+					mv.addObject("message", "fail");
+					mv.addObject("idExist", idExist);
+					mv.addObject("uri", uri);
+				}
+			} 
+			
 		}
 		
 		return mv;

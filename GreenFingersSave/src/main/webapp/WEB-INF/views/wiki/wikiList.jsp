@@ -37,7 +37,17 @@
 		console.log(data);
 		let body = data.response.body;
 		let totalCount = body.totalCount
-		let arr        = body.items.item;
+/* 		let nowpage = 1;
+		let pagecount = 10;
+		let pagetotalcount = 10;
+		let pagestartnum = ((nowpage-1) / pagetotalcount) * pagetotalcount + 1;
+		let pageendnum   = ((nowpage-1) / pagetotalcount + 1) * pagetotalcount;
+		let startclick = nowpage;
+		let beforeclick = pagestartnum - 1;
+		let nextclick  = pageendnum + 1;
+		let endclick  = totalpagecount ; */
+		
+		let arr  = body.items.item;
 		let html = '';
 			html += '<h5>총 자료 수 : ' + totalCount  + '개</h5>';
 		arr.forEach(function(item, index) {
@@ -106,10 +116,12 @@
      	<p style="font-size: 40px; font-weight: bold;">그린 위키</p>
      </div>
 	
-	<div class="search" style="height: 800px; padding: 20px 20px;" >
+	<div class="search" style="height: 800px; width:600px; padding: 20px 20px;" >
 	<h2>그린 위키 검색</h2>
-	  <input type="text" id="search" />
-	  <button id="btnOk" >검색</button>
+      	
+      
+	  국명 : <input type="text" id="search" style="width:200px;" />
+	  <button id="btnOk"  >검색</button>
 	  <div id="div1"></div> 
 	</div>
 	
