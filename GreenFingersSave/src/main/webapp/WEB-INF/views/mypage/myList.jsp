@@ -114,7 +114,7 @@
      				<img src="" alt="myimg"/>
      				<div></div>	
      				<div>
-     					<p>씨앗</p>
+     					<p>씨앗d</p>
      					<p>새싹</p>
      				</div>
      			</div>

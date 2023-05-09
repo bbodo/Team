@@ -1,1 +1,7 @@
-.GreenFingers/target/m2e-wtp/web-resources/META-INF/maven/com.green/basic/pom.properties
+/target
+/classes/
+/test-classes/
+.classpath
+.project
+.settings/
+*/target/**
