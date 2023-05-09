@@ -148,9 +148,14 @@
 				<c:when	test="${submenu.menu_id eq 'MENU03'}">
 					<li><a href="/Market/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
-				<c:when	test="${submenu.menu_id eq 'MENU04'}">
+				<c:when	test="${submenu.menu_id eq 'MENU04' and submenu.submenu_id eq 'SUBMENU18'}">
 					<li><a href="/Event/EventList?submenu_id=${submenu.submenu_id}&nowpage=1">
-						${submenu.submenu_name}</a></li></c:when>
+						${submenu.submenu_name}</a></li>
+				</c:when>		
+				<c:when	test="${submenu.menu_id eq 'MENU04' and submenu.submenu_id eq 'SUBMENU19'}">   
+				    <li><a href="/Winner/WinnerList?submenu_id=${submenu.submenu_id}&nowpage=1">
+						${submenu.submenu_name}</a></li>
+				</c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU05'}">
 					<li><a href="/Wiki/List?submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
