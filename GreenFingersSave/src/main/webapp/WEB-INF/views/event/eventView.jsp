@@ -342,7 +342,13 @@ writeBtnEl.addEventListener("click", function(e) {
      	<p  style="font-size: 40px; font-weight: bold;" >이벤트</p>
      </div>
      <div id="aside">
-		<c:forEach var="subname" items="">
+		<c:forEach var="subname" items="${ submenuList }">
+		<c:choose>
+			<c:when test="${menu.menu_id eq map.menu_id }">
+				<li><a href="/Event/eventList?menu_id=${ menu.menu_id }&submenu_id=${menu.submenu_id}&nowpage=1">
+						${menu.submenu_name}</a></li>
+			</c:when>
+			</c:choose>
 	    </c:forEach>
      </div>
 
@@ -382,7 +388,7 @@ writeBtnEl.addEventListener("click", function(e) {
 			<a href="/Event/WriteForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">답글쓰기</a>			 			
 			<c:if test="${vo.usercode eq login.usercode}">
 				<a class="btns" href="/Event/UpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
-				<a class="btns" href="/Event/Delete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&nowpage=${map.nowpage}">삭제</a> <br />
+				<a class="btns" href="/Event/Delete?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">삭제</a> <br />
 			</c:if>		
 		</div>
 		

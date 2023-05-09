@@ -30,7 +30,7 @@ public class EventServiceImpl implements EventService {
 	
 	
 	@Override
-	public List<EventVo> getAdoptList(
+	public List<EventVo> getEventList(
 			HashMap<String, Object> map
 			) {
 		// 필요한 자료를 조회( rows)
@@ -66,7 +66,10 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public void setWrite(HashMap<String, Object> map, HttpServletRequest request) {
+	public void setWrite(
+			HashMap<String, Object> map,
+			HttpServletRequest request) {
+		
 		// request 처리
 		EventFile.save(map, request);
 		
@@ -77,9 +80,10 @@ public class EventServiceImpl implements EventService {
 	
 	@Override
 	public List<FileVo> getFileList(HashMap<String, Object> map) {
-
+				
 		List<FileVo> fileList = eventDao.getFileList(map);
-		
+		System.out.println("서비스파일리스트" + fileList );
+				
 		return fileList;
 	}
 

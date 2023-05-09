@@ -8,6 +8,7 @@ import com.green.event.Vo.EventVo;
 
 
 public interface EventDao {
+	
 	List<EventVo> getEventList(HashMap<String, Object> map);
 
 	EventVo getBoard(HashMap<String, Object> map);

@@ -76,7 +76,7 @@ public class EventController {
 
 	// 게시글 목록 불러오기
 	String 		  submenu_id = (String) map.get("submenu_id");
-	List<EventVo> eventList  = eventService.getAdoptList(map);
+	List<EventVo> eventList  = eventService.getEventList(map);
 	
 	map.put("submenu_id",submenu_id);
 	
@@ -128,7 +128,6 @@ public class EventController {
 		List<MenuVo> menuList = menuService.getMenuList();
 		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
 		
-		System.out.println(eventVo);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("event/eventWrite");
@@ -184,10 +183,11 @@ public class EventController {
 				eventVo.setBoard_cont(cont);
 			}
 			
-			List<FileVo> fileList = eventService.getFileList(map);
 			
 			List<MenuVo> menuList = menuService.getMenuList();
 			List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+			
+			List<FileVo> fileList = eventService.getFileList(map);
 			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("event/eventView");
@@ -269,6 +269,8 @@ public class EventController {
 			String nowpage     = String.valueOf(map.get("nowpage"));
 			String fmt 		   = "redirect:/Event/EventList?submenu_id=%s&nowpage=%s";
 			String loc 		   = String.format(fmt, submenu_id, nowpage);
+			
+			System.out.println(map);
 			
 			ModelAndView   mv  = new ModelAndView();
 			mv.setViewName(loc);

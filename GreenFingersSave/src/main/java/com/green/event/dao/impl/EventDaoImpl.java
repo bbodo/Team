@@ -72,6 +72,7 @@ public class EventDaoImpl implements EventDao {
 	@Override
 	public List<FileVo> getFileList(HashMap<String, Object> map) {
 
+		
 		List<FileVo>  fileList  =  sqlSession.selectList("Event.FileList", map);
 		
 		return fileList;
@@ -104,19 +105,27 @@ public class EventDaoImpl implements EventDao {
 		EventVo vo = sqlSession.selectOne("Event.GetBoard", map);
 		
 		List<FileVo> fileList = getFileList(map);
+		
+		System.out.println("파일리스트" + fileList);
+		System.out.println("맵" + map);
+		
 		map.put("fileList", fileList);
 		if(  childCnt == 0  ) { // 자식이 없는경우 삭제
 			sqlSession.delete("Event.FileDelete", map);
 			sqlSession.delete("Event.EventDelete", map);
 		}
+		
+		/*
 		int board_idx = vo.getParent();
-		BoardVo vo1 = sqlSession.selectOne("Event.GetBoard", board_idx);
+		EventVo vo1 = sqlSession.selectOne("Event.GetBoard", board_idx);
 		
 		childCnt = sqlSession.selectOne("Event.ChildCnt", vo1);
+		
 		if(  childCnt == 0  ) { // 자식이 없는경우 삭제
 			sqlSession.delete("Event.FileDelete", vo1);
 			sqlSession.delete("Event.EventDelete", vo1);
 		}
+		*/
 		
 	}
 

@@ -11,9 +11,8 @@ import com.green.event.Vo.EventVo;
 
 public interface EventService {
 
-
-	List<EventVo> getAdoptList(HashMap<String, Object> map);
-
+	List<EventVo> getEventList(HashMap<String, Object> map);
+	
 	EventVo getBoard(HashMap<String, Object> map);
 
 	void setWrite(HashMap<String, Object> map, HttpServletRequest request);
@@ -25,5 +24,6 @@ public interface EventService {
 	void setUpdate(HashMap<String, Object> map, HttpServletRequest request);
 
 	void setDelete(HashMap<String, Object> map);
+
 
 }
