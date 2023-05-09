@@ -191,6 +191,7 @@
    
    </update>
    
+   <!-- 파일 정보 가져감 -->
    <select   id         = "FileList" 
              resultType = "com.green.board.vo.FileVo">
    
@@ -209,6 +210,7 @@
    
    </select>
 
+	<!-- 파일 지움 -->
 	<delete   id="DeleteUploadFile">
       
 		DELETE   
@@ -304,6 +306,17 @@
         FROM DUAL        
       
    </select>
+
+	<update id="GetPoint">
+	
+		UPDATE
+			MEMBER
+		SET
+			POINT = POINT + 10
+		WHERE
+			USERID = #{ userid }
+	
+	</update>
 
 </mapper>
 
