@@ -18,4 +18,12 @@ public interface MyPageDao {
 
 	List<MyPageVo> getSendPointList(HashMap<String, Object> map);
 
+	void updatePoint(HashMap<String, Object> map);
+
+	MyPageVo myNoteView(HashMap<String, Object> map);
+
+	int noteDelete(HashMap<String, Object> map);
+
+	MyPageVo getMyNoteAnswerForm(HashMap<String, Object> map);
+
 }

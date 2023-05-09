@@ -104,7 +104,7 @@
      </div>
      
      <div id="main">
-		<form action="/myPage/myNoteWrite" method="POST" onsubmit="return nullCheck();">
+		<form action="/myPage/myNoteWrite?nowpage=1" method="POST">
 			<input type="hidden" name="receiver_usercode" value="${myNoteVo.usercode}" />
 			<input type="hidden" name="board_idx" value="${param.board_idx}" />
 

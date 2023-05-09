@@ -91,6 +91,29 @@ public class MyPageServiceImpl implements MyPageService {
 		return SendPointList;
 	}
 
+	@Override
+	public void updatePoint(HashMap<String, Object> map) {
+		myPageDao.updatePoint(map);
+	}
+
+	@Override
+	public MyPageVo myNoteView(HashMap<String, Object> map) {
+		MyPageVo myNoteView = myPageDao.myNoteView(map);
+		return myNoteView;
+	}
+
+	@Override
+	public int noteDelete(HashMap<String, Object> map) {
+		int noteDelete = myPageDao.noteDelete(map);
+		return noteDelete;
+	}
+
+	@Override
+	public MyPageVo getMyNoteAnswerForm(HashMap<String, Object> map) {
+		MyPageVo getMyNoteAnswerForm = myPageDao.getMyNoteAnswerForm(map);
+		return getMyNoteAnswerForm;
+	}
+
 
 
 

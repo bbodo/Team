@@ -69,6 +69,29 @@ public class MyPageDaoImpl implements MyPageDao {
 		
 		return SendPointList;
 	}
+
+	@Override
+	public void updatePoint(HashMap<String, Object> map) {
+		sqlSession.update("MyPage.UpdatePoint",map);
+	}
+
+	@Override
+	public MyPageVo myNoteView(HashMap<String, Object> map) {
+		MyPageVo myNoteView = sqlSession.selectOne("MyPage.GetNoteView", map);  
+		return myNoteView;
+	}
+
+	@Override
+	public int noteDelete(HashMap<String, Object> map) {
+		int noteDelete = sqlSession.update("MyPage.NoteDelete", map);
+		return noteDelete;
+	}
+
+	@Override
+	public MyPageVo getMyNoteAnswerForm(HashMap<String, Object> map) {
+		MyPageVo getMyNoteAnswerForm = sqlSession.selectOne("MyPage.GetNoteView", map); 
+		return getMyNoteAnswerForm;
+	}
 	
 	
 

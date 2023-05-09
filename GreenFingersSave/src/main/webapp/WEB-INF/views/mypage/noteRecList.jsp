@@ -85,15 +85,13 @@
 			
 			<div>
 				<button>삭제</button>
-				<button><a href="/myPage/myNoteWriteForm?board_idx=5">쪽지보내기</a></button>
+				<!-- <button><a href="/myPage/myNoteWriteForm?board_idx=5">쪽지보내기</a></button> -->
 			</div>
      	</section>
 		
-	    <%@include file="/WEB-INF/include/myPagePaging.jsp" %>
-	    
+	     <%@include file="/WEB-INF/include/myPagePaging.jsp" %>
     </div><!-- main -->
      
-     <%@include file="/WEB-INF/include/footer.jsp" %>
 </div>
 </body>
 </html>

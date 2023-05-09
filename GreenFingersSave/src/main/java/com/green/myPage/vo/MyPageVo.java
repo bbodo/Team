@@ -7,6 +7,7 @@ public class MyPageVo {
 	private int usercode;
 	private String nickname;
 	private String grade;
+	private String point;
 	
 	//NOTE
 	private int rnum;

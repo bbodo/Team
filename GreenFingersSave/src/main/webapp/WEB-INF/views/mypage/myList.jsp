@@ -23,19 +23,28 @@
 </style>
 
 <script type="text/javascript">
+
 	window.onload = function() {
+		//쪽지 삭제여부 확인
+		let noteDeleteCheck = "${noteDelete}";
+		
+		if(noteDeleteCheck == 1){
+			alert("쪽지 삭제 완료!");
+		}
+		
 		//쪽지 읽음 여부 확인
-		let readMark = "${readmark}";
 		let sendPagingVo = "${sendPagePaingList}";
 		let readMarkTag = document.querySelectorAll('.readMark');
 		
 		for (var i = 0; i < sendPagingVo.length; i++) {
+			let readMark = "${sendPagePaingList[2].readmark}";
+			
 			if(readMark == 1){
 				readMarkTag[i].innerHTML = "o";
-			}else{
+			}else if(readMark == 0){
 				readMarkTag[i].innerHTML = "x";
 			}
-		}
+		} 
 		
 	}/*  window */
 	
@@ -54,7 +63,6 @@
 		}
 		
 		noteTitle[1].innerHTML = "받은 쪽지";
-		console.log(noteTitle);
 		
 		//쪽지 전체 보기
 		document.getElementById("NoteSelect").href = "/myPage/noteRecList?nowpage=1";
@@ -70,19 +78,33 @@
 			sendList[i].style.display = "table-row";
 		}
 		
-		noteTitle[1].innerHTML = "보낸 쪽";
+		noteTitle[1].innerHTML = "보낸 쪽지";
 		
 		//쪽지 전체 보기
 		document.getElementById("NoteSelect").href = "/myPage/noteSendList?nowpage=1";
 	}
 	
 	//내공 보답
-	function sendPointBtn() {
+	function sendPointBtn(classBtn) {
 		let sendPointWrap = document.getElementById('sendPointWrap');
 		let sendPointBtn = document.getElementsByClassName('sendPointBtn');
+		let sendPointNic = document.getElementById('sendPointNic');
 		
 		sendPointWrap.style.display = "block";
+		
+		let pointNickName = classBtn.parentNode.previousSibling.previousSibling.previousSibling.previousSibling;
+		let pointNickNameResult = pointNickName.textContent;
+		
+		sendPointNic.value = pointNickNameResult;
+		
+		//console.log(pointNickName.textContent);
 	}
+	
+	//내공 보답 닫기
+	function PointCanBtn() {
+		document.getElementById('sendPointWrap').style.display = "none";
+	}
+	
 </script>
 
 </head>
@@ -111,22 +133,27 @@
      		
      		<div id="con2">
      			<div>
-     				<img src="" alt="myimg"/>
-     				<div></div>	
-     				<div>
-     					<p>씨앗d</p>
-     					<p>새싹</p>
+     				<div class="gradeMark">
+     					<p>내공</p>
+     					<p>현등급점수</p>
+     				</div>
+     				<div class="gradeWrapbox">
+     					<div class="gradeInbox"></div>
+     				</div>	
+     				<div class="gradeFont">
+     					<p>1 씨앗 변수</p> 
+     					<p>2 새싹 변수</p>
      				</div>
      			</div>
      			
-     			<div id="con3">
-     				<p>씨앗 등업에 필요한 조건을 만족시켜주세요</p>
-     				<div><p>내공</p> <p>294필요</p></div>
-     				<div><p>게시글 수</p> <p>10</p></div>
+     			<div>
+     				<p><span>씨앗</span> 등업에 필요한 조건을 만족시켜주세요</p>
+     				<div><p>내공 :</p> <p>294필요</p></div>
+     				<div><p>게시글 수:</p> <p>10</p></div>
      			</div>
      		</div>
      		
-     		<div>
+     		<div id="con3">
      			<div id="myGrade">
      				<div><P>씨앗</P></div>
      				<div><P>새싹</P></div>
@@ -177,7 +204,7 @@
 			<table id="sec2Cont">
 				<tr>
 					<th>번호</th>
-					<th>받는 사람</th>
+					<th>보낸 사람</th>
 					<th>제목</th>
 					<th>날짜</th>
 					<th>읽음 상태</th>
@@ -185,33 +212,28 @@
 				
 				<c:forEach var = "sendNoteVo" items="${sendPagePaingList}">
 				<tr class="sendList">
-					<a href="">
-						<td>${sendNoteVo.rnum}</td>
-						<td>${sendNoteVo.nickname}</td>
-						<td>${sendNoteVo.note_title}</td>
-						<td>${sendNoteVo.note_regdate}</td>
-						<td class="readMark"></td>
-					</a>
+					<td><a href="/myPage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.rnum}</a></td>
+					<td><a href="/myPage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.nickname}</a></td>
+					<td><a href="/myPage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.note_title}</a></td>
+					<td><a href="/myPage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.note_regdate}</a></td>
+					<td class="readMark"><a href="/myPage/myNoteView?note_idx=${sendNoteVo.note_idx}"></a></td>
 				</tr>
 				</c:forEach>
 
 				<c:forEach var = "recNoteVo" items="${recPagePaingList}">
 				<tr class="recList">
-					<a href="">
-						<td>${recNoteVo.rnum}</td>
-						<td>${recNoteVo.send_usercode}</td>
-						<td>${recNoteVo.note_title}</td>
-						<td>${recNoteVo.note_regdate}</td>
-						<td class="readMark"></td>
-					</a>
+					<td><a href="/myPage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.rnum}</a></td>
+					<td><a href="/myPage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.send_usercode}</a></td>
+					<td><a href="/myPage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.note_title}</a></td>
+					<td><a href="/myPage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.note_regdate}</a></td>
+					<td class="readMark"></td>
 				</tr>
 				</c:forEach>
 			</table>
 			
-			<div>
+			<!-- <div>
 				<button>삭제</button>
-				<button><a href="/myPage/myNoteWriteForm?board_idx=5">쪽지보내기</a></button>
-			</div>
+			</div> -->
      	</section>
      	
      	<!-- <section3 시작> -->
@@ -225,26 +247,23 @@
 			<table id="sec2Cont">
 				<tr>
 					<th>번호</th>
-					<th>받는 사람</th>
+					<th>나눔 제공자</th>
 					<th>내공상태</th>
 					<th>내공 보답하기</th>
 				</tr>
 				
 				<c:forEach var = "sendPointList" items="${sendPointList}">
-				<tr>
-					<a href="">
-						<td>${sendPointList.rnum}</td>
-						<td>${sendPointList.nickname}</td>
-						<td>내공상태</td>
-						<td><button class="sendPointBtn" onclick="sendPointBtn()">내공 전송</button></td>
-					</a>
+				<tr class="sendPointTr">
+					<td>${sendPointList.rnum}</td>
+					<td><a href="">${sendPointList.nickname}</a></td>
+					<td>내공상태</td>
+					<td><button class="sendPointBtn" onclick="sendPointBtn(this)">내공 전송</button></td>
 				</tr>
 				</c:forEach>
 			</table>
 			
 			<div>
 				<button>삭제</button>
-				<button><a href="/myPage/myNoteWriteForm?board_idx=5">쪽지보내기</a></button>
 			</div>
      	</section>
      	
@@ -263,24 +282,27 @@
     			<div class="con1">
     			 	내공을 선택해주세요.
     			</div>
-    			
     			<div>
+    			<form action="/myPage/sendPoint" method="POST">
+					<input id="sendPointNic" type="hidden" name="nickname" value="" />
+					
 					<label for="selectPoint1">50점</label>
-	               	<input type="radio" name="selectPoint" value="s2" id="selectPoint1" checked />
+	               	<input type="radio" name="point" value="50" id="selectPoint1" checked />
 	    			<label for="selectPoint2">40점</label>
-	               	<input type="radio" name="selectPoint" value="s2" id="selectPoint2" />
+	               	<input type="radio" name="point" value="40" id="selectPoint2" />
 	               	<label for="selectPoint3">30점</label>
-	               	<input type="radio" name="selectPoint" value="s2" id="selectPoint3" />
+	               	<input type="radio" name="point" value="30" id="selectPoint3" />
 	               	<label for="selectPoint4">20점</label>
-	               	<input type="radio" name="selectPoint" value="s2" id="selectPoint4" />
+	               	<input type="radio" name="point" value="20" id="selectPoint4" />
 	               	<label for="selectPoint5">10점</label>
-	               	<input type="radio" name="selectPoint" value="s2" id="selectPoint5" />    			
+	               	<input type="radio" name="point" value="10" id="selectPoint5" />    			
     			</div>
     			
     			<div>
-    				<button>전송</button>
-    				<button>취소</button>
+    				<button id="submitPointBtn"  type="submit">전송</button>
     			</div>
+    			</form>
+    				<button class="ponBtn" onclick="PointCanBtn()">취소</button>
     		</div>
    		</div>	
    	</div>
