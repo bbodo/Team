@@ -70,7 +70,7 @@
 			sendList[i].style.display = "table-row";
 		}
 		
-		noteTitle[1].innerHTML = "보낸 쪽지";
+		noteTitle[1].innerHTML = "보낸 쪽";
 		
 		//쪽지 전체 보기
 		document.getElementById("NoteSelect").href = "/myPage/noteSendList?nowpage=1";
