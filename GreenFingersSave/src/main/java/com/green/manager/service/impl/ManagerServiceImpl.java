@@ -1,5 +1,6 @@
 package com.green.manager.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,22 @@ public class ManagerServiceImpl implements ManagerService {
 		List<UserVo> userList = managerDao.getAlluser();
 		
 		return userList;
+	}
+
+	@Override
+	public UserVo getUser(HashMap<String, Object> map) {
+
+		UserVo vo = managerDao.getUser(map);
+		
+		return vo;
+	}
+
+	@Override
+	public void updateUser(HashMap<String, Object> map) {
+
+		
+		managerDao.updateUser(map);
+		
 	}
 
 }

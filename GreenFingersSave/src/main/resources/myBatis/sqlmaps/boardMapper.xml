@@ -91,6 +91,7 @@
 
 	</select>  
 	
+	<!-- 글 작성 -->
 	<insert id="BoardInsert">
 	
 		INSERT INTO
@@ -132,6 +133,7 @@
 	   
 	</update>
 
+	<!-- 답글 -->
 	<insert   id="BoardReply">
       INSERT INTO
       	BOARD 

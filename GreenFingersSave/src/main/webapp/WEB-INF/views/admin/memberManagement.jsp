@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -137,27 +138,15 @@
 				<th>유저등급</th>
 				<th>포인트</th>
 			</tr>
+			<c:forEach var="user" items="${ userList }">
 			<tr>
-				<td>12345</td>
-				<td>일이삼</td>
-				<td><a href="/adminMemberUpdate">asd123</a></td>
-				<td>B</td>
-				<td>4326</td>
+				<td>${ user.usercode }</td>
+				<td>${ user.username }</td>
+				<td><a href="/Manager/memberUpdateForm?usercode=${ user.usercode }">${ user.userid }</a></td>
+				<td>${ user.grade }</td>
+				<td>${ user.point }</td>
 			</tr>
-			<tr>
-				<td>12345</td>
-				<td>일이삼</td>
-				<td><a href="/adminMemberUpdate">asd123</a></td>
-				<td>B</td>
-				<td>4326</td>
-			</tr>
-			<tr>
-				<td>12345</td>
-				<td>일이삼</td>
-				<td><a href="/adminMemberUpdate">asd123</a></td>
-				<td>B</td>
-				<td>4326</td>
-			</tr>
+			</c:forEach>
 		</table>
 	    <%@include file="/WEB-INF/include/paging.jsp" %>
      </div>

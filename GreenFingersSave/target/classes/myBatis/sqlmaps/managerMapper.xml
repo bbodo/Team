@@ -6,12 +6,12 @@
 <mapper namespace="Manager">  
   
   	<!-- 유저 정보 가져가기 -->
-	<select id=""
+	<select id="GetAllUser"
 			resultType="com.green.user.vo.UserVo">
 	
 		SELECT
-			USERCODE,
-			USERID,
+ 			USERCODE,
+ 			USERID,
 			PASSWD,
 			USERNAME,
 			BIRTHDAY,
@@ -19,16 +19,56 @@
 			GRADE,
 			ADDR,
 			EMAIL,
-			TO_CHAR(JOINDATE, 'YYYY-MM-DD HH24:MI:SS') JOINDATE,
-			DELMEM,
+			TO_CHAR( JOINDATE, 'YYYY-MM-DD HH24:MI:SS' ) AS JOINDATE,
 			POINT,
 			NICKNAME
-		FROM
-			MEMBER
+ 		FROM
+ 			MEMBER
 		ORDER BY
-			USERCODE DESC;
+			USERCODE DESC
 			
 	</select>
+ 	
+ 	<select id="GetUser"
+ 			resultType="com.green.user.vo.UserVo">
+ 	
+ 		SELECT
+ 			USERCODE,
+ 			USERID,
+			PASSWD,
+			USERNAME,
+			BIRTHDAY,
+			GENDER,
+			GRADE,
+			ADDR,
+			EMAIL,
+			TO_CHAR( JOINDATE, 'YYYY-MM-DD HH24:MI:SS' ) AS JOINDATE,
+			POINT,
+			NICKNAME
+ 		FROM
+ 			MEMBER
+ 		WHERE
+ 			USERCODE = #{ usercode }
+ 	
+ 	</select>
+ 	
+ 	<update id="UpdateUser">
+ 	
+ 		UPDATE
+ 			MEMBER
+ 		SET
+			PASSWD   = #{ passwd },
+			USERNAME = #{ username },
+			BIRTHDAY = #{ birthday },
+			GENDER   = #{ gender },
+			GRADE    = #{ grade },
+			ADDR     = #{ addr },
+			EMAIL    = #{ email },
+ 			POINT     = #{ point }
+ 		WHERE
+ 			USERCODE = #{ usercode }
+ 			
+ 	</update>
  	
 </mapper>
 

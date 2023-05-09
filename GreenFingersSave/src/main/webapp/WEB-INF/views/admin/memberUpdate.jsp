@@ -5,15 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<%@include file="/WEB-INF/include/adminHeader.jsp" %>
+<%@include file="/WEB-INF/include/comHead.jsp" %>
 <title>회원정보 상세보기</title>
 
 <style type="text/css">
 
 	* {
 		box-sizing: border-box;
-	}
-
+	} 
 	#title {
 		width: 100%;
 		text-align: center;
@@ -26,34 +25,102 @@
 	#aside {
 		float: left;
 		height: 800px;
-		background-color: navy;
-		width: 20%;
+		background-color: white;
+		width: 15%;
 		padding: 10px;
 	}
 	#main {
-		width: 80%;
+		width: 85%;
 		height: 800px;
 		float: left;
 		padding: 10px;
-		background-color: gray;
-		text-align: center;
+		padding-right: 15%;
+		background-color: white;
 	}
 	#cont {
+		border: 1px solid #C0C0C0;
 		background-color: #fff;
 		margin: 0 auto;
-		width: 85%;
+		width: 70%;
+		border-collapse: collapse;
+		padding: 30px;
 	}
 	#cont th {
-		background-color: #666;
+		background-color: white;
+		border-top: 3px solid #C0C0C0;
+		border-bottom: 1px solid #C0C0C0;
+		padding: 20px;
+	}
+	#cont tr td {
+		padding: 15px;
+		border-bottom: 1px solid #C0C0C0;
+	} 
+	#cont tr:hover {
+		background-color: #D3D3D3;
+	}
+	#sidemenu {
+		padding: 30px;
+	}
+	#sidemenu li {
+		padding: 10px;
+	}
+	#sidemenu li a {
+		position: relative;
+		display: block;
+		font-size: 20px;
+	}
+	#sidemenu li a:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: 24px;
+		width: 0px;
+		height: 3px;
+		margin: 5px 0 0;
+		transition: all 0.2s ease-in-out;
+		transition-duration: 0.3s;
+		opacity: 0;
+		background-color: #2E8B57;
+	}
+	#sidemenu li a:hover:after {
+		width: 100%;
+		opacity: 1;
 	}
 	.right {
 		text-align: right;
 	}
-	.left {
-		text-align: left;
+	.as {
+		position: relative;
+	}
+	.as:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: -10px;
+		width: 0px;
+		height: 2px;
+		margin: 5px 0 0;
+		transition: all 0.2s ease-in-out;
+		transition-duration: 0.3s;
+		opacity: 0;
+		background-color: #8fd3f4;
+	}
+	.as:hover:after {
+		width: 100%;
+ 		opacity: 1;
 	}
 
 </style>
+
+<script src="https://code.jquery.com/jquery.min.js"></script>
+
+<script type="text/javascript">
+	$(function(){
+		$('#gender').val('${vo.gender}').prop("selected", true);
+		$('#grade').val('${vo.grade}').prop("selected", true);
+	})
+
+</script>
 
 </head>
 <body>
@@ -61,125 +128,104 @@
      <div id="title">
      	<p>상세보기</p>
      </div>
-       <div id="aside">
-     	회원 관리<br />
-     	메뉴 관리<br />
-     	- 하위메뉴 관리<br />
-     	이벤트 관리<br />
-     	제품 등록<br />
+      <div id="aside">
+       <ul id="sidemenu">
+     		<li><a href="">회원 관리</a><br /></li>
+       		<li><a href="">메뉴 관리</a> <br /></li>
+     		<li><a href=""> - 하위 메뉴</a><br /></li>
+     		<li><a href="">이벤트 등록</a><br /></li>
+     		<li><a href="">마켓 등록</a><br /></li>
+       </ul>
      </div>
      <div id="main">
+     	<form action="/Manager/memberUpdate" method="POST">
+     	<input type="hidden" value="${ vo.userid }" name="userid"/>
+     	<input type="hidden" value="${ vo.usercode }" name="usercode"/>
 		<table id="cont">
 			<tr>
 				<!-- id는 수정불가하게 -->
-				<th colspan="4" class="left">아이디</th>
+				<td class="left"><h2>아이디</h2></td>
 			</tr>
 			<tr>
-				<td colspan="4" class="left"><input type="text" placeholder="@naver.com" readonly/></td>
+				<td class="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${ vo.userid }</td>
 			</tr>
 			<tr>
 				<!-- 자물쇠 버튼 눌러서 보이게하는 기능 ?? -->
 				<!-- admin은 그냥 수정할 수 있게 -->
-				<th colspan="4" class="left">비밀번호</th>
+				<td class="left"><h2>비밀번호</h2></td>
 			</tr>
 			<tr>
-				<td colspan="4" class="left"><input type="password" /></td>
+				<td class="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" value="${ vo.passwd }" name="passwd"/></td>
 			</tr>
 			<tr>
-				<th colspan="4" class="left">이름</th>
+				<td class="left"><h2>이름</h2></td>
 			</tr>
 			<tr>
-				<td colspan="4" class="left"><input type="text" /></td>
+				<td class="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="${ vo.username }" name="username"/></td>
 			</tr>
 			<tr>
-				<th colspan="4" class="left">생년월일</th>
-			</tr>
-			<tr>
-				<td><input type="text" placeholder="년(4자)" /></td>
-				<td colspan="2">
-					<select name="" id="">
-						<option value="">월</option>					
-						<option value="">1</option>					
-						<option value="">2</option>					
-						<option value="">3</option>					
-						<option value="">4</option>					
-						<option value="">5</option>					
-						<option value="">6</option>					
-						<option value="">7</option>					
-						<option value="">8</option>					
-						<option value="">9</option>					
-						<option value="">10</option>					
-						<option value="">11</option>					
-						<option value="">12</option>					
-					</select>
-				</td>
-				<td>
-					<input type="text" placeholder="일"/>
-				</td>
-			</tr>
-			<tr>
-				<th colspan="4">성별</th>
+				<td class="left"><h2>생년월일</h2></td>
 			</tr>
 			<tr>
 				<td>
-					<select name="" id="">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="${ vo.birthday }" name="birthday"/>
+				</td>
+			</tr>
+			<tr>
+				<td><h2>성별</h2></td>
+			</tr>
+			<tr>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<select name="gender" id="gender">
 						<option value="">성별</option>
-						<option value="">남자</option>
-						<option value="">여자</option>
-						<option value="">둘다아닌 무언가</option>
-						<option value="">외계인</option>
+						<option value="남">남자</option>
+						<option value="여">여자</option>
+						<option value="뭔데">둘다아닌 무언가</option>
+						<option value="외계인">외계인</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<th colspan="4" class="left">이메일</th>
+				<td class="left"><h2>이메일</h2></td>
 			</tr>
 			<tr>
-				<td colspan="4" class="left"><input type="text" /></td>
+				<td class="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="${ vo.email }" name="email"/></td>
 			</tr>
 			<tr>
-				<th colspan="4" class="left">주소</th>
+				<td class="left"><h2>주소</h2></td>
 			</tr>
 			<tr>
 				<td>
-					<select name="" id="">
-						<option value="">시/군/구</option>
-						<option value="">근데 이거 다해야함??</option>
-					</select>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="${ vo.addr }" name="addr"/>
 				</td>
-				<td >
-					<select name="" id="">
-						<option value="">동</option>
-						<option value="">이것도 ㄷㄷ</option>
+			</tr>
+			<tr>
+				<td ><h2>등급</h2></td>
+			</tr>
+			<tr>
+				<td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<select name="grade" id="grade">
+						<option value="씨앗">씨앗</option>
+						<option value="새싹">새싹</option>
+						<option value="잎새">잎새</option>
+						<option value="가지">가지</option>
+						<option value="나무">나무</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<th colspan="4" class="left">상세주소</th>
+				<td ><h2>보유 포인트</h2></td>
 			</tr>
 			<tr>
-				<td colspan="4" class="left"><input type="text" /></td>
-			</tr>
-			<tr>
-				<th>등급</th>
-				<td>
-					<select name="" id="">
-						<option value="">A</option>
-						<option value="">B</option>
-						<option value="">C</option>
-						<option value="">D</option>
-						<option value="">E</option>
-					</select>
-				</td>
-				<th>보유 포인트</th>
-				<td>포인트 불러오기</td>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="point" value="${ vo.point }"/></td>
 			</tr>
 		</table>
 	    <div style="float: right;">
-	    	<a href="">수정 하기</a> &nbsp; &nbsp;
-	    	<a href="">탈퇴 시키기</a>
+	    	<input type="submit" value="수정 하기"/> &nbsp; &nbsp;
+	    	<a href="" onclick="userDelete(${vo.usercode})">탈퇴 시키기</a>
 	    </div>
+		</form>
      </div>
-     <%@include file="/WEB-INF/include/footer.jsp" %>
+     <%-- <%@include file="/WEB-INF/include/footer.jsp" %> --%>
 </body>
 </html>
