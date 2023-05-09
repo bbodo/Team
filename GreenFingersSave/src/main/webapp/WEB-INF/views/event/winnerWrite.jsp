@@ -145,9 +145,9 @@
      </div>
      
      <div id="main">
-		<div><a id="board_title" href="/Event/EventList?submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 게시판</a></div>
+		<div><a id="board_title" href="/Winner/WinnerList?submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 게시판</a></div>
      
-     	<form action="/Event/Write" method="POST" 
+     	<form action="/Winner/Write" method="POST" 
         	  enctype="multipart/form-data">
         	  
      	<input type="hidden"  name="submenu_id" value="${ map.submenu_id }" />

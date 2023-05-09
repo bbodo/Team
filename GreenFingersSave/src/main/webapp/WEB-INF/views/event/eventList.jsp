@@ -120,13 +120,13 @@
 			
 			<tr>
 				<th colspan="2"><a href="http://localhost:9090/Event/EventList?submenu_id=${map.submenu_id}&nowpage=1">이벤트</a></th>
-				<th colspan="2"><a href="/winnerList">당첨자 발표</a></th>
+				<th colspan="2"><a href="http://localhost:9090/Winner/WinnerList?submenu_id=SUBMENU19&nowpage=1">당첨자 발표</a></th>
 			</tr>
 
 		<c:forEach var="eventVo" items="${ eventList }">
 	  <tr>
 
-	  <td  colspan="2" ><img onclick="javascript:location.href='http://localhost:9090/Event/EventView?submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}'"  src="<d:uplode: value='narp/${fileName}'"   ></td>
+	  <td  colspan="2" ><img onclick="javascript:location.href='http://localhost:9090/Event/EventView?submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}'"  src="D:\ws\spring\GreenFingersSaveTest\src\main\webapp\WEB-INF\resources\img\event\test"   ></td>
 
 	     <td colspan="2" >
 	       <!-- 제목(새글/답글) -->
