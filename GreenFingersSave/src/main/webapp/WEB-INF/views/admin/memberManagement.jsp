@@ -9,11 +9,9 @@
 <title>회원관리</title>
 
 <style type="text/css">
-
 	* {
 		box-sizing: border-box;
-	}
-
+	} 
 	#title {
 		width: 100%;
 		text-align: center;
@@ -26,28 +24,91 @@
 	#aside {
 		float: left;
 		height: 800px;
-		background-color: navy;
-		width: 20%;
+		background-color: white;
+		width: 15%;
 		padding: 10px;
 	}
 	#main {
-		width: 80%;
+		width: 85%;
 		height: 800px;
 		float: left;
 		padding: 10px;
-		background-color: gray;
+		padding-right: 15%;
+		background-color: white;
 		text-align: center;
+	}
+	#tt {
+		text-align: left;
 	}
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
 		width: 90%;
+		border-collapse: collapse;
 	}
 	#cont th {
-		background-color: #666;
+		background-color: white;
+		border-top: 3px solid #C0C0C0;
+		border-bottom: 1px solid #C0C0C0;
+		padding: 20px;
+	}
+	#cont tr td {
+		padding: 15px;
+		border-bottom: 1px solid #C0C0C0;
 	} 
+	#cont tr:hover {
+		background-color: #D3D3D3;
+	}
+	#sidemenu {
+		padding: 30px;
+	}
+	#sidemenu li {
+		padding: 10px;
+	}
+	#sidemenu li a {
+		position: relative;
+		display: block;
+		font-size: 20px;
+	}
+	#sidemenu li a:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: 24px;
+		width: 0px;
+		height: 3px;
+		margin: 5px 0 0;
+		transition: all 0.2s ease-in-out;
+		transition-duration: 0.3s;
+		opacity: 0;
+		background-color: #2E8B57;
+	}
+	#sidemenu li a:hover:after {
+		width: 100%;
+		opacity: 1;
+	}
 	.right {
 		text-align: right;
+	}
+	.as {
+		position: relative;
+	}
+	.as:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: -10px;
+		width: 0px;
+		height: 2px;
+		margin: 5px 0 0;
+		transition: all 0.2s ease-in-out;
+		transition-duration: 0.3s;
+		opacity: 0;
+		background-color: #8fd3f4;
+	}
+	.as:hover:after {
+		width: 100%;
+ 		opacity: 1;
 	}
 
 </style>
@@ -59,11 +120,13 @@
      	<p>회원관리</p>
      </div>
        <div id="aside">
-     	회원 관리<br />
-     	메뉴 관리<br />
-     	- 하위메뉴 관리<br />
-     	이벤트 관리<br />
-     	제품 등록<br />
+       <ul id="sidemenu">
+     		<li><a href="">회원 관리</a><br /></li>
+       		<li><a href="">메뉴 관리</a> <br /></li>
+     		<li><a href=""> - 하위 메뉴</a><br /></li>
+     		<li><a href="">이벤트 등록</a><br /></li>
+     		<li><a href="">마켓 등록</a><br /></li>
+       </ul>
      </div>
      <div id="main">
 		<table id="cont">

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.green.manager.vo.ManagerVo;
 import com.green.user.dao.UserDao;
 import com.green.user.service.UserService;
 import com.green.user.vo.UserVo;
@@ -13,7 +14,7 @@ import com.green.user.vo.UserVo;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	UserDao userDao;
+	private UserDao userDao;
 	
 	// 가입된 회원인지 체크
 	@Override
@@ -51,6 +52,14 @@ public class UserServiceImpl implements UserService {
 
 		userDao.userWrite(map);
 		
+	}
+
+	@Override
+	public ManagerVo getManager(HashMap<String, Object> map) {
+
+		ManagerVo mVo = userDao.getManager(map);
+		
+		return mVo;
 	}
 
 

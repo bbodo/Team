@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.green.manager.vo.ManagerVo;
 import com.green.user.dao.UserDao;
 import com.green.user.vo.UserVo;
 
@@ -45,13 +46,22 @@ public class UserDaoImpl implements UserDao {
 		return nicknameCheckresult;
 	}
 	
-	
+	// 회원가입
 	@Override
 	public void userWrite(HashMap<String, Object> map) {
 		
 		map.put("grade", "씨앗");
 		sqlSession.insert("User.UserWrite", map);
 		
+	}
+
+	// 관리자 로그인
+	@Override
+	public ManagerVo getManager(HashMap<String, Object> map) {
+
+		ManagerVo mVo = sqlSession.selectOne("User.GetManager", map);
+		
+		return mVo;
 	}
 
 

@@ -2,6 +2,7 @@ package com.green.user.service;
 
 import java.util.HashMap;
 
+import com.green.manager.vo.ManagerVo;
 import com.green.user.vo.UserVo;
 
 public interface UserService {
@@ -20,5 +21,8 @@ public interface UserService {
 	
 	// 가입하는 회원 정보 db에 저장하기
 	void userWrite(HashMap<String, Object> map);
+
+	// 관리자 로그인
+	ManagerVo getManager(HashMap<String, Object> map);
 	
 }

@@ -33,23 +33,10 @@ public class HomeController {
 		return mv;
 	}
 	
+	
 	// --------------------------- 양식을 위한 주소
 	// --------------------------- 그림 다그리고 컨트롤러 다시 만들죠~
 
-	
-
-
-	
-	@RequestMapping("qalist")
-	public String qlist() {
-		return "/board/qalist";
-	}
-	
-	@RequestMapping("qawrite")
-	public String qawrite() {
-		return "/board/qawrite";
-	}
-	
 
 	// ---------Event---------
 	@RequestMapping("/eventList")
@@ -95,30 +82,6 @@ public class HomeController {
 	
 	// ---------admin---------
 
-	@RequestMapping("/memberManagement")
-	public String memberManagement() {
-		return "/admin/memberManagement";
-	}
-	@RequestMapping("/memberUpdate")
-	public String memberUpdate() {
-		return "/admin/memberUpdate";
-	}
-	@RequestMapping("/menuManagement")
-	public String menuManagement() {
-		return "/admin/menuManagement";
-	}
-	@RequestMapping("/menuWrite")
-	public String menuWrite() {
-		return "/admin/menuWrite";
-	}
-	@RequestMapping("/subMenuManagement")
-	public String subMenuManagement() {
-		return "/admin/subMenuManagement";
-	}
-	@RequestMapping("/subMenuWrite")
-	public String subMenuWrite() {
-		return "/admin/subMenuWrite";
-	}
 	
 	
 	//---------market-----------------

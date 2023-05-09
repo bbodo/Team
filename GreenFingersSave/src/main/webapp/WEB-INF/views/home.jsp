@@ -102,14 +102,15 @@ html, body {
 	</div>
 
 	<!-- header	 -->
-	<c:choose>
+	<%-- <c:choose>
 		<c:when test="${ sessionScope.login eq null }">
 			<%@include file="/WEB-INF/include/header.jsp" %>
 		</c:when>
 		<c:otherwise>
 			<%@include file="/WEB-INF/include/header2.jsp" %>
 		</c:otherwise>
-	</c:choose>
+	</c:choose> --%>
+	<%@include file="/WEB-INF/include/header.jsp" %>
 	
 	<!-- Swiper -->
   	<div class="swiper mySwiper">
@@ -138,7 +139,10 @@ html, body {
   </div>
 	
 	<h2>Home</h2>
-	<a href="/Board/List?submenu_id=SUBMENU01&nowpage=1">식물연합 포이즌 게시판 가는길</a> <br />
+	<a href="/Manager/Home">관리자 홈</a>
+	<a href="/Manager/Menu">메뉴관리</a>
+	<a href="/Manager/Member">회원관리</a>
+	<!-- <a href="/Board/List?submenu_id=SUBMENU01&nowpage=1">식물연합 포이즌 게시판 가는길</a> <br />
 	<a href="/write">write 가는길</a> <br />
 	<a href="/view">view 가는길</a> <br />
 	<a href="/update">update 가는길</a> <br />
@@ -155,7 +159,7 @@ html, body {
 	<a href="">길 찾아가세요</a> 
 	
 	<a href="/myPage/myList?nowpage=1">마이페이지</a>
-	<h2>Home</h2>
+	<h2>Home</h2> -->
 	
   <!-- footer -->
 

@@ -2,6 +2,7 @@ package com.green.user.dao;
 
 import java.util.HashMap;
 
+import com.green.manager.vo.ManagerVo;
 import com.green.user.vo.UserVo;
 
 public interface UserDao {
@@ -18,7 +19,10 @@ public interface UserDao {
 	// 닉네임 중복체크
 	int nicknameCheck(String nickname);
 	
-	
+	// 가입
 	void userWrite(HashMap<String, Object> map);
+
+	// 관리자 로그인
+	ManagerVo getManager(HashMap<String, Object> map);
 
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.green.manager.vo.ManagerVo;
 import com.green.menus.service.MenuService;
 import com.green.menus.vo.MenuVo;
 import com.green.menus.vo.SubmenuVo;
@@ -64,12 +65,21 @@ public class UserController {
 		int idExist = userService.idCheck(userid);
 		UserVo vo = userService.getLogin(map);
 		
+		// 관리자 체크
+		ManagerVo mVo = userService.getManager(map);
+		
 		if ( vo != null) {
 			session.setAttribute("login", vo);
 			mv.setViewName("redirect:" + uri);
 			mv.addObject("menuList", menuList);
 			mv.addObject("submenuList", submenuList);
 			mv.addObject("vo", vo);
+		} else if( mVo != null) {
+			session.setAttribute("login", mVo);
+			mv.setViewName("redirect:" + uri);
+			mv.addObject("menuList", menuList);
+			mv.addObject("submenuList", submenuList);
+			mv.addObject("mvo", mVo);
 		} else {
 			mv.setViewName("user/login");
 			mv.addObject("message", "fail");

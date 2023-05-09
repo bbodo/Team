@@ -86,8 +86,24 @@
 		
    
    </insert>
-   
-  
+
+	<!-- 관리자 로그인 -->
+	<select id="GetManager"
+ 			resultType = "com.green.manager.vo.ManagerVo" >
+ 	
+ 		SELECT
+ 			MANAGERCODE,
+			MANAGER_PW,
+			MANAGER_NAME,
+			TO_CHAR( JOINDATE, 'YYYY-MM-DD HH24:MI:SS' ) AS JOINDATE
+ 		FROM
+ 			MANAGER
+ 		WHERE
+ 			MANAGER_ID = #{ userid }
+ 		AND
+ 			MANAGER_PW = #{ passwd }
+ 	
+ 	</select>
  	
 </mapper>
 
