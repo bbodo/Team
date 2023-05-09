@@ -1,15 +1,14 @@
-package com.green.mypage.dao.impl;
+package com.green.myPage.dao.impl;
 
 import java.util.HashMap;
-
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.green.mypage.dao.MyPageDao;
-import com.green.mypage.vo.MyPageVo;
+import com.green.myPage.dao.MyPageDao;
+import com.green.myPage.vo.MyPageVo;
 
 @Repository("MyPageDao")
 public class MyPageDaoImpl implements MyPageDao {

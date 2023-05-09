@@ -1,4 +1,4 @@
-package com.green.mypage.vo;
+package com.green.myPage.vo;
 
 public class MyPageVo {
 	//Fields

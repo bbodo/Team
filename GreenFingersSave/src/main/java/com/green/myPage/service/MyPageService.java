@@ -1,10 +1,9 @@
-package com.green.mypage.service;
+package com.green.myPage.service;
 
 import java.util.HashMap;
-
 import java.util.List;
 
-import com.green.mypage.vo.MyPageVo;
+import com.green.myPage.vo.MyPageVo;
 
 public interface MyPageService {
 

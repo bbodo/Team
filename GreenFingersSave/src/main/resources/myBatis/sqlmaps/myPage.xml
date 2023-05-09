@@ -5,7 +5,7 @@
 
 <mapper namespace="MyPage">   
 
-	<select id="MyPageNoteSelect" resultType = "com.green.mypage.vo.MyPageVo">
+	<select id="MyPageNoteSelect" resultType = "com.green.myPage.vo.MyPageVo">
 		SELECT  b.BOARD_TITLE, m.NICKNAME, m.GRADE, b.USERCODE 
 		FROM	BOARD b INNER JOIN MEMBER m ON b.USERCODE = m.USERCODE
 		WHERE	b.BOARD_IDX = #{board_idx} 
@@ -59,7 +59,7 @@
    
    <!-- 쪽지 페이징 list  -->
    <select  id="GetMyPageList"
-            resultType="com.green.mypage.vo.MyPageVo">
+            resultType="com.green.myPage.vo.MyPageVo">
    	  SELECT * FROM	
 	  (		SELECT 		ROW_NUMBER() OVER(ORDER BY n.NOTE_REGDATE ASC, n.READMARK DESC)  RNUM
 	  					, n.NOTE_IDX
@@ -106,7 +106,7 @@
    
    <!-- 쪽지 내용 보기 -->
    <select   id             = "GetNoteView"
-             resultType="com.green.mypage.vo.MyPageVo">
+             resultType="com.green.myPage.vo.MyPageVo">
       SELECT
           n.NOTE_IDX, n.NOTE_TITLE, n.NOTE_CONT, n.NOTE_REGDATE, n.SEND_USERCODE
 	  	, n.RECEIVER_USERCODE, n.READMARK, n.DELNOTE, m.NICKNAME
@@ -133,7 +133,7 @@
    
    <!-- 내공 페이징 list  -->
     <select  id="GetSendPointList"
-            resultType="com.green.mypage.vo.MyPageVo">
+            resultType="com.green.myPage.vo.MyPageVo">
    	  SELECT * FROM	
 	  (		SELECT 		ROW_NUMBER() OVER(ORDER BY n.NOTE_REGDATE ASC, n.READMARK DESC)  RNUM
 				        ,m.NICKNAME

@@ -1,9 +1,9 @@
-package com.green.mypage.dao;
+package com.green.myPage.dao;
 
 import java.util.HashMap;
 import java.util.List;
 
-import com.green.mypage.vo.MyPageVo;
+import com.green.myPage.vo.MyPageVo;
 
 public interface MyPageDao {
 	

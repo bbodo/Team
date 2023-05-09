@@ -80,18 +80,18 @@
 				        
 	  		FROM	    NOTE n JOIN MEMBER m ON n.RECEIVER_USERCODE = m.USERCODE
 	  		<if test = "sendData == 'sendData'">
-	           WHERE	n.SEND_USERCODE = #{usercode}
+	           WHERE	n.SEND_USERCODE = #{usercode} 
 	        </if>
 	       
 	        <if test = "recData == 'recData'" >
-	         WHERE	    n.RECEIVER_USERCODE = #{usercode}
+	         WHERE	    n.RECEIVER_USERCODE = #{usercode} 
 	        </if>
 	  ) T 
       WHERE     T.RNUM  
                 BETWEEN  #{startnum}  AND  #{endnum}  
    </select>
    
-   <!-- 전체 자료수 조회 -->
+   <!-- 포인트 자료수 조회 -->
    <select   id             = "GetTotalSendPointCount"
              parameterType  = "hashmap"
              resultType     = "_int">
@@ -103,6 +103,33 @@
           SEND_USERCODE = #{usercode}
 
    </select>
+   
+   <!-- 쪽지 내용 보기 -->
+   <select   id             = "GetNoteView"
+             resultType="com.green.myPage.vo.MyPageVo">
+      SELECT
+          n.NOTE_IDX, n.NOTE_TITLE, n.NOTE_CONT, n.NOTE_REGDATE, n.SEND_USERCODE
+	  	, n.RECEIVER_USERCODE, n.READMARK, n.DELNOTE, m.NICKNAME
+       FROM	    NOTE n JOIN MEMBER m ON n.RECEIVER_USERCODE = m.USERCODE
+       WHERE     
+          n.NOTE_IDX = #{note_idx}
+   </select>
+   
+   	<!-- 쪽지 삭제  -->
+   <update  id="NoteDelete">
+   	  UPDATE   NOTE
+      SET      DELNOTE 		=   1
+      WHERE    NOTE_IDX  	=   #{note_idx}
+   </update>
+   
+   	<!-- 쪽지 답장  형식-->
+   
+   <!-- 내공주기  -->
+   <update  id="UpdatePoint">
+   	  UPDATE   MEMBER
+      SET      POINT 		=  POINT + #{point}
+      WHERE    NICKNAME  	=   #{nickname}
+   </update>
    
    <!-- 내공 페이징 list  -->
     <select  id="GetSendPointList"

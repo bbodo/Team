@@ -1,15 +1,14 @@
-package com.green.mypage.service.impl;
+package com.green.myPage.service.impl;
 
 import java.util.HashMap;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.green.mypage.dao.MyPageDao;
-import com.green.mypage.service.MyPageService;
-import com.green.mypage.vo.MyPageVo;
+import com.green.myPage.dao.MyPageDao;
+import com.green.myPage.service.MyPageService;
+import com.green.myPage.vo.MyPageVo;
 
 @Service("MyPageService")
 public class MyPageServiceImpl implements MyPageService {

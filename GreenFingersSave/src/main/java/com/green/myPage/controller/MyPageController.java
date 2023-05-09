@@ -1,4 +1,4 @@
-package com.green.mypage.controller;
+package com.green.myPage.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.menus.service.MenuService;
-import com.green.mypage.service.MyPageService;
-import com.green.mypage.vo.MyPageVo;
+import com.green.myPage.service.MyPageService;
+import com.green.myPage.vo.MyPageVo;
 import com.green.user.vo.UserVo;
 @Controller
 @RequestMapping("mypage")
@@ -23,7 +23,7 @@ public class MyPageController {
 	private MenuService menuService;
 	
 	@Autowired
-	MyPageService myPageService;
+	private MyPageService myPageService;
 	
 	//쪽지등록페이지
 	@RequestMapping("/myNoteWriteForm")
