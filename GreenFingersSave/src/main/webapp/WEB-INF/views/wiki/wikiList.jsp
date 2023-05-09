@@ -22,6 +22,12 @@
 	#title p {
 		 line-height: 100px;
 	}
+	#div1 { margin: 20px;}
+	.box {  border:1px solid black;
+       margin:5px; }
+    
+   
+       
 	#plantimg {
 		  width: 400px;
 		  height: 300px;
@@ -35,43 +41,25 @@
 		let totalCount = body.totalCount
 		let arr        = body.items.item;
 		let html = '';
+			html += '<h5>총 자료 수 : ' + body.totalCount  + '개</h5>';
 		arr.forEach(function(item, index) {
-			html += '<div>';
-			html += '<table>';
-			html += '<tr>';
-			html += '<td colspan="2"> 총 검색 수 : ' + body.totalCount;
-			html += '<td>';
-				
-			html += '</tr>';
-			html += '<tr>';
-			html += '<td rowspan=""><img id="plantimg" src="' + item.imgUrl + '"/></td>';
-			html += '<td>과명 : ' + item.familyKorNm ;
-			html += '(' + item.familyNm + ')' + '</td>';
-			html += '</tr>';
-			html += '<tr>';
-			html += '<td></td>';
-			html += '<td>속명 : ' + item.genusKorNm ;
-			html += '(' + item.genusNm + ')' + '</td>';
-			html += '</tr>';
-			html += '<tr>';
-			html += '<td></td>';
-			html += '<td>국명 : ' + item.plantGnrlNm + '</td>';
-			html += '</tr>';
-			html += '<tr>';
-			html += '<td></td>';
-			html += '<td>최종수정일시 : ' + item.lastUpdtDtm + '</td>';
-			html += '</tr>';
-			html += '<tr>';
-			html += '<td></td>';
-			html += '<td>상세정보유무 : ' + item.detailYn + '</td>';
-			html += '</tr>';
-			html += '<tr>';
-			html += '<td></td>';
-			html += '<td>도감번호 : ' + item.plantPilbkNo + '</td>';
-			html += '</tr>';
-			html += '</table>';
-			html += '</div>';
+			html += '<div id="box">';
+			html += '<div id="left"><img id="plantimg" src="' + item.imgUrl + '"/></div>';
+			html += '<div id="right"><ul>';
+			html += '<li>과명 : ' + item.familyKorNm ;
+			html += '(' + item.familyNm + ')' + '</li>';
+			html += '<li>속명 : ' + item.genusKorNm ;
+			html += '(' + item.genusNm + ')' + '</li>';
+			html += '<li>국명 : ' + item.plantGnrlNm + '</li>';
+			html += '<li>최종수정일시 : ' + item.lastUpdtDtm + '</li>';
+			if (item.detailYn=='Y'){
+				html += '<li>상세정보유무 : <a href="">상세정보보기</a></li>';}
+			else {
+				html += '<li>상세정보유무 : 상세정보 없음 </li>';}
 			
+			html += '<li>도감번호 : ' + item.plantPilbkNo + '</li>';
+			html += '</ul></div>';
+			html += '</div>';
 		})
 		return html;
 	}
@@ -121,7 +109,7 @@
      </div>
 	
 	<div class="search" style="height: 800px; padding: 20px 20px;" >
-	<h2>그린 위키</h2>
+	<h2>그린 위키 검색</h2>
 	  <input type="text" id="search" />
 	  <button id="btnOk" >검색</button>
 	  <div id="div1"></div> 
