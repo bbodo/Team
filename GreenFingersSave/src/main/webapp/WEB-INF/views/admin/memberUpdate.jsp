@@ -115,10 +115,28 @@
 <script src="https://code.jquery.com/jquery.min.js"></script>
 
 <script type="text/javascript">
+	
 	$(function(){
 		$('#gender').val('${vo.gender}').prop("selected", true);
 		$('#grade').val('${vo.grade}').prop("selected", true);
 	})
+
+	function memberDelete() {
+		if(window.confirm("정말 탈퇴시키겠습니까?")) {
+			$.ajax({
+				url : "/Manager/memberDelete",
+				data : {usercode : ${vo.usercode}},
+				type : "POST",
+				success : function(data) {
+					alert("탈퇴되었습니다 !");
+					location.replace("/Manager/Member");
+				},
+				error : function() {
+					alert("에러!!")
+				}
+			});
+		};
+	}
 
 </script>
 
@@ -140,7 +158,7 @@
      <div id="main">
      	<form action="/Manager/memberUpdate" method="POST">
      	<input type="hidden" value="${ vo.userid }" name="userid"/>
-     	<input type="hidden" value="${ vo.usercode }" name="usercode"/>
+     	<input type="hidden" value="${ vo.usercode }" name="usercode" id="usercode"/>
 		<table id="cont">
 			<tr>
 				<!-- id는 수정불가하게 -->
@@ -222,7 +240,7 @@
 		</table>
 	    <div style="float: right;">
 	    	<input type="submit" value="수정 하기"/> &nbsp; &nbsp;
-	    	<a href="" onclick="userDelete(${vo.usercode})">탈퇴 시키기</a>
+	    	<input type="button" value="탈퇴 시키기" onclick=memberDelete() />
 	    </div>
 		</form>
      </div>

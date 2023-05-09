@@ -13,4 +13,6 @@ public interface ManagerDao {
 
 	void updateUser(HashMap<String, Object> map);
 
+	int deleteUser(HashMap<String, Object> map);
+
 }

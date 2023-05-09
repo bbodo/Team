@@ -40,4 +40,12 @@ public class ManagerServiceImpl implements ManagerService {
 		
 	}
 
+	@Override
+	public int deleteUser(HashMap<String, Object> map) {
+
+		int cnf = managerDao.deleteUser(map);
+		
+		return cnf;
+	}
+
 }

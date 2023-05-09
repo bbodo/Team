@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.manager.service.ManagerService;
@@ -68,6 +69,17 @@ public class ManagerController {
 		mv.setViewName("redirect:/Manager/Member");
 		
 		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/memberDelete")
+	public int memberDelete(
+			@RequestParam HashMap<String, Object> map
+			) {
+
+		int cnf = managerService.deleteUser(map);
+		
+		return cnf;
 	}
 	
 	@RequestMapping("/menuWrite")

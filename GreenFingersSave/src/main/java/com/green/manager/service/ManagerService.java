@@ -13,4 +13,6 @@ public interface ManagerService {
 
 	void updateUser(HashMap<String, Object> map);
 
+	int deleteUser(HashMap<String, Object> map);
+
 }

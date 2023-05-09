@@ -21,9 +21,12 @@
 			EMAIL,
 			TO_CHAR( JOINDATE, 'YYYY-MM-DD HH24:MI:SS' ) AS JOINDATE,
 			POINT,
+			DELMEM,
 			NICKNAME
  		FROM
  			MEMBER
+ 		WHERE
+ 			DELMEM &lt;= 0
 		ORDER BY
 			USERCODE DESC
 			
@@ -44,6 +47,7 @@
 			EMAIL,
 			TO_CHAR( JOINDATE, 'YYYY-MM-DD HH24:MI:SS' ) AS JOINDATE,
 			POINT,
+			DELMEM,
 			NICKNAME
  		FROM
  			MEMBER
@@ -69,6 +73,17 @@
  			USERCODE = #{ usercode }
  			
  	</update>
+ 	
+ 	<delete id="DeleteUser">
+ 	
+ 		UPDATE
+ 			MEMBER
+ 		SET
+ 			DELMEM = 1
+ 		WHERE
+ 			USERCODE = #{ usercode }
+ 	
+ 	</delete>
  	
 </mapper>
 

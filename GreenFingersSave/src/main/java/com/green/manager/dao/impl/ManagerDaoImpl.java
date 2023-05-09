@@ -39,4 +39,12 @@ public class ManagerDaoImpl implements ManagerDao {
 		
 	}
 
+	@Override
+	public int deleteUser(HashMap<String, Object> map) {
+
+		int cnf = sqlSession.delete("Manager.DeleteUser", map);
+		
+		return cnf;
+	}
+
 }
