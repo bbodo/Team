@@ -332,25 +332,6 @@
 
 </script>
 
-<!-- 이미지 파일 첨부 -->
-<!-- <script type="text/javascript">
-
-   function readURL(input) {
-      var file = input.files[0] 
-      console.log(file)
-      if (file != '') {
-         var reader = new FileReader();
-         reader.readAsDataURL(file);
-         reader.onload = function (e) { 
-	     console.log(e.target)
-		console.log(e.target.result)
-           $('#preview').attr('src', e.target.result);
-          }
-      }
-  }  
-</script> -->
-
-
 </head>
 <body>
 	 <!-- header -->
@@ -432,12 +413,10 @@
 				<th>내용</th>
 				<td colspan="5" id="bc">
 				<c:forEach var="file"  items="${ fileList }" >
-				<div>
-					<!-- <input type="file" name="upFile" class="upfile" onchange="readURL(this);"/> -->
-					<%-- <img src="../upload/${ file.sfilename }" id="preview" src="#" width=300 height=280;"> --%>
-					<img src="<spring:url value='../upload/${ file.sfilename }'/>">
-				</div>
-				</c:forEach> 
+				 <div>
+					<img src="/upload/${ file.sfilename }">
+				 </div>
+				</c:forEach>
 				${ vo.board_cont }
 				</td>
 			</tr>
