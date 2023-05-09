@@ -236,6 +236,8 @@ public class MarketController {
 		mv.setViewName("market/view");
 		mv.addObject("map", map);
 		mv.addObject("fileList", fileList);
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		mv.addObject("vo", marketVo);
 		
     	return mv;
@@ -249,6 +251,10 @@ public class MarketController {
     		) {
     	MarketVo marketVo = marketService.getBoard(map);
     
+    	// 메뉴 목록	
+		List<MenuVo>    menuList    = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+    	
     	// 메뉴 이름
  		String submenu_id = String.valueOf( map.get("submenu_id") );
  		String submenu_name = menuService.getMenuName(submenu_id);
@@ -268,6 +274,8 @@ public class MarketController {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("market/update");
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		mv.addObject("map", map);
 		mv.addObject("fileList", fileList);
 		mv.addObject("vo", marketVo);

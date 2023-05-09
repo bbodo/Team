@@ -71,52 +71,63 @@
 	
 	#main p {
 		margin-top: 40px;
+		margin-bottom: 30px;
 	}
+	
+	
+ 	
 	#givelist { 
         display: flex;
         gap : 30px;
         text-decoration : none;
-        margin-top: 50px;
-        margin-left: 200px;
-        margin-bottm: 50px;
+        margin-top: 30px;
+        margin-left: 350px;
         
-    }
+    } 
     .plant  { 
         margin: 0 0 15px 0;
     }
+    
 	#list {
 		background-color: #fff;
 	}
+	
 	#list th {
 		background-color: #666;
 	}
+	
 	#pointlist { 
         display: flex;
         gap : 30px;
         text-decoration : none;
         margin-top: 20px; 
-        margin-left: 200px;     
+        margin-left: 350px;     
     } 
+    
 	.tag {
 		font-weight: bold;
 	}
 	
+	
 	#main { display: block; }
 	
-	img { width : 250px; 
-	      height: 250px;
+
+	.mainimg {
+		width : 250px; 
+	    height: 250px;
 	}
 	
 	h2 {
 		font-size: 24px;
 		margin-bottom: 10px;
+		margin-top: 20px;
 	}
 	#cont {
 		background-color: #fff;
 		padding: 10px;
 		margin: 0 auto;
 		margin-bottom: 50px;
-		width: 90%;
+		width: 65%;
 		border-collapse: collapse;
 	}
 	#cont th {
@@ -149,52 +160,52 @@
 	</c:choose>
 	  
      <div id="title">
-     	<p>그린마켓</p>
+     	<p style="font-size: 40px; font-weight: bold;">그린마켓</p>
      </div>
      <div id="aside">
       <ul id="sidemenu">
      	<li><a href="/Market/List?submenu_id=SUBMENU15&nowpage=1">입양원해요</a></li><br />
      	<li><a href="/Market/List?submenu_id=SUBMENU16&nowpage=1">나눔합니다</a></li><br />
      	<li><a href="/Market/List?submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a></li><br />
+     	</ul>
      </div>
-     </ul>
+     
      <div id="main">
      
      <p>그린핑거는 회원 간의 상품 거래 정보 및 거래에<br>
      관여하지 않으며 어떠한 의무와 책임도 부담하지 않습니다</p>
      
+     <caption><h2>나눔</h2></caption>
      <div id="givelist">
       <figure>
       <a href="/Market/View?submenu_id=SUBMENU16&board_idx=20">
      <div class="plant">
-	     <img src="/img/market/그린마켓1.png" >
+	     <img class="mainimg" src="/img/market/그린마켓1.png" >
 	  </div>
 	  </a>
-	     <span class="tag">나눔</span>
+	    <!--  <span class="tag">나눔</span> -->
 	     <p>루브라 나눔합니다</p>
 	  </figure>
       <figure>
       <a href="/Market/View?submenu_id=SUBMENU16&board_idx=21">
      <div class="plant">
-	     <img src="/img/market/그린마켓2.png" >
+	     <img class="mainimg" src="/img/market/그린마켓2.png" >
 	  </div>
 	  </a>
-	     <span class="tag">나눔</span>
 	     <p>제라늄 데려가실 분</p>
 	  </figure>
       <figure>
       <a href="/Market/View?submenu_id=SUBMENU16&board_idx=22">
      <div class="plant">
-	     <img src="/img/market/그린마켓3.png">
+	     <img class="mainimg" src="/img/market/그린마켓3.png">
 	  </div>
 	  </a>
-	     <span class="tag">나눔</span>
 	     <p>유니플로라 데려가세요</p> 
 	  </figure>
 	</div>
 	
     <table id="cont">
-		<h2 style="font-size: 24px;">${ map.submenu_name }</h2>
+		<h2 style="font-size: 24px;">입양</h2>
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
@@ -267,7 +278,7 @@
       <figure>
       <a href="">
      <div class="plant">
-	     <img src="/img/market/포인트스토어1.jpg" >
+	     <img class="mainimg" src="/img/market/포인트스토어1.jpg" >
 	  </div>
 	  </a>
 	     <span class="tag">3000p</span>
@@ -276,7 +287,7 @@
       <figure>
       <a href="">
      <div class="plant">
-	     <img src="/img/market/포인트스토어2.jpg" >
+	     <img class="mainimg" src="/img/market/포인트스토어2.jpg" >
 	  </div>
 	  </a>
 	     <span class="tag">4500p</span>
@@ -285,7 +296,7 @@
       <figure>
       <a href="">
      <div class="plant">
-	     <img src="/img/market/포인트스토어3.jpg">
+	     <img class="mainimg" src="/img/market/포인트스토어3.jpg">
 	  </div>
 	  </a>
 	     <span class="tag">1800p</span>

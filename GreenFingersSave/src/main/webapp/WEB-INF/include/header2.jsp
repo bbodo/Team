@@ -120,7 +120,7 @@
 					<li><a href="/Board/List?menu_id=${ submenu.menu_id }&submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU03'}">
-					<li><a href="/Market/List?menu_id=${ submenu.menu_id }&ubmenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Market/List?menu_id=${ submenu.menu_id }&submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU04'}">
 					<li><a href="/Event/EventList?menu_id=${ submenu.menu_id }&submenu_id=${submenu.submenu_id}&nowpage=1">
