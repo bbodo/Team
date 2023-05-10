@@ -224,8 +224,7 @@
   </c:forEach>
 		</table>
 		<br />
-	    	<%@include file="/WEB-INF/include/paging.jsp" %>
+	    	<%@include file="/WEB-INF/include/winnerPaging.jsp" %>
      </div>
-     <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>

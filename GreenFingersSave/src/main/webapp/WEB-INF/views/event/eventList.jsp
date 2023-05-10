@@ -42,7 +42,7 @@
 		background-color: white;
 		text-align: center;
 	}
-	img{
+	#img1{
 	    width: 80%;
 		height: 150px;
 		object-fit: cover;
@@ -119,7 +119,7 @@
 		<c:forEach var="eventVo" items="${ eventList }">
 	  <tr>
 
-	  <td  colspan="2" ><img onclick="javascript:location.href='http://localhost:9090/Event/EventView?submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}'"  src="D:\ws\spring\GreenFingersSaveTest\src\main\webapp\WEB-INF\resources\img\event\test"   ></td>
+	  <td  colspan="2" ><img id="img1" onclick="javascript:location.href='http://localhost:9090/Event/EventView?submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}'"  src="D:\ws\spring\GreenFingersSaveTest\src\main\webapp\WEB-INF\resources\img\event\test"   ></td>
 
 	     <td colspan="2" >
 	       <!-- 제목(새글/답글) -->
@@ -158,8 +158,7 @@
 	  </tr>  
 	  </c:forEach>
 		</table> 		
-			    <%@include file="/WEB-INF/include/paging.jsp" %>
-     </div>   
-     <%@include file="/WEB-INF/include/footer.jsp" %>    
+			    <%@include file="/WEB-INF/include/eventPaging.jsp" %>
+     </div>       
 </body>
 </html>

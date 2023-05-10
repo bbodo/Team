@@ -82,7 +82,7 @@ public class WinnerController {
 	
 	map.put("submenu_id",submenu_id);
 	
-	WinnerVo winnerVo = (WinnerVo) map.get("WinnerVo");
+	WinnerVo winnerVo = (WinnerVo) map.get("winnerVo");
 	
 	// 메뉴 이름 알아오기
 	String submenu_name = menuService.getMenuName(submenu_id);

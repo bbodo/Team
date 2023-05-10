@@ -63,14 +63,14 @@ public class EventController {
 	
 	// 페이징 정보 준비
 	int           nowpage   =  Integer.parseInt( (String) map.get("nowpage") ); 
-	int           pagecount =  10;    // 한페이지 당 출력할 줄(row)수  
+	int           pagecount =  3;    // 한페이지 당 출력할 줄(row)수  
 
 	// sql 사용할 변수 : 조회할 레코드 번호
 	int           startnum  =  ( nowpage - 1 ) * pagecount + 1;
 	int           endnum    =  nowpage  *  pagecount;
 
-	map.put("pagecount", pagecount );
-	map.put("startnum",  startnum );
+	map.put("pagecount", pagecount ); 
+	map.put("startnum",  startnum ); 
 	map.put("endnum",    endnum );		
 	// ---------------------------------------------------------------------
 
@@ -80,7 +80,8 @@ public class EventController {
 	
 	map.put("submenu_id",submenu_id);
 	
-	EventVo eventVo = (EventVo) map.get("EventVo");
+	
+	EventVo eventVo = (EventVo) map.get("eventVo");
 	
 	// 메뉴 이름 알아오기
 	String submenu_name = menuService.getMenuName(submenu_id);
