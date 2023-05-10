@@ -215,6 +215,64 @@
  	
  	</update>
  	
+ 	
+ 	<!-- 스토어 리스트 가져오기  -->
+ 	<select id="StoreList"
+			resultType="com.green.manager.vo.StoreVo">
+	
+	SELECT
+			ROW_NUMBER() OVER(ORDER BY NREF DESC, STEP ASC)  RNUM,
+			B.BOARD_IDX,
+			B.SUBMENU_ID,
+			B.BOARD_TITLE,
+			B.BOARD_CONT,
+			B.MARKET_VALUE,
+			M.USERCODE,
+            MA.MANAGERCODE,
+			TO_CHAR(B.BOARD_REGDATE, 'YYYY-MM-DD HH24:MI:SS') BOARD_REGDATE,
+			B.READCOUNT,
+			B.BNUM,
+			B.LVL,
+			B.STEP,
+			B.NREF,
+			B.DELBOARD,
+			B.PARENT,
+			M.NICKNAME
+		FROM
+			BOARD B
+		FULL OUTER JOIN MEMBER   M ON B.USERCODE    = M.USERCODE
+		FULL OUTER JOIN MANAGER MA ON B.MANAGERCODE = MA.MANAGERCODE
+        WHERE 
+            SUBMENU_ID  =  'SUBMENU17'
+		
+	</select>
+	
+	<!-- 스토어 상품 등록  -->
+	<insert id="AddStore">
+	
+	INSERT INTO
+		BOARD
+		(
+			BOARD_IDX,
+			SUBMENU_ID,
+			BOARD_TITLE,
+			BOARD_CONT,
+			MARKET_VALUE,
+			BNUM,
+			NREF
+		)
+	VALUES
+		(
+			(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
+			'SUBMENU17',
+			#{ board_title },
+			#{ board_cont },
+			#{ market_value },
+			(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
+			(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD)
+		)
+	</insert>
+ 	
 </mapper>
 
 

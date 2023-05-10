@@ -3,6 +3,11 @@ package com.green.manager.service;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import com.green.manager.vo.ManagerVo;
+import com.green.manager.vo.StoreVo;
+import com.green.market.vo.FileVo;
 import com.green.user.vo.UserVo;
 
 public interface ManagerService {
@@ -28,5 +33,14 @@ public interface ManagerService {
 	int deleteSubmenu(HashMap<String, Object> map);
 
 	void updateSubmenu(HashMap<String, Object> map);
+
+	List<StoreVo> getStoreList();
+
+	void addStore(HashMap<String, Object> map, HttpServletRequest request);
+
+	StoreVo getBoard(HashMap<String, Object> map);
+
+	List<FileVo> getFileList(HashMap<String, Object> map);
+
 
 }

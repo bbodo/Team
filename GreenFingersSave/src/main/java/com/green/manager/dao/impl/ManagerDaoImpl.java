@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.green.manager.dao.ManagerDao;
+import com.green.manager.vo.StoreVo;
+import com.green.market.vo.FileVo;
+import com.green.market.vo.MarketVo;
 import com.green.user.vo.UserVo;
 
 @Repository("managerDao")
@@ -97,5 +100,56 @@ public class ManagerDaoImpl implements ManagerDao {
 		sqlSession.update("Manager.UpdateSubmenu", map);
 		
 	}
+
+	//-------------------------------------------------------------------
+	// 스토어 등록 상품 리스트
+	@Override
+	public List<StoreVo> getStoreList() {
+		
+		List<StoreVo> storeList = sqlSession.selectList("Manager.StoreList");
+		
+		return storeList;
+	}
+
+	// 스토어 등록
+	@Override
+	public void addStore(HashMap<String, Object> map) {
+		
+		// db 정보 저장
+		// Board에 저장
+		int  bnum = Integer.parseInt( (String) map.get("bnum") );
+		if ( bnum == 0 ) {
+			sqlSession.insert("Manager.AddStore", map);
+		} else {
+			sqlSession.update("Manager.StepUpdate", map); // 새글			
+			sqlSession.insert("Manager.BoardReply", map); // 새글			
+		}
+		
+		// Files에 저장
+		List<FileVo>  fileList =  (List<FileVo>) map.get("fileList");
+		if( fileList.size() != 0  )
+			sqlSession.insert("Manager.FileInsert", map);
+	}
+
+	//-----------------------------------------------------------------
+
+	@Override
+	public StoreVo getBoard(HashMap<String, Object> map) {
+		
+		sqlSession.update("Manager.UpdateReadCount", map);
+		
+		StoreVo vo = sqlSession.selectOne("Manager.GetBoard", map);
+		
+		return vo;
+	}
+
+	// 스토어 파일
+	@Override public List<FileVo> getFileList(HashMap<String, Object> map) {
+	  
+	List<FileVo> fileList = sqlSession.selectList("Manager.FileList", map);
+	  
+	return fileList; 
+	}
+
 
 }

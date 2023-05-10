@@ -3,11 +3,19 @@ package com.green.manager.service.impl;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.green.manager.dao.ManagerDao;
 import com.green.manager.service.ManagerService;
+import com.green.manager.vo.ManagerVo;
+import com.green.manager.vo.StoreVo;
+import com.green.market.service.impl.MarketFile;
+import com.green.market.service.impl.MarketPaging;
+import com.green.market.vo.FileVo;
+import com.green.market.vo.MarketVo;
 import com.green.user.vo.UserVo;
 
 @Service("managerService")
@@ -99,5 +107,46 @@ public class ManagerServiceImpl implements ManagerService {
 		
 		
 	}
+
+	//-----------------------------------------------------------
+	// 스토어 관리 
+	@Override
+	public List<StoreVo> getStoreList() {
+		
+		List<StoreVo> storeList = managerDao.getStoreList();
+		
+		return storeList;
+	}
+
+	// 스토어 상품 등록
+	@Override
+	public void addStore(
+			HashMap<String, Object> map,
+			HttpServletRequest request) {
+		
+		// request 처리
+		MarketFile.save(map, request);
+		
+		// 넘어온 정보 저장
+		managerDao.addStore(map);
+	}
+
+	
+	@Override
+	public StoreVo getBoard(HashMap<String, Object> map) {
+
+		StoreVo vo = managerDao.getBoard(map);
+		
+		return vo;
+	}
+
+	@Override
+	public List<FileVo> getFileList(HashMap<String, Object> map) {
+		
+		List<FileVo> fileList = managerDao.getFileList(map);
+		
+		return fileList;
+	}
+
 
 }

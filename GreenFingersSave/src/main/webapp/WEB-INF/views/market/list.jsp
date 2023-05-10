@@ -154,16 +154,16 @@
      </c:choose>
      
 		<!-- 포인트 스토어에서만 비활성화  -->
-		<c:choose>	
-			<c:when test="${ map.submenu_id != 'SUBMENU17' }">
+	<%-- 	<c:choose>	
+			<c:when test="${ map.submenu_id != 'SUBMENU17' }"> --%>
 			<div class="right">
 			<a href="/Market/WriteForm?submenu_id=${ map.submenu_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
 	 		</div>
-	 	</c:when>
+	 <%-- 	</c:when>
 		<c:otherwise>
 		</c:otherwise>
 		</c:choose>	
-		
+	 --%>	
     <table id="cont">
 		<tr>
 			<th class="padd8">번호</th>

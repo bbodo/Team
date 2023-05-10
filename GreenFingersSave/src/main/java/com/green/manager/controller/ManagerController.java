@@ -3,6 +3,8 @@ package com.green.manager.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.manager.service.ManagerService;
+import com.green.manager.vo.ManagerVo;
+import com.green.manager.vo.StoreVo;
+import com.green.market.vo.FileVo;
 import com.green.menus.service.MenuService;
 import com.green.menus.vo.MenuVo;
 import com.green.menus.vo.SubmenuVo;
@@ -272,5 +277,80 @@ public class ManagerController {
 		
 		return cnf;
 	}
+	
+	
+	//-------------- 포인트 스토어  --------------------------------------------
+	
+	@RequestMapping("/Store")
+	public ModelAndView store() {
+		
+		// 게시글 목록 불러오기
+		List<StoreVo> storeList = managerService.getStoreList();
+		
+		//System.out.println("스토어목록" + storeList);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/admin/storeManagement");
+		mv.addObject("storeList", storeList);
+		
+		return mv;
+	}
+	
+	// 스토어 상품 등록 창
+	@RequestMapping("/storeWriteForm")
+	public ModelAndView storeWriteForm() {
+		
+		List<MenuVo> menuList = menuService.getMenuList();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/admin/storeWrite");
+		mv.addObject("menuList", menuList);
+		
+		return mv;
+	}
+		
+	// 스토어 상품 등록
+	@RequestMapping("/storeWrite")
+	public ModelAndView storeWrite(
+			@RequestParam HashMap<String, Object> map,
+			HttpServletRequest request
+			) {
+		
+		managerService.addStore(map, request);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject( "map", map );
+		mv.setViewName("redirect:/Manager/Store");
+		
+		return mv;
+	}
+	
+	// 스토어 수정창
+	@RequestMapping("/storeUpdateForm")
+    public ModelAndView storeUpdateForm(
+    		@RequestParam	HashMap<String, Object>  map
+    		) {
+		StoreVo storeVo = managerService.getBoard(map);
+		
+		String content = storeVo.getBoard_cont();
+		if(content == null) {
+			storeVo.setBoard_cont("");
+		} else {
+			content = content.replace("\n", "<br>");
+			// content += "\n===============================\n";
+			storeVo.setBoard_cont(content);
+		}
+		
+		// fileList
+		List<FileVo>  fileList =  managerService.getFileList( map );
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("market/storeupdate");
+		mv.addObject("map", map);
+		mv.addObject("fileList", fileList);
+		mv.addObject("vo", storeVo);
+		
+		return mv;
+}
+	
 	
 }
