@@ -148,9 +148,9 @@
      </div>
       <div id="aside">
        <ul id="sidemenu">
-     		<li><a href="/Manager/Member">회원 관리</a><br /></li>
+			<li><a href="/Manager/Member">회원 관리</a><br /></li>
        		<li><a href="/Manager/Menu">메뉴 관리</a> <br /></li>
-     		<li><a href=""> - 하위 메뉴</a><br /></li>
+     		<li><a href="/Manager/subMenu"> - 하위 메뉴</a><br /></li>
      		<li><a href="">이벤트 등록</a><br /></li>
      		<li><a href="">마켓 등록</a><br /></li>
        </ul>

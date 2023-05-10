@@ -7,7 +7,7 @@
 
 <header>
    <div id="headerInWrap">
-	   <div id="logo">logo</div>
+	   <div id="logo"><a href="/Manager/Home">logo</a></div>
 		
 		<div>
 			<a href="/Manager/Member">회원관리</a>
@@ -18,7 +18,7 @@
 		
 		<div>
 			<a href="">마이페이지</a>
-			<a href="">로그아웃</a>
+			<a href="/User/Logout">로그아웃</a>
 		</div>
    </div>
 </header>

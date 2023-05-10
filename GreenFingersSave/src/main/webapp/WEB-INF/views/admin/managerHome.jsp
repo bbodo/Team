@@ -110,7 +110,7 @@ html, body {
 			<%@include file="/WEB-INF/include/header2.jsp" %>
 		</c:otherwise>
 	</c:choose> --%>
-	<%@include file="/WEB-INF/include/header.jsp" %>
+	<%@include file="/WEB-INF/include/adminHeader.jsp" %>
 	
 	<!-- Swiper -->
   	<div class="swiper mySwiper">

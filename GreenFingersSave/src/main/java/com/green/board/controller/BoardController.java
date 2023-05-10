@@ -139,12 +139,13 @@ public class BoardController {
 		
 		String  submenu_id  =  (String) map.get("submenu_id");
 		int     nowpage  =  Integer.parseInt(String.valueOf(map.get("nowpage")));
+		String  menu_id = (String) map.get("menu_id");
 		
 		// 글쓰기 및 파일저장
 		boardService.setWrite(map, request);
 		
-		String fmt = "redirect:/Board/List?submenu_id=%s&nowpage=%d";
-		String loc = String.format(fmt, submenu_id, nowpage);
+		String fmt = "redirect:/Board/List?menu_id=%s&submenu_id=%s&nowpage=%d";
+		String loc = String.format(fmt, menu_id, submenu_id, nowpage);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName(loc);

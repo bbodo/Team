@@ -156,6 +156,7 @@
 		<input type="hidden"  name="parent"     value="${ map.board_idx  }" /> 
 		<input type="hidden"  name="nowpage"    value="${ map.nowpage    }" /> 
 		<input type="hidden"  name="userid"     value="${ map.userid     }" /> 
+		<input type="hidden"  name="menu_id"    value="${ map.menu_id    }" /> 
 		     	
      	
 		<table id="cont">

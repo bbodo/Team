@@ -133,6 +133,7 @@
 	  <input type="hidden"  name="nref"       value="${ map.nref       }" /> 
 	  <input type="hidden"  name="parent"     value="${ map.board_idx  }" /> 
 	  <input type="hidden"  name="nowpage"    value="${ map.nowpage    }" /> 
+	  <input type="hidden"  name="menu_id"    value="${ map.menu_id    }" /> 
      
 		<table id="cont">
 			<tr>
@@ -166,7 +167,7 @@
 			</tr>
 		</table>
 		<div class="center">
-			<input type="submit" value="수정" />
+			<input type="submit" value="작성" />
 		</div>
 		</form>
      </div>

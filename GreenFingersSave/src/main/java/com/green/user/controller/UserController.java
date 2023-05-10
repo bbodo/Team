@@ -70,10 +70,7 @@ public class UserController {
 		
 		if( mVo != null) {
 			session.setAttribute("login", mVo);
-			mv.setViewName("redirect:" + uri);
-			mv.addObject("menuList", menuList);
-			mv.addObject("submenuList", submenuList);
-			mv.addObject("mvo", mVo);
+			mv.setViewName("redirect:/Manager/Home");
 		} else {
 			if( vo != null) {
 				int delmem = vo.getDelmem();

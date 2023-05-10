@@ -29,7 +29,7 @@ public class ManagerController {
 	@RequestMapping("/Home")
 	public String managerHome() {
 		
-		return "/admin/homeM";
+		return "/admin/managerHome";
 	}
 	
 	//-------------- 메뉴 --------------
