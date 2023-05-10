@@ -32,7 +32,8 @@
 	}
 	#main {
 		width: 85%;
-		height: 800px;
+		height: auto;
+		min-height: 800px;
 		float: left;
 		padding: 10px;
 		padding-right : 15%;
@@ -100,6 +101,11 @@
 		height: 400px;
 		padding: 20px;
 	}
+	.btn {
+		margin-top : 30px;
+		text-align: right;
+		margin-right: 130px;
+	}
 
 </style>
 
@@ -108,14 +114,48 @@
 <script>
   $( function() {
 	  let num = 1;
-	  $('#btnAddFile').on('click', function(e) {
+	  $('#btnAddFile1').on('click', function(e) {
+		  let tag  = `<input type="file" name="upFile\${num}" class="upfile" onchange=readURL(this,\${num}) /><br>`;
+		      tag += '<img id="preview'+ num + '" src="#" width=200 height=180 alt="선택된 이미지가 없습니다" style="align-content: flex-end; ">'
+		  $('#imgplus').append( tag );		  
+		  num++;
+	  })
+  });
+</script>
+<script>
+  $( function() {
+	  let num = 1;
+	  $('#btnAddFile2').on('click', function(e) {
 		  let tag = '<input type="file"  name="upfile' + num + '" class="upfile"/><br>';
 		  $('#tdfile').append( tag );		  
 		  num++;
 	  })
   });
 </script>
-
+<script>
+//미리보기 시작
+   $("#imgplus").change(function(){
+                //alert(this.value); //선택한 이미지 경로 표시
+                readURL(this);
+   });
+   
+   //미리보기 처리함수
+   function readURL(input, num) {
+	let reader = [];
+	console.log(num);
+	   if (input.files && input.files[0]) {
+    	   reader[num] = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+           reader[num].onload = function (e) {
+           //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+               //이미지 Tag의 SRC속성에 읽어들인 File내용을 지정 
+               console.log(e);
+               $('#preview'+ num).attr('src', e.target.result);
+           }
+           //File내용을 읽어 dataURL형식의 문자열로 저장 
+           reader[num].readAsDataURL(input.files[0]);
+       }
+   }
+</script>
 </head>
 <body>
 	 <!-- header -->
@@ -168,16 +208,27 @@
 				<td style="text-align: center;">글 내용</td>
 				<td><textarea name="board_cont" maxlength="1000">${ vo.board_cont }</textarea></td>
 			</tr>
+			
+			<div class="form-group" >
+				<td style="text-align: center;">이미지 첨부</td>
+				<td id="imgplus"> 
+				<input type="button"  id="btnAddFile1" value="파일 추가(최대 100M byte)" /><br>
+          		<input type="file" name="upFile" class="upfile" onchange="readURL(this,0);"/>
+				<img id="preview0" src="#" width=200 height=180 alt="선택된 이미지가 없습니다" style="align-content: flex-end; ">
+				</td>
+			</div> 
+			
 			<tr>
 				<td style="text-align: center;">파일 첨부</td>
 				<td id="tdfile">
-		      	 <input type="button"  id="btnAddFile" value="파일 추가(최대 100M byte)" /><br>
+		      	 <input type="button"  id="btnAddFile2" value="파일 추가(최대 100M byte)" /><br>
 		       	 <input type="file"  name="upfile"  class="upfile"/><br>
 		   		</td>
 			</tr>
-			
 		</table>
+		<div class="btn">
 		<input type="submit" value="등록" />
+		</div>
 		</form>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>

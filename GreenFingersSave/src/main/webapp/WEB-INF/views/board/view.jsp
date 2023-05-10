@@ -365,7 +365,15 @@
 			</tr>
 				<tr><td colspan="6"></td></tr>
 			<tr>
-				<td colspan="6" style="height: 600px; padding: 8px;">${vo.board_cont }</td>
+				<th>내용</th>
+				<td colspan="5" id="bc">
+				<c:forEach var="file"  items="${ fileList }" >
+				 <div>
+					<img src="/upload/${ file.sfilename }">
+				 </div>
+				</c:forEach>
+				${ vo.board_cont }
+				</td>
 			</tr>
 			<tr>
 				<td class="padd8">파일 첨부</td>

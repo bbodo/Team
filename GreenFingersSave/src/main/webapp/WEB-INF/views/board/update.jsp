@@ -25,7 +25,8 @@
 	}
 	#main {
 		width: 100%;
-		height: 800px;
+		height: auto;
+		mein-height: 800px;
 		padding: 10px;
 		padding: 50px 200px 50px 200px;
 	}
@@ -68,6 +69,23 @@
 	}
 
 </style>
+
+<script type="text/javascript">
+
+   function readURL(input) {
+      var file = input.files[0] 
+      console.log(file)
+      if (file != '') {
+         var reader = new FileReader();
+         reader.readAsDataURL(file);
+         reader.onload = function (e) { 
+	     console.log(e.target)
+		console.log(e.target.result)
+           $('#preview').attr('src', e.target.result);
+          }
+      }
+  }  
+</script>
 
 <script src="https://code.jquery.com/jquery.min.js"></script>
 
@@ -143,8 +161,16 @@
 				<td style="text-align: center;">글 내용</td>
 				<td><textarea name="board_cont" maxlength="1000">${ vo.board_cont }</textarea></td>
 			</tr>
+				 <div class="form-group" >
+				<td style="text-align: center;">이미지 첨부</td>
+				<td id="imgplus"> 
+	         			<input type="file" name="imgFile" onchange="readURL(this);"/>
+				<img id="preview" src="#" width=200 height=180 alt="선택된 이미지가 없습니다" style="align-content: flex-end; ">
+				</td>
+				</div>
+			
 			<tr>
-				<td style="text-align: center;">파일 첨부</td>
+				<td style="text-align: center;">모든 파일 목록</td>
 				<td id="tdfile">
 			    <!-- 기존 파일 목록, 삭제버튼 -->
 				<c:forEach  var="file"   items="${ fileList }">
