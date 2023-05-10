@@ -27,8 +27,15 @@ public class UserServiceImpl implements UserService {
 	
 	// 아이디 중복체크
 	@Override
-	public int idCheck(String userid) {
-		int idCheckresult = userDao.idCheck(userid);
+	public UserVo idCheck(String userid) {
+		UserVo idVo = userDao.idCheck(userid);
+		return idVo; 
+	}
+	
+	// 아이디 중복체크1
+	@Override
+	public int idCheck1(String userid) {
+		int idCheckresult = userDao.idCheck1(userid);
 		return idCheckresult; 
 	}
 	
@@ -46,7 +53,7 @@ public class UserServiceImpl implements UserService {
 		return nicknameCheckresult;
 	}
 	
-	
+	// 가입하는 회원 정보 db에 저장하기
 	@Override
 	public void userWrite(HashMap<String, Object> map) {
 
@@ -61,6 +68,5 @@ public class UserServiceImpl implements UserService {
 		
 		return mVo;
 	}
-
 
 }

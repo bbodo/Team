@@ -27,8 +27,15 @@ public class UserDaoImpl implements UserDao {
 	
 	// 아이디 중복체크
 	@Override
-	public int idCheck(String userid) {
-		int idCheckresult = sqlSession.selectOne("User.UseridCheck", userid);
+	public UserVo idCheck(String userid) {
+		UserVo idVo = sqlSession.selectOne("User.UseridCheck", userid);
+		return idVo; 
+	}
+	
+	// 아이디 중복체크1
+	@Override
+	public int idCheck1(String userid) {
+		int idCheckresult = sqlSession.selectOne("User.UseridCheck1", userid);
 		return idCheckresult; 
 	}
 	
@@ -63,7 +70,5 @@ public class UserDaoImpl implements UserDao {
 		
 		return mVo;
 	}
-
-
 
 }

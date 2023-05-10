@@ -109,14 +109,10 @@ div{text-align : center}
 			</tr>
 			<tr>
 			<c:choose>
-				<c:when test="${idExist eq '1' }">
-					 <td colspan="2" style="color:red;">
-						탈퇴한 회원 입니다</td>
-				</c:when>		
-				<c:when test="${idExist eq '0' }">
+				<c:when test="${noid eq 'noid' }">
 					 <td colspan="2" style="color:red;">
 						없는 아이디 입니다</td>
-				</c:when>
+				</c:when>		
 				<c:when test="${message eq 'fail' }">
 					 <td colspan="2" style="color:red;">
 						비밀번호가 틀립니다</td>

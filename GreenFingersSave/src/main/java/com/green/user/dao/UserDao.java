@@ -11,8 +11,11 @@ public interface UserDao {
 	UserVo getLogin(HashMap<String, Object> map);
 	
 	// 아이디 중복체크
-	int idCheck(String userid);
+	UserVo idCheck(String userid);
 
+	// 아이디 중복체크1
+	int idCheck1(String userid);
+	
 	// 이메일 중복체크
 	int emailCheck(String email);
 	

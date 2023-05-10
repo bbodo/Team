@@ -33,8 +33,15 @@
  	</select>
  	
  	<!-- 아이디 중복 체크 -->
-	<select id="UseridCheck"  resultType="int">
-    	SELECT COUNT(*) CNT 
+	<select id="UseridCheck"  resultType="com.green.user.vo.UserVo">
+    	SELECT DELMEM
+      	FROM   MEMBER
+      	WHERE  USERID = #{userid}
+   	</select>
+   	
+ 	<!-- 아이디 중복 체크1 -->
+	<select id="UseridCheck1"  resultType="int">
+    	SELECT COUNT(*) CNT
       	FROM   MEMBER
       	WHERE  USERID = #{userid}
    	</select>

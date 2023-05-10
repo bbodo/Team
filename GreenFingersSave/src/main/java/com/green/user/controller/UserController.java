@@ -62,11 +62,9 @@ public class UserController {
 		
 		// 가입된 회원인지 체크
 		String userid = (String) map.get("userid");
-		int idExist = userService.idCheck(userid);
-		UserVo vo = userService.getLogin(map);
-		System.out.println(idExist);
-		System.out.println(vo);
-		
+		UserVo idVo   = userService.idCheck(userid);
+		UserVo vo     = userService.getLogin(map);
+				
 		// 관리자 체크
 		ManagerVo mVo = userService.getManager(map);
 		
@@ -77,9 +75,9 @@ public class UserController {
 			mv.addObject("submenuList", submenuList);
 			mv.addObject("mvo", mVo);
 		} else {
-			if(vo != null) {
+			if( vo != null) {
 				int delmem = vo.getDelmem();
-				if(delmem == 0) {
+				if( delmem == 0) {
 					session.setAttribute("login", vo);
 					mv.setViewName("redirect:" + uri);
 					mv.addObject("menuList", menuList);
@@ -87,25 +85,28 @@ public class UserController {
 					mv.addObject("vo", vo);
 				} else {
 					mv.setViewName("user/login");
-					mv.addObject("idExist", idExist);
+					mv.addObject("noid", "noid");
 					mv.addObject("uri", uri);
 				}
-				
 			} else {
-				if(idExist == 1) {
+				if( idVo != null) {
+					int delmem = idVo.getDelmem();
+					if ( delmem == 0 ) {
+						mv.setViewName("user/login");
+						mv.addObject("message", "fail");
+						mv.addObject("uri", uri);
+					} else {
 					mv.setViewName("user/login");
-					mv.addObject("idExist", idExist);
+					mv.addObject("noid", "noid");
 					mv.addObject("uri", uri);
+					}
 				} else {
 					mv.setViewName("user/login");
-					mv.addObject("message", "fail");
-					mv.addObject("idExist", idExist);
+					mv.addObject("noid", "noid");
 					mv.addObject("uri", uri);
 				}
-			} 
-			
-		}
-		
+			}
+		} 
 		return mv;
 	}
 
@@ -124,7 +125,7 @@ public class UserController {
 	public int idCheck(HttpServletRequest req, HttpServletResponse resp, 
 			HttpSession session, String userid) {
 		
-		int idCheckresult = userService.idCheck(userid);
+		int idCheckresult = userService.idCheck1(userid);
 		return idCheckresult;   
 	}
 	
