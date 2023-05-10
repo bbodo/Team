@@ -23,15 +23,16 @@
 		 line-height: 100px;
 	}
 	#aside {
-		float: left;
 		height: 800px;
 		background-color: white;
 		width: 15%;
 		padding: 10px;
+		float: left;
 	}
 	#main {
 		width: 85%;
-		height: 800px;
+		height: auto;
+		min-height: 800px;
 		float: left;
 		padding: 10px;
 		padding-right: 15%;
@@ -111,6 +112,9 @@
 		width: 100%;
  		opacity: 1;$
 	}
+	#wrapper {
+		min-height: 100%;
+	}
 
 </style>
 
@@ -143,6 +147,7 @@
      <div id="title">
      	<p>하위 메뉴 관리</p>
      </div>
+     <div id="wrapper">
       <div id="aside">
        <ul id="sidemenu">
 			<li><a href="/Manager/Member">회원 관리</a><br /></li>
@@ -179,6 +184,7 @@
      </c:forEach>
 		</table>
      </div>
-     <%-- <%@include file="/WEB-INF/include/footer.jsp" %> --%>
+     </div>
+     <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>

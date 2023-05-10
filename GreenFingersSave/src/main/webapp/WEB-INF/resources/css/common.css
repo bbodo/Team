@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 *{margin:0; padding:0; font-family: 'Noto Sans KR', sans-serif, 'Noto Serif KR', serif; font-size: 15px;}
-body {
+html,body {
     position: relative;
     height: 100%;
 }
@@ -135,7 +135,7 @@ footer {
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 2%;
-  	transform : translateY(-100%);
+	transform: none;
 }
 
 #wrapper {
