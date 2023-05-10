@@ -12,19 +12,17 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <style>
-
-	#title {
-		width: 100%;
-		text-align: center;
-		height: 100px;
-		background-color: orange;
+	#title { width: 100%;
+		     text-align: center;
+		     height: 100px;
+	 	     background-color: orange;
 	}
-	#title p {
-		 line-height: 100px;
-	}
-	#div1 { margin: 20px; width: 800px; height: auto;}
-    .box { display: flex;
-    	margin: 20px;}
+	
+	#title p { line-height: 100px; }
+	
+	#div1 { margin: 20px; width: 800px;}
+	
+    .box { display: flex; margin: 20px;}
     #btn1Ok { width: 100px;}     
 	#plantimg {
 		  width: 400px;
@@ -33,19 +31,38 @@
 	}
 </style>
 <script>
+	
+	
 	function data_display(data) {
-		console.log(data);
-		let body = data.response.body;
-		let totalCount = body.totalCount
-/* 		let nowpage = 1;
-		let pagecount = 10;
+		//console.log(data);
+		const pagingEl = document.getElementById('paging');
+		let   phtml    = '';
+		
+		let body       = data.response.body;
+		let nowpage    =  1; //body.pageNo;
+		let totalCount = body.totalCount;
+		
+		let pagecount  = 10;
 		let pagetotalcount = 10;
-		let pagestartnum = ((nowpage-1) / pagetotalcount) * pagetotalcount + 1;
-		let pageendnum   = ((nowpage-1) / pagetotalcount + 1) * pagetotalcount;
-		let startclick = nowpage;
-		let beforeclick = pagestartnum - 1;
-		let nextclick  = pageendnum + 1;
-		let endclick  = totalpagecount ; */
+		let totalpagecount = Math.ceil(totalCount/pagecount)
+		let startnum   = ((nowpage-1)/pagetotalcount) * pagetotalcount + 1;
+		let endnum     = ((nowpage-1)/pagetotalcount + 1) * pagetotalcount;
+		if(startnum >1) {
+			phtml += '<a href="" onclick="paging(1)">[처음]</a>';
+			phtml += '<a href="" onclick="paging(' + (startnum-1) + ')">[이전]</a>';
+			
+		} 
+		for (let i = 1; i < Math.ceil(totalCount/pagecount) ; i++) {
+			
+			phtml += '<a href="" onclick="paging(' + i + ')">' + i + '</a>&nbsp;&nbsp;';
+		}
+		
+		if(totalpagecount != endnum) {
+			phtml += '<a href="" onclick="paging(' + (endnum+1) + ')">[다음]</a>';
+			phtml += '<a href="" onclick="paging(' + totalpagecount + ')">[마지막]</a>';
+		}
+		
+		pagingEl.innerHTML = phtml;
 		
 		let arr  = body.items.item;
 		let html = '';
@@ -60,7 +77,7 @@
 			html += '(' + item.genusNm + ')' + '</li>';
 			html += '<li>국명 : ' + item.plantGnrlNm + '</li>';
 			html += '<li>최종수정일시 : ' + item.lastUpdtDtm + '</li>';
-			if (item.detailYn=='Y'){
+			if (item.detailYn =='Y'){
 				html += '<li>상세정보유무 : <button id="btn1Ok">상세정보조회</button></li>';}
 			else {
 				html += '<li>상세정보유무 : 상세정보 없음 </li>';}
@@ -68,24 +85,27 @@
 			html += '<li>도감번호 : ' + item.plantPilbkNo + '</li>';
 			html += '</ul></div>';
 			html += '</div>';
-		})
+		});
 		return html;
 	}
 
+	
 	$(function() {
-		const btnOkEl  = document.querySelector('#btnOk');
+		const btnOkEl = document.querySelector('#btnOk');
 		const div1El  = document.querySelector('#div1');
-		
+		let   pageNo = 1;
 		$(btnOkEl).on({
 			click : function(e) {
 				//alert('클릭확인');
 				$.ajax({
 					url : 'http://localhost:9090/Wiki/Service',
 					data : {
+						pageNo  : '1',
 						keyword : $('#search').val()
 					},
 					success : function(data) {
 						console.log(data);
+			
 						let html = data_display(data);
 						//alert(data);
 						$('#div1').html(html);
@@ -96,7 +116,8 @@
 					}
 					
 				});
-			}			
+				
+			}
 		});
 	});
 </script>
@@ -116,21 +137,20 @@
      	<p style="font-size: 40px; font-weight: bold;">그린 위키</p>
      </div>
 	
-	<div id="wrapper">
-		<div class="search" style="min-height:800px; height: auto; width:100%; padding: 20px 20px;" >
-		<h2>그린 위키 검색</h2>
-	      	
-	      
-		  국명 : <input type="text" id="search" style="width:200px;" />
-		  <button id="btnOk"  >검색</button>
-		  <div id="div1"></div> 
-		</div>
+	<div class="search" style="height: auto; width: 100%; min-height:800px; padding: 20px 20px;" >
+	<h2>그린 위키 검색</h2>
+      	
+      
+	  국명 : <input type="text" id="search" style="width:200px;" />
+	  <button id="btnOk"  >검색</button>
+	  <div id="paging"></div>
+	  <div id="div1"></div> 
 	</div>
 	
 	
+	
 	<!-- footer -->
-    <%@include file="/WEB-INF/include/footer.jsp" %>
-    
+    <%@include file="/WEB-INF/include/footer.jsp" %> 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 </body>

@@ -51,14 +51,14 @@ public class WikiController {
 	@RequestMapping("/Service")
 	@ResponseBody
 	public  void service(
-		String   keyword,
+		String   keyword, int pageNo,
 		HttpServletResponse  response) {
-		
+		System.out.println("1111===" + pageNo);
 		PrintWriter out = null;
 		
 		try {
 			response.setContentType("application/json; charset=utf-8");
-			String json = wikiService.search(keyword, 10, 1);
+			String json = wikiService.search(keyword, 10, pageNo);
 			out = response.getWriter();
 			out.print(json);
 		} catch (IOException e) {
