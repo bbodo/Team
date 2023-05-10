@@ -103,7 +103,7 @@ public class WinnerDaoImpl implements WinnerDao {
 		
 		sqlSession.delete( "Winner.BoardDelNum", map); // delboard를 1로 만듬
 		int  childCnt = sqlSession.selectOne("Winner.ChildCnt", map); // 자식있는지 확인
-		BoardVo vo = sqlSession.selectOne("Winner.GetBoard", map);
+		WinnerVo vo = sqlSession.selectOne("Winner.GetBoard", map);
 		
 		List<FileVo> fileList = getFileList(map);
 		map.put("fileList", fileList);
@@ -111,6 +111,10 @@ public class WinnerDaoImpl implements WinnerDao {
 			sqlSession.delete("Winner.FileDelete", map);
 			sqlSession.delete("Winner.WinnerDelete", map);
 		}
+		
+		
+		
+		/*
 		int board_idx = vo.getParent();
 		BoardVo vo1 = sqlSession.selectOne("Winner.GetBoard", board_idx);
 		
@@ -119,7 +123,7 @@ public class WinnerDaoImpl implements WinnerDao {
 			sqlSession.delete("Winner.FileDelete", vo1);
 			sqlSession.delete("Winner.WinnerDelete", vo1);
 		}
-		
+		*/
 	}
 
 

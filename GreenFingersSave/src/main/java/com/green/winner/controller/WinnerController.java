@@ -186,10 +186,11 @@ public class WinnerController {
 				winnerVo.setBoard_cont(cont);
 			}
 			
-			List<FileVo> fileList = winnerService.getFileList(map);
 			
 			List<MenuVo> menuList = menuService.getMenuList();
 			List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+			
+			List<FileVo> fileList = winnerService.getFileList(map);
 			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("event/winnerView");

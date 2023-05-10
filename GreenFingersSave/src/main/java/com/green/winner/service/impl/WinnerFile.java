@@ -80,5 +80,18 @@ public class WinnerFile {
 		
 	}
 	
+    public static void delete(List<FileVo> fileList) {
+		
+		String path = "d:\\upload\\";
+		
+		fileList.forEach( ( f ) -> {
+			String sfile = f.getSfilename();
+			File   file  = new File(path + sfile);
+			if(file.exists())
+				file.delete();
+		});
+		
+	}
+	
 	
 }

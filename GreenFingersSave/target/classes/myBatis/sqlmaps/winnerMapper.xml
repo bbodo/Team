@@ -193,7 +193,7 @@
    </update>
    
    <select   id         = "FileList" 
-             resultType = "com.green.winner.Vo.WinnerVo">
+             resultType = "com.green.winner.Vo.FileVo">
    
        SELECT
 		   FILE_NUM,
