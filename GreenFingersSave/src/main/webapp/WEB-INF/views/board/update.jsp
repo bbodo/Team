@@ -100,7 +100,6 @@
 			  console.log(JSON.stringify(error));
 			  alert('오류발생:' + JSON.stringify(error) );
 		  } ) ;
-		 
 	  })
   });  
 </script>

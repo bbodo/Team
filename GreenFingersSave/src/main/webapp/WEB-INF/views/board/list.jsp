@@ -24,20 +24,20 @@
 		 line-height: 100px;
 	}
 	#aside {
-		float: left;
-		height: 800px;
+		height: auto;
 		background-color: white;
 		width: 15%;
 		padding: 10px;
+		float: left;
 	}
 	#main {
 		width: 85%;
-		height: 800px;
-		float: left;
+		height: 900px;
 		padding: 10px;
 		padding-right: 15%;
 		background-color: white;
 		text-align: center;
+		display: inline-block;
 	}
 	#tt {
 		text-align: left;
@@ -92,6 +92,9 @@
 	.right {
 		text-align: right;
 	}
+	.left {
+		text-align: left;
+	}
 	.as {
 		position: relative;
 	}
@@ -112,6 +115,9 @@
 		width: 100%;
  		opacity: 1;
 	}
+	#wrapper {
+		margin-top: 30px;
+	}
 	
 
 </style>
@@ -130,6 +136,7 @@
      <div id="title">
      	<p style="font-size: 40px; font-weight: bold;">식물 연합</p>
      </div>
+	<div id="wrapper">
      <div id="aside">
      	<ul id="sidemenu">
      	<c:forEach var="menu" items="${ submenuList }">
@@ -143,7 +150,12 @@
      	</ul>
      </div>
      <div id="main">
-		<h2 style="font-size: 24px;">${ map.submenu_name }</h2>     
+		<p style="font-size: 24px; font-weight: bold; text-align: left; padding-left: 50px; margin-bottom: 10px;">${ map.submenu_name }</p>
+		<c:choose>
+			<c:when test="${ map.submenu_name eq '포이즌' }">
+				<p class="left" style="padding-left: 50px;">톡톡쏘는 아이들도 사랑해주세요~</p>
+			</c:when>
+		</c:choose>
      <div class="right" style="padding: 20px; padding-right: 80px;">
 		<a class="as" style="font-size: 20px;" href="/Board/WriteForm?menu_id=${ map.menu_id }&submenu_id=${ boardVo.submenu_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
 	 </div>
@@ -224,7 +236,8 @@
   </c:forEach>
 		</table>
 		<br />
-	    	<%@include file="/WEB-INF/include/paging.jsp" %>
+	 <%@include file="/WEB-INF/include/paging.jsp" %>
+     </div>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

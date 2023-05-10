@@ -105,12 +105,17 @@ public class BoardDaoImpl implements BoardDao {
 			sqlSession.delete("Board.BoardDelete", map);
 		}
 		int board_idx = vo.getParent();
-		BoardVo vo1 = sqlSession.selectOne("Board.GetBoard", board_idx);
 		
-		childCnt = sqlSession.selectOne("Board.ChildCnt", vo1);
-		if(  childCnt == 0  ) { // 자식이 없는경우 삭제
-			sqlSession.delete("Board.FileDelete", vo1);
-			sqlSession.delete("Board.BoardDelete", vo1);
+		System.out.println(board_idx);
+		
+		if(board_idx != 0) {
+			BoardVo vo1 = sqlSession.selectOne("Board.GetBoard", board_idx);
+			
+			childCnt = sqlSession.selectOne("Board.ChildCnt", vo1);
+			if(  childCnt == 0  ) { // 자식이 없는경우 삭제
+				sqlSession.delete("Board.FileDelete", vo1);
+				sqlSession.delete("Board.BoardDelete", vo1);
+			}
 		}
 		
 	}

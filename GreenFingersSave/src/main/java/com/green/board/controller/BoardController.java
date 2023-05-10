@@ -246,8 +246,9 @@ public class BoardController {
 		int     board_idx   =  Integer.parseInt( String.valueOf(map.get("board_idx")) );  
 		String  submenu_id  =  (String) map.get( "submenu_id" );
 		String  nowpage     =  String.valueOf(map.get("nowpage"));
-		String  fmt      	=  "redirect:/Board/View?board_idx=%d&submenu_id=%s&nowpage=%s";
-		String  loc      	=  String.format(fmt, board_idx, submenu_id, nowpage);
+		String  menu_id     =  (String) map.get("menu_id");
+		String  fmt      	=  "redirect:/Board/View?menu_id=%s&board_idx=%d&submenu_id=%s&nowpage=%s";
+		String  loc      	=  String.format(fmt, menu_id, board_idx, submenu_id, nowpage);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName(loc);
@@ -257,7 +258,7 @@ public class BoardController {
 	}
 	
 	// 게시글 삭제
-	// /Board/Delete?submenu_id=$&board_idx=&nowpage=$
+	// /Board/Delete?menu_id=${ map.menu_id }&submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&nowpage=${map.nowpage}
 	@RequestMapping("/Delete")
 	public ModelAndView delete(
 		@RequestParam   HashMap<String,  Object>  map
@@ -267,8 +268,9 @@ public class BoardController {
 		
 		String submenu_id  =  map.get("submenu_id").toString();
 		String nowpage     = String.valueOf(map.get("nowpage"));
-		String fmt 		   = "redirect:/Board/List?submenu_id=%s&nowpage=%s";
-		String loc 		   = String.format(fmt, submenu_id, nowpage);
+		String menu_id     = (String) map.get("menu_id");
+		String fmt 		   = "redirect:/Board/List?menu_id=%s&submenu_id=%s&nowpage=%s";
+		String loc 		   = String.format(fmt, menu_id, submenu_id, nowpage);
 		
 		ModelAndView   mv  = new ModelAndView();
 		mv.setViewName(loc);

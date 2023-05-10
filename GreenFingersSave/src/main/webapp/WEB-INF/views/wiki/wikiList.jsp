@@ -22,7 +22,7 @@
 	#title p {
 		 line-height: 100px;
 	}
-	#div1 { margin: 20px; width: 800px;}
+	#div1 { margin: 20px; width: 800px; height: auto;}
     .box { display: flex;
     	margin: 20px;}
     #btn1Ok { width: 100px;}     
@@ -116,19 +116,20 @@
      	<p style="font-size: 40px; font-weight: bold;">그린 위키</p>
      </div>
 	
-	<div class="search" style="height: 800px; width:600px; padding: 20px 20px;" >
-	<h2>그린 위키 검색</h2>
-      	
-      
-	  국명 : <input type="text" id="search" style="width:200px;" />
-	  <button id="btnOk"  >검색</button>
-	  <div id="div1"></div> 
+	<div id="wrapper">
+		<div class="search" style="min-height:800px; height: auto; width:100%; padding: 20px 20px;" >
+		<h2>그린 위키 검색</h2>
+	      	
+	      
+		  국명 : <input type="text" id="search" style="width:200px;" />
+		  <button id="btnOk"  >검색</button>
+		  <div id="div1"></div> 
+		</div>
 	</div>
 	
 	
-	
 	<!-- footer -->
-<%--     <%@include file="/WEB-INF/include/footer.jsp" %> --%>
+    <%@include file="/WEB-INF/include/footer.jsp" %>
     
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>

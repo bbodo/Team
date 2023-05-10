@@ -145,6 +145,13 @@
       WHERE     T.RNUM  
                 BETWEEN  #{startnum}  AND  #{endnum}  
    </select>
+   
+   <!-- 읽음 상태 업데이트 -->
+   <update  id="ReadmarkCheck">
+   	  UPDATE   NOTE
+      SET      READMARK 			=   1
+      WHERE    NOTE_IDX  	=   #{note_idx} AND RECEIVER_USERCODE = #{receiver_usercode}
+   </update>
 
 </mapper>
 

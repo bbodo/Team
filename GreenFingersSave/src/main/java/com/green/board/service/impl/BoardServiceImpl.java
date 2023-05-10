@@ -108,6 +108,10 @@ public class BoardServiceImpl implements BoardService {
 		// db 제거
 		boardDao.setDelete(map);
 		
+		// 파일 삭제 map 에 삭제할 파일정보가 와야함
+		List<FileVo> fileList = (List<FileVo>) map.get("fileList");
+		BoardFile.delete( fileList );
+		
 	}
 
 }

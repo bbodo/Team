@@ -29,20 +29,18 @@
 	}
 	#aside {
 		float: left;
-		height: 800px;
+		height: auto;
 		background-color: white;
 		width: 15%;
 		padding: 10px;
 	}
 	#main {
 		width: 85%;
-		height: 800px;
-		float: left;
+		height: auto;
 		padding: 10px;
 		padding-right : 15%;
 		background-color: white;
-		min-height: calc(100% - 120px);
-		padding-bottom: 100%;
+		display: inline-block;
 	}
 	#cont {
 		background-color: #fff;
@@ -69,10 +67,11 @@
 		padding: 20px;
 	}
 	#readComment {
-		margin-bottom: 50px;
+		margin-bottom: 100px;
 	}
 	#writeComment {
 		border-bottom: 1px solid #228B22;
+		display: inline-block;
 	}
 	#sidemenu {
 		padding: 30px;
@@ -113,7 +112,7 @@
 		resize: none;
 	}
 	.contSpace {
-		width: 70%;
+		width: 50%;
 		padding: 10px;
 	}
 	.comment_empty {
@@ -146,7 +145,7 @@
 
 			let cont = $("#comment_update_" + coment_idx).val();
 			
-			fetch("/Comment/CommentUpdate?coment_idx=" + coment_idx + "&coment_cont="+ cont +"&usercode=" + ${login.usercode})
+				fetch("/Comment/CommentUpdate?coment_idx=" + coment_idx + "&coment_cont="+ cont +"&usercode=" + ${login.usercode})
 				.then(res => res.json())
 				.then(data => {
 					comment_display(data);
@@ -228,7 +227,7 @@
 					html += '<div id="replyComment">'
 				    html += `<b style="display:inline-block; width:\${com_lvl * 40}px"></b><textarea id="reply_coment_cont" name="comment_cont"></textarea><br />`;
 					html += `<b style="display:inline-block; width:\${com_lvl * 40}px"></b><input type="button" value="대댓작성" id="replyBtn" onclick="reply_comment( \${coment_idx}, \${board_idx}, \${com_bnum}, \${com_lvl}, \${com_step}, \${com_nref}, \${com_parent})">`
-					html += '</div></li>';
+					html += '</div><br /></li>';
 				
 					commentEl.append(html);
 			}
@@ -333,10 +332,10 @@
 			<%@include file="/WEB-INF/include/header2.jsp" %>
 		</c:otherwise>
 	</c:choose>
-	<div id="section">
      <div id="title">
      	<p style="font-size: 40px; font-weight: bold;">식물 연합</p>
      </div>
+	<div id="wrapper">
      <div id="aside">
      	<ul id="sidemenu">
      	<c:forEach var="menu" items="${ submenuList }">
@@ -384,8 +383,8 @@
 		<div class="right">
 			<a href="/Board/WriteForm?menu_id=${ map.menu_id }&submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">답글쓰기</a>
 			<c:if test="${vo.usercode eq login.usercode}">
-				<a class="btns" href="/Board/UpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
-				<a class="btns" href="/Board/Delete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&nowpage=${map.nowpage}">삭제</a> <br />
+				<a class="btns" href="/Board/UpdateForm?menu_id=${ map.menu_id }&submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
+				<a class="btns" href="/Board/Delete?menu_id=${ map.menu_id }&submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }&nowpage=${map.nowpage}">삭제</a> <br />
 			</c:if>
 		</div>
 		<div id="commentNoti">댓글</div>
@@ -418,6 +417,6 @@
 		</div>
      </div>
      </div>
-     <%@include file="/WEB-INF/include/footer.jsp" %>
+	 <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>
