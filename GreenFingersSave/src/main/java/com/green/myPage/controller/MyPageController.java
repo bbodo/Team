@@ -271,8 +271,10 @@ public class MyPageController {
 		// 보낸 쪽지
 		MyPageVo   myNoteView  =  myPageService.myNoteView( map );
 		
-		System.out.println("wdfdfdf"+ myNoteView);
-		System.out.println("wdfdfdf"+ map.toString());
+		/*
+		 * System.out.println("wdfdfdf"+ myNoteView); System.out.println("wdfdfdf"+
+		 * map.toString());
+		 */
 		//readmark 읽음
 		myPageService.readmarkCheck(map);
 		

@@ -75,9 +75,10 @@ section {width:100%;}
 }
 
 #con2 #gradeInbox {
-	width:40%;
+	width:0%;
 	height: 100%;
-	background-color: orange;
+	background: linear-gradient(to right, yellow, green);
+	transition: all 0.5s;
 }
 
 #con2 #gradeMark {
@@ -86,7 +87,8 @@ section {width:100%;}
 	text-align: center;
 	padding: 5px 8px;
 	box-sizing: border-box;
-	margin-left: 40%;
+	margin-left: 0%;
+	transition: all 0.5s;
 }
 
 #con2 #gradeMark p{
@@ -112,7 +114,7 @@ section {width:100%;}
 }
 
 #con2>div:nth-of-type(2) {
-	padding:50px 20px 0 30px;
+	padding:20px 20px 0 30px;
 	box-sizing: border-box;
 	font-size:13px;
 }
@@ -136,7 +138,9 @@ section {width:100%;}
 }
 
 #con2>div:nth-of-type(2) div p:nth-of-type(1){
-	width:80px;
+	width:100px;
+	font-weight: 600;
+	color:#525252;
 }
 
 /*con3*/
@@ -146,6 +150,45 @@ section {width:100%;}
 	float: left;
 	border: 1px solid #CFCFCF;
 	box-sizing: border-box;
+	margin-top:30px;
+}
+
+#myGrade {
+	width:100%;
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-rows: repeat(1, 1fr);
+}
+
+#myGrade>div {
+	height:40px;
+}
+
+#myGrade>div>p{
+	line-height:40px; 
+	color: #fff;
+}
+
+#myGrade>div:nth-of-type(1) {background-color:#ff595e;}
+#myGrade>div:nth-of-type(2) {background-color:#ffca3a;}
+#myGrade>div:nth-of-type(3) {background-color:#8ac926;}
+#myGrade>div:nth-of-type(4) {background-color:#90e0ef;}
+#myGrade>div:nth-of-type(5) {background-color:#1982c4;}
+#myGrade>div:nth-of-type(6) {background-color:#6a4c93;}
+
+#myGrade div p {
+	text-align: center;
+}
+
+#myGrade2 {
+	width:100%;
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-rows: repeat(1, 1fr);
+}
+
+#myGrade2 div img {
+	width:80px;
 }
 
 /* section2 시작 ===============================================*/

@@ -42,53 +42,88 @@
 		}
 		
 		//등급 계산
-		let graderName    =    "";
-		let gradepoint    =    "${userVo.gradepoint}";
-		let inWidth       =     document.getElementById('gradeInbox');
-		let gradeMark       =     document.getElementById('gradeMark');
+		let graderName    		=    "";
+		let gradepoint    		=    "${userVo.gradepoint}";
+		let gradepointTotal     =    "";
+		let inWidth       		=     document.getElementById('gradeInbox');
+		let gradeMark     		=     document.getElementById('gradeMark');
+
+		let gradeFont1       	=     document.getElementById('gradeFont1');
+		let gradeFont2       	=     document.getElementById('gradeFont2');
+		let gradeFont3       	=     document.getElementById('gradeFont3');
+		let gradeFont4       	=     document.getElementById('gradeFont4');
 		
 		if(0 <= gradepoint && gradepoint < 2000) {
 			graderName = "씨앗";
+			gradeFont1.innerHTML = "씨앗";
+			gradeFont2.innerHTML = "새싹";
+			gradepointTotal = 2000;
+			inWidth.style.backgroundImage = "linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%)";
 		}else if(2000 <= gradepoint && gradepoint < 4000) {
 			graderName = "새싹";
+			gradeFont1.innerHTML = "새싹";
+			gradeFont2.innerHTML = "잎새";
+			gradepointTotal = 4000;
+			inWidth.style.backgroundImage = "linear-gradient(to right, #43e97b 0%, #38f9d7 100%)";
 		}else if(4000 <= gradepoint && gradepoint < 6000) {
 			graderName = "잎새";
+			gradeFont1.innerHTML = "잎새";
+			gradeFont2.innerHTML = "가지";
+			gradepointTotal = 6000;
+			inWidth.style.backgroundImage = "linear-gradient(to top, #5ee7df 0%, #b490ca 100%)";
 		}else if(6000 <= gradepoint && gradepoint < 8000) {
 			graderName = "가지";
+			gradeFont1.innerHTML = "가지";
+			gradeFont2.innerHTML = "열매";
+			gradepointTotal = 8000;
+			inWidth.style.backgroundImage = "linear-gradient(to right, #43e97b 0%, #38f9d7 100%)";
 		}else if(8000 <= gradepoint && gradepoint < 10000) {
 			graderName = "열매";
+			gradeFont1.innerHTML = "열매";
+			gradeFont2.innerHTML = "나무";
+			gradepointTotal = 10000;
+			inWidth.style.backgroundImage = "linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%)";
 		}else if(10000 <= gradepoint && gradepoint < 12000) {
 			graderName = "나무";
+			gradeFont1.innerHTML = "나무";
+			gradeFont2.innerHTML = "마스터";
+			gradepointTotal = 12000;
+			inWidth.style.backgroundImage = "linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%)";
 		}
 		
-		let inWidthCal = calculatePercentage(gradepoint, 2000);
+		let inWidthCal = calculatePercentage(gradepoint, gradepointTotal);
 		
-		inWidth.style.width = inWidthCal + "%";
+		if(inWidthCal == 100){
+			inWidth.style.width = "0%";
+			gradeMark.style.marginLeft = "0%";
+			
+		}else{
+			inWidth.style.width = inWidthCal + "%";
+			gradeMark.style.marginLeft = inWidthCal + "%";
+		}
 		
-		gradeMark.style.marginLeft = inWidthCal + "%";
-		
-		gradeMark.style.transform = "translateX(" + -inWidthCal + "%)";
+		/* gradeMark.style.transform = "translateX(" + '- inWidthCal' + "%)"; */
 		
 		function calculatePercentage(part, whole) {
 			return (part / whole) * 100;
 		}
 		
 		
-		gradeMark.addEventListener('DOMContentLoaded', (event) => {
-			gradeMark.animate(
+		/* inWidth.addEventListener('load', function(event) {
+			inWidth.animate(
 		      {
-		        transform: [
-		          'translateX(0px)',
-		          'translateX(300px)'
+		    	  width: [
+		          '0%',
+		          '100%'
 		        ]
 		      },
 		      {
-		        duration: 500, // 밀리초 지정
+		        duration: 5000, // 밀리초 지정
 		        fill: 'forwards', // 종료 시 속성을 지님
 		        easing: 'ease' // 가속도 종류
 		      }
 		    );
-		});
+		}); */
 	
 		
 		
@@ -181,21 +216,23 @@
      			<div>
      				<div id="gradeMark">
      					<p>내공</p>
-     					<p>현등급점수</p>
+     					<p>${userVo.gradepoint }</p>
      				</div>
      				<div  id="gradeWrapbox">
      					<div id="gradeInbox"></div>
      				</div>	
      				<div id="gradeFont">
-     					<p>1 씨앗 변수</p> 
-     					<p>2 새싹 변수</p>
+     					<p id="gradeFont1"></p> 
+     					<p id="gradeFont2"></p>
      				</div>
      			</div>
      			
      			<div>
-     				<p><span>씨앗</span> 등업에 필요한 조건을 만족시켜주세요</p>
-     				<div><p>내공 :</p> <p>294필요</p></div>
+     				<p><span id="gradeFont3">씨앗</span> 등업에 필요한 조건을 만족시켜주세요</p>
+     				<div><p>등업까지 내공 :</p> <p id="gradeFont4">294필요</p></div>
      				<div><p>게시글 수:</p> <p>10</p></div>
+     				<div><p>포인트 :</p> <p>${userVo.point } 점</p></div>
+     				<div><p>나의내공:</p> <p>${userVo.gradepoint } 점</p></div>
      			</div>
      		</div>
      		
@@ -209,26 +246,9 @@
      				<div><P>나무</P></div>
      			</div>
      			
-     			<div>
+     			<div id="myGrade2">
      				<div>
-     					<img src="" alt="myimg"/>
-     				</div>
-     				
-     				<div>
-     					<div><P>씨앗</P></div>
-     					<div><P>씨앗평균</P></div>
-     					
-     					<div>
-     						<div>
-     							<div id="point1"></div>
-     							<div id="point2"></div>
-     						</div>
-     						<div>
-     							<div>거래포인트</div>
-     							<div>게시글 포인트</div>
-     							<div>100%</div>
-     						</div>
-     					</div>
+     					<img src="/img/mypage/sprout.png" alt="Freepik"/>
      				</div>
      			</div>
      		</div>
@@ -396,7 +416,7 @@
     		</div>
    		</div>	
    	</div>
-     
+     <%-- <%@include file="/WEB-INF/include/footer.jsp" %> --%>
 </div>
 </body>
 </html>
