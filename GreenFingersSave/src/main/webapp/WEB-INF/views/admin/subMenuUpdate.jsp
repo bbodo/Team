@@ -36,7 +36,6 @@
 		padding: 10px;
 		padding-right: 15%;
 		background-color: white;
-		text-align: center;
 	}
 	#tt {
 		text-align: left;
@@ -91,6 +90,9 @@
 	.right {
 		text-align: right;
 	}
+	.left {
+		text-align: left;
+	}
 	.as {
 		position: relative;
 	}
@@ -117,33 +119,19 @@
 <script src="https://code.jquery.com/jquery.min.js"></script>
 
 <script type="text/javascript">
-
-	function submenuDelete(smId) {
-		if (window.confirm("정말 삭제하시겠습니까?")) {
-			$.ajax({
-				url : "/Manager/submenuDelete",
-				data : {submenu_id : smId},
-				type : "POST",
-				success : function(data) {
-					alert("삭제되었습니다 !")
-					location.reload();
-				},
-				error : function() {
-					alert("에러!!")
-				}
-			})
-		}
-	}
 	
+	$(function(){
+		$('#menu_id').val('${map.menu_id}').prop("selected", true);
+
+	})
 </script>
 
 </head>
 <body>
-	 <%@include file="/WEB-INF/include/adminHeader.jsp" %>
      <div id="title">
      	<p>하위 메뉴 관리</p>
      </div>
-      <div id="aside">
+     <div id="aside">
        <ul id="sidemenu">
 			<li><a href="/Manager/Member">회원 관리</a><br /></li>
        		<li><a href="/Manager/Menu">메뉴 관리</a> <br /></li>
@@ -153,32 +141,41 @@
        </ul>
      </div>
      <div id="main">
+     	<form action="/Manager/subMenuUpdate" method="POST">
+     	<input type="hidden" name="submenu_id" value="${ map.submenu_id }" />
 		<table id="cont">
-			 <tr>
-       <td>상위메뉴</td>
-       <td>Menu_id</td>
-       <td>Menu_Name</td>
-       <td>Menu_seq</td>
-       <td></td>
-       <td></td>
-     </tr>
-     <tr>
-       <td colspan="6" class="right">
-          <a href="/Manager/subMenuWriteForm">하위 메뉴 등록</a>
-       </td>       
-     </tr>
-     <c:forEach var="submenu" items="${ submenuList }">
-     <tr>
-       <td>${ submenu.menu_id }</td>
-       <td>${ submenu.submenu_id }</td>
-       <td>${ submenu.submenu_name }</td>
-       <td>${ submenu.submenu_seq }</td>
-       <td><input type="button" value="삭제" onclick=submenuDelete('${ submenu.submenu_id }') /></td>
-       <td><a href="/Manager/submenuUpdateForm?menu_id=${ submenu.menu_id }&submenu_id=${ submenu.submenu_id }&submenu_name=${ submenu.submenu_name }&submenu_seq=${ submenu.submenu_seq }">수정</a></td>
-     </tr>   
-     </c:forEach>
+			<tr>
+				<td>상위메뉴</td>
+			</tr>
+				<tr>
+					<td>
+						<select name="menu_id" id="menu_id" required>
+							<option value="">상위메뉴</option>
+						<c:forEach var="menu" items="${ menuList }">
+							<option value="${ menu.menu_id }">${ menu.menu_name }</option>
+						</c:forEach>
+						</select>
+					</td>
+				</tr>
+			<tr>
+				<td>메뉴 이름</td>
+			</tr>
+			<tr>
+				<td><input type="text" name="submenu_name" value="${ map.submenu_name }" required/></td>
+			</tr>
+			<tr>
+				<td>메뉴 SEQ</td>
+			</tr>
+			<tr>
+				<td><input type="text" name="submenu_seq" value="${ map.submenu_seq }" /></td>
+			</tr>
 		</table>
+		<div style="float: right;">
+			<a href="/Manager/subMenu">취소버튼</a>
+			<input type="submit"  value="수정"/> 
+		</div>
+		</form>
      </div>
-     <%-- <%@include file="/WEB-INF/include/footer.jsp" %> --%>
+     <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>

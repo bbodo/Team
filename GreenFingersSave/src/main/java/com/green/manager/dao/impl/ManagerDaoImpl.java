@@ -57,8 +57,44 @@ public class ManagerDaoImpl implements ManagerDao {
 	@Override
 	public void addSimpleMenu(HashMap<String, Object> map) {
 
-		System.out.println(map);
 		sqlSession.insert("Manager.AddMenu2", map);
+		
+	}
+
+	@Override
+	public void updateMenu(HashMap<String, Object> map) {
+
+		sqlSession.update("Manager.UpdateMenu", map);
+		
+	}
+
+	@Override
+	public int deleteMenu(HashMap<String, Object> map) {
+
+		int cnf = sqlSession.delete("Manager.DeleteMenu", map);
+		
+		return cnf;
+	}
+
+	@Override
+	public void addSubMenu(HashMap<String, Object> map) {
+
+		sqlSession.insert("Manager.AddSubMenu", map);
+		
+	}
+
+	@Override
+	public int deleteSubmenu(HashMap<String, Object> map) {
+
+		int cnf = sqlSession.delete("Manager.DeleteSubmenu", map);
+		
+		return cnf;
+	}
+
+	@Override
+	public void updateSubmenu(HashMap<String, Object> map) {
+
+		sqlSession.update("Manager.UpdateSubmenu", map);
 		
 	}
 

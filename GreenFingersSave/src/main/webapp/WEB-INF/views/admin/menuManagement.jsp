@@ -109,10 +109,33 @@
 	}
 	.as:hover:after {
 		width: 100%;
- 		opacity: 1;
+ 		opacity: 1;$
 	}
 
 </style>
+
+<script src="https://code.jquery.com/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+	function menuDelete(mId) {
+		if (window.confirm("정말 삭제하시겠습니까?")) {
+			$.ajax({
+				url : "/Manager/menuDelete",
+				data : {menu_id : mId},
+				type : "POST",
+				success : function(data) {
+					alert("삭제되었습니다 !")
+					location.reload();
+				},
+				error : function() {
+					alert("에러!!")
+				}
+			})
+		}
+	}
+	
+</script>
 
 </head>
 <body>
@@ -124,7 +147,7 @@
        <ul id="sidemenu">
 			<li><a href="/Manager/Member">회원 관리</a><br /></li>
        		<li><a href="/Manager/Menu">메뉴 관리</a> <br /></li>
-     		<li><a href=""> - 하위 메뉴</a><br /></li>
+     		<li><a href="/Manager/subMenu"> - 하위 메뉴</a><br /></li>
      		<li><a href="">이벤트 등록</a><br /></li>
      		<li><a href="">마켓 등록</a><br /></li>
        </ul>
@@ -140,7 +163,7 @@
      </tr>
      <tr>
        <td colspan="5" class="right">
-          <a href="/Manager/menuWriteForm">상세 등록</a> &nbsp;&nbsp;
+         <!--  <a href="/Manager/menuWriteForm">상세 등록</a> &nbsp;&nbsp; -->
           <a href="/Manager/menuSimpleWriteForm">간편 등록</a>
        </td>       
      </tr>
@@ -149,8 +172,8 @@
        <td>${ menu.menu_id }</td>
        <td>${ menu.menu_name }</td>
        <td>${ menu.menu_seq }</td>
-       <td><a href="">삭제</a></td>
-       <td><a href="">수정</a></td>
+       <td><input type="button" value="삭제" onclick=menuDelete('${menu.menu_id}') /></td>
+       <td><a href="/Manager/menuUpdateForm?menu_id=${ menu.menu_id }&menu_name=${ menu.menu_name }&menu_seq=${ menu.menu_seq }">수정</a></td>
      </tr>   
      </c:forEach>
 		</table>

@@ -46,6 +46,8 @@ public class ManagerController {
 		
 		return mv;
 	}
+	
+	// 메뉴 상세 추가창으로 가기
 	@RequestMapping("/menuWriteForm")
 	public ModelAndView menuWriteForm() {
 		
@@ -54,6 +56,8 @@ public class ManagerController {
 		
 		return mv;
 	}
+	
+	// 메뉴 간단 추가창으로 가기
 	@RequestMapping("/menuSimpleWriteForm")
 	public ModelAndView menuSimpleWriteForm() {
 		
@@ -62,6 +66,8 @@ public class ManagerController {
 		
 		return mv;
 	}
+	
+	// 메뉴 상세 추가
 	@RequestMapping("/menuWrite")
 	public ModelAndView menuWrite(
 			@RequestParam HashMap<String, Object> map
@@ -74,6 +80,8 @@ public class ManagerController {
 		
 		return mv;
 	}
+	
+	// 메뉴 간단 추가
 	@RequestMapping("/menuSimpleWrite")
 	public ModelAndView menuSimpleWrite(
 			@RequestParam HashMap<String, Object> map
@@ -87,15 +95,130 @@ public class ManagerController {
 		return mv;
 	}
 	
-	@RequestMapping("/subMenuManagement")
-	public String subMenuManagement() {
-		return "/admin/subMenuManagement";
-	}
-	@RequestMapping("/subMenuWrite")
-	public String subMenuWrite() {
-		return "/admin/subMenuWrite";
+	// 메뉴 수정 창으로 가기
+	@RequestMapping("/menuUpdateForm")
+	public ModelAndView menuUpdateForm(
+			@RequestParam HashMap<String, Object> map
+			) {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/admin/menuUpdate");
+		mv.addObject("map", map);
+		
+		return mv;
 	}
 	
+	// 메뉴 수정
+	@RequestMapping("/menuUpdate")
+	public ModelAndView menuUpdate(
+			@RequestParam HashMap<String, Object> map
+			) {
+		
+		managerService.updateMenu(map);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/Manager/Menu");
+		
+		return mv;
+	}
+	// 메뉴 삭제
+	@ResponseBody
+	@RequestMapping("/menuDelete")
+	public int menuDelete(
+			@RequestParam HashMap<String, Object> map
+			) {
+		
+		int cnf = managerService.deleteMenu(map);
+		
+		return cnf;
+	}
+	
+	// 서브메뉴관리로 가기
+	@RequestMapping("/subMenu")
+	public ModelAndView subMenuManagement() {
+		
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/admin/subMenuManagement");
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
+		
+		return mv;
+	}
+	
+	// 서브메뉴 추가 창으로
+	@RequestMapping("/subMenuWriteForm")
+	public ModelAndView subMenuWriteForm() {
+		
+		List<MenuVo> menuList = menuService.getMenuList();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/admin/subMenuWrite");
+		mv.addObject("menuList", menuList);
+		
+		return mv;
+	}
+	
+	// 서브메뉴 추가
+	@RequestMapping("/subMenuWrite")
+	public ModelAndView subMenuWrite(
+			@RequestParam HashMap<String, Object> map
+			) {
+		
+		managerService.addSubMenu(map);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/Manager/subMenu");
+		
+		return mv;
+	}
+
+	// 서브메뉴 삭제
+	@ResponseBody
+	@RequestMapping("/submenuDelete")
+	public int submenuDelete(
+			@RequestParam HashMap<String, Object> map
+			) {
+		
+		int cnf = managerService.deleteSubmenu(map);
+		
+		return cnf;
+	}
+	
+	// 서브메뉴 수정 창으로
+	@RequestMapping("/submenuUpdateForm")
+	public ModelAndView submenuUpdateForm(
+			@RequestParam HashMap<String, Object> map
+			) {
+		
+		System.out.println(map);
+		
+		List<MenuVo> menuList = menuService.getMenuList();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/admin/subMenuUpdate");
+		mv.addObject("menuList", menuList);
+		mv.addObject("map", map);
+		
+		return mv;
+	}
+	
+	// 서브메뉴 수정
+	@RequestMapping("/subMenuUpdate")
+	public ModelAndView subMenuUpdate(
+			@RequestParam HashMap<String, Object> map
+			) {
+		
+		System.out.println(map);
+		
+		managerService.updateSubmenu(map);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/Manager/subMenu");
+		
+		return mv;
+	}
+		
 	//-------------- 멤버 --------------
 	@RequestMapping("/Member")
 	public ModelAndView managerMember() {

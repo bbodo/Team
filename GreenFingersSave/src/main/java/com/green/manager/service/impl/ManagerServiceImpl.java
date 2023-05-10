@@ -62,4 +62,42 @@ public class ManagerServiceImpl implements ManagerService {
 		
 	}
 
+	@Override
+	public void updateMenu(HashMap<String, Object> map) {
+
+		managerDao.updateMenu(map);
+	
+	}
+
+	@Override
+	public int deleteMenu(HashMap<String, Object> map) {
+
+		int cnf = managerDao.deleteMenu(map);
+		
+		return cnf;
+	}
+
+	@Override
+	public void addSubMenu(HashMap<String, Object> map) {
+
+		managerDao.addSubMenu(map);
+		
+	}
+
+	@Override
+	public int deleteSubmenu(HashMap<String, Object> map) {
+
+		int cnf = managerDao.deleteSubmenu(map);
+		
+		return cnf;
+	}
+
+	@Override
+	public void updateSubmenu(HashMap<String, Object> map) {
+
+		managerDao.updateSubmenu(map);
+		
+		
+	}
+
 }

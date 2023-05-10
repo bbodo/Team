@@ -88,7 +88,7 @@
  	
  	</delete>
  	
- 	<insert id="AddMenu">
+ <!-- 	<insert id="AddMenu">
  	
  		INSERT INTO
  			MENUS
@@ -105,8 +105,9 @@
  			)
  		
  	
- 	</insert>
+ 	</insert> -->
  	
+ 	<!-- 메뉴 등록 -->
  	<insert id="AddMenu2" >
       <selectKey keyProperty="menu_id,menu_seq"
          resultType="com.green.menus.vo.MenuVo" 
@@ -134,6 +135,85 @@
 			)
 
     </insert>
+ 	
+ 	<!-- 메뉴수정 -->
+ 	<update id="UpdateMenu">
+ 	
+ 		UPDATE
+ 			MENUS
+ 		SET
+ 			MENU_NAME = #{ menu_name },
+ 			MENU_SEQ = #{ menu_seq }
+ 		WHERE
+ 			MENU_ID = #{ menu_id }
+ 			
+ 	</update>
+ 	
+ 	<!-- 메뉴 삭제 -->
+ 	<delete id="DeleteMenu">
+ 	
+ 		DELETE
+ 		FROM
+ 			MENUS
+ 		WHERE
+ 			MENU_ID = #{ menu_id }
+ 	
+ 	</delete>
+ 	
+ 	<!-- 서브메뉴 추가 -->
+ 	<insert id="AddSubMenu" >
+      <selectKey keyProperty="submenu_id,submenu_seq"
+         resultType="com.green.menus.vo.SubmenuVo" 
+		 order="BEFORE" >
+         SELECT submenu_id,submenu_seq
+			 FROM
+			( SELECT  'SUBMENU' ||
+			   TRIM( TO_CHAR( SUBSTR( NVL( MAX(SUBMENU_ID), 'SUBMENU00'), 8, 2 ) +1, '00') )  AS SUBMENU_ID
+			  FROM SUBMENUS) submenu_id, 			
+			(SELECT   NVL( MAX(SUBMENU_SEQ), 0 ) + 1 as submenu_seq
+			  FROM   SUBMENUS) submenu_seq
+      </selectKey>           
+		INSERT INTO
+			SUBMENUS 
+			( 
+				SUBMENU_ID, 
+				SUBMENU_NAME,
+				SUBMENU_SEQ,
+				MENU_ID 
+			)
+			VALUES
+			(
+				#{ submenu_id },
+				#{ submenu_name },
+				#{ submenu_seq },
+				#{ menu_id }
+			)
+
+    </insert>
+ 	
+ 	<!-- 서브메뉴 삭제 -->
+ 	<delete id="DeleteSubmenu">
+ 	
+ 		DELETE
+ 		FROM
+ 			SUBMENUS
+ 		WHERE
+ 			SUBMENU_ID = #{ submenu_id }
+ 	
+ 	</delete>
+ 	
+ 	<update id="UpdateSubmenu">
+ 	
+ 		UPDATE
+ 			SUBMENUS
+ 		SET
+ 			MENU_ID = #{ menu_id },
+ 			SUBMENU_NAME = #{ submenu_name },
+ 			SUBMENU_SEQ = #{ submenu_seq}
+ 		WHERE
+ 			SUBMENU_ID = #{ submenu_id }
+ 	
+ 	</update>
  	
 </mapper>
 

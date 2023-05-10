@@ -19,4 +19,14 @@ public interface ManagerDao {
 
 	void addSimpleMenu(HashMap<String, Object> map);
 
+	void updateMenu(HashMap<String, Object> map);
+
+	int deleteMenu(HashMap<String, Object> map);
+
+	void addSubMenu(HashMap<String, Object> map);
+
+	int deleteSubmenu(HashMap<String, Object> map);
+
+	void updateSubmenu(HashMap<String, Object> map);
+
 }
