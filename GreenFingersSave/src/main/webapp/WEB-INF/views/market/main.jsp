@@ -178,7 +178,7 @@
      <caption><h2>나눔</h2></caption>
      <div id="givelist">
       <figure>
-      <a href="/Market/View?submenu_id=SUBMENU16&board_idx=20">
+      <a href="/Market/View?submenu_id=SUBMENU16&board_idx=80&nowpage=1">
      <div class="plant">
 	     <img class="mainimg" src="/img/market/그린마켓1.png" >
 	  </div>
@@ -187,7 +187,7 @@
 	     <p>루브라 나눔합니다</p>
 	  </figure>
       <figure>
-      <a href="/Market/View?submenu_id=SUBMENU16&board_idx=21">
+      <a href="/Market/View?submenu_id=SUBMENU16&board_idx=82&nowpage=1">
      <div class="plant">
 	     <img class="mainimg" src="/img/market/그린마켓2.png" >
 	  </div>
@@ -195,7 +195,7 @@
 	     <p>제라늄 데려가실 분</p>
 	  </figure>
       <figure>
-      <a href="/Market/View?submenu_id=SUBMENU16&board_idx=22">
+      <a href="/Market/View?submenu_id=SUBMENU16&board_idx=83&nowpage=1">
      <div class="plant">
 	     <img class="mainimg" src="/img/market/그린마켓3.png">
 	  </div>
@@ -276,7 +276,7 @@
 	  <caption><h2>포인트 스토어</h2></caption>	
 	  <div id="pointlist">
       <figure>
-      <a href="">
+      <a href="/Market/View?submenu_id=SUBMENU17&board_idx=54&nowpage=1">
      <div class="plant">
 	     <img class="mainimg" src="/img/market/포인트스토어1.jpg" >
 	  </div>
@@ -285,7 +285,7 @@
 	     <p>귀여운 코끼리 물뿌리개</p>
 	  </figure>
       <figure>
-      <a href="">
+      <a href="/Market/View?submenu_id=SUBMENU17&board_idx=55&nowpage=1">
      <div class="plant">
 	     <img class="mainimg" src="/img/market/포인트스토어2.jpg" >
 	  </div>
@@ -294,7 +294,7 @@
 	     <p>파쯔파쯔 국내생산 흙</p>
 	  </figure>
       <figure>
-      <a href="">
+      <a href="/Market/View?submenu_id=SUBMENU17&board_idx=56&nowpage=1">
      <div class="plant">
 	     <img class="mainimg" src="/img/market/포인트스토어3.jpg">
 	  </div>

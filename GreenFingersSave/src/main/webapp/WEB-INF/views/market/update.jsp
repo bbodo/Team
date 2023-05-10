@@ -180,18 +180,16 @@
 			<td><textarea name="board_cont">${ vo.board_cont }</textarea></td>
 		</tr>
 		
-		<form method="post" action="${contextPath}/market/writeSave" enctype="multipart/form-data">
-				<div class="form-group" >
-					<td style="text-align: center;">이미지 첨부</td>
-					<td id="imgplus"> 
-           			<input type="file" name="imgFile" onchange="readURL(this);"/>
-					<img id="preview" src="#" width=200 height=180 alt="선택된 이미지가 없습니다" style="align-content: flex-end; ">
-					</td>
+		   <div class="form-group" >
+			<td style="text-align: center;">이미지 첨부</td>
+			<td id="imgplus"> 
+         			<input type="file" name="imgFile" onchange="readURL(this);"/>
+			<img id="preview" src="#" width=200 height=180 alt="선택된 이미지가 없습니다" style="align-content: flex-end; ">
+			</td>
 			</div>
-			</form>
 		
 		<tr>
-			<td style="text-align: center;">파일 첨부</td>
+			<td style="text-align: center;">모든 파일 목록</td>
 			<td id="tdfile">
 		    <!-- 기존 파일 목록, 삭제버튼 -->
 			<c:forEach  var="file"   items="${ fileList }">
