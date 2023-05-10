@@ -169,6 +169,8 @@ public class MyPageController {
 		MyPageVo         recNotePagingVo   =  (MyPageVo) map.get("recNotePaging");
 		MyPageVo         sendPointPagingVo   =  (MyPageVo) map.get("SendPointPaging");
 		
+		System.out.println("dfhuahf" + userVo);
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mypage/myList");
 		mv.addObject("userVo", userVo);
@@ -267,7 +269,12 @@ public class MyPageController {
 		map.put("usercode", usercode);
 		
 		// 보낸 쪽지
-		MyPageVo   myNoteView  =  myPageService.myNoteView( map );		
+		MyPageVo   myNoteView  =  myPageService.myNoteView( map );
+		
+		System.out.println("wdfdfdf"+ myNoteView);
+		System.out.println("wdfdfdf"+ map.toString());
+		//readmark 읽음
+		myPageService.readmarkCheck(map);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mypage/myNoteView");

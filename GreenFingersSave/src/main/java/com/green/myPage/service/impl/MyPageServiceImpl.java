@@ -120,6 +120,11 @@ public class MyPageServiceImpl implements MyPageService {
 		return myNoteAnswer;
 	}
 
+	@Override
+	public void readmarkCheck(HashMap<String, Object> map) {
+		myPageDao.readmarkCheck(map);
+	}
+
 
 
 

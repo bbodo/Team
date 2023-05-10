@@ -41,20 +41,57 @@
 			alert("쪽지 삭제 완료!");
 		}
 		
+		//등급 계산
+		let graderName    =    "";
+		let gradepoint    =    "${userVo.gradepoint}";
+		let inWidth       =     document.getElementById('gradeInbox');
+		let gradeMark       =     document.getElementById('gradeMark');
 		
-		//쪽지 읽음 여부 확인
-		let sendPagingVo = "${sendPagePaingList}";
-		let readMarkTag = document.querySelectorAll('.readMark');
+		if(0 <= gradepoint && gradepoint < 2000) {
+			graderName = "씨앗";
+		}else if(2000 <= gradepoint && gradepoint < 4000) {
+			graderName = "새싹";
+		}else if(4000 <= gradepoint && gradepoint < 6000) {
+			graderName = "잎새";
+		}else if(6000 <= gradepoint && gradepoint < 8000) {
+			graderName = "가지";
+		}else if(8000 <= gradepoint && gradepoint < 10000) {
+			graderName = "열매";
+		}else if(10000 <= gradepoint && gradepoint < 12000) {
+			graderName = "나무";
+		}
 		
-		for (var i = 0; i < sendPagingVo.length; i++) {
-			let readMark = "${sendPagePaingList[2].readmark}";
-			
-			if(readMark == 1){
-				readMarkTag[i].innerHTML = "o";
-			}else if(readMark == 0){
-				readMarkTag[i].innerHTML = "x";
-			}
-		} 
+		let inWidthCal = calculatePercentage(gradepoint, 2000);
+		
+		inWidth.style.width = inWidthCal + "%";
+		
+		gradeMark.style.marginLeft = inWidthCal + "%";
+		
+		gradeMark.style.transform = "translateX(" + -inWidthCal + "%)";
+		
+		function calculatePercentage(part, whole) {
+			return (part / whole) * 100;
+		}
+		
+		
+		gradeMark.addEventListener('DOMContentLoaded', (event) => {
+			gradeMark.animate(
+		      {
+		        transform: [
+		          'translateX(0px)',
+		          'translateX(300px)'
+		        ]
+		      },
+		      {
+		        duration: 500, // 밀리초 지정
+		        fill: 'forwards', // 종료 시 속성을 지님
+		        easing: 'ease' // 가속도 종류
+		      }
+		    );
+		});
+	
+		
+		
 		
 	}/*  window */
 	
@@ -142,14 +179,14 @@
      		
      		<div id="con2">
      			<div>
-     				<div class="gradeMark">
+     				<div id="gradeMark">
      					<p>내공</p>
      					<p>현등급점수</p>
      				</div>
-     				<div class="gradeWrapbox">
-     					<div class="gradeInbox"></div>
+     				<div  id="gradeWrapbox">
+     					<div id="gradeInbox"></div>
      				</div>	
-     				<div class="gradeFont">
+     				<div id="gradeFont">
      					<p>1 씨앗 변수</p> 
      					<p>2 새싹 변수</p>
      				</div>
@@ -226,7 +263,12 @@
 						<td><a href="#" onclick="return false;">${recNoteVo.send_usercode}</a></td>
 						<td style="text-decoration: line-through;"><a href="#" style="color:#959595;" onclick="return false;">삭제 된 쪽지입니다</a></td>
 						<td><a href="#" onclick="return false;">${recNoteVo.note_regdate}</a></td>
-						<td class="readMark"><a href="#" onclick="return false;"></a></td>
+						<c:if test="${recNoteVo.readmark eq 0}" var="delnote">					
+							<td class="readMark"><a href="#" onclick="return false;">x</a></td>
+						</c:if>
+						<c:if test="${recNoteVo.readmark eq 1}" var="delnote">					
+							<td class="readMark"><a href="#" onclick="return false;">o</a></td>
+						</c:if>
 					</tr>
 					</c:if>
 				
@@ -236,7 +278,12 @@
 						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.send_usercode}</a></td>
 						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.note_title}</a></td>
 						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.note_regdate}</a></td>
-						<td class="readMark"></td>
+						<c:if test="${recNoteVo.readmark eq 0}" var="delnote">					
+							<td class="readMark"><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">x</a></td>
+						</c:if>
+						<c:if test="${recNoteVo.readmark eq 1}" var="delnote">					
+							<td class="readMark"><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">o</a></td>
+						</c:if>
 					</tr>
 					</c:if>
 				</c:forEach>
@@ -248,7 +295,12 @@
 						<td><a href="#" onclick="return false;">${sendNoteVo.nickname}</a></td>
 						<td style="text-decoration: line-through;"><a href="#" style="color:#959595;" onclick="return false;">삭제 된 쪽지입니다</a></td>
 						<td><a href="#" onclick="return false;">${sendNoteVo.note_regdate}</a></td>
-						<td class="readMark"><a href="#" onclick="return false;"></a></td>
+						<c:if test="${sendNoteVo.readmark eq 0}" var="delnote">	
+							<td class="readMark"><a href="#" onclick="return false;">x</a></td>
+						</c:if>
+						<c:if test="${sendNoteVo.readmark eq 1}" var="delnote">	
+							<td class="readMark"><a href="#" onclick="return false;">o</a></td>
+						</c:if>	
 					</tr>
 					</c:if>
 				
@@ -258,7 +310,12 @@
 						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.nickname}</a></td>
 						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.note_title}</a></td>
 						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.note_regdate}</a></td>
-						<td class="readMark"><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}"></a></td>
+						<c:if test="${sendNoteVo.readmark eq 0}" var="delnote">	
+							<td class="readMark"><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">x</a></td>
+						</c:if>
+						<c:if test="${sendNoteVo.readmark eq 1}" var="delnote">	
+							<td class="readMark"><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">o</a></td>
+						</c:if>	
 					</tr>
 					</c:if>
 				</c:forEach>

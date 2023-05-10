@@ -28,18 +28,6 @@
 
 <script type="text/javascript">
 	window.onload = function() {
-		//쪽지 읽음 여부 확인
-		let readMark = "${readmark}";
-		let sendPagingVo = "${sendPagePaingList}";
-		let readMarkTag = document.querySelectorAll('.readMark');
-		
-		for (var i = 0; i < sendPagingVo.length; i++) {
-			if(readMark == 1){
-				readMarkTag[i].innerHTML = "o";
-			}else{
-				readMarkTag[i].innerHTML = "x";
-			}
-		}
 		
 	}/*  window */
 </script>
@@ -77,7 +65,12 @@
 						<td><a href="#" onclick="return false;">${recNoteVo.send_usercode}</a></td>
 						<td style="text-decoration: line-through;"><a href="#" style="color:#959595;" onclick="return false;">삭제 된 쪽지입니다</a></td>
 						<td><a href="#" onclick="return false;">${recNoteVo.note_regdate}</a></td>
-						<td class="readMark"><a href="#" onclick="return false;"></a></td>
+						<c:if test="${recNoteVo.readmark eq 0}" var="delnote">					
+							<td class="readMark"><a href="#" onclick="return false;">x</a></td>
+						</c:if>
+						<c:if test="${recNoteVo.readmark eq 1}" var="delnote">					
+							<td class="readMark"><a href="#" onclick="return false;">o</a></td>
+						</c:if>
 					</tr>
 					</c:if>
 				
@@ -87,7 +80,12 @@
 						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.send_usercode}</a></td>
 						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.note_title}</a></td>
 						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.note_regdate}</a></td>
-						<td class="readMark"></td>
+						<c:if test="${recNoteVo.readmark eq 0}" var="delnote">					
+							<td class="readMark"><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">x</a></td>
+						</c:if>
+						<c:if test="${recNoteVo.readmark eq 1}" var="delnote">					
+							<td class="readMark"><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">o</a></td>
+						</c:if>
 					</tr>
 					</c:if>
 				</c:forEach>

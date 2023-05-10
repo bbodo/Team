@@ -145,8 +145,8 @@
      </div>
      
      <div id="main">
-		<form action="/mypage/myNoteAnswerSend?nowpage=1" method="POST">
-			<input type="hidden" name="receiver_usercode" value="${myNoteAnswerForm.usercode}" />
+		<form action="/mypage/myNoteAnswerSend?nowpage=1&note_idx=${myNoteAnswerForm.note_idx}" method="POST">
+			<input type="hidden" name="receiver_usercode" value="${myNoteAnswerForm.receiver_usercode}" />
 			<table id="cont">
 				<tr>
 					<th>받는 사람</th>

@@ -158,8 +158,7 @@
      
      <div id="main">
 		<form action="/mypage/myNoteWrite?nowpage=1" method="POST">
-			<%-- <input type="hidden" name="board_idx" value="${myNoteView.board_idx}" /> --%>
-
+			<input type="hidden" name="receiver_usercode" value="${myNoteView.receiver_usercode}" />
 			<table id="cont">
 				<tr>
 					<th>받는 사람</th>

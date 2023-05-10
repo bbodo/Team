@@ -68,19 +68,19 @@ section {width:100%;}
 	width:80%;
 }
 
-#con2 .gradeWrapbox {
+#con2 #gradeWrapbox {
 	height: 30px;
 	background-color: #F1F1F1;
 	margin:20px 30px 10px 30px;
 }
 
-#con2 .gradeInbox {
+#con2 #gradeInbox {
 	width:40%;
 	height: 100%;
 	background-color: orange;
 }
 
-#con2 .gradeMark {
+#con2 #gradeMark {
 	display:inline-block;
 	background-color: #8080c0;
 	text-align: center;
@@ -89,25 +89,25 @@ section {width:100%;}
 	margin-left: 40%;
 }
 
-#con2 .gradeMark p{
+#con2 #gradeMark p{
 	font-size: 11px;
 	line-height: 18px;
 	color: #fff;
 	font-weight: 600;
 }
 
-#con2 .gradeFont {
+#con2 #gradeFont {
 	display: flex;
 	justify-content: space-between;
 }
 
-#con2 .gradeFont p{
+#con2 #gradeFont p{
 	font-size: 12px;
 	font-weight: 600;
 	color:#212121;
 }
 
-#con2 .gradeFont p:last-child{
+#con2 #gradeFont p:last-child{
 	color:#909090;
 }
 

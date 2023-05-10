@@ -28,4 +28,6 @@ public interface MyPageDao {
 
 	int myNoteAnswer(HashMap<String, Object> map);
 
+	void readmarkCheck(HashMap<String, Object> map);
+
 }

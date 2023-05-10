@@ -77,7 +77,8 @@ public class MyPageDaoImpl implements MyPageDao {
 
 	@Override
 	public MyPageVo myNoteView(HashMap<String, Object> map) {
-		MyPageVo myNoteView = sqlSession.selectOne("MyPage.GetNoteView", map);  
+		MyPageVo myNoteView = sqlSession.selectOne("MyPage.GetNoteView", map);
+		map.put("receiver_usercode", myNoteView.getReceiver_usercode());
 		return myNoteView;
 	}
 
@@ -96,8 +97,12 @@ public class MyPageDaoImpl implements MyPageDao {
 	@Override
 	public int myNoteAnswer(HashMap<String, Object> map) {
 		int myNoteAnswer = sqlSession.insert("MyPage.MyPageNoteInsert", map);
-		System.out.println("myNoteAnswer"+myNoteAnswer);
 		return myNoteAnswer;
+	}
+
+	@Override
+	public void readmarkCheck(HashMap<String, Object> map) {
+		sqlSession.update("MyPage.ReadmarkCheck", map);
 	}
 	
 	
