@@ -69,4 +69,22 @@ public class UserServiceImpl implements UserService {
 		return mVo;
 	}
 
+	// 아이디 찾기
+	@Override
+	public String getUserId(HashMap<String, Object> map) {
+
+		String userid = userDao.getUserId(map);
+		
+		return userid;
+	}
+
+	// 비밀번호 찾기
+	@Override
+	public String getUserPw(HashMap<String, Object> map) {
+
+		String userpw = userDao.getUserPw(map);
+		
+		return userpw;
+	}
+
 }

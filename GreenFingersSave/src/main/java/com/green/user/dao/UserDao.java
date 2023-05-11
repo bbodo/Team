@@ -28,4 +28,10 @@ public interface UserDao {
 	// 관리자 로그인
 	ManagerVo getManager(HashMap<String, Object> map);
 
+	// 아이디 찾기
+	String getUserId(HashMap<String, Object> map);
+
+	// 비밀번호 찾기
+	String getUserPw(HashMap<String, Object> map);
+
 }

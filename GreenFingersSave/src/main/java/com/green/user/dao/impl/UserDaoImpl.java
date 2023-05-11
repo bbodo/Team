@@ -14,7 +14,7 @@ import com.green.user.vo.UserVo;
 public class UserDaoImpl implements UserDao {
 
 	@Autowired
-	SqlSession sqlSession;
+	private SqlSession sqlSession;
 	
 	// 가입된 회원인지 체크
 	@Override
@@ -69,6 +69,24 @@ public class UserDaoImpl implements UserDao {
 		ManagerVo mVo = sqlSession.selectOne("User.GetManager", map);
 		
 		return mVo;
+	}
+
+	// 아이디 찾기
+	@Override
+	public String getUserId(HashMap<String, Object> map) {
+
+		String userid = sqlSession.selectOne("User.GetUserId", map);
+		
+		return userid;
+	}
+
+	// 비밀번호 찾기
+	@Override
+	public String getUserPw(HashMap<String, Object> map) {
+
+		String userpw = sqlSession.selectOne("User.GetUserPw", map);
+		
+		return userpw;
 	}
 
 }

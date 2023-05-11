@@ -122,6 +122,7 @@ div{text-align : center}
 			</table>
 			</form>
 			<%-- <a href="/User/WriteForm?uri=${uri}">회원가입</a> --%>
+			<a href="/User/FindForm">아이디 / 비밀번호 찾기</a> <br />
 			<a href="javascript:gouri('${uri}')">회원가입</a>
 	</div>
 </body>
