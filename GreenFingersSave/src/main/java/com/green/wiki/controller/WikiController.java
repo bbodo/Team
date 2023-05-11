@@ -31,8 +31,7 @@ public class WikiController {
 	
 	// wikiList 화면으로 이동
 	@RequestMapping("/List")
-	public  ModelAndView  wikiList(
-			@RequestParam HashMap<String, Object> map) {
+	public  ModelAndView  wikiList(@RequestParam HashMap<String, Object> map) {
 		System.out.println("map1" + map);
 		
 		// 메뉴, 서브메뉴 목록 가져오기
@@ -43,6 +42,7 @@ public class WikiController {
 		mv.setViewName("/wiki/wikiList");
 		mv.addObject("menuList", menuList);
 		mv.addObject("submenuList", submenuList);
+		mv.addObject("btnclick", "btnOk");
 		mv.addObject("map", map);
 		return mv;
 	}
