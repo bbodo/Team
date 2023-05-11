@@ -32,34 +32,32 @@
 </style>
 <script>
 	
-	
 	function data_display(data) {
-		//console.log(data);
+		const btnOkEl = document.querySelector('#btnOk');
 		const pagingEl = document.getElementById('paging');
 		let   phtml    = '';
 		
 		let body       = data.response.body;
-		let nowpage    =  1; //body.pageNo;
+		let nowpage    =  ${map.nowpage}; //body.pageNo;
 		let totalCount = body.totalCount;
-		
 		let pagecount  = 10;
 		let pagetotalcount = 10;
-		let totalpagecount = Math.ceil(totalCount/pagecount)
-		let startnum   = ((nowpage-1)/pagetotalcount) * pagetotalcount + 1;
-		let endnum     = ((nowpage-1)/pagetotalcount + 1) * pagetotalcount;
-		if(startnum >1) {
-			phtml += '<a href="" onclick="paging(1)">[처음]</a>';
-			phtml += '<a href="" onclick="paging(' + (startnum-1) + ')">[이전]</a>';
+		let totalpagecount = Math.ceil(totalCount/pagecount);
+		let startnum   = (parseInt((nowpage-1)/pagetotalcount)) * pagetotalcount + 1 ;
+		let endnum     = (parseInt((nowpage-1)/pagetotalcount) + 1) * pagetotalcount;
+		if(startnum > 1) {
+			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=1">[처음]</a>';
+			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + (startnum-1) + '">[이전]</a>';
 			
 		} 
-		for (let i = 1; i < Math.ceil(totalCount/pagecount) ; i++) {
+		for(let i=startnum; i<= endnum  ; i++) {
 			
-			phtml += '<a href="" onclick="paging(' + i + ')">' + i + '</a>&nbsp;&nbsp;';
+			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + i + '" class="aclick">' + i + '</a>&nbsp;&nbsp;';
 		}
 		
 		if(totalpagecount != endnum) {
-			phtml += '<a href="" onclick="paging(' + (endnum+1) + ')">[다음]</a>';
-			phtml += '<a href="" onclick="paging(' + totalpagecount + ')">[마지막]</a>';
+			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + (endnum+1) + '" class="aclick">[다음]</a>';
+			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + totalpagecount + '" class="aclick">[마지막]</a>';
 		}
 		
 		pagingEl.innerHTML = phtml;
@@ -88,35 +86,33 @@
 		});
 		return html;
 	}
-
+	
 	
 	$(function() {
+		let btnclick = '${btnclick}' ;
+		document.getElementById(btnclick).click();
 		const btnOkEl = document.querySelector('#btnOk');
 		const div1El  = document.querySelector('#div1');
-		let   pageNo = 1;
 		$(btnOkEl).on({
 			click : function(e) {
-				//alert('클릭확인');
 				$.ajax({
 					url : 'http://localhost:9090/Wiki/Service',
 					data : {
-						pageNo  : '1',
+						pageNo  : '${map.nowpage}',
 						keyword : $('#search').val()
 					},
 					success : function(data) {
 						console.log(data);
-			
 						let html = data_display(data);
 						//alert(data);
 						$('#div1').html(html);
+						
 					},
 					error : function(xhr) {
 						console.log(xhr);
 						alert(xhr.status + ' : ' + xhr.textStatus);
 					}
-					
 				});
-				
 			}
 		});
 	});
