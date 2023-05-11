@@ -49,23 +49,23 @@
 		let endnum         = (parseInt((nowpage-1)/pagetotalcount) +1) * pagetotalcount;
 		if(totalpagecount < endnum) { endnum = totalpagecount }
 		if(startnum > 1) {
-			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=1&keyword=' + keyword + '">[처음]</a>';
-			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + (startnum-1) + '&keyword=' + keyword + '">[이전]</a>';
+			phtml += '<a class="h" href="/Wiki/List?submenu_id=SUBMENU20&nowpage=1&keyword=' + keyword + '">[처음]</a>';
+			phtml += '<a class="h" href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + (startnum-1) + '&keyword=' + keyword + '">[이전]</a>';
 		} 
 		for(let i=startnum; i<= endnum  ; i++) {
-			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + i + '&keyword=' + keyword + '">' + i + '</a>&nbsp;&nbsp;';
+			phtml += '<a class="h" href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + i + '&keyword=' + keyword + '">' + i + '</a>&nbsp;&nbsp;';
 		}
 		if(totalpagecount != endnum) {
-			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + (endnum+1) + '&keyword=' + keyword + '">[다음]</a>';
-			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + totalpagecount + '&keyword=' + keyword + '">[마지막]</a>';
+			phtml += '<a class="h" href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + (endnum+1) + '&keyword=' + keyword + '">[다음]</a>';
+			phtml += '<a class="h" href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + totalpagecount + '&keyword=' + keyword + '">[마지막]</a>';
 		}
 		
 		pagingEl.innerHTML = phtml;
 		
 		let arr  = body.items.item;
 		let html = '';
-			html += '<h5>총 자료 수 : ' + totalCount  + '개</h5>';
-			html += '<h7>페이지 : ' + pageNo  + '페이지</h7>';
+			html += '<div class="h"><h5>총 자료 수 : ' + totalCount  + '개</h5>';
+			html += '<h7>페이지 : ' + pageNo  + '페이지</h7></div>';
 		arr.forEach(function(item, index) {
 			html += '<div class="box">';
 			html += '<div><img id="plantimg" src="' + item.imgUrl + '"/></div>';
@@ -85,10 +85,7 @@
 			html += '</ul></div>';
 			html += '</div>';
 		});
-	
 		return html;
-		
-
 	}
 	
 	function ajax() {
@@ -132,11 +129,17 @@
 					},
 					success : function(data) {
 						console.log(data);
-						if(data != null) {
-						let html = data_display(data);
-						$('#div1').html(html);
+						let body       = data.response.body;
+						let totalCount = body.totalCount;
+						console.log(totalCount);
+						if(totalCount != 0) {
+							let html = data_display(data);
+							$('#div1').html(html);
 						} else {
 							alert('검색어를 다시 입력하세요');
+							$('#search').val('');
+							$('.h').each( (index,e) => e.remove());
+							$('.box').each( (index,e) => e.remove());
 						}
 					},
 					error : function(xhr) {
