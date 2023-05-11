@@ -11,7 +11,8 @@
 <title>${ map.submenu_name } 게시판</title>
 
 <style type="text/css">
-	* {
+	/*css common 으로 이동*/
+	/* * {
 		box-sizing: border-box;
 	} 
 	#title {
@@ -117,7 +118,7 @@
 	}
 	#wrapper {
 		margin-top: 30px;
-	}
+	} */
 	
 
 </style>
@@ -133,12 +134,14 @@
 			<%@include file="/WEB-INF/include/header2.jsp" %>
 		</c:otherwise>
 	</c:choose>
-     <div id="title">
+	<%@include file="/WEB-INF/include/subBanner.jsp" %>
+     <!-- <div id="title">
      	<p style="font-size: 40px; font-weight: bold;">식물 연합</p>
-     </div>
+     </div> -->
 	<div id="wrapper">
      <div id="aside">
      	<ul id="sidemenu">
+     	<li class="sidemenuTitle">SIDEMENU</li>
      	<c:forEach var="menu" items="${ submenuList }">
      		<c:choose>
 			<c:when test="${menu.menu_id eq map.menu_id }">
@@ -211,7 +214,7 @@
 			</c:when>
 		</c:choose>
      <div class="right" style="padding: 20px; padding-right: 80px;">
-		<a class="as" style="font-size: 20px;" href="/Board/WriteForm?menu_id=${ map.menu_id }&submenu_id=${ boardVo.submenu_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
+		<a class="as" href="/Board/WriteForm?menu_id=${ map.menu_id }&submenu_id=${ boardVo.submenu_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
 	 </div>
 		<table id="cont">
 			<tr>
