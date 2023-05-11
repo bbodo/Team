@@ -144,11 +144,11 @@
      <c:choose>
        <c:when test="${ map.submenu_id == 'SUBMENU15' }">
      <p style="font-size:15px;">그린핑거 회원이라면 누구나 입양 신청글 작성이 가능합니다<br>
-     입양 완료 후 답례를 원한다면 포인트나 후기글로 고마움을 표현하세요</p>
+     입양 완료 후 답례를 원한다면 내공이나 후기글로 고마움을 표현하세요</p>
        </c:when>
        <c:when test="${ map.submenu_id == 'SUBMENU16' }">
      <p style="font-size:15px;">그린핑거 회원이라면 누구나 나눔할 수 있습니다<br>
-     나눔 후 답례를 원한다면 포인트나 후기글로 고마움을 표현하세요</p>
+     나눔 후 답례를 원한다면 내공이나 후기글로 고마움을 표현하세요</p>
        </c:when>
        <c:otherwise>
        <p style="font-size:15px;">지금까지 모은 포인트로 물건을 구입하세요</p>
@@ -156,16 +156,16 @@
      </c:choose>
      
 		<!-- 포인트 스토어에서만 비활성화  -->
-	<%-- 	<c:choose>	
-			<c:when test="${ map.submenu_id != 'SUBMENU17' }"> --%>
+	 	<c:choose>	
+			<c:when test="${ map.submenu_id != 'SUBMENU17' }">
 			<div class="right">
 			<a href="/Market/WriteForm?submenu_id=${ map.submenu_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
 	 		</div>
-	 <%-- 	</c:when>
+	  	</c:when>
 		<c:otherwise>
 		</c:otherwise>
 		</c:choose>	
-	 --%>	
+	 	
     <table id="cont">
 		<tr>
 			<th class="padd8">번호</th>
