@@ -40,6 +40,12 @@ public interface ManagerDao {
 
 	List<FileVo> getFileList(HashMap<String, Object> map);
 
+	void setUpdate(HashMap<String, Object> map);
+
+	void deleteStore(HashMap<String, Object> map);
+
+	void deleteUploadFile(HashMap<String, Object> map);
+
 
 
 }

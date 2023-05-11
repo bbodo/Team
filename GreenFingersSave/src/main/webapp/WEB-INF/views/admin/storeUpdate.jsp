@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@include file="/WEB-INF/include/comHead.jsp" %>
-<title>그린마켓 게시글 수정 </title>
+<title>스토어 상품 수정 </title>
 
 <style type="text/css">
 
@@ -196,7 +196,7 @@
 		</c:otherwise>
 		</c:choose>	
 			
-     <form action="/Market/Update" method="POST" 
+     <form action="/Manager/Update" method="POST" 
        enctype="multipart/form-data"   >   
        
 	  <input type="hidden"  name="board_idx"  value="${ map.board_idx  }" />
@@ -208,11 +208,14 @@
 	  <input type="hidden"  name="parent"     value="${ map.board_idx  }" /> 
 	  <input type="hidden"  name="nowpage"    value="${ map.nowpage    }" /> 
      
-     
 	 <table id="cont">
 		<tr>
 			<td style="text-align: center;">제목</td>
 			<td><input type="text" name="board_title" value="${ vo.board_title }"/></td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">가격</td>
+			<td><input type="text" name="market_value" value="${ vo.market_value }"/></td>
 		</tr>
 		<tr>
 			<td style="text-align: center;">글 내용</td>
@@ -235,10 +238,10 @@
 			<c:forEach  var="file"   items="${ fileList }">
 			<div>
 				  <a  class  = "aDelete"
-				      href="/Market/deleteFile?file_num=${ file.file_num }&sfile=${file.sfilename}">
+				      href="/Manager/deleteFile?file_num=${ file.file_num }&sfile=${file.sfilename}">
 				                ❌
 				</a>
-				<a  href="/Market/download/external/${ file.sfilename }">
+				<a  href="/Manager/download/external/${ file.sfilename }">
 				${ file.filename }
 				  </a>
 			</div>

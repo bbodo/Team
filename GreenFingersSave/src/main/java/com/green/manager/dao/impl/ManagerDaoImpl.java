@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.green.board.vo.BoardVo;
 import com.green.manager.dao.ManagerDao;
 import com.green.manager.vo.StoreVo;
 import com.green.market.vo.FileVo;
@@ -117,13 +118,10 @@ public class ManagerDaoImpl implements ManagerDao {
 		
 		// db 정보 저장
 		// Board에 저장
-		int  bnum = Integer.parseInt( (String) map.get("bnum") );
-		if ( bnum == 0 ) {
+		/*
+		 * int bnum = Integer.parseInt( (String) map.get("bnum") ); if ( bnum == 0 )
+		 */
 			sqlSession.insert("Manager.AddStore", map);
-		} else {
-			sqlSession.update("Manager.StepUpdate", map); // 새글			
-			sqlSession.insert("Manager.BoardReply", map); // 새글			
-		}
 		
 		// Files에 저장
 		List<FileVo>  fileList =  (List<FileVo>) map.get("fileList");
@@ -136,8 +134,6 @@ public class ManagerDaoImpl implements ManagerDao {
 	@Override
 	public StoreVo getBoard(HashMap<String, Object> map) {
 		
-		sqlSession.update("Manager.UpdateReadCount", map);
-		
 		StoreVo vo = sqlSession.selectOne("Manager.GetBoard", map);
 		
 		return vo;
@@ -149,6 +145,38 @@ public class ManagerDaoImpl implements ManagerDao {
 	List<FileVo> fileList = sqlSession.selectList("Manager.FileList", map);
 	  
 	return fileList; 
+	}
+
+	@Override
+	public void setUpdate(HashMap<String, Object> map) {
+		
+		// Board 정보 수정
+		sqlSession.update("Manager.BoardUpdate", map);
+		
+		// File 정보 수정
+		List<FileVo>  fileList  =  (List<FileVo>) map.get("fileList");
+		if( fileList.size() > 0 )
+			sqlSession.insert("Manager.FileUpdate", map );
+		
+	}
+
+	// 스토어 상품 삭제
+	@Override
+	public void deleteStore(HashMap<String, Object> map) {
+		
+		StoreVo vo = sqlSession.selectOne("Manager.GetBoard", map);
+		
+		List<FileVo> fileList = getFileList(map);
+		map.put("fileList", fileList);
+		
+		sqlSession.delete("Board.FileDelete", map);
+		sqlSession.delete("Board.BoardDelete", map);
+	}
+
+	@Override
+	public void deleteUploadFile(HashMap<String, Object> map) {
+		
+		sqlSession.delete("Manager.DeleteUploadFile", map);
 	}
 
 

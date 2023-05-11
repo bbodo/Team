@@ -124,7 +124,7 @@
        		<li><a href="">메뉴 관리</a> <br /></li>
      		<li><a href=""> - 하위 메뉴</a><br /></li>
      		<li><a href="">이벤트 등록</a><br /></li>
-     		<li><a href="">마켓 등록</a><br /></li>
+     		<li><a href="/Manager/Store">상품 등록</a><br /></li>
        </ul>
      </div>
      <div id="main">

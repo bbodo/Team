@@ -118,7 +118,11 @@ public class MarketServiceImpl implements MarketService {
 	public void setDelete(HashMap<String, Object> map) {
 		
 		// db 제거
-		marketDao.setDelete(map);	
+		marketDao.setDelete(map);
+		
+		// 파일 삭제 map 에 삭제할 파일정보가 와야함
+		List<FileVo> fileList = (List<FileVo>) map.get("fileList");
+		MarketFile.deleteM( fileList );
 	}
 
 }

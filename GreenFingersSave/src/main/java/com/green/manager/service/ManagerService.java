@@ -42,5 +42,11 @@ public interface ManagerService {
 
 	List<FileVo> getFileList(HashMap<String, Object> map);
 
+	void setUpdate(HashMap<String, Object> map, HttpServletRequest request);
+
+	void deleteStore(HashMap<String, Object> map);
+
+	void deleteUploadFile(HashMap<String, Object> map);
+
 
 }

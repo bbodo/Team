@@ -158,15 +158,18 @@
 			<%@include file="/WEB-INF/include/header2.jsp" %>
 		</c:otherwise>
 	</c:choose>
-	  
-     <div id="title">
+	 <%@include file="/WEB-INF/include/subBanner.jsp"%>
+	 
+    <!-- <div id="title">
      	<p style="font-size: 40px; font-weight: bold;">그린마켓</p>
-     </div>
+     </div> -->
+     
+    <div id="wrapper">
      <div id="aside">
       <ul id="sidemenu">
-     	<li><a href="/Market/List?submenu_id=SUBMENU15&nowpage=1">입양원해요</a></li><br />
-     	<li><a href="/Market/List?submenu_id=SUBMENU16&nowpage=1">나눔합니다</a></li><br />
-     	<li><a href="/Market/List?submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a></li><br />
+     	<li><a href=/Market/List?menu_id=MENU03&submenu_id=SUBMENU15&nowpage=1>입양원해요</a></li>
+     	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU16&nowpage=1">나눔합니다</a></li>
+     	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a></li>
      	</ul>
      </div>
      
@@ -276,7 +279,7 @@
 	  <caption><h2>포인트 스토어</h2></caption>	
 	  <div id="pointlist">
       <figure>
-      <a href="/Market/View?submenu_id=SUBMENU17&board_idx=54&nowpage=1">
+      <a href="/Market/View?submenu_id=SUBMENU17&board_idx=107&nowpage=1">
      <div class="plant">
 	     <img class="mainimg" src="/img/market/포인트스토어1.jpg" >
 	  </div>
@@ -285,7 +288,7 @@
 	     <p>귀여운 코끼리 물뿌리개</p>
 	  </figure>
       <figure>
-      <a href="/Market/View?submenu_id=SUBMENU17&board_idx=55&nowpage=1">
+      <a href="/Market/View?submenu_id=SUBMENU17&board_idx=108&nowpage=1">
      <div class="plant">
 	     <img class="mainimg" src="/img/market/포인트스토어2.jpg" >
 	  </div>
@@ -294,7 +297,7 @@
 	     <p>파쯔파쯔 국내생산 흙</p>
 	  </figure>
       <figure>
-      <a href="/Market/View?submenu_id=SUBMENU17&board_idx=56&nowpage=1">
+      <a href="/Market/View?submenu_id=SUBMENU17&board_idx=112&nowpage=1">
      <div class="plant">
 	     <img class="mainimg" src="/img/market/포인트스토어3.jpg">
 	  </div>
@@ -305,8 +308,7 @@
 	 </div>	
 		
      </div>
-     
-     
+    </div> <!-- wrapper end  -->
      <%@include file="/WEB-INF/include/footer.jsp" %>
      
 </body>

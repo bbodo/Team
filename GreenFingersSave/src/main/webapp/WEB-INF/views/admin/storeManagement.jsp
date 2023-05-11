@@ -151,7 +151,11 @@
       <c:forEach var="store" items="${ storeList }">
       <tr>
        <td>${ store.board_idx  }</td>
-       <td>${ store.board_title }</td>
+       <td>
+        <a href="/Manager/View?submenu_id=${ store.submenu_id }&board_idx=${ store.board_idx }">
+       	   ${ store.board_title }
+        </a>
+       </td>
        <td>${fn:substring( store.board_regdate, 0, 10) }</td>
        <td>${ store.market_value }</td>
        <td>${ store.readcount }</td>

@@ -227,7 +227,6 @@
 			B.BOARD_TITLE,
 			B.BOARD_CONT,
 			B.MARKET_VALUE,
-			M.USERCODE,
             MA.MANAGERCODE,
 			TO_CHAR(B.BOARD_REGDATE, 'YYYY-MM-DD HH24:MI:SS') BOARD_REGDATE,
 			B.READCOUNT,
@@ -236,12 +235,11 @@
 			B.STEP,
 			B.NREF,
 			B.DELBOARD,
-			B.PARENT,
-			M.NICKNAME
+			B.PARENT
 		FROM
 			BOARD B
-		FULL OUTER JOIN MEMBER   M ON B.USERCODE    = M.USERCODE
-		FULL OUTER JOIN MANAGER MA ON B.MANAGERCODE = MA.MANAGERCODE
+
+		JOIN MANAGER MA ON B.MANAGERCODE = MA.MANAGERCODE
         WHERE 
             SUBMENU_ID  =  'SUBMENU17'
 		
@@ -258,6 +256,7 @@
 			BOARD_TITLE,
 			BOARD_CONT,
 			MARKET_VALUE,
+			MANAGERCODE,
 			BNUM,
 			NREF
 		)
@@ -268,11 +267,146 @@
 			#{ board_title },
 			#{ board_cont },
 			#{ market_value },
+			'1',
 			(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
 			(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD)
 		)
 	</insert>
- 	
+ 
+ <!-- 원글 정보 가져가기 -->
+	<select   id             = "GetBoard"
+	          resultType     = "com.green.manager.vo.StoreVo">
+		
+		SELECT
+			ROW_NUMBER() OVER(ORDER BY NREF DESC, STEP ASC)  RNUM,
+			B.BOARD_IDX,
+			B.SUBMENU_ID,
+			B.BOARD_TITLE,
+			B.BOARD_CONT,
+			B.MARKET_VALUE,
+            MA.MANAGERCODE,
+			TO_CHAR(B.BOARD_REGDATE, 'YYYY-MM-DD HH24:MI:SS') BOARD_REGDATE,
+			B.READCOUNT,
+			B.BNUM,
+			B.LVL,
+			B.STEP,
+			B.NREF,
+			B.DELBOARD,
+			B.PARENT
+		FROM
+			BOARD B
+
+		JOIN MANAGER MA ON B.MANAGERCODE = MA.MANAGERCODE
+        
+		WHERE
+			BOARD_IDX = #{ board_idx }
+
+	</select> 
+	
+	
+	<!-- 파일 저장 -->
+    <insert  id="FileInsert">
+      <foreach collection="fileList" item="file"
+           index      = "i"  
+           open       = "INSERT ALL"    
+           close      = "SELECT * FROM DUAL"
+           separator  = " " >
+           INTO  BOARD_FILES  VALUES (
+                GET_FILENUM()
+              , ( SELECT MAX(BOARD_IDX) FROM BOARD  )
+              , #{ file.filename   }
+              , #{ file.fileext    }
+              , #{ file.sfilename  }
+           )
+      </foreach>
+   </insert>	
+	
+	
+	<select   id         = "FileList" 
+	          resultType = "com.green.market.vo.FileVo">
+	   
+	       SELECT
+			   FILE_NUM,
+			   BOARD_IDX,
+			   FILENAME,
+			   FILEEXT,
+			   SFILENAME
+			FROM
+				BOARD_FILES
+			WHERE
+				BOARD_IDX   =  #{ board_idx  } 
+			ORDER BY   
+				FILE_NUM  ASC 
+	   
+	</select>
+	
+	<!-- 파일 지움 -->
+	<delete   id="DeleteUploadFile">
+      
+		DELETE   
+		FROM
+			BOARD_FILES
+		WHERE
+			FILE_NUM =  #{ file_num  }
+    
+    </delete>	
+	
+ 	<!-- 게시글 수정  -->
+	<update   id = "BoardUpdate">
+       
+		UPDATE
+			BOARD
+		SET
+			BOARD_TITLE   = #{ board_title  },
+        	BOARD_CONT    = #{ board_cont   },
+			MARKET_VALUE  = #{ market_value }
+		WHERE
+			BOARD_IDX    = #{ board_idx }    
+       
+    </update>
+    
+    <!-- 파일 정보 수정 - 파일이 추가될 때 idx는 기존 idx로 저장해야 함  -->
+    <insert  id="FileUpdate">
+      <foreach collection="fileList" item="file"
+           index      = "i"  
+           open       = "INSERT ALL"    
+           close      = "SELECT * FROM DUAL"
+           separator  = " " >
+           INTO  BOARD_FILES  VALUES (
+                GET_FILENUM()
+              , #{ board_idx       }
+              , #{ file.filename   }
+              , #{ file.fileext    }
+              , #{ file.sfilename  }
+           )
+      </foreach>
+   </insert>
+   
+   
+   <!-- 게시글 삭제할 때 파일 같이 삭제 -->
+   <delete   id="FileDelete">
+   
+		DELETE   
+		FROM
+			BOARD_FILES
+		WHERE
+			BOARD_IDX  =  #{ board_idx }   
+			
+   </delete>
+   
+   <!-- 게시글 삭제 -->
+   <delete   id="BoardDelete">
+   
+		DELETE
+		FROM
+			BOARD
+		WHERE
+			BOARD_IDX  =  #{ board_idx }
+       
+   </delete> 
+   
+   
+    
 </mapper>
 
 

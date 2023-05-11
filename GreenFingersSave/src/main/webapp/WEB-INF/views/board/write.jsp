@@ -212,9 +212,9 @@
 			<div class="form-group" >
 				<td style="text-align: center;">이미지 첨부</td>
 				<td id="imgplus"> 
-				<input type="button"  id="btnAddFile1" value="파일 추가(최대 100M byte)" /><br>
-          		<input type="file" name="upFile" class="upfile" onchange="readURL(this,0);"/>
-				<img id="preview0" src="#" width=200 height=180 alt="선택된 이미지가 없습니다" style="align-content: flex-end; ">
+					<input type="button"  id="btnAddFile1" value="파일 추가(최대 100M byte)" /><br>
+          			<input type="file" name="upFile" class="upfile" onchange="readURL(this,0);"/>
+					<img id="preview0" src="#" width=200 height=180 alt="선택된 이미지가 없습니다" style="align-content: flex-end; ">
 				</td>
 			</div> 
 			

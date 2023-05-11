@@ -1,5 +1,6 @@
 package com.green.manager.service.impl;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.green.board.service.impl.BoardFile;
 import com.green.manager.dao.ManagerDao;
 import com.green.manager.service.ManagerService;
 import com.green.manager.vo.ManagerVo;
@@ -131,7 +133,7 @@ public class ManagerServiceImpl implements ManagerService {
 		managerDao.addStore(map);
 	}
 
-	
+	// 원글 가져오기
 	@Override
 	public StoreVo getBoard(HashMap<String, Object> map) {
 
@@ -146,6 +148,50 @@ public class ManagerServiceImpl implements ManagerService {
 		List<FileVo> fileList = managerDao.getFileList(map);
 		
 		return fileList;
+	}
+
+	// 스토어 상품 수정
+	@Override
+	public void setUpdate(
+			HashMap<String, Object> map, 
+			HttpServletRequest request) {
+		
+		// 넘어온 파일 저장
+		MarketFile.save(map, request);
+						
+		// db 정보 저장
+		managerDao.setUpdate(map);
+
+	}
+
+	// 스토어 상품 삭제
+	@Override
+	public void deleteStore(HashMap<String, Object> map) {
+		
+		// db 제거
+		managerDao.deleteStore(map);
+		
+		// 파일 삭제 map 에 삭제할 파일정보가 와야함
+		List<FileVo> fileList = (List<FileVo>) map.get("fileList");
+		MarketFile.deleteStore( fileList );
+		
+	}
+
+	@Override
+	public void deleteUploadFile(HashMap<String, Object> map) {
+		
+		// d:\\upload\\ sfilename 에 해당되는 파일을 삭제
+		
+		String      filepath   =  "D:\\upload\\";   
+		String      sfilename  =  (String) map.get("sfile");
+		
+		File  file  = new File( filepath + sfilename  );
+		if( file.exists()  )
+		   file.delete();
+		
+		// Files table  file_num 번 자료를 삭제		
+		managerDao.deleteUploadFile( map );
+		
 	}
 
 

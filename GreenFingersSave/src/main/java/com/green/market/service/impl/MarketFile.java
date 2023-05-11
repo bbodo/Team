@@ -79,7 +79,7 @@ public class MarketFile {
 		
 	}
 
-	public static void delete(List<FileVo> fileList) {
+	public static void deleteM(List<com.green.market.vo.FileVo> fileList) {
 		
 		String path = "d:\\upload\\";
 		
@@ -91,6 +91,19 @@ public class MarketFile {
 		});
 		
 	}
+
+	public static void deleteStore(List<com.green.market.vo.FileVo> fileList) {
+		
+		String path = "d:\\upload\\";
+			
+			fileList.forEach( ( f ) -> {
+				String sfile = f.getSfilename();
+				File   file  = new File(path + sfile);
+				if(file.exists())
+					file.delete();
+			});
+		}
+
 
 }
 

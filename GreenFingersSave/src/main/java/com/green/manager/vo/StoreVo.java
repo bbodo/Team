@@ -215,7 +215,7 @@ public class StoreVo {
 	// toString
 	@Override
 	public String toString() {
-		return "MarketVo [board_idx=" + board_idx + ", submenu_id=" + submenu_id + ", board_title=" + board_title
+		return "StoreVo [board_idx=" + board_idx + ", submenu_id=" + submenu_id + ", board_title=" + board_title
 				+ ", board_cont=" + board_cont + ", market_value=" + market_value + ", usercode=" + usercode
 				+ ", managercode=" + managercode + ", board_regdate=" + board_regdate + ", readcount=" + readcount
 				+ ", bnum=" + bnum + ", lvl=" + lvl + ", step=" + step + ", nref=" + nref + ", delboard=" + delboard

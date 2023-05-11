@@ -39,7 +39,8 @@
 	}
 	#main {
 		width: 85%;
-		height: 1500px;
+		height: auto;
+		min-height: 1500px;
 		float: left;
 		padding: 10px;
 		background-color: white;
