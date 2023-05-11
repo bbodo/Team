@@ -202,7 +202,7 @@
      	<!-- <section1 시작> -->
      	<div class="titleWrap">
      		<p class="title">내 정보</p>
-     		<p><a href="">내 정보 수정하기</a></p>
+     		<p><a href="/mypage/checkUpdateForm">내 정보 수정하기</a></p>
      	</div>
      	
      	<section id="sec1">

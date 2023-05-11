@@ -125,6 +125,14 @@ public class MyPageServiceImpl implements MyPageService {
 		myPageDao.readmarkCheck(map);
 	}
 
+	@Override
+	public int checkPw(HashMap<String, Object> map) {
+
+		int a1 = myPageDao.checkPw(map);
+		
+		return a1;
+	}
+
 
 
 

@@ -153,6 +153,31 @@
       WHERE    NOTE_IDX  	=   #{note_idx} AND RECEIVER_USERCODE = #{receiver_usercode}
    </update>
 
+	<!-- 비밀번호 체크 -->
+	<select id="CheckPw"
+			resultType="int">
+	
+		SELECT
+          CASE
+            WHEN
+              EXISTS (
+                 SELECT
+                 	*
+                 FROM
+                 	MEMBER
+                 WHERE
+                 	USERCODE = #{ usercode }
+                 AND
+                    PASSWD = #{ passwd }
+              ) 
+             THEN  1
+             ELSE  0
+          END
+        FROM DUAL
+	
+	</select>
+
+
 </mapper>
 
 

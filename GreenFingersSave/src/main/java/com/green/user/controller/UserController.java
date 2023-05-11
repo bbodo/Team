@@ -182,8 +182,6 @@ public class UserController {
 			@RequestParam HashMap<String, Object> map
 			) {
 		
-		System.out.println(map);
-		
 		String userid = userService.getUserId(map);
 		
 		return userid;
@@ -195,8 +193,6 @@ public class UserController {
 	public String findPw(
 			@RequestParam HashMap<String, Object> map
 			) {
-		
-		System.out.println(map);
 		
 		String userpw = userService.getUserPw(map);
 		

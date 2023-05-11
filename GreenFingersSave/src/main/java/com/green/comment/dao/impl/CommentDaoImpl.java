@@ -49,10 +49,12 @@ public class CommentDaoImpl implements CommentDao {
 		
 		childCnt = sqlSession.selectOne("Comment.ChildCnt", vo1);
 		if(  childCnt == 0  ) { // 자식이 없는경우 삭제
-			
-			cnf = sqlSession.delete("Comment.DeleteComment", vo1);
+			int delnum = sqlSession.selectOne("Comment.CheckDel", vo1);
+			if(delnum == 1) {
+				cnf = sqlSession.delete("Comment.DeleteComment", vo1);
+			}
 		}
-		System.out.println(cnf);
+		
 		return cnf;
 		
 	}

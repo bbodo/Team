@@ -52,6 +52,39 @@
 
 </style>
 
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	  $('#cnfBtn').on("click", function(e) {
+	    let pw = $('#passwd').val()
+	    let code = $('#usercode').val()
+	    $.ajax({
+	      url : "/mypage/checkPw",
+	      data : {
+	        usercode : code,
+	        passwd : pw
+	      },
+	      success : function(data) {
+	    	  console.log(data)
+			if(data == 1) {
+				location.replace("/mypage/myUpdate")
+			} else {
+				alert("틀린 비밀번호 입니다 !")
+				$('#passwd').val('');
+			}
+	      	
+	      },
+	      error : function(err) {
+	        console.log(err);
+	      }
+	    })
+	  })
+	});
+
+
+</script>
+
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
@@ -68,8 +101,9 @@
 		<hr />
 		<div>
 			<p>비밀번호 확인</p><br />
-			<input type="text" /> <br />
-			<a href="/myPageUpdate">확인버튼</a>			
+			<input type="text" name="passwd" id="passwd"> <br />
+			<input type="hidden" value="${login.usercode}" id="usercode" />
+			<input type="button" value="확인" id="cnfBtn"/>			
 		</div>     
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>

@@ -104,6 +104,18 @@ public class MyPageDaoImpl implements MyPageDao {
 	public void readmarkCheck(HashMap<String, Object> map) {
 		sqlSession.update("MyPage.ReadmarkCheck", map);
 	}
+
+	@Override
+	public int checkPw(HashMap<String, Object> map) {
+
+		System.out.println(map);
+		
+		int a1 = sqlSession.selectOne("MyPage.CheckPw", map);
+		
+		System.out.println(a1);
+		
+		return a1;
+	}
 	
 	
 

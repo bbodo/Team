@@ -14,16 +14,6 @@
 	* {
 		box-sizing: border-box;
 	}
-
-	#title {
-		width: 100%;
-		text-align: center;
-		height: 100px;
-		background-color: orange;
-	}
-	#title p {
-		 line-height: 100px;
-	}
 	#section {
 		height: auto;
 	}
@@ -42,36 +32,41 @@
 		background-color: white;
 		display: inline-block;
 	}
-	#cont {
+	.cont {
 		background-color: #fff;
 		margin: 0 auto;
 		width: 90%;
 		border-collapse: collapse;
 		margin-top: 10px;
-		border-top: 3px solid #228B22;
 	}
-	#cont tr:nth-of-type(2) {
+	.cont tr:nth-of-type(2) {
 		border-bottom: 1px solid #228B22;
 	}
 	#reply_coment_cont {
-		widows: 875px;
+		width: 60%;
 		height: 60px;
 		resize: none;
+	}
+	#replyComment {
+		text-align: left;
 	}
 	#board_title {
 		font-size: 32px;
 		font-weight: bold;
 	}
 	#commentNoti {
-		border-bottom: 3px solid #228B22;
 		padding: 20px;
+		width: 90%;
+		text-align: left;
+		padding-bottom: 0px;
 	}
 	#readComment {
-		margin-bottom: 100px;
+		margin-top: 30px;
 	}
 	#writeComment {
 		border-bottom: 1px solid #228B22;
 		display: inline-block;
+		border-top: 3px solid #228B22;
 	}
 	#sidemenu {
 		padding: 30px;
@@ -102,7 +97,8 @@
 		opacity: 1;
 	}
 	.nameSpace {
-		padding: 30px;
+		padding: 10px;
+		margin-right: 10px
 	}
 	.coment_cont {
 		margin: 0 20px;
@@ -114,6 +110,7 @@
 	.contSpace {
 		width: 50%;
 		padding: 10px;
+		text-align: left;
 	}
 	.comment_empty {
 		padding-left: 80px;
@@ -132,6 +129,9 @@
 	}
 	.floatleft {
 		float:left;
+	}
+	#wrapper {
+		margin-top: 70px;
 	}
 	
 
@@ -240,12 +240,12 @@
 				if(comm.com_lvl == 0) {
 					if(comm.delcoment == 0) {
 						html += '<div class="floatleft nameSpace"><p><h2>'+ comm.nickname +'</h2></p></div>';
-						html += '<div class="floatright dateSpace"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
 						html += `<div class="floatleft contSpace" id="commentCont_\${comm.coment_idx}" onclick="c(\${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})">\${comm.coment_cont}</div><br />`;
 						if(comm.usercode == ${login.usercode}) {
 							html += '<div class="floatright btns"><input type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
 							html += '<input type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br />';
 						}						
+						html += '<div class="floatright dateSpace"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
 					} else {
 						html += '<b>삭제된 댓글입니다.</b>';
 					}					
@@ -253,12 +253,12 @@
 					if(comm.delcoment == 0) {
 						html += `<b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>`;
 						html += `<div class="floatleft nameSpace"><p><h2><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.nickname}</h2></p></div>`;
-						html += '<div class="floatright dateSpace"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
 						html += `<div class="floatleft contSpace" id="commentCont_\${ comm.coment_idx }" onclick="c( \${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})"><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.coment_cont}</div><br />`;
 						if(comm.usercode == ${login.usercode}) {
 							html += '<div class="floatright btns"><input type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
 							html += '<input type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br />';
 						}	
+						html += '<div class="floatright dateSpace"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
 					} else {
 						html += `<div class="floatleft"><p><h2><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.nickname}</h2></p></div>`;
 						html += '<div class="floatright"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
@@ -332,9 +332,7 @@
 			<%@include file="/WEB-INF/include/header2.jsp" %>
 		</c:otherwise>
 	</c:choose>
-     <div id="title">
-     	<p style="font-size: 40px; font-weight: bold;">식물 연합</p>
-     </div>
+     <%@include file="/WEB-INF/include/subBanner.jsp" %>
 	<div id="wrapper">
      <div id="aside">
      	<ul id="sidemenu">
@@ -349,8 +347,9 @@
      	</ul>
      </div>
      <div id="main">
-     <div><a style="padding-left: 80px;" id="board_title" href="/Board/List?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 게시판</a></div>
-		<table id="cont">
+     <div style="text-align: left; width: 90%; margin: 0 auto;">
+     	<a id="board_title" href="/Board/List?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 게시판</a></div>
+		<table class="cont" style="border-top: 3px solid #228B22;">
 			<tr>
 				<td class="padd8">제목</td>
 				<td class="padd8">${vo.board_title }</td>
@@ -365,14 +364,16 @@
 			</tr>
 				<tr><td colspan="6"></td></tr>
 			<tr>
-				<th>내용</th>
-				<td colspan="5" id="bc">
+				<td>내용</td>
+				<td colspan="5" id="bc" style=" padding: 50px;">
 				<c:forEach var="file"  items="${ fileList }" >
 				 <div>
 					<img src="/upload/${ file.sfilename }">
 				 </div>
 				</c:forEach>
+				<div style="min-height: 300px; height: auto; text-align: left;">
 				${ vo.board_cont }
+				</div>
 				</td>
 			</tr>
 			<tr>
@@ -388,6 +389,7 @@
    	    	 </td>
 			</tr>
 		</table>
+		<div class="cont">
 		<div class="right">
 			<a href="/Board/WriteForm?menu_id=${ map.menu_id }&submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">답글쓰기</a>
 			<c:if test="${vo.usercode eq login.usercode}">
@@ -399,6 +401,7 @@
 		<br />
 		
 		<div id="writeComment">
+		<br />
 			<form id="writeC">
 			<input type="hidden"  name="board_idx" value="${ vo.board_idx }" />
 			<input type="hidden"  name="usercode" value="${ login.usercode }" />
@@ -415,6 +418,7 @@
 				</tr>
 			</table>
 			</form>
+			<br />
 		</div>
 		<br />
 		<div id="readComment">
@@ -423,6 +427,7 @@
 			<ul id="commentList"></ul>
 			</form>
 		</div>
+     </div>
      </div>
      </div>
 	 <%@include file="/WEB-INF/include/footer.jsp" %>

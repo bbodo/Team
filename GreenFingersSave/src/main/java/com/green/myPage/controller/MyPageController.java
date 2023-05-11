@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.menus.service.MenuService;
@@ -396,8 +397,36 @@ public class MyPageController {
 		return mv;
 	}
 	
+	// 개인정보수정 확인창
+	@RequestMapping("/checkUpdateForm")
+	public ModelAndView checkUpdateForm() {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/mypage/myPageCheck");
+		
+		return mv;
+	}
 	
+	// 개인정보 수정하기전 확인
+	@ResponseBody
+	@RequestMapping("/checkPw")
+	public int checkPw(
+		@RequestParam HashMap<String, Object> map
+		) {
+		
+		int a1 = myPageService.checkPw(map);
+		
+		return a1;
+	}
 	
-	
+	// 개인정보수정 창으로
+		@RequestMapping("/myUpdate")
+		public ModelAndView myUpdate() {
+			
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("/mypage/myPageUpdate");
+			
+			return mv;
+		}
 
 }

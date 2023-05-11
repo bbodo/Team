@@ -13,16 +13,6 @@
 	* {
 		box-sizing: border-box;
 	}
-
-	#title {
-		width: 100%;
-		text-align: center;
-		height: 100px;
-		background-color: orange;
-	}
-	#title p {
-		 line-height: 100px;
-	}
 	#main {
 		width: 100%;
 		height: auto;
@@ -66,6 +56,9 @@
 		width: 100%;
 		height: 400px;
 		padding: 20px;
+	}
+	#wrapper {
+		margin-top: 70px;
 	}
 
 </style>
@@ -133,9 +126,8 @@
 			<%@include file="/WEB-INF/include/header2.jsp" %>
 		</c:otherwise>
 	</c:choose>
-     <div id="title">
-     	<p style="font-size: 40px; font-weight: bold;">식물 연합</p>
-     </div>
+     <%@include file="/WEB-INF/include/subBanner.jsp" %>
+     <div id="wrapper">
      <div id="main">
 	     <div><a id="board_title" href="/Board/List?submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 게시판</a></div>
      	
@@ -195,6 +187,7 @@
 			<input type="submit" value="작성" />
 		</div>
 		</form>
+     </div>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

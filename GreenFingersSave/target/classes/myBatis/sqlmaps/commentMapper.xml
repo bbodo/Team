@@ -172,6 +172,19 @@
    
    </update>
    
+   <!-- Delnum 체크 -->
+   <select id="CheckDel"
+			resultType="int">
+	
+		SELECT
+			DELCOMENT
+		FROM
+			COMENT
+		WHERE
+			COMENT_IDX = #{ coment_idx }
+	
+	</select>
+   
 </mapper>
 
 

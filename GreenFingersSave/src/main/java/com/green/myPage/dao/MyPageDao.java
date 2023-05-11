@@ -30,4 +30,7 @@ public interface MyPageDao {
 
 	void readmarkCheck(HashMap<String, Object> map);
 
+	// 비밀번호 확인
+	int checkPw(HashMap<String, Object> map);
+
 }

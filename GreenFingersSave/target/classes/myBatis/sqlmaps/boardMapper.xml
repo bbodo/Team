@@ -221,6 +221,7 @@
     
     </delete>
 
+	<!-- 게시글 수정 -->
 	<update   id = "BoardUpdate">
        
 		UPDATE
@@ -307,6 +308,7 @@
       
    </select>
 
+	<!-- 글쓸때마다 포인트 -->
 	<update id="GetPoint">
 	
 		UPDATE
@@ -317,6 +319,18 @@
 			USERID = #{ userid }
 	
 	</update>
+
+	<select id="CheckDel"
+			resultType="int">
+	
+		SELECT
+			DELBOARD
+		FROM
+			BOARD
+		WHERE
+			BOARD_IDX = #{ board_idx }
+	
+	</select>
 
 </mapper>
 
