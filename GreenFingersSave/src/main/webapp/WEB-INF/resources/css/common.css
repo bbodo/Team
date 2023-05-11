@@ -71,7 +71,7 @@ header img {
 }
 
 #menu1>nav>li {
-	width: 80px;
+	width: 90px;
 	position: relative;
 }
 
@@ -121,6 +121,11 @@ header img {
 	box-sizing: border-box;
 }
 
+#mypageWrap {
+	display: flex;
+	gap:24px;
+}
+
 
 
 /* #headerInWrap>div:nth-of-type(1) {
@@ -135,7 +140,7 @@ header img {
 
 /* main 시작*/
 #wrapper {
-	width:1560px;
+	width:1400px;
 	margin:80px auto 0 auto;
 	height: auto;
   	min-height: 100%;
@@ -270,8 +275,12 @@ header img {
 	border-bottom: 1px solid #C0C0C0;
 }
 
-#cont tr:hover {
+.tableList tr:hover {
 	background-color: #D3D3D3;
+}
+
+.tableList {
+	margin-bottom: 20px !important;
 }
 
 .right {
@@ -279,7 +288,7 @@ header img {
 }
 
 .left {
-	text-align: left;
+	text-align: center;
 }
 
 .as {
@@ -368,20 +377,114 @@ footer #footerLogo img{width:70px;}
 }
 /* footer 끝 */
 
-/* home 시작 */
 
+/*home.jsp 시작*/
+/*  ==================================================================*/
+
+/*swiper*/
 .swiper-slide>a>p {
 	position: relative;
 	top:300px;
 	font-size: 40px;
 }
 
-/* home 끝 */
-
-@media all and (min-width:600px){
-	 
-	
+.swiper {
+	width: 1560px;
+	height: 100%;
+	margin-left: auto;
+	margin-right: auto;
 }
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 650px;
+	object-fit: fill;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after{
+	color: #609966;
+}
+
+.swiper-pagination-bullet{
+	background-color: #609966;
+}
+
+/* popup 시작 */
+#popup {
+	width: 1560px;
+	height: 120px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+.popups-list {
+	display: flex;
+	transition: .3s ease-out;
+	height: 100%;
+}
+
+.popuplist img { 
+	object-fit:contain;
+	position: relative;
+	left:50%;
+	transform:translateX(-50%);
+}
+
+
+
+/*home.jsp 끝*/
+/*  ==================================================================*/
+
+@media all and (max-width:1700px) and (min-width:1201px) {
+	.swiper {width: 1200px;}
+	#wrapper {width:1100px;}
+	#headerInWrap {width:1200px;}
+	
+	.swiper-slide img {
+		display: block;
+		width: 100%;
+		height: auto;
+		object-fit: fill;
+	}
+	
+	#popup {
+	width: 1200px;
+	height: 100px;
+	overflow: hidden;
+	margin: 0 auto;
+	}
+}
+
+@media all and (max-width:1200px) {
+	.swiper {width: 1200px;}
+	#wrapper {width:1000px;}
+	#headerInWrap {width:1000px;}
+	
+	.swiper-slide img {
+		display: block;
+		width: 100%;
+		height: auto;
+		object-fit: fill;
+	}
+	
+	#popup {
+	width: 1200px;
+	height: 100px;
+	overflow: hidden;
+	margin: 0 auto;
+	}
+}
+
 
 .padd8{
 		padding: 8px;"

@@ -12,70 +12,8 @@
 
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
  <script src="/js/home.js"></script>
+ <script src="/js/common.js"></script>
 
-  <!-- Demo styles -->
-  <style>
-html, body {
-	position: relative;
-	height: 100%;
-}
-
-.swiper {
-	width: 1560px;
-	height: 100%;
-}
-
-.swiper-slide {
-	text-align: center;
-	font-size: 18px;
-	background: #fff;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.swiper-slide img {
-	display: block;
-	width: 100%;
-	height: 650px;
-	object-fit: fill;
-}
-
-.swiper {
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.swiper-button-next:after, .swiper-button-prev:after{
-	color: #609966;
-}
-
-.swiper-pagination-bullet{
-	background-color: #609966;
-}
-
-/* popup 시작 */
-#popup {
-	width: 1560px;
-	height: 120px;
-	overflow: hidden;
-	margin: 0 auto;
-}
-
-.popups-list {
-	display: flex;
-	transition: .3s ease-out;
-	height: 100%;
-}
-
-.popuplist img { 
-	object-fit:contain;
-	position: relative;
-	left:50%;
-	transform:translateX(-50%);
-}
-/* popup 끝 */
-</style>
 
 </head>
 <body>
@@ -161,8 +99,16 @@ html, body {
 	<a href="/myPage/myList?nowpage=1">마이페이지</a>
 	<h2>Home</h2> -->
 	
+	<section id="sec1">
+		<div>
+					
+		</div>
+	</section>
+	
+	
   <!-- footer -->
-
+  <%@include file="/WEB-INF/include/footer.jsp" %>
+  
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
  

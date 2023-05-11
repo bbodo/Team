@@ -9,76 +9,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@include file="/WEB-INF/include/comHead.jsp" %>
 <title>${ map.submenu_name } 게시판</title>
+</head>
 
-<style type="text/css">
-
-
-    
-	* {
-		box-sizing: border-box;
-	}
-
-	#title {
-		width: 100%;
-		text-align: center;
-		height: 100px;
-		background-color: orange;
-	}
-	#title p {
-		 line-height: 100px;
-	}
-	#aside {
-		float: left;
-		height: 800px;
-		background-color: navy;
-		width: 10%;
-		padding: 10px;
-	}
-	#main {
-		width: 90%;
-		height: 800px;
-		float: left;
-		padding: 10px;
-		background-color: white;
-		text-align: center;
-	}
-	#img1{
-	    width: 80%;
-		height: 150px;
-		object-fit: cover;
-	}
-	
-	#tt {
-		text-align: left;
-	}
-	#cont {
-		background-color: #fff;
-		margin: 0 auto;
-		width: 90%;
-		border-collapse: collapse;
-	}
-	#cont th {
-		background-color: white;
-		border-top: 3px solid #C0C0C0;
-		border-bottom: 1px solid #C0C0C0;
-		padding: 20px;
-	}
-	#cont tr td {
-		padding: 15px;
-		border-bottom: 1px solid #C0C0C0;
-	} 
-	#cont tr:hover {
-		background-color: #D3D3D3;
-	}
-	.right {
-		text-align: right;
-	}
-	
-	
-
+<style>
+.right{
+	width:90%;
+	margin:0 auto 20px auto;
+}
+.tableList tr td:hover {
+	background-color: #D3D3D3;
+}
 </style>
 
-</head>
 <body>
 	 <!-- header	 -->
 	<c:choose>
@@ -89,27 +31,32 @@
 			<%@include file="/WEB-INF/include/header2.jsp" %>
 		</c:otherwise>
 	</c:choose>
-
- <div id="title">
-     	<p>이벤트</p>
-     </div>
-     <div id="aside">
-     	이벤트<br />
-     	당첨자<br />
-     </div>
+	
+	 <%@include file="/WEB-INF/include/subBanner.jsp" %>
+	 
+	<div id="wrapper"> 
+	
+	<div id="aside">
+		<ul id="sidemenu">
+     	<li class="sidemenuTitle">SIDEMENU</li>
+			<li><a href="">이벤트</a></li>
+			<li><a href="">이벤트 당첨자</a></li>
+		</ul>
+	</div>
+     
      <div id="main">
 		<h2 style="font-size: 24px;">${ map.submenu_name }</h2>     
       <div class="right">
 		<a href="/Event/WriteForm?submenu_id=${map.submenu_id}&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
 	 </div>
-		<table id="cont">
-			<tr>
+		<table id="cont" class="tableList">
+			<!--<tr>
 				<td colspan="3" style="width: 50%">
 					<div style="float: left;">
 			     		<h2>이벤트</h2>
 			     	</div>
 				</td>				
-			</tr>
+			</tr> -->
 			
 			<tr>
 				<th colspan="2"><a href="http://localhost:9090/Event/EventList?submenu_id=${map.submenu_id}&nowpage=1">이벤트</a></th>
@@ -159,6 +106,8 @@
 	  </c:forEach>
 		</table> 		
 			    <%@include file="/WEB-INF/include/eventPaging.jsp" %>
-     </div>       
+     </div>    
+     </div>
+        <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>

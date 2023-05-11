@@ -153,7 +153,7 @@
      	</ul>
      </div>
      <div id="main">
-		<p style="font-size: 24px; font-weight: bold; text-align: left; padding-left: 50px; margin-bottom: 10px;">${ map.submenu_name }</p>
+		<p style="font-size: 24px; font-weight: bold; text-align: center; padding-left: 50px; margin-bottom: 10px;">${ map.submenu_name }</p>
 		<c:choose>
 			<c:when test="${ map.submenu_name eq '포이즌' }">
 				<p class="left" style="padding-left: 50px;">독성을 가진 천남성과 식물을 키웁니다. <br />
@@ -216,7 +216,7 @@
      <div class="right" style="padding: 20px; padding-right: 80px;">
 		<a class="as" href="/Board/WriteForm?menu_id=${ map.menu_id }&submenu_id=${ boardVo.submenu_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
 	 </div>
-		<table id="cont">
+		<table id="cont" class="tableList">
 			<tr>
 				<th class="padd8">번호</th>
 				<th class="padd8">제목</th>
@@ -292,7 +292,6 @@
   </tr>  
   </c:forEach>
 		</table>
-		<br />
 	 <%@include file="/WEB-INF/include/paging.jsp" %>
      </div>
      </div>

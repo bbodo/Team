@@ -142,8 +142,10 @@
 		</div>
 		<c:choose>
 			<c:when test="${ sessionScope.login ne null }">
-				<div><a href="/mypage/myList?nowpage=1">${login.nickname}  님의 마이페이지</a></div>
-				<div><a href="/User/Logout">로그아웃</a></div>
+				<div id="mypageWrap">
+					<div><a href="/mypage/myList?nowpage=1">${login.nickname}  님의 마이페이지</a></div>
+					<div><a href="/User/Logout">로그아웃</a></div>
+				</div>
 			</c:when>
 			<c:otherwise>
 				<div><a href="/User/Login" class="right">로그인</a></div>

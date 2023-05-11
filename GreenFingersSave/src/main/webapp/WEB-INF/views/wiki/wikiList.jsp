@@ -29,6 +29,22 @@
 		  height: 300px;
 		  object-fit: cover;
 	}
+		  
+	.wikititle{
+		text-align: center;
+		marginn: 50px 0 60px 0;
+		font-size:24px;
+	}
+	
+	.searchWrap {
+		margin-left: 50%;
+		transform: translateX(-50%);
+	}
+	
+	.wikitext {
+		text-align: center;
+		margin-top: 20px;
+	}
 </style>
 <script>
 	
@@ -153,7 +169,9 @@
 	});
 </script>
 </head>
-<body>
+<body>	
+
+
 	<!-- header	 -->
 	<c:choose>
 		<c:when test="${ sessionScope.login eq null }">
@@ -164,21 +182,29 @@
 		</c:otherwise>
 	</c:choose>
 	
-	 <div id="title">
+	 <!-- <div id="title">
      	<p style="font-size: 40px; font-weight: bold;">그린 위키</p>
-     </div>
+     </div> -->
+
+	 <%@include file="/WEB-INF/include/subBanner.jsp" %>
 	
+	
+	<div id="wrapper">
 	<div class="search" style="height: auto; width: 100%; min-height:800px; padding: 20px 20px;" >
-	<h2>그린 위키 검색</h2>
+	<h2 class="wikititle">그린 위키 검색</h2>
+	<div class="wikitext"><p>그린이들을 위한 그린백과사전입니다.</br> 궁금한 식물을 검색해보세요</p></div>
       	
       
+	<div class="searchWrap">
 	  과명 : <input type="text" id="search" style="width:200px;" />
 	  <button id="btnOk"  >검색</button>
 	  <div id="paging"></div>
 	  <div id="div1"></div> 
+    </div>
+
 	</div>
 	
-	
+	</div>
 	
 	<!-- footer -->
     <%@include file="/WEB-INF/include/footer.jsp" %> 

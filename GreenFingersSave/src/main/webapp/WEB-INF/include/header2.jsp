@@ -5,7 +5,6 @@
 
 <header>
 	<div id="headerInWrap">
-	<div class="sub_bg"></div>
 	<div id="logo"><a href="/"><img src="/img/common/logo.png" alt="logo" /></a></div>
 	<div id="menu1">
 	<nav>
@@ -140,9 +139,11 @@
 		</c:forEach>
 		</nav>
 		</div>
-
-		<div><a href="/mypage/myList?nowpage=1">${login.nickname}  님의 마이페이지</a></div>
-		<div> <a href="/User/Logout">로그아웃</a></div>
+		
+		<div id="mypageWrap">
+			<div><a href="/mypage/myList?nowpage=1">${login.nickname}  님의 마이페이지</a></div>
+			<div> <a href="/User/Logout">로그아웃</a></div>
+		</div>
 	</div>
 </header>
 
