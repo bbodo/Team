@@ -12,6 +12,21 @@ a {text-decoration: none; color:#252525;}
 
 #wrap, header, footer {width:100%; position: relative;}
 
+
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TAEBAEKmilkyway';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/TAEBAEKmilkyway.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
 	
 }
@@ -120,6 +135,32 @@ header img {
 
 /* main 시작*/
 /*  ==================================================================*/
+/*subBanner 시작*/
+.subBanner {
+	width:100%;
+	height:300px;
+	position: relative;
+}
+
+.subBanner p{
+	position: absolute;
+	left:50%;
+	top: 43%;
+	transform: translate(-50%, -50%);
+	font-family: 'TAEBAEKmilkyway';
+	font-weight: 600;
+	font-size:30px;
+	color: #071E15;
+	z-index: 7;
+}
+
+.subBanner img {
+	position:relative;
+	left:50%;
+    transform: translateX(-50%);
+	object-fit: cover;     
+}
+
 .title {
 	font-weight: 600;
 	font-size: 16px;
