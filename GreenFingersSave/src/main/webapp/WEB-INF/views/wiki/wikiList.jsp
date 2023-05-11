@@ -23,7 +23,7 @@
 	#div1 { margin: 20px; width: 800px;}
 	
     .box { display: flex; margin: 20px;}
-    #btn1Ok { width: 100px;}     
+    #btnOk1 { width: 100px;}     
 	#plantimg {
 		  width: 400px;
 		  height: 300px;
@@ -33,8 +33,9 @@
 <script>
 	
 	function data_display(data) {
-		const btnOkEl = document.querySelector('#btnOk');
+		const btnOkEl  = document.querySelector('#btnOk');
 		const pagingEl = document.getElementById('paging');
+		let   keyword  = $('#search').val();
 		let   phtml    = '';
 		
 		let body           = data.response.body;
@@ -48,15 +49,15 @@
 		let endnum         = (parseInt((nowpage-1)/pagetotalcount) +1) * pagetotalcount;
 		if(totalpagecount < endnum) { endnum = totalpagecount }
 		if(startnum > 1) {
-			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=1">[처음]</a>';
-			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + (startnum-1) + '">[이전]</a>';
+			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=1&keyword=' + keyword + '">[처음]</a>';
+			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + (startnum-1) + '&keyword=' + keyword + '">[이전]</a>';
 		} 
 		for(let i=startnum; i<= endnum  ; i++) {
-			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + i + '">' + i + '</a>&nbsp;&nbsp;';
+			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + i + '&keyword=' + keyword + '">' + i + '</a>&nbsp;&nbsp;';
 		}
 		if(totalpagecount != endnum) {
-			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + (endnum+1) + '">[다음]</a>';
-			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + totalpagecount + '">[마지막]</a>';
+			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + (endnum+1) + '&keyword=' + keyword + '">[다음]</a>';
+			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + totalpagecount + '&keyword=' + keyword + '">[마지막]</a>';
 		}
 		
 		pagingEl.innerHTML = phtml;
@@ -76,7 +77,7 @@
 			html += '<li>국명 : ' + item.plantGnrlNm + '</li>';
 			html += '<li>최종수정일시 : ' + item.lastUpdtDtm + '</li>';
 			if (item.detailYn =='Y'){
-				html += '<li>상세정보유무 : <button id="btn1Ok">상세정보조회</button></li>';}
+				html += '<li>상세정보유무 : <button id="btnOk1">상세정보조회</button></li>';}
 			else {
 				html += '<li>상세정보유무 : 상세정보 없음 </li>';}
 			
@@ -84,7 +85,10 @@
 			html += '</ul></div>';
 			html += '</div>';
 		});
+	
 		return html;
+		
+
 	}
 	
 	function ajax() {
@@ -92,13 +96,14 @@
 			url : 'http://localhost:9090/Wiki/Service',
 			data : {
 				pageNo  : '${map.nowpage}',
-				keyword : $('#search').val()
+				keyword : '${map.keyword}'
 			},
 			success : function(data) {
 				console.log(data);
 				if(data != null) {
 				let html = data_display(data);
 				$('#div1').html(html);
+			
 					
 				} else {
 					alert('검색어를 다시 입력하세요');
@@ -114,8 +119,9 @@
 	$(function() {
 		const btnOkEl = document.querySelector('#btnOk');
 		const div1El  = document.querySelector('#div1');
-		
 		ajax();
+		if('\${map.keyword}' != null)
+			$('#search').val('${map.keyword}');
 		$(btnOkEl).on({
 			click : function(e) {
 				$.ajax({
@@ -129,7 +135,6 @@
 						if(data != null) {
 						let html = data_display(data);
 						$('#div1').html(html);
-							
 						} else {
 							alert('검색어를 다시 입력하세요');
 						}
@@ -176,5 +181,6 @@
     <%@include file="/WEB-INF/include/footer.jsp" %> 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+ 
 </body>
 </html>
