@@ -37,27 +37,26 @@
 		const pagingEl = document.getElementById('paging');
 		let   phtml    = '';
 		
-		let body       = data.response.body;
-		let nowpage    =  ${map.nowpage}; //body.pageNo;
-		let totalCount = body.totalCount;
-		let pagecount  = 10;
+		let body           = data.response.body;
+		let pageNo         = body.pageNo;
+		let nowpage        = pageNo; //body.pageNo;
+		let totalCount     = body.totalCount;
+		let pagecount      = 10;
 		let pagetotalcount = 10;
 		let totalpagecount = Math.ceil(totalCount/pagecount);
-		let startnum   = (parseInt((nowpage-1)/pagetotalcount)) * pagetotalcount + 1 ;
-		let endnum     = (parseInt((nowpage-1)/pagetotalcount) + 1) * pagetotalcount;
+		let startnum       = (parseInt((nowpage-1)/pagetotalcount)) * pagetotalcount + 1 ;
+		let endnum         = (parseInt((nowpage-1)/pagetotalcount) +1) * pagetotalcount;
+		if(totalpagecount < endnum) { endnum = totalpagecount }
 		if(startnum > 1) {
 			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=1">[처음]</a>';
 			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + (startnum-1) + '">[이전]</a>';
-			
 		} 
 		for(let i=startnum; i<= endnum  ; i++) {
-			
-			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + i + '" class="aclick">' + i + '</a>&nbsp;&nbsp;';
+			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + i + '">' + i + '</a>&nbsp;&nbsp;';
 		}
-		
 		if(totalpagecount != endnum) {
-			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + (endnum+1) + '" class="aclick">[다음]</a>';
-			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + totalpagecount + '" class="aclick">[마지막]</a>';
+			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + (endnum+1) + '">[다음]</a>';
+			phtml += '<a href="/Wiki/List?submenu_id=SUBMENU20&nowpage=' + totalpagecount + '">[마지막]</a>';
 		}
 		
 		pagingEl.innerHTML = phtml;
@@ -65,6 +64,7 @@
 		let arr  = body.items.item;
 		let html = '';
 			html += '<h5>총 자료 수 : ' + totalCount  + '개</h5>';
+			html += '<h7>페이지 : ' + pageNo  + '페이지</h7>';
 		arr.forEach(function(item, index) {
 			html += '<div class="box">';
 			html += '<div><img id="plantimg" src="' + item.imgUrl + '"/></div>';
@@ -87,26 +87,52 @@
 		return html;
 	}
 	
+	function ajax() {
+		$.ajax({
+			url : 'http://localhost:9090/Wiki/Service',
+			data : {
+				pageNo  : '${map.nowpage}',
+				keyword : $('#search').val()
+			},
+			success : function(data) {
+				console.log(data);
+				if(data != null) {
+				let html = data_display(data);
+				$('#div1').html(html);
+					
+				} else {
+					alert('검색어를 다시 입력하세요');
+				}
+			},
+			error : function(xhr) {
+				console.log(xhr);
+				alert(xhr.status + ' : ' + xhr.textStatus);
+			}
+		});
+	}
 	
 	$(function() {
-		let btnclick = '${btnclick}' ;
-		document.getElementById(btnclick).click();
 		const btnOkEl = document.querySelector('#btnOk');
 		const div1El  = document.querySelector('#div1');
+		
+		ajax();
 		$(btnOkEl).on({
 			click : function(e) {
 				$.ajax({
 					url : 'http://localhost:9090/Wiki/Service',
 					data : {
-						pageNo  : '${map.nowpage}',
+						pageNo  : '1',
 						keyword : $('#search').val()
 					},
 					success : function(data) {
 						console.log(data);
+						if(data != null) {
 						let html = data_display(data);
-						//alert(data);
 						$('#div1').html(html);
-						
+							
+						} else {
+							alert('검색어를 다시 입력하세요');
+						}
 					},
 					error : function(xhr) {
 						console.log(xhr);
@@ -114,7 +140,8 @@
 					}
 				});
 			}
-		});
+		})
+		
 	});
 </script>
 </head>
@@ -137,7 +164,7 @@
 	<h2>그린 위키 검색</h2>
       	
       
-	  국명 : <input type="text" id="search" style="width:200px;" />
+	  과명 : <input type="text" id="search" style="width:200px;" />
 	  <button id="btnOk"  >검색</button>
 	  <div id="paging"></div>
 	  <div id="div1"></div> 

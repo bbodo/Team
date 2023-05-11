@@ -53,7 +53,6 @@ public class WikiController {
 	public  void service(
 		String   keyword, int pageNo,
 		HttpServletResponse  response) {
-		System.out.println("1111===" + pageNo);
 		PrintWriter out = null;
 		
 		try {

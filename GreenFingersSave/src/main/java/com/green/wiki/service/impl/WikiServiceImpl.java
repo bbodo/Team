@@ -33,7 +33,7 @@ public class WikiServiceImpl implements WikiService {
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Content-type", "application/json");
-        System.out.println("Response code: " + conn.getResponseCode());
+       // System.out.println("Response code: " + conn.getResponseCode());
         BufferedReader rd;
         if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
             rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -48,11 +48,9 @@ public class WikiServiceImpl implements WikiService {
         rd.close();
         conn.disconnect();
         
-        System.out.println("제발 : " +  sb.toString());
         JSONObject jsonObject = XML.toJSONObject(sb.toString());
         String jsonStr = jsonObject.toString();
-        System.out.println("제발2222 : " +  jsonStr);
-        
+        System.out.println("흠:" + jsonStr);
         return jsonStr;
 	}
 
