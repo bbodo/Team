@@ -3,6 +3,8 @@ package com.green.myPage.service.impl;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -131,6 +133,12 @@ public class MyPageServiceImpl implements MyPageService {
 		int a1 = myPageDao.checkPw(map);
 		
 		return a1;
+	}
+
+	@Override
+	public void updateProfile(HashMap<String, Object> map, HttpServletRequest request) {
+		MypageFile.save(map, request);
+		myPageDao.setSave(map);
 	}
 
 

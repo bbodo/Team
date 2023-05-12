@@ -167,6 +167,7 @@ section {width:100%;}
 #myGrade>div>p{
 	line-height:40px; 
 	color: #fff;
+	text-align: center;
 }
 
 #myGrade>div:nth-of-type(1) {background-color:#ff595e;}
@@ -176,19 +177,8 @@ section {width:100%;}
 #myGrade>div:nth-of-type(5) {background-color:#1982c4;}
 #myGrade>div:nth-of-type(6) {background-color:#6a4c93;}
 
-#myGrade div p {
-	text-align: center;
-}
-
-#myGrade2 {
-	width:100%;
-	display: grid;
-	grid-template-columns: repeat(6, 1fr);
-	grid-template-rows: repeat(1, 1fr);
-}
-
-#myGrade2 div img {
-	width:80px;
+#myGrade>div>img {
+	display: none;
 }
 
 /* section2 시작 ===============================================*/
@@ -270,6 +260,7 @@ section {width:100%;}
 	margin:0 10px;
 }
 /* PointMain 창 끝 */
+
 
 
 

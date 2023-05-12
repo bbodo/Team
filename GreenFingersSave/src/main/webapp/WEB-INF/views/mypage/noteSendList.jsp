@@ -99,7 +99,7 @@
 			</div>
      	</section>
 		
-	    <%@include file="/WEB-INF/include/myPagePaging.jsp" %>
+	    <%@include file="/WEB-INF/include/mypagePaging.jsp" %>
 	    
     </div><!-- main -->
      

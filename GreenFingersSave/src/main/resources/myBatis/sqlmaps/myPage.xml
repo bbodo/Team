@@ -176,6 +176,22 @@
         FROM DUAL
 	
 	</select>
+	
+	<insert  id="FileInsert">
+      <foreach collection="fileList" item="file"
+           index      = "i"  
+           open       = "INSERT ALL"    
+           close      = "SELECT * FROM DUAL"
+           separator  = " " >
+           INTO  FILES  VALUES (
+                GET_FILENUM()
+              , ( SELECT MAX(IDX) FROM BOARD  )
+              , #{ file.filename   }
+              , #{ file.fileext    }
+              , #{ file.sfilename  }
+           )
+      </foreach>
+   </insert>
 
 
 </mapper>

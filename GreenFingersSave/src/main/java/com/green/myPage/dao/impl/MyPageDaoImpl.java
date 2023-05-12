@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.green.myPage.dao.MyPageDao;
+import com.green.myPage.vo.FilesVo;
 import com.green.myPage.vo.MyPageVo;
 
 @Repository("MyPageDao")
@@ -115,6 +116,14 @@ public class MyPageDaoImpl implements MyPageDao {
 		System.out.println(a1);
 		
 		return a1;
+	}
+
+	@Override
+	public void setSave(HashMap<String, Object> map) {
+		// Files  에 저장
+		List<FilesVo>  fileList =  (List<FilesVo>) map.get("fileList");
+		if( fileList.size() != 0  )
+			sqlSession.insert("MyPage.UpdateProfile", map);
 	}
 	
 	

@@ -33,4 +33,6 @@ public interface MyPageDao {
 	// 비밀번호 확인
 	int checkPw(HashMap<String, Object> map);
 
+	void setSave(HashMap<String, Object> map);
+
 }

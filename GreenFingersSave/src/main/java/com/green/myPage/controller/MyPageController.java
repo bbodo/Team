@@ -3,6 +3,7 @@ package com.green.myPage.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.menus.service.MenuService;
@@ -135,7 +137,7 @@ public class MyPageController {
 	
 	@RequestMapping("/myList")
 	public ModelAndView myNoteList (@RequestParam HashMap<String, Object> map,
-			HttpSession session) {
+			HttpSession session,  HttpServletRequest request) {
 		
 		UserVo userVo = (UserVo) session.getAttribute("login");
 		int usercode = userVo.getUsercode();
@@ -170,8 +172,10 @@ public class MyPageController {
 		MyPageVo         recNotePagingVo   =  (MyPageVo) map.get("recNotePaging");
 		MyPageVo         sendPointPagingVo   =  (MyPageVo) map.get("SendPointPaging");
 		
-		System.out.println("dfhuahf" + userVo);
-		
+		// 파일저장
+		//multi.getParameter();
+		//myPageService.updateProfile(map, request);
+
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mypage/myList");
 		mv.addObject("userVo", userVo);
@@ -181,6 +185,7 @@ public class MyPageController {
 		mv.addObject("sendPagingVo", sendNotePagingVo);
 		mv.addObject("recPagingVo", recNotePagingVo);
 		mv.addObject("sendPointPagingVo", sendPointPagingVo);
+		mv.addObject("map", map);
 		return mv;
 	}
 	
@@ -272,10 +277,6 @@ public class MyPageController {
 		// 보낸 쪽지
 		MyPageVo   myNoteView  =  myPageService.myNoteView( map );
 		
-		/*
-		 * System.out.println("wdfdfdf"+ myNoteView); System.out.println("wdfdfdf"+
-		 * map.toString());
-		 */
 		//readmark 읽음
 		myPageService.readmarkCheck(map);
 		
@@ -428,5 +429,7 @@ public class MyPageController {
 			
 			return mv;
 		}
+		
+		
 
 }

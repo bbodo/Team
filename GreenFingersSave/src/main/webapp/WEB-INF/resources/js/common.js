@@ -1,3 +1,4 @@
+
 window.onload = function () {
 	// $, $$ 함수 정의
 	   var $$ = function( selector ) {
@@ -7,8 +8,9 @@ window.onload = function () {
 		   return document.querySelector(selector);  // tag 한개만 찾아줌
 	   };
 	   
-	   let loginCheck = "${ sessionScope.login}";
+	   let loginCheck = "${sessionScope.login}";
 	   /*수정중*/
+	   console.log(loginCheck);
 	   
 	   if(loginCheck != null){
 		   $('#menu1').style.marginLeft = "190px";

@@ -12,8 +12,6 @@
 
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
  <script src="/js/home.js"></script>
- <script src="/js/common.js"></script>
-
 
 </head>
 <body>
