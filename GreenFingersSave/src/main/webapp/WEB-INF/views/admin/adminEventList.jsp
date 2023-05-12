@@ -38,6 +38,7 @@
        		<li><a href="/Manager/Menu">메뉴 관리</a> <br /></li>
      		<li><a href="/Manager/subMenu"> - 하위 메뉴</a><br /></li>
      		<li><a href="/Manager/EventList">이벤트 등록</a><br /></li>
+     		<li><a href="/Manager/WinnerList">당첨자 등록</a><br /></li>
      		<li><a href="/Manager/Store">상품 등록</a><br /></li>
        </ul>
      </div>
@@ -45,7 +46,7 @@
     <div id="main">
 		<h2 style="font-size: 24px;">${ map.submenu_name }</h2>   
       <div class="right">
-		<a href="/Manager/WriteForm?submenu_id=${map.submenu_id}&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.managercode }">새글 작성</a>
+		<a href="/Manager/EventWriteForm?submenu_id=SUBMENU18&bnum=0&lvl=0&step=0&nref=0&nowpage=1">새글 작성</a>
 	 </div>
 		<table id="cont">
 			<tr>
@@ -91,7 +92,7 @@
             
             <c:choose>
               <c:when test="${ eventVo.delboard eq 0 }">
-                <a style="font-weight: bold;" href="/Event/View?menu_id=${ map.menu_id }&submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}">
+                <a style="font-weight: bold;" href="/Manager/EventView?menu_id=${ map.menu_id }&submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}">
               	  [답글] ${ eventVo.board_title }
          	    </a>
          	  </c:when>

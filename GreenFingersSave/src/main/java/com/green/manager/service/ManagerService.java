@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.green.event.Vo.EventVo;
+import com.green.manager.vo.AdminEventVo;
 import com.green.manager.vo.ManagerVo;
 import com.green.manager.vo.StoreVo;
 import com.green.market.vo.FileVo;
@@ -49,10 +50,27 @@ public interface ManagerService {
 
 	void deleteUploadFile(HashMap<String, Object> map);
 	
-	List<EventVo> getEventList(HashMap<String, Object> map);
+	List<AdminEventVo> getEventList(HashMap<String, Object> map);
 
-	EventVo getEventBoard(HashMap<String, Object> map);
+	AdminEventVo getEventBoard(HashMap<String, Object> map);
+
+	void setEventWrite(HashMap<String, Object> map, HttpServletRequest request);
+
+	void setEventUpdate(HashMap<String, Object> map, HttpServletRequest request);
+
+	void setEventDelete(HashMap<String, Object> map);
+
+	List<AdminEventVo> getWinnerList(HashMap<String, Object> map);
+
+	AdminEventVo getWinnerBoard(HashMap<String, Object> map);
 	
+	void setWinnerWrite(HashMap<String, Object> map, HttpServletRequest request);
+
+	void setWinnerDelete(HashMap<String, Object> map);
+
+	void setWinnerUpdate(HashMap<String, Object> map, HttpServletRequest request);
+
+
 	
 
 

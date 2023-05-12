@@ -24,8 +24,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.green.event.Vo.EventVo;
 import com.green.manager.service.ManagerService;
+import com.green.manager.vo.AdminEventVo;
 import com.green.manager.vo.ManagerVo;
 import com.green.manager.vo.StoreVo;
 import com.green.market.vo.FileVo;
@@ -422,66 +422,421 @@ public class ManagerController {
     
     
     
-    // 이벤트-----------------------------------------------
+ 	
+ 	 // 이벤트-----------------------------------------------
     
-   // 게시물 목록 보기
- 	@RequestMapping("/EventList")
- 	public ModelAndView list(
- 			@RequestParam HashMap<String, Object> map
- 			) {
- 		
- 	// 메뉴 목록	
- 	List<MenuVo> menuList   = menuService.getMenuList();
- 	List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+    // 게시물 목록 보기
+  	@RequestMapping("/EventList")
+  	public ModelAndView list(
+  			@RequestParam HashMap<String, Object> map
+  			) {
+  		
+  	// 메뉴 목록	
+  	List<MenuVo> menuList   = menuService.getMenuList();
+  	List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+  	
+  	
+ 	// 게시글 목록 불러오기
+ 	List<AdminEventVo> eventList = managerService.getEventList(map);
  	
  	
-	// 게시글 목록 불러오기
-	List<EventVo> eventList = managerService.getEventList(map);
-	
-	//System.out.println("스토어목록" + storeList);
-	
-	ModelAndView mv = new ModelAndView();
-	mv.setViewName("admin/eventList");
-	mv.addObject("menuList", menuList);
-	mv.addObject("submenuList", submenuList);
-	mv.addObject("eventList", eventList);
-	
-	return mv;
-    
+ 	ModelAndView mv = new ModelAndView();
+ 	mv.setViewName("admin/adminEventList");
+ 	mv.addObject("menuList", menuList);
+ 	mv.addObject("submenuList", submenuList);
+ 	mv.addObject("eventList", eventList);
+ 	
+ 	return mv;
      
- 	
- 	}
- 	
-         // 내용 보기
- 		// /Event/View?submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}
- 		@RequestMapping("/EventView")
- 		public ModelAndView eventview(
- 				@RequestParam HashMap<String, Object> map
- 					) {
- 				
- 			// 보여줄 상품 상세 내용
- 			EventVo eventVo = managerService.getEventBoard(map);
+      
+  	
+  	}
+  	
+          // 내용 보기
+  		// /Event/View?submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}
+  		@RequestMapping("/EventView")
+  		public ModelAndView eventView(
+  				@RequestParam HashMap<String, Object> map
+  					) {
+  				
+  		// 메뉴이름
+  					String  submenu_id   =  (String) map.get("submenu_id");
+  					map.put("submenu_id", submenu_id);
+  					
+  					// 보여줄 게시글 내용
+  					AdminEventVo eventVo = managerService.getEventBoard(map);
+  					
+  					String content = eventVo.getBoard_cont();
+  					if(content == null) {
+  						eventVo.setBoard_cont("------------------------------내용이 없습니다------------------------------");
+  					} else {
+  						String cont = content.replace("\n", "<br>");
+  						eventVo.setBoard_cont(cont);
+  					}
+  					
+  					System.out.println( eventVo );
+  					
+  					List<MenuVo> menuList = menuService.getMenuList();
+  					List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+  					
+  					List<FileVo> fileList = managerService.getFileList(map);
+  					
+  					ModelAndView mv = new ModelAndView();
+  					mv.setViewName("admin/adminEventView");
+  					mv.addObject("map", map);
+  					mv.addObject("fileList", fileList);
+  					mv.addObject("vo", eventVo);
+  					
+  					return mv;
+  				}		 		
+  	     // 새글쓰기
+  		@RequestMapping("/EventWriteForm")
+  		public ModelAndView writeForm(
+  			@RequestParam HashMap<String, Object> map
+  			) {
+  			
+  			// 메뉴 이름 알아오기
+  			String submenu_id   = (String) map.get("submenu_id");
+  			String submenu_name = menuService.getMenuName(submenu_id);
+  			map.put("submenu_name", submenu_name);
+  			
+  			// 답글구분
+  			int      idx      = 0;
+  			AdminEventVo  eventVo  = null;
+  			if( map.get("board_idx") != null  ) {
+  				idx    =  Integer.parseInt( String.valueOf( map.get("board_idx") ) );
+  				eventVo  =  managerService.getEventBoard( map );
+  				String title  =  eventVo.getBoard_title();
+  				String cont   =  ">> " + eventVo.getBoard_cont().replace("\n", "\n >> ");
+  				cont         +=  "\n==============================\n"; 
+  				eventVo.setBoard_title( title );
+  				eventVo.setBoard_cont( cont );			
+  			}
+  			map.put("idx", idx);
+  			
+  			List<MenuVo> menuList = menuService.getMenuList();
+  			List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+  			
+  			
+  			ModelAndView mv = new ModelAndView();
+  			mv.setViewName("admin/adminEventWrite");
+  			mv.addObject("menuList", menuList);
+  			mv.addObject("submenuList", submenuList);
+  			mv.addObject("vo", eventVo);
+  			mv.addObject("map", map);
+  			
+  			return mv;
+  		}
+  		
+  		@RequestMapping("/EventWrite")
+  		public ModelAndView write(
+  				@RequestParam HashMap<String, Object> map,
+  				HttpServletRequest request
+  				) {
+  			
+  			
+  			String  submenu_id  =  (String) map.get("submenu_id");
+  			int     nowpage  =  Integer.parseInt(String.valueOf(map.get("nowpage")));
+  			// 글쓰기 및 파일저장
+  			managerService.setEventWrite(map, request);
+  			
+  			String fmt = "redirect:/Manager/EventList?submenu_id=%s&nowpage=%d";
+  			String loc = String.format(fmt, submenu_id, nowpage);
+  			
+  			ModelAndView mv = new ModelAndView();
+  			mv.setViewName(loc);
+  			
+  			return mv;
+  		}
+  		
+  	// 수정창
+  			
+  			@RequestMapping("/EventUpdateForm")
+  			public ModelAndView updateForm(
+  				@RequestParam	HashMap<String, Object>  map
+  					) {
+  				
+  				AdminEventVo eventVo = managerService.getEventBoard(map);
+  				
+  				String        submenu_id = (String) map.get("submenu_id");
+  				String        menuname   = menuService.getMenuName(submenu_id);
+  				map.put("submenu_id", submenu_id);
+  				
+  				String content = eventVo.getBoard_cont();
+  				if(content == null) {
+  					eventVo.setBoard_cont("");
+  				} else {
+  					content = content.replace("\n", "<br>");
+  					// content += "\n===============================\n";
+  					eventVo.setBoard_cont(content);
+  				}
+  				
+  				// fileList
+  				List<FileVo>  fileList =  managerService.getFileList( map ); 
+  				
+  				ModelAndView mv = new ModelAndView();
+  				mv.setViewName("admin/adminEventUpdate");
+  				mv.addObject("map", map);
+  				mv.addObject("fileList", fileList);
+  				mv.addObject("vo", eventVo);
+  				
+  				return mv;
+  			}
+  			
+  			// 게시글 수정
+  			@RequestMapping("/EventUpdate")
+  			public ModelAndView eventUpdate(
+  					@RequestParam  HashMap<String, Object> map,
+  					HttpServletRequest request
+  					) {
+  				
+  				managerService.setEventUpdate(map, request);
+  				
+  				System.out.println(map);
+  				
+  				int     board_idx   =  Integer.parseInt( String.valueOf(map.get("board_idx")) );  
+  				String  submenu_id  =  (String) map.get( "submenu_id" );
+  				String  nowpage     =  String.valueOf(map.get("nowpage"));
+  				String  fmt      	=  "redirect:/Manager/EventView?board_idx=%d&submenu_id=%s&nowpage=%s";
+  				String  loc      	=  String.format(fmt, board_idx, submenu_id, nowpage);
+  				
+  				ModelAndView mv = new ModelAndView();
+  				mv.setViewName(loc);
+  				mv.addObject("map", map);
+  				
+  				return mv;
+  			}
+  			
+  			// 게시글 삭제
+  			@RequestMapping("/EventDelete")
+  			public ModelAndView eventDelete(
+  				@RequestParam   HashMap<String,  Object>  map
+  					) {
+  				
+  				managerService.setEventDelete(map);
+  				
+  				String submenu_id  =  map.get("submenu_id").toString();
+  				String nowpage     = String.valueOf(map.get("nowpage"));
+  				String fmt 		   = "redirect:/Manager/EventList?submenu_id=%s&nowpage=%s";
+  				String loc 		   = String.format(fmt, submenu_id, nowpage);
+  				
+  				System.out.println(map);
+  				
+  				ModelAndView   mv  = new ModelAndView();
+  				mv.setViewName(loc);
+  				mv.addObject("map", map);
+
+  				return mv;
+  			}
+  			
+  	// 당첨자 -------------------------------------------
+  		// 게시물 목록 보기
+  		 	@RequestMapping("/WinnerList")
+  		 	public ModelAndView winnerList(
+  		 			@RequestParam HashMap<String, Object> map
+  		 			) {
+  		 		
+  		 	// 메뉴 목록	
+  		 	List<MenuVo> menuList   = menuService.getMenuList();
+  		 	List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+  		 	
+  		 	
+  			// 게시글 목록 불러오기
+  			List<AdminEventVo> winnerList = managerService.getWinnerList(map);
+  			
+  			//System.out.println("스토어목록" + storeList);
+  			
+  			ModelAndView mv = new ModelAndView();
+  			mv.setViewName("admin/adminWinnerList");
+  			mv.addObject("menuList", menuList);
+  			mv.addObject("submenuList", submenuList);
+  			mv.addObject("winnerList", winnerList);
+  			
+  			return mv;
+  		    
+  		     
+  		 	
+  		 	}
+  		 	
+  		 	@RequestMapping("/WinnerView")
+  	 		public ModelAndView winnerView(
+  	 				@RequestParam HashMap<String, Object> map
+  	 					) {
+  	 				
+  	 		// 메뉴이름
+  	 					String  submenu_id   =  (String) map.get("submenu_id");
+  	 					map.put("submenu_id", submenu_id);
+  	 					
+  	 					// 보여줄 게시글 내용
+  	 					AdminEventVo eventVo = managerService.getWinnerBoard(map);
+  	 					
+  	 					String content = eventVo.getBoard_cont();
+  	 					if(content == null) {
+  	 						eventVo.setBoard_cont("------------------------------내용이 없습니다------------------------------");
+  	 					} else {
+  	 						String cont = content.replace("\n", "<br>");
+  	 						eventVo.setBoard_cont(cont);
+  	 					}
+  	 					
+  	 					System.out.println( eventVo );
+  	 					
+  	 					List<MenuVo> menuList = menuService.getMenuList();
+  	 					List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+  	 					
+  	 					List<FileVo> fileList = managerService.getFileList(map);
+  	 					
+  	 					ModelAndView mv = new ModelAndView();
+  	 					mv.setViewName("admin/adminWinnerView");
+  	 					mv.addObject("map", map);
+  	 					mv.addObject("fileList", fileList);
+  	 					mv.addObject("vo", eventVo);
+  	 					
+  	 					return mv;
+  	 				}		 		
+  		 	
+  		 	 // 새글쓰기
+  	 		@RequestMapping("/WinnerWriteForm")
+  	 		public ModelAndView winnerWriteForm(
+  	 			@RequestParam HashMap<String, Object> map
+  	 			) {
+  	 			
+  	 			// 메뉴 이름 알아오기
+  	 			String submenu_id   = (String) map.get("submenu_id");
+  	 			String submenu_name = menuService.getMenuName(submenu_id);
+  	 			map.put("submenu_name", submenu_name);
+  	 			
+  	 			// 답글구분
+  	 			int      idx      = 0;
+  	 			AdminEventVo  eventVo  = null;
+  	 			if( map.get("board_idx") != null  ) {
+  	 				idx    =  Integer.parseInt( String.valueOf( map.get("board_idx") ) );
+  	 				eventVo  =  managerService.getWinnerBoard( map );
+  	 				String title  =  eventVo.getBoard_title();
+  	 				String cont   =  ">> " + eventVo.getBoard_cont().replace("\n", "\n >> ");
+  	 				cont         +=  "\n==============================\n"; 
+  	 				eventVo.setBoard_title( title );
+  	 				eventVo.setBoard_cont( cont );			
+  	 			}
+  	 			map.put("idx", idx);
+  	 			
+  	 			List<MenuVo> menuList = menuService.getMenuList();
+  	 			List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+  	 			
+  	 			
+  	 			ModelAndView mv = new ModelAndView();
+  	 			mv.setViewName("admin/adminWinnerWrite");
+  	 			mv.addObject("menuList", menuList);
+  	 			mv.addObject("submenuList", submenuList);
+  	 			mv.addObject("vo", eventVo);
+  	 			mv.addObject("map", map);
+  	 			
+  	 			return mv;
+  	 		}
+  	 		
+  	 		@RequestMapping("/WinnerWrite")
+  	 		public ModelAndView winnerWrite(
+  	 				@RequestParam HashMap<String, Object> map,
+  	 				HttpServletRequest request
+  	 				) {
+  	 			
+  	 			
+  	 			String  submenu_id  =  (String) map.get("submenu_id");
+  	 			int     nowpage  =  Integer.parseInt(String.valueOf(map.get("nowpage")));
+  	 			// 글쓰기 및 파일저장
+  	 			managerService.setWinnerWrite(map, request);
+  	 			
+  	 			String fmt = "redirect:/Manager/WinnerList?submenu_id=%s&nowpage=%d";
+  	 			String loc = String.format(fmt, submenu_id, nowpage);
+  	 			
+  	 			ModelAndView mv = new ModelAndView();
+  	 			mv.setViewName(loc);
+  	 			
+  	 			return mv;
+  	 		}
+  	 		
+ 	// 수정창
+  			
+  			@RequestMapping("/WinnerUpdateForm")
+  			public ModelAndView winnerUpdateForm(
+  				@RequestParam	HashMap<String, Object>  map
+  					) {
+  				
+  				AdminEventVo eventVo = managerService.getWinnerBoard(map);
+  				
+  				String        submenu_id = (String) map.get("submenu_id");
+  				String        menuname   = menuService.getMenuName(submenu_id);
+  				map.put("submenu_id", submenu_id);
+  				
+  				String content = eventVo.getBoard_cont();
+  				if(content == null) {
+  					eventVo.setBoard_cont("");
+  				} else {
+  					content = content.replace("\n", "<br>");
+  					// content += "\n===============================\n";
+  					eventVo.setBoard_cont(content);
+  				}
+  				
+  				// fileList
+  				List<FileVo>  fileList =  managerService.getFileList( map ); 
+  				
+  				ModelAndView mv = new ModelAndView();
+  				mv.setViewName("admin/adminWinnerUpdate");
+  				mv.addObject("map", map);
+  				mv.addObject("fileList", fileList);
+  				mv.addObject("vo", eventVo);
+  				
+  				return mv;
+  			}
+  			
+  			// 게시글 수정
+  			@RequestMapping("/WinnerUpdate")
+  			public ModelAndView winnerUpdate(
+  					@RequestParam  HashMap<String, Object> map,
+  					HttpServletRequest request
+  					) {
+  				
+  				managerService.setWinnerUpdate(map, request);
+  				
+  				System.out.println(map);
+  				
+  				int     board_idx   =  Integer.parseInt( String.valueOf(map.get("board_idx")) );  
+  				String  submenu_id  =  (String) map.get( "submenu_id" );
+  				String  nowpage     =  String.valueOf(map.get("nowpage"));
+  				String  fmt      	=  "redirect:/Manager/WinnerView?board_idx=%d&submenu_id=%s&nowpage=%s";
+  				String  loc      	=  String.format(fmt, board_idx, submenu_id, nowpage);
+  				
+  				ModelAndView mv = new ModelAndView();
+  				mv.setViewName(loc);
+  				mv.addObject("map", map);
+  				
+  				return mv;
+  			}
+  			
+  			// 게시글 삭제
+  			@RequestMapping("/WinnerDelete")
+  			public ModelAndView winnerDelete(
+  				@RequestParam   HashMap<String,  Object>  map
+  					) {
+  				
+  				managerService.setWinnerDelete(map);
+  				
+  				String submenu_id  =  map.get("submenu_id").toString();
+  				String nowpage     = String.valueOf(map.get("nowpage"));
+  				String fmt 		   = "redirect:/Manager/WinnerList?submenu_id=%s&nowpage=%s";
+  				String loc 		   = String.format(fmt, submenu_id, nowpage);
+  				
+  				System.out.println(map);
+  				
+  				ModelAndView   mv  = new ModelAndView();
+  				mv.setViewName(loc);
+  				mv.addObject("map", map);
+
+  				return mv;
+  			}
+  			
+  	 		
+  		
  			
- 			System.out.println("이벤트뷰 :" + map );
- 	    	
- 	    	String content = eventVo.getBoard_cont();
- 			if(content == null) {
- 				eventVo.setBoard_cont("------------------------------내용이 없습니다------------------------------");
- 			} else {
- 				String cont = content.replace("\n", "<br>");
- 				eventVo.setBoard_cont(cont);
- 			}
- 			
- 			List<FileVo> fileList = managerService.getFileList(map);
- 	    	
- 	    	ModelAndView mv = new ModelAndView();
- 			mv.setViewName("admin/eventView");
- 			mv.addObject("map", map);
- 			mv.addObject("fileList", fileList);
- 			mv.addObject("vo", eventVo);
- 			
- 	    	return mv;
- 			}
   //-------------------------------------------------------------------
   // 파일 처리
   	@RequestMapping(value  = "/download/{type}/{sfile:.+}",

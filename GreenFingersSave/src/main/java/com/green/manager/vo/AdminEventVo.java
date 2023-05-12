@@ -2,7 +2,7 @@ package com.green.manager.vo;
 
 import java.util.List;
 
-public class EventVo {
+public class AdminEventVo {
 
 	// Fields
 		private int 	board_idx;
@@ -36,8 +36,8 @@ public class EventVo {
 	private  int      pageendnum;       // 페이지 끝   번호
 	private  int      pagegrpnum;       // 페이지 그룹 번호.
 	
-	public EventVo() {}
-	public EventVo(int board_idx, String submenu_id, String board_title, String board_cont, int market_value,
+	public AdminEventVo() {}
+	public AdminEventVo(int board_idx, String submenu_id, String board_title, String board_cont, int market_value,
 			int usercode, int managercode, String board_regdate, int readcount, int bnum, int lvl, int step, int nref,
 			int delboard, int parent, String userid, String nickname, int nowpage, int pagecount, int totalcount,
 			int totalpagecount, int pagestartnum, int pageendnum, int pagegrpnum) {

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html>
@@ -9,120 +9,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@include file="/WEB-INF/include/comHead.jsp" %>
 <title>${ map.submenu_name } 게시판</title>
+</head>
 
-<style type="text/css">
-	* {
-		box-sizing: border-box;
-	} 
-	#title {
-		width: 100%;
-		text-align: center;
-		height: 100px;
-		background-color: orange;
-	}
-	#title p {
-		 line-height: 100px;
-	}
-	#aside {
-		float: left;
-		height: 800px;
-		background-color: white;
-		width: 15%;
-		padding: 10px;
-	}
-	#main {
-		width: 85%;
-		height: 800px;
-		float: left;
-		padding: 10px;
-		padding-right: 15%;
-		background-color: white;
-		text-align: center;
-	}
-	#tt {
-		text-align: left;
-	}
-	#img1{
-	    width: 60%;
-		height: 150px;
-	}
-	#cont {
-		background-color: #fff;
-		margin: 0 auto;
-		width: 90%;
-		border-collapse: collapse;
-	}
-	#cont th {
-		background-color: white;
-		border-top: 3px solid #C0C0C0;
-		border-bottom: 1px solid #C0C0C0;
-		padding: 20px;
-	}
-	#cont tr td {
-		padding: 15px;
-		border-bottom: 1px solid #C0C0C0;
-	} 
-	#cont tr:hover {
-		background-color: #D3D3D3;
-	}
-	#sidemenu {
-		padding: 30px;
-	}
-	#sidemenu li {
-		padding: 10px;
-	}
-	#sidemenu li a {
-		position: relative;
-		display: block;
-		font-size: 20px;
-	}
-	#sidemenu li a:after {
-		content: "";
-		position: absolute;
-		left: 0;
-		bottom: 24px;
-		width: 0px;
-		height: 3px;
-		margin: 5px 0 0;
-		transition: all 0.2s ease-in-out;
-		transition-duration: 0.3s;
-		opacity: 0;
-		background-color: #2E8B57;
-	}
-	#sidemenu li a:hover:after {
-		width: 100%;
-		opacity: 1;
-	}
-	.right {
-		text-align: right;
-	}
-	.as {
-		position: relative;
-	}
-	.as:after {
-		content: "";
-		position: absolute;
-		left: 0;
-		bottom: -10px;
-		width: 0px;
-		height: 2px;
-		margin: 5px 0 0;
-		transition: all 0.2s ease-in-out;
-		transition-duration: 0.3s;
-		opacity: 0;
-		background-color: #8fd3f4;
-	}
-	.as:hover:after {
-		width: 100%;
- 		opacity: 1;
-	}
-	
-	
-	
-	
+<style>
 
-</style>
-
+.right{
+	width:90%;
+	margin:0 auto 20px auto;
+}
+.tableList tr td:hover {
+	background-color: #D3D3D3;
+}
 </style>
 
 </head>
@@ -136,20 +33,20 @@
 			<%@include file="/WEB-INF/include/header2.jsp" %>
 		</c:otherwise>
 	</c:choose>
-     <div id="title">
-     	<p style="font-size: 40px; font-weight: bold;">당첨자</p>
-     </div>
-    <div id="aside">
-     	<ul id="sidemenu">
-     	     <a href="/Manager/EventList?menu_id=${ map.menu_id }&submenu_id=SUBMENU18&nowpage=1" >이벤트</a>  <br>  	     	  
-     	     <a href="/Manager/WinnerList?menu_id=${ map.menu_id }&submenu_id=SUBMENU19&nowpage=1">당첨자</a>   		
-     	</ul>
-     </div>
+   
+	 <%@include file="/WEB-INF/include/subBanner.jsp" %>
+	 
+	<div id="wrapper"> 
+	
+	<div id="aside">
+		<ul id="sidemenu">
+     	<li class="sidemenuTitle">SIDEMENU</li>
+			<li><a href="/Event/EventList?menu_id=${ map.menu_id }&submenu_id=SUBMENU18&nowpage=1" >이벤트</a></li>
+			<li> <a href="/Winner/WinnerList?menu_id=${ map.menu_id }&submenu_id=SUBMENU19&nowpage=1">이벤트 당첨자</a></li>
+		</ul>
+	</div>
      <div id="main">
 		<h2 style="font-size: 24px;">${ map.submenu_name }</h2>     
-     <div class="right" style="padding: 20px; padding-right: 80px;">
-		<a class="as" style="font-size: 20px;" href="/Winner/WriteForm?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
-	 </div>
 		<table id="cont">
 					<tr>
 				<th colspan="6"><a href="http://localhost:9090/Event/EventList?submenu_id=SUBMENU18&nowpage=1">이벤트로 다시 가고싶으면 눌러봐</a></th>
@@ -190,16 +87,6 @@
          
             <b style="display:inline-block; width:${winnerVo.lvl*20}px"></b> 
             
-            <c:choose>
-              <c:when test="${ winnerVo.delboard eq 0 }">
-                <a style="font-weight: bold;" href="/Event/View?menu_id=${ map.menu_id }&submenu_id=${winnerVo.submenu_id}&board_idx=${winnerVo.board_idx}&nowpage=${map.nowpage}">
-              	  [답글] ${ winnerVo.board_title }
-         	    </a>
-         	  </c:when>
-         	  <c:otherwise>
-         	     [답글] <s>삭제된 글입니다</s>
-         	  </c:otherwise>
-         	</c:choose>
          	
          </c:otherwise>
        </c:choose>
@@ -216,23 +103,13 @@
      <!-- 조회수 -->
      ${ winnerVo.readcount }
      </td>
-     <%-- <td>
-     <!-- 첨부파일수 -->
-     <c:choose>
-       <c:when test="${ boardVo.filescount eq 0 }">
-         &nbsp;
-       </c:when>
-       <c:otherwise>
-         ${ boardVo.filescount }         
-       </c:otherwise>
-     </c:choose>
-     </td> --%>
+ 
   </tr>  
   </c:forEach>
 		</table>
-		<br />
 	    	<%@include file="/WEB-INF/include/winnerPaging.jsp" %>
      </div>
-</body>
+     </div>
 <%@include file="/WEB-INF/include/footer.jsp" %>
+</body>
 </html>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.green.board.vo.BoardVo;
 import com.green.event.Vo.EventVo;
 import com.green.manager.dao.ManagerDao;
+import com.green.manager.vo.AdminEventVo;
 import com.green.manager.vo.StoreVo;
 import com.green.market.vo.FileVo;
 import com.green.market.vo.MarketVo;
@@ -182,32 +183,155 @@ public class ManagerDaoImpl implements ManagerDao {
 
     // 이벤트--------------------------------------------------------------이벤트
 	
-	@Override
-	public List<EventVo> getEventList(
-			HashMap<String, Object> map
-			) {
-	/*
-		// 전체 자료수 조회
-		int totalcount = sqlSession.selectOne("Manager.GetTotalCount", map);
-		map.put("totalcount", totalcount);
-		*/
-		
-		
-		// 메뉴 목록 조회 (페이징)
-		List<EventVo> eventList = sqlSession.selectList("Manager.EventList", map);
-		
-		
-		return eventList;
-	}
+	  // 이벤트--------------------------------------------------------------이벤트
 	
-	@Override
-	public EventVo getEventBoard(HashMap<String, Object> map) {
+		@Override
+		public List<AdminEventVo> getEventList(
+				HashMap<String, Object> map
+				) {
+		/*
+			// 전체 자료수 조회
+			int totalcount = sqlSession.selectOne("Manager.GetTotalCount", map);
+			map.put("totalcount", totalcount);
+			*/
+			
+			
+			// 메뉴 목록 조회 (페이징)
+			List<AdminEventVo> eventList = sqlSession.selectList("Manager.EventList", map);
+			
+			
+			return eventList;
+		}
 
-	
-		EventVo vo = sqlSession.selectOne("Manager.GetBoard", map);
+		@Override
+		public AdminEventVo getEventBoard(HashMap<String, Object> map) {
+			AdminEventVo vo = sqlSession.selectOne("Manager.GetEventBoard", map);
+			
+			return vo;
+		}
+
+		@Override
+		public void setEventWrite(HashMap<String, Object> map) {
+			// db 정보 저장
+			// Board  에 저장
+			System.out.println(map);
+			int  bnum = Integer.parseInt( (String) map.get("bnum") );
+			if ( bnum == 0 ) {
+				sqlSession.insert("Manager.AdminEventInsert", map); // 새글
+			} else {
+				sqlSession.update("Manager.StepUpdate", map); // 새글			
+				sqlSession.insert("Manager.EventReply", map); // 새글			
+			}
+			
+			// Files  에 저장
+			List<FileVo>  fileList =  (List<FileVo>) map.get("fileList");
+			if( fileList.size() != 0  )
+				sqlSession.insert("Manager.FileInsert", map);
+			
+		}
 		
-		return vo;
-	}
+		@Override
+		public void setEventUpdate(HashMap<String, Object> map) {
+
+			System.out.println(map);
+			// Board 정보 수정
+			sqlSession.update("Manager.EventUpdate", map);
+			
+			// File 정보 수정
+			List<FileVo>  fileList  =  (List<FileVo>) map.get("fileList");
+			if( fileList.size() > 0 )
+				sqlSession.insert("Manager.FileUpdate", map );
+		}
+
+		@Override
+		public void setEventDelete(HashMap<String, Object> map) {
+			
+			sqlSession.delete( "Manager.BoardDelNum", map); // delboard를 1로 만듬
+			int  childCnt = sqlSession.selectOne("Manager.ChildCnt", map); // 자식있는지 확인
+			AdminEventVo vo = sqlSession.selectOne("Manager.GetEventBoard", map);
+			
+			List<FileVo> fileList = getFileList(map);
+			
+			System.out.println("파일리스트" + fileList);
+			System.out.println("맵" + map);
+			
+			map.put("fileList", fileList);
+			if(  childCnt == 0  ) { // 자식이 없는경우 삭제
+				sqlSession.delete("Manager.FileDelete", map);
+				sqlSession.delete("Manager.EventDelete", map);
+			}
+			
+
+		}
+
+		@Override
+		public List<AdminEventVo> getWinnerList(HashMap<String, Object> map) {
+	     List<AdminEventVo> winnerList = sqlSession.selectList("Manager.WinnerList", map);
+			
+			
+			return winnerList;
+		}
+		
+		@Override
+		public AdminEventVo getWinnerBoard(HashMap<String, Object> map) {
+			AdminEventVo vo = sqlSession.selectOne("Manager.GetEventBoard", map);
+			
+			return vo;
+		}
+		
+		@Override
+		public void setWinnerWrite(HashMap<String, Object> map) {
+			// db 정보 저장
+			// Board  에 저장
+			System.out.println(map);
+			int  bnum = Integer.parseInt( (String) map.get("bnum") );
+			if ( bnum == 0 ) {
+				sqlSession.insert("Manager.AdminWinnerInsert", map); // 새글
+			} else {
+				sqlSession.update("Manager.StepUpdate", map); // 새글			
+				sqlSession.insert("Manager.EventReply", map); // 새글			
+			}
+			
+			// Files  에 저장
+			List<FileVo>  fileList =  (List<FileVo>) map.get("fileList");
+			if( fileList.size() != 0  )
+				sqlSession.insert("Manager.FileInsert", map);
+			
+		}
+		
+		@Override
+		public void setWinnerUpdate(HashMap<String, Object> map) {
+
+			System.out.println(map);
+			// Board 정보 수정
+			sqlSession.update("Manager.EventUpdate", map);
+			
+			// File 정보 수정
+			List<FileVo>  fileList  =  (List<FileVo>) map.get("fileList");
+			if( fileList.size() > 0 )
+				sqlSession.insert("Manager.FileUpdate", map );
+		}
+
+		@Override
+		public void setWinnerDelete(HashMap<String, Object> map) {
+			
+			sqlSession.delete( "Manager.BoardDelNum", map); // delboard를 1로 만듬
+			int  childCnt = sqlSession.selectOne("Manager.ChildCnt", map); // 자식있는지 확인
+			AdminEventVo vo = sqlSession.selectOne("Manager.GetEventBoard", map);
+			
+			List<FileVo> fileList = getFileList(map);
+			
+			System.out.println("파일리스트" + fileList);
+			System.out.println("맵" + map);
+			
+			map.put("fileList", fileList);
+			if(  childCnt == 0  ) { // 자식이 없는경우 삭제
+				sqlSession.delete("Manager.FileDelete", map);
+				sqlSession.delete("Manager.EventDelete", map);
+			}
+			
+
+		}
 
 
 }

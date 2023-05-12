@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 
 import com.green.board.service.impl.BoardFile;
 import com.green.event.Vo.EventVo;
+import com.green.event.service.impl.EventFile;
 import com.green.event.service.impl.EventPaging;
 import com.green.manager.dao.ManagerDao;
 import com.green.manager.service.ManagerService;
+import com.green.manager.vo.AdminEventVo;
 import com.green.manager.vo.ManagerVo;
 import com.green.manager.vo.StoreVo;
 import com.green.market.service.impl.MarketFile;
@@ -182,46 +184,125 @@ public class ManagerServiceImpl implements ManagerService {
 	
 	
 
-	@Override
-	public List<EventVo> getEventList(
-			HashMap<String, Object> map
-			) {
-		// 필요한 자료를 조회( rows)
+	// 이벤트 -------------------------------------------
 	
+		@Override
+		public List<AdminEventVo> getEventList(
+				HashMap<String, Object> map
+				) {
+			// 필요한 자료를 조회( rows)
 		
-		List<EventVo>  eventList = managerDao.getEventList(map);
-	/*	
-		int  pagetotalcount =  10;  // paging.jsp 페이지 번호 출력 갯수
-				
-		int        nowpage     =  Integer.parseInt( String.valueOf( map.get("nowpage") ) );    // 현재 페이지
-		int        pagecount   =  Integer.parseInt( String.valueOf( map.get("pagecount")) );  // 한페이지에 보여줄 자료수
+			
+			List<AdminEventVo>  eventList = managerDao.getEventList(map);
+		/*	
+			int  pagetotalcount =  10;  // paging.jsp 페이지 번호 출력 갯수
+					
+			int        nowpage     =  Integer.parseInt( String.valueOf( map.get("nowpage") ) );    // 현재 페이지
+			int        pagecount   =  Integer.parseInt( String.valueOf( map.get("pagecount")) );  // 한페이지에 보여줄 자료수
+			
+			// menu_id 에 해당되는 전체 자료수 - pdsDaoImpl 가 돌려준 map 에 저장
+			int        totalcount  =  Integer.parseInt( String.valueOf( map.get("totalcount") ) );   
 		
-		// menu_id 에 해당되는 전체 자료수 - pdsDaoImpl 가 돌려준 map 에 저장
-		int        totalcount  =  Integer.parseInt( String.valueOf( map.get("totalcount") ) );   
-	
-		
-		
-		String     submenu_id  =  String.valueOf(map.get("submenu_id")); 
-		EventPaging   mp      =  new EventPaging(
-			submenu_id, nowpage, pagecount, totalcount, pagetotalcount);
+			
+			
+			String     submenu_id  =  String.valueOf(map.get("submenu_id")); 
+			EventPaging   mp      =  new EventPaging(
+				submenu_id, nowpage, pagecount, totalcount, pagetotalcount);
 
-		EventVo   eventVo  = mp.getPdsPagingInfo();
-		*/
-		// map.put("eventVo", eventVo);
-		
-		
-		return     eventList;
+			EventVo   eventVo  = mp.getPdsPagingInfo();
+			*/
+			// map.put("eventVo", eventVo);
+			
+			
+			return     eventList;
 
-	}
-	
-	@Override
-	public EventVo getEventBoard(HashMap<String, Object> map) {
-
-		EventVo vo = managerDao.getEventBoard(map);
+		}
 		
-		return vo;
-	}
-	
+		@Override
+		public AdminEventVo getEventBoard(HashMap<String, Object> map) {
+
+			AdminEventVo vo = managerDao.getEventBoard(map);
+			
+			return vo;
+		}
+
+		@Override
+		public void setEventWrite(HashMap<String, Object> map, HttpServletRequest request) {
+			// request 처리
+			EventFile.save(map, request);
+			
+			// 넘어온 정보 저장
+			managerDao.setEventWrite(map);
+			
+		}
+
+		@Override
+		public void setEventUpdate(HashMap<String, Object> map, HttpServletRequest request) {
+			// 넘어온 파일 저장
+					EventFile.save(map, request);
+					
+					// db 정보 저장
+					managerDao.setEventUpdate(map);
+			
+		}
+		
+		@Override
+		public void setEventDelete(HashMap<String, Object> map) {
+
+			// db 제거
+			managerDao.setEventDelete(map);
+			
+		}
+
+		
+		// 당첨자 -----------------------
+		
+		@Override
+		public List<AdminEventVo> getWinnerList(HashMap<String, Object> map) {
+			
+			List<AdminEventVo>  winnerList = managerDao.getWinnerList(map);
+			
+			return winnerList;
+		}
+		
+		@Override
+		public AdminEventVo getWinnerBoard(HashMap<String, Object> map) {
+
+			AdminEventVo vo = managerDao.getWinnerBoard(map);
+			
+			return vo;
+		}
+		
+		@Override
+		public void setWinnerWrite(HashMap<String, Object> map, HttpServletRequest request) {
+			// request 처리
+			EventFile.save(map, request);
+			
+			// 넘어온 정보 저장
+			managerDao.setWinnerWrite(map);
+			
+		}
+		
+		@Override
+		public void setWinnerUpdate(HashMap<String, Object> map, HttpServletRequest request) {
+			// 넘어온 파일 저장
+					EventFile.save(map, request);
+					
+					// db 정보 저장
+					managerDao.setWinnerUpdate(map);
+			
+		}
+		
+		@Override
+		public void setWinnerDelete(HashMap<String, Object> map) {
+
+			// db 제거
+			managerDao.setWinnerDelete(map);
+			
+		}
+
+
+
 
 	
 

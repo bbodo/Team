@@ -410,17 +410,15 @@
    <!-- 이벤트 리스트 가져오기  --> 
     	<!-- 페이징된 리스트 가져오기 -->
 	<select id="EventList"
-			resultType="com.green.manager.vo.EventVo">
+			resultType="com.green.manager.vo.AdminEventVo">
 	
-	SELECT * FROM
-	(
-		SELECT
+	SELECT
 			ROW_NUMBER() OVER(ORDER BY NREF DESC, STEP ASC)  RNUM,
 			B.BOARD_IDX,
 			B.SUBMENU_ID,
 			B.BOARD_TITLE,
 			B.BOARD_CONT,
-			B.USERCODE,
+			B.MARKET_VALUE,
 			TO_CHAR(B.BOARD_REGDATE, 'YYYY-MM-DD HH24:MI:SS') BOARD_REGDATE,
 			B.READCOUNT,
 			B.BNUM,
@@ -428,23 +426,100 @@
 			B.STEP,
 			B.NREF,
 			B.DELBOARD,
-			B.PARENT,
-			M.NICKNAME
+			B.PARENT
 		FROM
 			BOARD B
-		JOIN 
-			MEMBER M
-		ON 
-			B.USERCODE = M.USERCODE
-		<if test="menu_id != null or menu_id !=''">
-        WHERE     
-          SUBMENU_ID  =  'SUBMENU18'
-       </if>    
-	)  
-	ORDER BY
-		 NREF  DESC, STEP   ASC   
+        WHERE 
+            SUBMENU_ID  =  'SUBMENU18'
 		
 	</select>
+	
+	<select   id             = "GetEventBoard"
+	          resultType     = "com.green.manager.vo.AdminEventVo">
+		
+		SELECT
+			ROW_NUMBER() OVER(ORDER BY NREF DESC, STEP ASC)  RNUM,
+			B.BOARD_IDX,
+			B.SUBMENU_ID,
+			B.BOARD_TITLE,
+			B.BOARD_CONT,
+			B.MARKET_VALUE,
+			TO_CHAR(B.BOARD_REGDATE, 'YYYY-MM-DD HH24:MI:SS') BOARD_REGDATE,
+			B.READCOUNT,
+			B.BNUM,
+			B.LVL,
+			B.STEP,
+			B.NREF,
+			B.DELBOARD,
+			B.PARENT
+		FROM
+			BOARD B        
+		WHERE
+			BOARD_IDX = #{ board_idx }
+
+	</select> 
+	
+	<insert id="AdminEventInsert">
+	
+		INSERT INTO
+			BOARD
+			(
+				BOARD_IDX,
+				SUBMENU_ID,
+				BOARD_TITLE,
+				BOARD_CONT,
+				USERCODE,
+				BNUM,
+				NREF
+			)
+		VALUES
+			(
+				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
+				#{ submenu_id },
+				#{ board_title },
+				#{ board_cont },
+				0,
+				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
+				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD)
+			)
+	</insert>
+	
+	<update   id = "EventUpdate">
+       
+		UPDATE
+			BOARD
+		SET
+			BOARD_TITLE  = #{ board_title },
+        	BOARD_CONT   = #{ board_cont  }
+		WHERE
+			BOARD_IDX    = #{ board_idx }    
+       
+    </update>
+    
+     <!-- 게시글 삭제 -->
+   <delete   id="EventDelete">
+   
+		DELETE
+		FROM
+			BOARD
+		WHERE
+			BOARD_IDX  =  #{ board_idx }
+       
+   </delete>
+
+	<!--  게시글 삭제 : delnum = 1 -->
+   <delete  id="BoardDelNum">
+       
+		UPDATE
+			BOARD
+		SET
+			DELBOARD = 1
+		WHERE
+			BOARD_IDX    = #{board_idx}
+       
+   </delete>
+   
+    
 	
 
     
@@ -463,6 +538,80 @@
 	    </if>
 	    
 	</select>
+	
+	  <!-- 자식이 있는지 확인 -->
+   <select  id="ChildCnt"
+            resultType = "int" >
+      
+       SELECT
+          CASE
+            WHEN
+              EXISTS (
+                 SELECT
+                 	PARENT
+                 FROM
+                 	BOARD
+                 WHERE
+                 	PARENT = #{board_idx}
+              ) 
+             THEN  1
+             ELSE  0
+          END
+        FROM DUAL        
+      
+   </select>
+	
+	<select id="WinnerList"
+			resultType="com.green.manager.vo.AdminEventVo">
+	
+	SELECT
+			ROW_NUMBER() OVER(ORDER BY NREF DESC, STEP ASC)  RNUM,
+			B.BOARD_IDX,
+			B.SUBMENU_ID,
+			B.BOARD_TITLE,
+			B.BOARD_CONT,
+			B.MARKET_VALUE,
+			TO_CHAR(B.BOARD_REGDATE, 'YYYY-MM-DD HH24:MI:SS') BOARD_REGDATE,
+			B.READCOUNT,
+			B.BNUM,
+			B.LVL,
+			B.STEP,
+			B.NREF,
+			B.DELBOARD,
+			B.PARENT
+		FROM
+			BOARD B
+        WHERE 
+            SUBMENU_ID  =  'SUBMENU19'
+		
+	</select>
+	
+	<insert id="AdminWinnerInsert">
+	
+		INSERT INTO
+			BOARD
+			(
+				BOARD_IDX,
+				SUBMENU_ID,
+				BOARD_TITLE,
+				BOARD_CONT,
+				USERCODE,
+				BNUM,
+				NREF
+			)
+		VALUES
+			(
+				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
+				#{ submenu_id },
+				#{ board_title },
+				#{ board_cont },
+				0,
+				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
+				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD)
+			)
+	</insert>
+	
+	
 </mapper>
 
 
