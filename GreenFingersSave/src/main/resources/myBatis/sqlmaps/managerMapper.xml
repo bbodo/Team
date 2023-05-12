@@ -405,8 +405,62 @@
        
    </delete> 
    
-   
+   <!-- 이벤트 리스트 가져오기  --> 
+    	<!-- 페이징된 리스트 가져오기 -->
+	<select id="EventList"
+			resultType="com.green.manager.vo.EventVo">
+	
+	SELECT * FROM
+	(
+		SELECT
+			ROW_NUMBER() OVER(ORDER BY NREF DESC, STEP ASC)  RNUM,
+			B.BOARD_IDX,
+			B.SUBMENU_ID,
+			B.BOARD_TITLE,
+			B.BOARD_CONT,
+			B.USERCODE,
+			TO_CHAR(B.BOARD_REGDATE, 'YYYY-MM-DD HH24:MI:SS') BOARD_REGDATE,
+			B.READCOUNT,
+			B.BNUM,
+			B.LVL,
+			B.STEP,
+			B.NREF,
+			B.DELBOARD,
+			B.PARENT,
+			M.NICKNAME
+		FROM
+			BOARD B
+		JOIN 
+			MEMBER M
+		ON 
+			B.USERCODE = M.USERCODE
+		<if test="menu_id != null or menu_id !=''">
+        WHERE     
+          SUBMENU_ID  =  'SUBMENU18'
+       </if>    
+	)  
+	ORDER BY
+		 NREF  DESC, STEP   ASC   
+		
+	</select>
+	
+
     
+    	<!-- 전체 자료수 조회 -->
+	<select   id             = "GetTotalCount"
+	          parameterType  = "hashmap"
+	          resultType     = "_int">
+	          
+		SELECT
+	    	COUNT( BOARD_IDX )  AS   TOTALCOUNT
+		FROM   
+	    	BOARD
+	    <if test="submenu_id != null or submenu_id != ''"> 
+		WHERE
+			SUBMENU_ID = 'SUBMENU18'
+	    </if>
+	    
+	</select>
 </mapper>
 
 

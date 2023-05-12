@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.green.event.Vo.EventVo;
 import com.green.manager.service.ManagerService;
 import com.green.manager.vo.ManagerVo;
 import com.green.manager.vo.StoreVo;
@@ -418,7 +419,69 @@ public class ManagerController {
 
 		return mv;	
     }
+    
+    
+    
+    // 이벤트-----------------------------------------------
+    
+   // 게시물 목록 보기
+ 	@RequestMapping("/EventList")
+ 	public ModelAndView list(
+ 			@RequestParam HashMap<String, Object> map
+ 			) {
+ 		
+ 	// 메뉴 목록	
+ 	List<MenuVo> menuList   = menuService.getMenuList();
+ 	List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+ 	
+ 	
+	// 게시글 목록 불러오기
+	List<EventVo> eventList = managerService.getEventList(map);
 	
+	//System.out.println("스토어목록" + storeList);
+	
+	ModelAndView mv = new ModelAndView();
+	mv.setViewName("admin/eventList");
+	mv.addObject("menuList", menuList);
+	mv.addObject("submenuList", submenuList);
+	mv.addObject("eventList", eventList);
+	
+	return mv;
+    
+     
+ 	
+ 	}
+ 	
+         // 내용 보기
+ 		// /Event/View?submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}
+ 		@RequestMapping("/EventView")
+ 		public ModelAndView eventview(
+ 				@RequestParam HashMap<String, Object> map
+ 					) {
+ 				
+ 			// 보여줄 상품 상세 내용
+ 			EventVo eventVo = managerService.getEventBoard(map);
+ 			
+ 			System.out.println("이벤트뷰 :" + map );
+ 	    	
+ 	    	String content = eventVo.getBoard_cont();
+ 			if(content == null) {
+ 				eventVo.setBoard_cont("------------------------------내용이 없습니다------------------------------");
+ 			} else {
+ 				String cont = content.replace("\n", "<br>");
+ 				eventVo.setBoard_cont(cont);
+ 			}
+ 			
+ 			List<FileVo> fileList = managerService.getFileList(map);
+ 	    	
+ 	    	ModelAndView mv = new ModelAndView();
+ 			mv.setViewName("admin/eventView");
+ 			mv.addObject("map", map);
+ 			mv.addObject("fileList", fileList);
+ 			mv.addObject("vo", eventVo);
+ 			
+ 	    	return mv;
+ 			}
   //-------------------------------------------------------------------
   // 파일 처리
   	@RequestMapping(value  = "/download/{type}/{sfile:.+}",

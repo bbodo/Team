@@ -3,6 +3,7 @@ package com.green.manager.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import com.green.event.Vo.EventVo;
 import com.green.manager.vo.ManagerVo;
 import com.green.manager.vo.StoreVo;
 import com.green.market.vo.FileVo;
@@ -45,6 +46,10 @@ public interface ManagerDao {
 	void deleteStore(HashMap<String, Object> map);
 
 	void deleteUploadFile(HashMap<String, Object> map);
+
+	List<EventVo> getEventList(HashMap<String, Object> map);
+
+	EventVo getEventBoard(HashMap<String, Object> map);
 
 
 

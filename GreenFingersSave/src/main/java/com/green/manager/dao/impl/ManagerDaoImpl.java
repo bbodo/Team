@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.green.board.vo.BoardVo;
+import com.green.event.Vo.EventVo;
 import com.green.manager.dao.ManagerDao;
 import com.green.manager.vo.StoreVo;
 import com.green.market.vo.FileVo;
@@ -177,6 +178,35 @@ public class ManagerDaoImpl implements ManagerDao {
 	public void deleteUploadFile(HashMap<String, Object> map) {
 		
 		sqlSession.delete("Manager.DeleteUploadFile", map);
+	}
+
+    // 이벤트--------------------------------------------------------------이벤트
+	
+	@Override
+	public List<EventVo> getEventList(
+			HashMap<String, Object> map
+			) {
+	/*
+		// 전체 자료수 조회
+		int totalcount = sqlSession.selectOne("Manager.GetTotalCount", map);
+		map.put("totalcount", totalcount);
+		*/
+		
+		
+		// 메뉴 목록 조회 (페이징)
+		List<EventVo> eventList = sqlSession.selectList("Manager.EventList", map);
+		
+		
+		return eventList;
+	}
+	
+	@Override
+	public EventVo getEventBoard(HashMap<String, Object> map) {
+
+	
+		EventVo vo = sqlSession.selectOne("Manager.GetBoard", map);
+		
+		return vo;
 	}
 
 
