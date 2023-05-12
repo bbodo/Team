@@ -69,7 +69,7 @@ public class UserController {
 		ManagerVo mVo = userService.getManager(map);
 		
 		if( mVo != null) {
-			session.setAttribute("login", mVo);
+			session.setAttribute("managerlogin", mVo);
 			mv.setViewName("redirect:/Manager/Home");
 		} else {
 			if( vo != null) {

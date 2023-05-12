@@ -17,16 +17,13 @@
 
 h2 {text-align : center}
 div{text-align : center}
- table {margin  : auto; }  
+table {margin  : auto; }  
 
 #title {
 		width: 100%;
 		text-align: center;
-		height: 100px;
-		background-color: limegreen;
-	}
-#title p { font-size: 20px; font-weight: bolder;
-		 line-height: 100px;
+		height: 200px;
+		background-color: white;
 	}
 #id {
   width:300px;
@@ -86,8 +83,9 @@ div{text-align : center}
 </script>
 </head>
 <body>
+	<div id="wrapper">
      <div id="title">
-     	<p> 반려식물 로그인 </p>
+		<img src="/img/common/logo.png" alt="logo" />
      </div>
 	<div id= "main">	
 	<h2> 로그인 </h2>
@@ -124,6 +122,7 @@ div{text-align : center}
 			<%-- <a href="/User/WriteForm?uri=${uri}">회원가입</a> --%>
 			<a href="/User/FindForm">아이디 / 비밀번호 찾기</a> <br />
 			<a href="javascript:gouri('${uri}')">회원가입</a>
+	</div>
 	</div>
 </body>
 	

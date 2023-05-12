@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.green.menus.service.MenuService;
+import com.green.menus.vo.MenuVo;
+import com.green.menus.vo.SubmenuVo;
 import com.green.myPage.service.MyPageService;
 import com.green.myPage.vo.MyPageVo;
 import com.green.user.vo.UserVo;
@@ -172,9 +174,14 @@ public class MyPageController {
 		
 		System.out.println("dfhuahf" + userVo);
 		
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mypage/myList");
 		mv.addObject("userVo", userVo);
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		mv.addObject("sendPagePaingList", sendPagePaingList);
 		mv.addObject("recPagePaingList", recPagePaingList);
 		mv.addObject("sendPointList", sendPointList);

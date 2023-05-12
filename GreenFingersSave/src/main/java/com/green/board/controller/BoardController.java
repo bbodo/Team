@@ -75,9 +75,6 @@ public class BoardController {
 		List<MenuVo> menuList = menuService.getMenuList();
 		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
 		
-		System.out.println(menuList);
-		System.out.println(submenuList);
-		
 		map.put("submenu_name", submenu_name);
 
 		ModelAndView mv = new ModelAndView();
