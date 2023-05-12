@@ -256,6 +256,7 @@
 			BOARD_TITLE,
 			BOARD_CONT,
 			MARKET_VALUE,
+			USERCODE,
 			MANAGERCODE,
 			BNUM,
 			NREF
@@ -267,6 +268,7 @@
 			#{ board_title },
 			#{ board_cont },
 			#{ market_value },
+			'0',
 			'1',
 			(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
 			(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD)

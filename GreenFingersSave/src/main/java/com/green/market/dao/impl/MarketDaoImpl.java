@@ -127,4 +127,15 @@ public class MarketDaoImpl implements MarketDao {
 		
 	}
 
+	// 포인트 스토어 상품 결제
+	@Override
+	public void productPay(HashMap<String, Object> map) {
+
+		// 거래 내역 추가
+		sqlSession.insert("Market.TransactionInsert", map);
+		
+		// 포인트 차감
+		/* sqlSession.update("Market.PointUpdate", map); */
+	}
+
 }

@@ -398,11 +398,13 @@
 			   <td>
 			     <select name="amount">
 					<option value="">최대 3개 제한</option>
-					<option value="1개">1</option>
-					<option value="2개">2</option>
-					<option value="3개">3</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
 			     </select>
+			     <a href="/Market/PointPayForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&userid=${sessionScope.login.userid}">
 			     <button>구매</button>
+			     </a>
 			   </td>
 			</tr>
 			</c:when>
@@ -476,7 +478,8 @@
 			<ul id="commentList"></ul>
 			</form>
 		</div>
-     </div>
+     </div> <!--  main end -->
+     
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

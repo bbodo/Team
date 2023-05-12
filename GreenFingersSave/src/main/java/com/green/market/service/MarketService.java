@@ -26,8 +26,7 @@ public interface MarketService {
 
 	void setDelete(HashMap<String, Object> map);
 
+	void productPay(HashMap<String, Object> map);
+
 	
-	// 이미지 추가 
-	// public static final String IMAGE_REPO="D:/springpj/image_repo";
-	// public String saveFile(MultipartFile file);
 }

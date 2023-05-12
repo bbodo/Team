@@ -22,4 +22,6 @@ public interface MarketDao {
 
 	void setDelete(HashMap<String, Object> map);
 
+	void productPay(HashMap<String, Object> map);
+
 }

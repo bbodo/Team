@@ -313,6 +313,32 @@
         FROM DUAL        
       
    </select>
+   
+   
+   <!-- 스토어 거래 내역 추가 -->
+   <insert id="TransactionInsert">
+   
+   	INSERT INTO
+		 TRANSACTION
+		  (
+		  TRANSACTION_IDX
+		, TRANSACTION_SU
+		, USERCODE
+		, BOARD_IDX
+		)
+		VALUES
+		(
+		  (SELECT  NVL( MAX(TRANSACTION_IDX), 0 ) + 1 FROM TRANSACTION)
+		, #{ transaction_su }
+		, #{ usercode }
+		, #{ board_idx }
+		)
+   
+   </insert>
+   
+   
+   <!-- 포인트 차감 업데이트  -->
+
 
 </mapper>
 

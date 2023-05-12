@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,12 +25,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.green.board.service.BoardService;
 import com.green.market.service.MarketService;
 import com.green.market.vo.FileVo;
 import com.green.market.vo.MarketVo;
 import com.green.menus.service.MenuService;
 import com.green.menus.vo.MenuVo;
 import com.green.menus.vo.SubmenuVo;
+import com.green.user.vo.UserVo;
 
 @Controller
 @RequestMapping("/Market")
@@ -41,6 +44,8 @@ public class MarketController {
 	@Autowired
 	private MarketService marketService;
 	
+	@Autowired
+	private BoardService boardService;
 	
 	// 마켓 메인 홈
 	@RequestMapping("/Main")
@@ -332,20 +337,6 @@ public class MarketController {
  		return mv;
  	}
 
- 	//첨부 이미지 처리
- 	//----------------------------------------------------------------------
- 	/*
- 	@GetMapping("imageView")
-	public void imgView(@RequestParam("imgFile") String imgFile,
-		HttpServletResponse response) throws IOException {
-	    response.addHeader(
-		"Content-disposition","attachment;fileName="+imgFile); //파일을 다운받고, 브라우저로 표현하고, 다운될 파일이름
-	    File file = new File(marketFileService.IMAGE_REPO+"/"+imgFile);
-	    FileInputStream in = new FileInputStream(file);
-	    FileCopyUtils.copy(in, response.getOutputStream());
-	    in.close();
-	*/
- 	//----------------------------------------------------------------------
  	// 첨부 파일 처리
  	@RequestMapping(value  = "/download/{type}/{sfile:.+}",
 	        method = RequestMethod.GET )
@@ -374,19 +365,6 @@ public class MarketController {
 		outputStream.close();
 		return;
 	}
-	
-	// <img> 태그로 첨부 이미지 조회할 때 사용
-	
-	/*
-	@ResponseBody
-	@GetMapping("/images/{sfilename}") 
-	public Resource showImage(
-	@PathVariable String sfilename) 
-			throws MalformedURLException {
-	return new UrlResource( "file:" + file.getFullPath(sfilename) );
-	}
-	*/
-	
 	
 	// 실제 다운로드
 	String  mimeType = URLConnection.guessContentTypeFromName(file.getName());
@@ -422,6 +400,70 @@ public class MarketController {
  		
  		marketService.deleteUploadFile( map );
  				
+ 	}
+ 	
+ 	//---------------------------------------------------------------
+ 	 // 포인트 스토어 결제창
+    @RequestMapping("/PointPayForm")
+    public ModelAndView pointPayForm(
+    		@RequestParam	HashMap<String, Object>  map,
+     		HttpSession session
+    		) {
+    
+    	UserVo userVo = (UserVo) session.getAttribute("login");
+		int usercode = userVo.getUsercode();
+		map.put("usercode", usercode);
+    	
+    	// 메뉴 목록	
+		List<MenuVo>    menuList    = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+    	
+    	// 메뉴 이름
+ 		String submenu_id = String.valueOf( map.get("submenu_id") );
+ 		String submenu_name = menuService.getMenuName(submenu_id);
+ 		map.put("submenu_name", submenu_name);
+ 		
+ 		MarketVo marketVo = marketService.getBoard(map);
+ 		
+ 		System.out.println("스토어Vo:" + marketVo);
+ 		
+ 		System.out.println("스토어map:" + map);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("market/pointPay");
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
+		mv.addObject("map", map);
+		mv.addObject("marketVo", marketVo);
+	
+		return mv;
+    }
+ 	
+ 	// 포인트 스토어 결제
+ 	@RequestMapping("/PointPay")
+ 	public ModelAndView pointPay(
+ 		@RequestParam HashMap<String, Object> map,
+ 		HttpSession session
+ 		) {
+ 		
+ 		UserVo userVo = (UserVo) session.getAttribute("login");
+		int usercode = userVo.getUsercode();
+		map.put("usercode", usercode);
+ 		
+		// 상품 결제
+		marketService.productPay(map);
+		
+		
+		String submenu_id  =  map.get("submenu_id").toString();
+ 		String nowpage     = String.valueOf(map.get("nowpage"));
+ 		String fmt 		   = "redirect:/Market/List?submenu_id=%s&nowpage=%s";
+ 		String loc 		   = String.format(fmt, submenu_id, nowpage);
+		
+ 		ModelAndView   mv  = new ModelAndView();
+ 		mv.setViewName(loc);
+ 		mv.addObject("userVo", userVo);
+ 		mv.addObject("map", map);
+ 		return mv;
  	}
     
 
