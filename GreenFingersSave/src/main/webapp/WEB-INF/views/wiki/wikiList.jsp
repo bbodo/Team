@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <style>
+	
 	#title { width: 100%;
 		     text-align: center;
 		     height: 100px;
@@ -38,6 +39,7 @@
 	}
 </style>
 <style>
+	
     #modal.modal-overlay {
         width: 100%;
         height: 100%;
@@ -48,7 +50,6 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-
         background: rgba(255, 255, 255, 0.25);
         box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         backdrop-filter: blur(1.5px);
@@ -58,35 +59,34 @@
     }
 
     #modal .modal-window {
-
         background: rgba( 69, 139, 197, 0.70 );
         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
         backdrop-filter: blur( 13.5px );
         -webkit-backdrop-filter: blur( 13.5px );
         border-radius: 10px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
-
-        width: 500px;
-        height: auto;
+		overflow-y: auto;
+        width: 600px;
+        height: 600px;
         position: relative;
-        top: -100px;
+        top: 50px;
+        left: 100px;
         padding: 10px;
     }
 
     #modal .title {
         padding-left: 10px;
-        display: inline;
+        display: block;
         text-shadow: 1px 1px 2px gray;
         color: white;
-        
     }
 
     #modal .title h2 {
-        display: inline;
+        display: block;
     }
 
     #modal .close-area {
-        display: inline;
+        display: block;
         float: right;
         padding-right: 10px;
         cursor: pointer;
@@ -169,6 +169,7 @@
 				console.log('버튼' + plantPilbkNo);
 				detailajax(plantPilbkNo);
 				modalOn();
+				
 			});
 		});
 	}
@@ -206,46 +207,53 @@
 		modalHtml += '<p><img id="plantimg1" src="' + item.imgUrl + '"/></p>';
 		modalHtml += '<p>과    명 : ' + item.familyKorNm + '</p>';
 		modalHtml += '<p>속    명 : ' + item.genusKorNm + '</p>';
+		modalHtml += '<p>학    명 : ' + item.plantSpecsScnm + '</p>';
 		modalHtml += '<p>원 산 지 : ' + item.orplcNm + '</p>';
+		modalHtml += '<p>최종수정일시 : ' + item.lastUpdtDtm + '</p>';
 		modalHtml += '<p>분포정보 : ' + item.dstrb + '</p>';
 		modalHtml += '<p>번식방법 : ' + item.brdMthdDesc + '</p>';
 		modalHtml += '<p>형    태 : ' + item.shpe + '</p>';
 		modalHtml += '<p>특    징 : ' + item.spft + '</p>';
+		modalHtml += '<p>꽃 설 명 : ' + item.flwrDesc + '</p>';
+		modalHtml += '<p>열매설명 : ' + item.fritDesc + '</p>';
+		modalHtml += '<p>재배특성 : ' + item.farmSpftDesc + '</p>';
+		modalHtml += '<p>병충해정보 : ' + item.bugInfo + '</p>';
+		modalHtml += '<p>잎설명 : ' + item.leafDesc + '</p>';
+		modalHtml += '<p>해외분포 : ' + item.osDstrb + '</p>';
+		modalHtml += '<p>뿌리설명 : ' + item.rootDesc + '</p>';
+		modalHtml += '<p>줄기설명 : ' + item.stemDesc + '</p>';
+		modalHtml += '<p>크기설명 : ' + item.sz + '</p>';
+		modalHtml += '<p>사용법 : ' + item.useMthdDesc + '</p>';
+		modalHtml += '<p>생육환경설명 : ' + item.grwEvrntDesc + '</p>';
 		modalHtml += '<p>유사식물설명 : ' + item.smlrPlntDesc + '</p>';
 		modalHtml += '<p>노    트 : ' + item.note + '</p>';
 		modalHtml += '</div>';
    	 		 
    		modalwindowEl.innerHTML = modalHtml;
    		 
-   		<!-- 모달창 기능 -->	
-   		const modal = document.getElementById("modal")
+   		// 모달창 기능 
+   		const modal = document.getElementById("modal");
    		
-   		function isModalOn() {
-   		    return modal.style.display === "flex"
-   		}
+   		function isModalOn() { return modal.style.display === "flex" }
    		
-   		function modalOff() {
-   		    modal.style.display = "none"
-   		}
-   		
+   		function modalOff() { modal.style.display = "none" }
    		
    		const closeBtn = modal.querySelector(".close-area")
-   		closeBtn.addEventListener("click", e => {
-   		    modalOff()
-   		})
+   		closeBtn.addEventListener("click", e => { modalOff() });
    		
    		modal.addEventListener("click", e => {
    		    const evTarget = e.target
    		    if(evTarget.classList.contains("modal-overlay")) {
-   		        modalOff()
+   		        modalOff();
    		    }
-   		})
+   		});
    		
    		window.addEventListener("keyup", e => {
    		    if(isModalOn() && e.key === "Escape") {
-   		        modalOff()
+   		        modalOff();
    		    }
-   		})
+   		});
+   	
 	}
 	
 	/* ajax 로 API 데이터 가져오기 */
@@ -345,13 +353,11 @@
 	
 	<!-- 상세모달창 -->
 	<div id="modal" class="modal-overlay">
-		<div class="modal-window">
-        	      
-    	</div>
+		<div class="modal-window" ></div>
 	</div>
 	<script>
 	function modalOn() {
-		   		    modal.style.display = "flex"
+		modal.style.display = "flex"
 		   		}
 	
 	</script>
