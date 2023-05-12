@@ -12,6 +12,10 @@
 </head>
 
 <style>
+#img1{
+	    width: 60%;
+		height: 150px;
+	}
 .right{
 	width:90%;
 	margin:0 auto 20px auto;
@@ -19,6 +23,7 @@
 .tableList tr td:hover {
 	background-color: #D3D3D3;
 }
+
 </style>
 
 <body>
@@ -39,36 +44,40 @@
 	<div id="aside">
 		<ul id="sidemenu">
      	<li class="sidemenuTitle">SIDEMENU</li>
-			<li><a href="">이벤트</a></li>
-			<li><a href="">이벤트 당첨자</a></li>
+			<li><a href="/Event/EventList?menu_id=${ map.menu_id }&submenu_id=SUBMENU18&nowpage=1" >이벤트</a></li>
+			<li> <a href="/Winner/WinnerList?menu_id=${ map.menu_id }&submenu_id=SUBMENU19&nowpage=1">이벤트 당첨자</a></li>
 		</ul>
 	</div>
-     
-     <div id="main">
-		<h2 style="font-size: 24px;">${ map.submenu_name }</h2>     
+    <div id="main">
+		<h2 style="font-size: 24px;">${ map.submenu_name }</h2>   
       <div class="right">
 		<a href="/Event/WriteForm?submenu_id=${map.submenu_id}&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
 	 </div>
-		<table id="cont" class="tableList">
-			<!--<tr>
+		<table id="cont">
+			<tr>
 				<td colspan="3" style="width: 50%">
 					<div style="float: left;">
 			     		<h2>이벤트</h2>
 			     	</div>
 				</td>				
-			</tr> -->
+			</tr>
 			
 			<tr>
-				<th colspan="2"><a href="http://localhost:9090/Event/EventList?submenu_id=${map.submenu_id}&nowpage=1">이벤트</a></th>
-				<th colspan="2"><a href="http://localhost:9090/Winner/WinnerList?submenu_id=SUBMENU19&nowpage=1">당첨자 발표</a></th>
+				<th colspan="4"><a href="http://localhost:9090/Event/EventList?submenu_id=${map.submenu_id}&nowpage=1">이벤트</a></th>
+				<th colspan="4"><a href="http://localhost:9090/Winner/WinnerList?submenu_id=SUBMENU19&nowpage=1">당첨자</a></th>
 			</tr>
 
 		<c:forEach var="eventVo" items="${ eventList }">
 	  <tr>
-
-	  <td  colspan="2" ><img id="img1" onclick="javascript:location.href='http://localhost:9090/Event/EventView?submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}'"  src="D:\ws\spring\GreenFingersSaveTest\src\main\webapp\WEB-INF\resources\img\event\test"   ></td>
-
-	     <td colspan="2" >
+	  
+	  <td  colspan="3" >
+	         <c:forEach var="file"  items="${ fileList }" begin="3" end="3" >         
+				 <div>
+					<img id="img1" src="/upload/${ file.sfilename }" onclick="javascript:location.href='http://localhost:9090/Event/EventView?submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}'" >
+				 </div>
+            
+            </c:forEach>    
+             <td colspan="3" >
 	       <!-- 제목(새글/답글) -->
 	       <c:choose>
 	         <c:when test="${ eventVo.lvl eq 0 }">

@@ -20,7 +20,7 @@ public class EventDaoImpl implements EventDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	// 입양 리스트
+	
 	@Override
 	public List<EventVo> getEventList(
 			HashMap<String, Object> map
@@ -29,10 +29,11 @@ public class EventDaoImpl implements EventDao {
 		int totalcount = sqlSession.selectOne("Event.GetTotalCount", map);
 		map.put("totalcount", totalcount);
 		
-		System.out.println(map);
+		
 		
 		// 메뉴 목록 조회 (페이징)
 		List<EventVo> eventList = sqlSession.selectList("Event.EventList", map);
+		
 		
 		return eventList;
 	}
@@ -73,7 +74,7 @@ public class EventDaoImpl implements EventDao {
 	public List<FileVo> getFileList(HashMap<String, Object> map) {
 
 		
-		List<FileVo>  fileList  =  sqlSession.selectList("Event.FileList", map);
+		List<FileVo>   fileList  =  sqlSession.selectList("Event.FileList", map);
 		
 		return fileList;
 	}
@@ -127,6 +128,16 @@ public class EventDaoImpl implements EventDao {
 		}
 		*/
 		
+	}
+
+
+	@Override
+	public List<FileVo> getFileList1(String submenu_id) {
+		
+		List<FileVo>   fileList  =  sqlSession.selectList("Event.FileList11", submenu_id);
+		
+	 System.out.println(fileList);
+		return fileList;
 	}
 
 

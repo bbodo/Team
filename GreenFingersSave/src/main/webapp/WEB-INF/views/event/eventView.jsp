@@ -39,6 +39,10 @@
 		height: auto;
 		float: left;
 		padding: 50px 200px 50px 50px;
+	}#img1{
+	    width: 80%;
+	    height: 150px;
+	    object-fit : contain;
 	}
 	#cont {
 		background-color: #fff;
@@ -341,15 +345,11 @@ writeBtnEl.addEventListener("click", function(e) {
      <div id="title">
      	<p  style="font-size: 40px; font-weight: bold;" >이벤트</p>
      </div>
-     <div id="aside">
-		<c:forEach var="subname" items="${ submenuList }">
-		<c:choose>
-			<c:when test="${menu.menu_id eq map.menu_id }">
-				<li><a href="/Event/eventList?menu_id=${ menu.menu_id }&submenu_id=${menu.submenu_id}&nowpage=1">
-						${menu.submenu_name}</a></li>
-			</c:when>
-			</c:choose>
-	    </c:forEach>
+    <div id="aside">
+     	<ul id="sidemenu">
+     	     <a href="/Event/EventList?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1" >이벤트</a>  <br>  	     	  
+     	     <a href="/Winner/WinnerList?menu_id=${ map.menu_id }&submenu_id=SUBMENU19&nowpage=1">당첨자</a>   		
+     	</ul>
      </div>
 
      <div id="main">
@@ -368,20 +368,15 @@ writeBtnEl.addEventListener("click", function(e) {
 				<td class="padd8">${vo.readcount }</td>
 			</tr>
 				<tr><td colspan="6"><hr /></td></tr>
-			<tr>
-				<td colspan="6" style="height: 600px; padding: 8px;">${vo.board_cont }</td>
-			</tr>
-			<tr>
-				<th>파일 첨부</th>
-				<td> 
+			<tr>				
+				<td colspan="5" id="bc" style="height: 600px; padding: 8px;">
 				<c:forEach var="file"  items="${ fileList }" >
-				<div>
-					<a href="/Event/download/external/${ file.sfilename }">
-					${ file.filename }
-					</a>
-				</div>
-				</c:forEach> 
-   	    	 </td>
+				 <div>
+					<img id="img1" src="/upload/${ file.sfilename }">
+				 </div>
+				</c:forEach>
+				${ vo.board_cont }
+				</td>
 			</tr>
 		</table>
 		<div class="right">	
@@ -421,6 +416,5 @@ writeBtnEl.addEventListener("click", function(e) {
 			</form>
 		</div>
      </div>
-     <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>

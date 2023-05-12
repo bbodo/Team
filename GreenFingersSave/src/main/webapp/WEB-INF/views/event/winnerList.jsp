@@ -42,6 +42,10 @@
 	#tt {
 		text-align: left;
 	}
+	#img1{
+	    width: 60%;
+		height: 150px;
+	}
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
@@ -113,6 +117,11 @@
  		opacity: 1;
 	}
 	
+	
+	
+	
+
+</style>
 
 </style>
 
@@ -130,16 +139,10 @@
      <div id="title">
      	<p style="font-size: 40px; font-weight: bold;">당첨자</p>
      </div>
-     <div id="aside">
+    <div id="aside">
      	<ul id="sidemenu">
-     	<c:forEach var="menu" items="${ submenuList }">
-     		<c:choose>
-			<c:when test="${menu.menu_id eq map.menu_id }">
-				<li><a href="/Winner/WinnerList?menu_id=${ menu.menu_id }&submenu_id=${menu.submenu_id}&nowpage=1">
-						${menu.submenu_name}</a></li>
-			</c:when>
-			</c:choose>
-     	</c:forEach>
+     	     <a href="/Event/EventList?menu_id=${ map.menu_id }&submenu_id=SUBMENU18&nowpage=1" >이벤트</a>  <br>  	     	  
+     	     <a href="/Winner/WinnerList?menu_id=${ map.menu_id }&submenu_id=SUBMENU19&nowpage=1">당첨자</a>   		
      	</ul>
      </div>
      <div id="main">
@@ -148,6 +151,10 @@
 		<a class="as" style="font-size: 20px;" href="/Winner/WriteForm?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
 	 </div>
 		<table id="cont">
+					<tr>
+				<th colspan="6"><a href="http://localhost:9090/Event/EventList?submenu_id=SUBMENU18&nowpage=1">이벤트로 다시 가고싶으면 눌러봐</a></th>
+			</tr>
+		
 			<tr>
 				<th class="padd8">번호</th>
 				<th class="padd8">제목</th>
@@ -227,4 +234,5 @@
 	    	<%@include file="/WEB-INF/include/winnerPaging.jsp" %>
      </div>
 </body>
+<%@include file="/WEB-INF/include/footer.jsp" %>
 </html>

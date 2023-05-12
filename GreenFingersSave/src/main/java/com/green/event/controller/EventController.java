@@ -50,8 +50,6 @@ public class EventController {
 	private MenuService menuService;
 	
 	// 게시물 목록 보기
-	// http://localhost:9090/Board/List?submenu_id=SUBMENU01&nowpage=1
-	// 마켓 메인 리스트
 	@RequestMapping("/EventList")
 	public ModelAndView list(
 			@RequestParam HashMap<String, Object> map
@@ -75,27 +73,51 @@ public class EventController {
 	// ---------------------------------------------------------------------
 
 	// 게시글 목록 불러오기
-	String 		  submenu_id = (String) map.get("submenu_id");
-	List<EventVo> eventList  = eventService.getEventList(map);
+	String 		  submenu_id   = (String) map.get("submenu_id");
 	
+	
+	
+	
+	List<EventVo> eventList    = eventService.getEventList(map);
 	map.put("submenu_id",submenu_id);
+
+	
+	
+	
+	
+     
 	
 	
 	EventVo eventVo = (EventVo) map.get("eventVo");
 	
+	
+	List<FileVo> fileList      = eventService.getFileList1(submenu_id);
+	//int 		  board_idx    =  Integer.parseInt( String.valueOf( map.get("board_idx") ) );
+	//map.put("board_idx", board_idx);
+	
+	
+	
 	// 메뉴 이름 알아오기
-	String submenu_name = menuService.getMenuName(submenu_id);
+	String submenu_name      = menuService.getMenuName(submenu_id);
 	
 	map.put("submenu_name", submenu_name);
+	
+	
+	 
+	
 
+	
 	System.out.println("이벤트리스트" + eventList);
 	System.out.println("이벤트맵" + map);
+   
+    
 	
 	ModelAndView mv = new ModelAndView();
 	mv.setViewName("event/eventList");
 	mv.addObject("eventList", eventList);
 	mv.addObject("menuList", menuList);
 	mv.addObject("submenuList", submenuList);
+    mv.addObject("fileList", fileList);
 	mv.addObject("eventVo", eventVo);
 	mv.addObject("map", map);
 	return mv;

@@ -25,5 +25,8 @@ public interface EventService {
 
 	void setDelete(HashMap<String, Object> map);
 
+	List<FileVo> getFileList1(String submenu_id);
+
+
 
 }

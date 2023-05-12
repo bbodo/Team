@@ -116,22 +116,38 @@
   });
 </script>
 
-<script type="text/javascript">
-
-   function readURL(input) {
-      var file = input.files[0] 
-      console.log(file)
-      if (file != '') {
-         var reader = new FileReader();
-         reader.readAsDataURL(file);
-         reader.onload = function (e) { 
-	     console.log(e.target)
-		console.log(e.target.result)
-           $('#preview').attr('src', e.target.result);
-          }
-      }
-  }  
+<script>
+  $( function() {
+	  let num = 1;
+	  $('#btnAddFile2').on('click', function(e) {
+		  let tag = '<input type="file"  name="upfile' + num + '" class="upfile"/><br>';
+		  $('#tdfile').append( tag );		  
+		  num++;
+	  })
+  });
 </script>
+
+<script>
+//미리보기 시작
+   $("#imgplus").change(function(){
+                //alert(this.value); //선택한 이미지 경로 표시
+                readURL(this);
+   });
+
+   //미리보기 처리함수
+   function readURL(input) {
+       if (input.files && input.files[0]) {
+           var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+           reader.onload = function (e) {
+           //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+               //이미지 Tag의 SRC속성에 읽어들인 File내용을 지정 
+               $('#preview').attr('src', e.target.result);
+           }
+           //File내용을 읽어 dataURL형식의 문자열로 저장 
+           reader.readAsDataURL(input.files[0]);
+       }
+   }
+   </script>
 
 </head>
 <body>
@@ -140,8 +156,10 @@
      	<p>이벤트</p>
      </div>
      <div id="aside">
-     	이벤트<br />
-     	당첨자<br />
+     	<ul id="sidemenu">
+     	     <a href="/Event/EventList?menu_id=${ map.menu_id }&submenu_id=SUBMENU18&nowpage=1" >이벤트</a>  <br>  	     	  
+     	     <a href="/Winner/WinnerList?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1">당첨자</a>   		
+     	</ul>
      </div>
      
      <div id="main">
@@ -170,18 +188,20 @@
 				<td><textarea name="board_cont" maxlength="1000">${ vo.board_cont }</textarea></td>
 			</tr>
 			
-			<tr>
-				<td style="text-align: center;">파일 첨부</td>
-				<td id="tdfile">
-		      	 <input type="button"  id="btnAddFile" value="파일 추가(최대 100M byte)" /><br>
-		       	 <input type="file"  name="upfile"  class="upfile"/><br>
-		   		</td>
-			</tr>
+				<div class="form-group" >
+				<td style="text-align: center;">이미지 첨부</td>
+				<td id="imgplus"> 
+				<input type="button"  id="btnAddFile1" value="파일 추가(최대 100M byte)" /><br>
+          			<input type="file" name="upFile" class="upfile" onchange="readURL(this);"/>
+				<img id="preview" src="#" width=200 height=180 alt="선택된 이미지가 없습니다" style="align-content: flex-end; ">
+				</td>
+			</div> 
+			
+
 			
 		</table>
 		<input type="submit" value="올리기" />
 		</form>
      </div>
-     <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>

@@ -34,6 +34,8 @@ public class EventServiceImpl implements EventService {
 			HashMap<String, Object> map
 			) {
 		// 필요한 자료를 조회( rows)
+	
+		
 		List<EventVo>  eventList = eventDao.getEventList(map);
 		
 		int  pagetotalcount =  10;  // paging.jsp 페이지 번호 출력 갯수
@@ -44,6 +46,8 @@ public class EventServiceImpl implements EventService {
 		// menu_id 에 해당되는 전체 자료수 - pdsDaoImpl 가 돌려준 map 에 저장
 		int        totalcount  =  Integer.parseInt( String.valueOf( map.get("totalcount") ) );   
 	
+		
+		
 		String     submenu_id  =  String.valueOf(map.get("submenu_id")); 
 		EventPaging   mp      =  new EventPaging(
 			submenu_id, nowpage, pagecount, totalcount, pagetotalcount);
@@ -120,6 +124,13 @@ public class EventServiceImpl implements EventService {
 		// db 제거
 		eventDao.setDelete(map);
 		
+	}
+
+	@Override
+	public List<FileVo> getFileList1(String submenu_id) {
+		
+		List<FileVo> fileList = eventDao.getFileList1(submenu_id);
+		return fileList;
 	}
 
 

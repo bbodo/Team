@@ -209,6 +209,28 @@
 			FILE_NUM  ASC 
    
    </select>
+   
+   <select   id         = "FileList11" 
+             resultType = "com.green.event.Vo.FileVo">
+   
+      SELECT file_num,
+	         board_idx,
+	         filename,
+	         fileext,
+	         sfilename
+      FROM BOARD_FILES
+      WHERE BOARD_IDX IN
+      (SELECT		           
+			B.BOARD_IDX			
+		FROM
+			BOARD B				
+       WHERE     
+          SUBMENU_ID  =  #{submenu_id})
+           
+          
+          
+   </select>
+   
 
 	<delete   id="DeleteUploadFile">
       

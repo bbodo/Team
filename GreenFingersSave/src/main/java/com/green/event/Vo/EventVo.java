@@ -1,5 +1,7 @@
 package com.green.event.Vo;
 
+import java.util.List;
+
 public class EventVo {
 
 	// Fields
@@ -20,6 +22,7 @@ public class EventVo {
 		private int 	parent;
 		private String	userid;
 		private String  nickname;
+		
 		
 		// paging 처리를 위한 추가 정보
 		// sql 문을 위한 변수
