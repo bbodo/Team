@@ -23,31 +23,87 @@
 	#div1 { margin: 20px; width: 800px;}
 	
     .box { display: flex; margin: 20px;}
-    #btnOk1 { width: 100px;}     
+    
+    #detailbtn { width: 100px;}     
+    
 	#plantimg {
 		  width: 400px;
 		  height: 300px;
 		  object-fit: cover;
 	}
-		  
-	.wikititle{
-		text-align: center;
-		marginn: 50px 0 60px 0;
-		font-size:24px;
+	#plantimg1 {
+		  width: 300px;
+		  height: 200px;
+		  object-fit: cover;
 	}
-	
-	.searchWrap {
-		margin-left: 50%;
-		transform: translateX(-50%);
-	}
-	
-	.wikitext {
-		text-align: center;
-		margin-top: 20px;
-	}
+</style>
+<style>
+    #modal.modal-overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(1.5px);
+        -webkit-backdrop-filter: blur(1.5px);
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    #modal .modal-window {
+
+        background: rgba( 69, 139, 197, 0.70 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 13.5px );
+        -webkit-backdrop-filter: blur( 13.5px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+        width: 500px;
+        height: auto;
+        position: relative;
+        top: -100px;
+        padding: 10px;
+    }
+
+    #modal .title {
+        padding-left: 10px;
+        display: inline;
+        text-shadow: 1px 1px 2px gray;
+        color: white;
+        
+    }
+
+    #modal .title h2 {
+        display: inline;
+    }
+
+    #modal .close-area {
+        display: inline;
+        float: right;
+        padding-right: 10px;
+        cursor: pointer;
+        text-shadow: 1px 1px 2px gray;
+        color: white;
+    }
+    
+    #modal .content {
+        margin-top: 20px;
+        padding: 0px 10px;
+        text-shadow: 1px 1px 2px gray;
+        color: white;
+    }
 </style>
 <script>
 	
+	/* 페이징 및 가져온 데이터 화면에 뿌리기 */
 	function data_display(data) {
 		const btnOkEl  = document.querySelector('#btnOk');
 		const pagingEl = document.getElementById('paging');
@@ -56,7 +112,7 @@
 		
 		let body           = data.response.body;
 		let pageNo         = body.pageNo;
-		let nowpage        = pageNo; //body.pageNo;
+		let nowpage        = pageNo; 
 		let totalCount     = body.totalCount;
 		let pagecount      = 10;
 		let pagetotalcount = 10;
@@ -93,7 +149,7 @@
 			html += '<li>국명 : ' + item.plantGnrlNm + '</li>';
 			html += '<li>최종수정일시 : ' + item.lastUpdtDtm + '</li>';
 			if (item.detailYn =='Y'){
-				html += '<li>상세정보유무 : <button id="btnOk1">상세정보조회</button></li>';}
+				html += '<li>상세정보유무 : <button id="detailbtn" value="' + item.plantPilbkNo + '">상세정보조회</button></li>';}
 			else {
 				html += '<li>상세정보유무 : 상세정보 없음 </li>';}
 			
@@ -104,6 +160,95 @@
 		return html;
 	}
 	
+	// 상세 조회 버튼 클릭시
+	function detailbtn() {
+		const detailbtnEls = document.querySelectorAll('#detailbtn');
+		detailbtnEls.forEach(function(button, index) {
+			button.addEventListener('click', function() {
+				let plantPilbkNo = button.value;
+				console.log('버튼' + plantPilbkNo);
+				detailajax(plantPilbkNo);
+				modalOn();
+			});
+		});
+	}
+	
+	/* ajax로 상세 data 가져오기 */
+	function detailajax(plantPilbkNo) {
+		$.ajax({
+			url : 'http://localhost:9090/Wiki/ServiceDetail',
+			data : {
+				q1 : plantPilbkNo,
+			},
+			success : function(detaildata) {
+				console.log(detaildata);
+				detaildata_display(detaildata);
+			},
+			error : function(xhr) {
+				console.log(xhr);
+				alert(xhr.status + ' : ' + xhr.textStatus);
+			}
+		});
+	}
+	
+	// 상세 data 화면
+	function detaildata_display(detaildata) {
+		const modalwindowEl = document.querySelector('.modal-window');
+		let body = detaildata.response.body;
+		let item = body.item;
+		//alert('ggg');
+		let modalHtml = '';
+		modalHtml += '<div class="title">';
+		modalHtml += '<h4>' + item.plantGnrlNm + ' 의 상세 정보</h4>';
+		modalHtml += '</div>';
+		modalHtml += '<div class="close-area">X</div>';
+		modalHtml += '<div class="content">';
+		modalHtml += '<p><img id="plantimg1" src="' + item.imgUrl + '"/></p>';
+		modalHtml += '<p>과    명 : ' + item.familyKorNm + '</p>';
+		modalHtml += '<p>속    명 : ' + item.genusKorNm + '</p>';
+		modalHtml += '<p>원 산 지 : ' + item.orplcNm + '</p>';
+		modalHtml += '<p>분포정보 : ' + item.dstrb + '</p>';
+		modalHtml += '<p>번식방법 : ' + item.brdMthdDesc + '</p>';
+		modalHtml += '<p>형    태 : ' + item.shpe + '</p>';
+		modalHtml += '<p>특    징 : ' + item.spft + '</p>';
+		modalHtml += '<p>유사식물설명 : ' + item.smlrPlntDesc + '</p>';
+		modalHtml += '<p>노    트 : ' + item.note + '</p>';
+		modalHtml += '</div>';
+   	 		 
+   		modalwindowEl.innerHTML = modalHtml;
+   		 
+   		<!-- 모달창 기능 -->	
+   		const modal = document.getElementById("modal")
+   		
+   		function isModalOn() {
+   		    return modal.style.display === "flex"
+   		}
+   		
+   		function modalOff() {
+   		    modal.style.display = "none"
+   		}
+   		
+   		
+   		const closeBtn = modal.querySelector(".close-area")
+   		closeBtn.addEventListener("click", e => {
+   		    modalOff()
+   		})
+   		
+   		modal.addEventListener("click", e => {
+   		    const evTarget = e.target
+   		    if(evTarget.classList.contains("modal-overlay")) {
+   		        modalOff()
+   		    }
+   		})
+   		
+   		window.addEventListener("keyup", e => {
+   		    if(isModalOn() && e.key === "Escape") {
+   		        modalOff()
+   		    }
+   		})
+	}
+	
+	/* ajax 로 API 데이터 가져오기 */
 	function ajax() {
 		$.ajax({
 			url : 'http://localhost:9090/Wiki/Service',
@@ -116,7 +261,7 @@
 				if(data != null) {
 				let html = data_display(data);
 				$('#div1').html(html);
-			
+				detailbtn();
 					
 				} else {
 					alert('검색어를 다시 입력하세요');
@@ -129,6 +274,7 @@
 		});
 	}
 	
+	/* 검색 버튼 기능 구현 */
 	$(function() {
 		const btnOkEl = document.querySelector('#btnOk');
 		const div1El  = document.querySelector('#div1');
@@ -151,6 +297,7 @@
 						if(totalCount != 0) {
 							let html = data_display(data);
 							$('#div1').html(html);
+							detailbtn();
 						} else {
 							alert('검색어를 다시 입력하세요');
 							$('#search').val('');
@@ -168,10 +315,9 @@
 		
 	});
 </script>
+
 </head>
-<body>	
-
-
+<body>
 	<!-- header	 -->
 	<c:choose>
 		<c:when test="${ sessionScope.login eq null }">
@@ -182,30 +328,34 @@
 		</c:otherwise>
 	</c:choose>
 	
-	 <!-- <div id="title">
+	 <div id="title">
      	<p style="font-size: 40px; font-weight: bold;">그린 위키</p>
-     </div> -->
-
-	 <%@include file="/WEB-INF/include/subBanner.jsp" %>
+     </div>
 	
-	
-	<div id="wrapper">
 	<div class="search" style="height: auto; width: 100%; min-height:800px; padding: 20px 20px;" >
-	<h2 class="wikititle">그린 위키 검색</h2>
-	<div class="wikitext"><p>그린이들을 위한 그린백과사전입니다.</br> 궁금한 식물을 검색해보세요</p></div>
+	<h2>그린 위키 검색</h2>
       	
       
-	<div class="searchWrap">
 	  과명 : <input type="text" id="search" style="width:200px;" />
 	  <button id="btnOk"  >검색</button>
 	  <div id="paging"></div>
 	  <div id="div1"></div> 
-    </div>
+	  
+	</div>
+	
+	<!-- 상세모달창 -->
+	<div id="modal" class="modal-overlay">
+		<div class="modal-window">
+        	      
+    	</div>
+	</div>
+	<script>
+	function modalOn() {
+		   		    modal.style.display = "flex"
+		   		}
+	
+	</script>
 
-	</div>
-	
-	</div>
-	
 	<!-- footer -->
     <%@include file="/WEB-INF/include/footer.jsp" %> 
     <!-- Swiper JS -->

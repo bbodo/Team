@@ -47,7 +47,7 @@ public class WikiController {
 		return mv;
 	}
 	
-	// Api data 받아오기
+	// 식물도감 Api data 받아오기
 	@RequestMapping("/Service")
 	@ResponseBody
 	public  void service(
@@ -58,6 +58,24 @@ public class WikiController {
 		try {
 			response.setContentType("application/json; charset=utf-8");
 			String json = wikiService.search(keyword, 10, pageNo);
+			out = response.getWriter();
+			out.print(json);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 식물상세 Api data 받아오기
+	@RequestMapping("/ServiceDetail")
+	@ResponseBody
+	public  void serviceDetail(
+		int q1,
+		HttpServletResponse  response) {
+		PrintWriter out = null;
+		
+		try {
+			response.setContentType("application/json; charset=utf-8");
+			String json = wikiService.detailsearch(q1);
 			out = response.getWriter();
 			out.print(json);
 		} catch (IOException e) {

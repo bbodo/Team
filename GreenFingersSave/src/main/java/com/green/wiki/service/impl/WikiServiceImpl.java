@@ -20,7 +20,7 @@ public class WikiServiceImpl implements WikiService {
 	private String serviceKey =
 			"whlPlEex4rluP8rvhUk81%2F3xVX4xLPoWB0926oEUa4gwdZW0Rq6jN0lPDA0%2FPQxtrN9FTAne3TTyu6cDFAJJPQ%3D%3D";
 	
-	// Api data 받아오기
+	// 식물도감 Api data 받아오기
 	@Override
 	public String search(String keyword, int numOfRows, int pageNo) throws IOException {
 		StringBuilder urlBuilder = new StringBuilder("http://openapi.nature.go.kr/openapi/service/rest/PlantService/plntIlstrSearch"); /*URL*/
@@ -33,7 +33,7 @@ public class WikiServiceImpl implements WikiService {
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Content-type", "application/json");
-       // System.out.println("Response code: " + conn.getResponseCode());
+        System.out.println("Response code: " + conn.getResponseCode());
         BufferedReader rd;
         if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
             rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -50,7 +50,37 @@ public class WikiServiceImpl implements WikiService {
         
         JSONObject jsonObject = XML.toJSONObject(sb.toString());
         String jsonStr = jsonObject.toString();
-        System.out.println("흠:" + jsonStr);
+        return jsonStr;
+	}
+
+	// 식물상세 Api data 받아오기
+	@Override
+	public String detailsearch(int q1) throws IOException {
+		StringBuilder urlBuilder = new StringBuilder("http://openapi.nature.go.kr/openapi/service/rest/PlantService/plntIlstrInfo"); /*URL*/
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=" + serviceKey); /*Service Key*/
+        urlBuilder.append("&" + URLEncoder.encode("q1","UTF-8") + "=" + URLEncoder.encode(String.valueOf(q1), "UTF-8")); /*도감번호(plantPilbkNo)*/
+        URL url = new URL(urlBuilder.toString());
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Content-type", "application/json");
+        System.out.println("Response code: " + conn.getResponseCode());
+        BufferedReader rd;
+        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        } else {
+            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+        }
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = rd.readLine()) != null) {
+            sb.append(line);
+        }
+        rd.close();
+        conn.disconnect();
+        
+        JSONObject jsonObject = XML.toJSONObject(sb.toString());
+        String jsonStr = jsonObject.toString();
+        System.out.println(jsonStr);
         return jsonStr;
 	}
 
