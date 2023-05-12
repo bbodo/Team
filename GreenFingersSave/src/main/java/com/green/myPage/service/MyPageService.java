@@ -3,8 +3,6 @@ package com.green.myPage.service;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.green.myPage.vo.MyPageVo;
 
 public interface MyPageService {
@@ -35,6 +33,7 @@ public interface MyPageService {
 	// 비밀번호 확인
 	int checkPw(HashMap<String, Object> map);
 
-	void updateProfile(HashMap<String, Object> map, HttpServletRequest request);
+	// 개인정보수정
+	void updateUser(HashMap<String, Object> map);
 	
 }

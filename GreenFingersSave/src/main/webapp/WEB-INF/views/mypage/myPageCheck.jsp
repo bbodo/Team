@@ -101,7 +101,7 @@ $(document).ready(function() {
 		<hr />
 		<div>
 			<p>비밀번호 확인</p><br />
-			<input type="text" name="passwd" id="passwd"> <br />
+			<input type="password" name="passwd" id="passwd"> <br />
 			<input type="hidden" value="${login.usercode}" id="usercode" />
 			<input type="button" value="확인" id="cnfBtn"/>			
 		</div>     

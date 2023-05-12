@@ -12,6 +12,8 @@
 
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
  <script src="/js/home.js"></script>
+ <script src="/js/common.js"></script>
+
 
 </head>
 <body>
@@ -97,7 +99,7 @@
 	<a href="/myPage/myList?nowpage=1">마이페이지</a>
 	<h2>Home</h2> -->
 	
-	<section id="sec1">
+	<section id="sec1" style="min-height: 100px; height: auto; ">
 		<div>
 					
 		</div>

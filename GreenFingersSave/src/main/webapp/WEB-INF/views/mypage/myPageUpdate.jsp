@@ -32,11 +32,12 @@
 	}
 	#main {
 		width: 80%;
-		height: 800px;
+		min-height: 800px;
 		float: left;
 		padding: 10px;
 		background-color: gray;
 		text-align: center;
+		height: auto;
 	}
 	#cont {
 		background-color: #fff;
@@ -55,6 +56,155 @@
 
 </style>
 
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+
+	/* Email 중복 체크  */
+	function emailCheck() {
+		const emailCheckEl = document.getElementById('emailCheck');
+		emailCheckEl.addEventListener('click', function() {
+			event.preventDefault();
+			event.stopPropagation();
+			let email = $("#email").val();
+			if(email != '') {
+				$.ajax({
+					type     : 'POST',
+					url      : '/User/EmailCheck',
+					data     : 'email='+ email,
+					dataType : 'json',
+					success  : function(result) {
+						if(result == '0') {
+							$('#emailCheckresult').html("<b class='green' value='green'>사용가능</b>");
+						} else {
+							$('#emailCheckresult').html("<b class='red' value='red'>사용불가</b>");
+						}
+					},
+					error : function(error) { alert('에러'); }
+				});
+				
+			} else {
+				alert('이메일을 입력하세요');
+			}
+		});
+		
+	}
+	/* Nickname 중복 체크  */
+	function nicknameCheck() {
+		const nicknameCheckEl = document.getElementById('nicknameCheck');
+		nicknameCheckEl.addEventListener('click', function() {
+			event.preventDefault();
+			event.stopPropagation();
+			let nickname = $("#nickname").val();
+			if(nickname != '') {
+				$.ajax({
+					type     : 'POST',
+					url      : '/User/NicknameCheck',
+					data     : 'nickname='+ nickname,
+					dataType : 'json',
+					success  : function(result) {
+						if(result == '0') {
+							$('#nicknameCheckresult').html("<b class='green' value='green'>사용가능</b>");
+						} else {
+							$('#nicknameCheckresult').html("<b class='red' value='red'>사용불가</b>");
+						}
+					},
+					error : function(error) { alert('에러'); }
+				});
+				
+			} else {
+				alert('닉네임을 입력하세요');
+			}
+		});
+		
+	}
+	
+	function loadchk() {
+		$('input:radio[name="gender"]:input[value="${login.gender}"]').prop('checked',true);
+	}
+
+	window.onload = function() {
+		const formEl   = document.getElementsByTagName('form')[0];
+		let useridEl   = document.querySelector('[name=userid]');
+		let passwdEl   = document.querySelector('[name=passwd]');
+		let pwd2El     = document.getElementById('pwd2');
+		let addrEl     = document.querySelector('[name=addr]');
+		let emailEl    = document.querySelector('[name=email]');
+		let nicknameEl = document.querySelector('[name=nickname]');
+		
+		loadchk();
+		emailCheck(); 
+		nicknameCheck();
+		
+		formEl.onsubmit = function(event) {
+			const bTagEl = document.getElementsByClassName('red');
+				let redcheck = bTagEl.length;
+				if (passwdEl.value.trim() == '') {
+					event.preventDefault();
+					event.stopPropagation();
+					alert('비밀번호를 입력하세요');
+					passwdEl.focus();
+					
+				} else {
+					/* 최소 8 자, 하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자 */
+					let regex = RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/);
+					if (!regex.test(passwdEl.value.trim())) {
+						event.preventDefault();
+						event.stopPropagation();
+						alert('비밀번호 형식이 틀립니당');
+						passwdEl.value = '';
+						passwdEl.focus();
+						
+					} else {
+						if (pwd2El.value.trim() == '') {
+							event.preventDefault();
+							event.stopPropagation();
+							alert('비밀번호 확인을 입력하세요');
+							pwd2El.focus();
+							
+						} else {
+							if (passwdEl.value != pwd2El.value) {
+								event.preventDefault();
+								event.stopPropagation();
+								alert('비밀번호가 일치하지 않습니다');
+								pwd2El.value = '';
+								pwd2El.focus();
+								
+							} else {
+								if (addrEl.value.trim() == '') {
+										event.preventDefault();
+										event.stopPropagation();
+										alert('주소를 입력하세요');
+										addrEl.focus();
+										
+									} else {
+										if (emailEl.value.trim() == '') {
+											event.preventDefault();
+											event.stopPropagation();
+											alert('이메일을 입력하세요');
+											emailEl.focus();
+											
+										} else {
+											if (nicknameEl.value.trim() == '') {
+												event.preventDefault();
+												event.stopPropagation();
+												alert('닉네임을 입력하세요');
+												nicknameEl.focus();
+											} else {
+												if(redcheck != '0') {
+													event.preventDefault();
+													event.stopPropagation();
+													alert('중복체크를 확인하세요');
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+</script>
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
@@ -67,108 +217,96 @@
      	쪽지<br />
      </div>
      <div id="main">
+     	<form action="/mypage/updateUser" method="POST">
+     	<input type="hidden" value="${ login.userid }" name="userid"/>
+     	<input type="hidden" value="${ login.usercode }" name="usercode" id="usercode"/>
+     	<input type="hidden" value="${ login.birthday }" name="usercode" id="birthday"/>
 		<table id="cont">
 			<tr>
 				<!-- id는 수정불가하게 -->
-				<th colspan="3" class="left">아이디</th>
+				<td class="left"><h2>아이디</h2></td>
 			</tr>
 			<tr>
-				<td colspan="3" class="left"><input type="text" placeholder="@naver.com" readonly/></td>
-			</tr>
-			<tr>
-				<!-- 자물쇠 버튼 눌러서 보이게하는 기능 ?? -->
-				<th colspan="3" class="left">비밀번호</th>
-			</tr>
-			<tr>
-				<td colspan="3" class="left"><input type="password" /></td>
+				<td class="left" style="padding-left: 35px;">${ login.userid }</td>
 			</tr>
 			<tr>
 				<!-- 자물쇠 버튼 눌러서 보이게하는 기능 ?? -->
-				<th colspan="3" class="left">비밀번호 재확인</th>
-			</tr>
-			<tr>
-				<td colspan="3" class="left"><input type="password" /></td>
-			</tr>
-			<tr>
-				<th colspan="3" class="left">이름</th>
-			</tr>
-			<tr>
-				<td colspan="3" class="left"><input type="text" /></td>
-			</tr>
-			<tr>
-				<th colspan="3" class="left">생년월일</th>
-			</tr>
-			<tr>
-				<td><input type="text" placeholder="년(4자)" /></td>
-				<td>
-					<select name="" id="">
-						<option value="">월</option>					
-						<option value="">1</option>					
-						<option value="">2</option>					
-						<option value="">3</option>					
-						<option value="">4</option>					
-						<option value="">5</option>					
-						<option value="">6</option>					
-						<option value="">7</option>					
-						<option value="">8</option>					
-						<option value="">9</option>					
-						<option value="">10</option>					
-						<option value="">11</option>					
-						<option value="">12</option>					
-					</select>
-				</td>
-				<td>
-					<input type="text" placeholder="일"/>
+				<td class="left">
+					<h2 style="display: inline-block;">비밀번호</h2> 
+					<span style="font-size: 12px; font-weight: lighter;">(최소문자1개,숫자1개,특수문자1개 포함. 최소8자이상)</span>
 				</td>
 			</tr>
 			<tr>
-				<th>성별</th>
-			</tr>
-			<tr>
-				<td>
-					<select name="" id="">
-						<option value="">성별</option>
-						<option value="">남자</option>
-						<option value="">여자</option>
-						<option value="">둘다아닌 무언가</option>
-						<option value="">외계인</option>
-					</select>
+				<td class="left" style="padding-left: 35px;">
+					<input type="password" value="${ vo.passwd }" name="passwd" id="pwd1"/> 
+					<input type="button" value="비밀번호보이게하기"/>
 				</td>
 			</tr>
 			<tr>
-				<th colspan="3" class="left">이메일</th>
+				<!-- 자물쇠 버튼 눌러서 보이게하는 기능 ?? -->
+				<td class="left"><h2>비밀번호 확인</h2></td>
 			</tr>
 			<tr>
-				<td colspan="3" class="left"><input type="text" /></td>
-			</tr>
-			<tr>
-				<th colspan="3" class="left">주소</th>
-			</tr>
-			<tr>
-				<td>
-					<select name="" id="">
-						<option value="">시/군/구</option>
-						<option value="">근데 이거 다해야함??</option>
-					</select>
-				</td>
-				<td>
-					<select name="" id="">
-						<option value="">동</option>
-						<option value="">이것도 ㄷㄷ</option>
-					</select>
+				<td class="left" style="padding-left: 35px;">
+					<input type="password" id="pwd2" />
 				</td>
 			</tr>
 			<tr>
-				<th colspan="3" class="left">상세주소</th>
+				<td class="left"><h2>닉네임</h2></td>
 			</tr>
 			<tr>
-				<td colspan="3" class="left"><input type="text" /></td>
+				<td class="left" style="padding-left: 35px;">
+				<input type="text" value="${ login.nickname }" id="nickname" name="nickname"/> 
+				<input type="button" value="중복체크" id="nicknameCheck"/>
+				<span id="nicknameCheckresult"></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="left"><h2>이름</h2></td>
+			</tr>
+			<tr>
+				<td class="left" style="padding-left: 35px;">${ login.username }</td>
+			</tr>
+			<tr>
+				<td class="left"><h2>생년월일</h2></td>
+			</tr>
+			<tr>
+				<td class="left" style="padding-left: 35px;">
+					${ login.birthday }
+				</td>
+			</tr>
+			<tr>
+				<td class="left"><h2>성별</h2></td>
+			</tr>
+			<tr>
+				<td class="left" style="padding-left: 35px;">
+				    <input type="radio" name="gender" value="남"/>남
+        			<input type="radio" name="gender" value="여"/>여</td>
+			</tr>
+			<tr>
+				<td class="left"><h2>이메일</h2></td>
+			</tr>
+			<tr>
+				<td class="left" style="padding-left: 35px;">
+					<input type="text" value="${ login.email }" name="email" id="email"/>
+					<input type="button" value="중복체크" id="emailCheck" />
+					<span id="emailCheckresult"></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="left"><h2>주소</h2></td>
+			</tr>
+			<tr>
+				<td class="left" style="padding-left: 35px;">
+					<input type="text" value="${ login.addr }" name="addr"/>
+				</td>
 			</tr>
 		</table>
 	    <div style="float: right;">
-	    	<a href="">수정 하기</a> &nbsp; &nbsp;
-	    	<a href="">탈퇴 하기</a>
+	    	<input type="submit" value="수정 하기"/> &nbsp; &nbsp;
+	    	<input type="button" value="탈퇴 시키기" onclick=memberDelete() />
 	    </div>
+		</form>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
