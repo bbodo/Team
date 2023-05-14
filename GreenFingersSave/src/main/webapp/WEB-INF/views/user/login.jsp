@@ -41,7 +41,7 @@ table {margin  : auto; }
 	width: 100%;
 	padding-right: 0px;
 }
-#login {f
+#login {
 	border: 1px solid #C0C0C0;
 	width: 40%;
 	margin: auto;

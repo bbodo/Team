@@ -10,12 +10,12 @@
 <link rel="stylesheet" href="/css/common.css" />
 
 <style>
-   th      { width : 20%;  }  
+   th      { width : 20%; padding: 5px 0px;}  
    td      { width : 80%; padding : 50;  }  
    input[type=text] ,  input[type=password], input[type=email]    { width:100%; } 
    table {margin  : auto; }  
    h2 {text-align : center}
-   
+
 #title {
 	width: 100%;
 	text-align: center;
@@ -28,45 +28,52 @@
 }
    
   #id {
-  width:300px;
   height:50px;
   font-size:20px;
 }
   #pwd1 {
-  width:300px;
   height:50px;
   font-size:20px;
 }
   #pwd2 {
-  width:300px;
   height:50px;
   font-size:20px;
 }
   #username {
-  width:300px;
   height:50px;
   font-size:20px;
 }
   #birh {
-  width:300px;
   height:50px;
   font-size:20px;
 }
   #email {
-  width:300px; 
   height:50px; 
   font-size:20px;
 }
 
   #add {
-  width:300px;
   height:50px;
   font-size:20px;
 }
   #nickname {
-  width:300px;
   height:50px;
   font-size:20px;
+}
+.ps_box {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 51px;
+    border: solid 1px #dadada;
+    padding: 10px 110px 10px 14px;
+    background: #fff;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+.left {
+	text-align: left;
 }
 
 .green  { color: green; }
@@ -280,69 +287,66 @@ span    { padding: 10px; }
   <input type="hidden" name="uri" value="${map.uri}">
   <table>
    <tr>
-     <th>아이디</th>
+     <th class="left">아이디</th>
    </tr>
    <tr> 
-     <td ><input type="text" name="userid"  id="id" value=""/>
+     <td><input class="ps_box" type="text" name="userid"  id="id" value=""/>
          <input type="button" value="중복체크" id="idCheck" />
          <span id="idCheckresult"></span>
      </td>
    </tr>
    <tr>
-     <th>비밀번호</th>
+     <td class="left"><span style="font-weight: bold; text-align: left; padding: 0px;">비밀번호</span><span style="font-size: 12px;">(최소문자1개,숫자1개,특수문자1개 포함. 최소8자이상)</span></td>
    </tr>
    <tr> 
-     <td><input type="password" name="passwd" id="pwd1" /></td>
+     <td><input class="ps_box" type="password" name="passwd" id="pwd1" /></td>
    </tr>
    <tr>
-      <td colspan="2" style="text-align:center; font-size: 12px;">
-      (최소문자1개,숫자1개,특수문자1개 포함. 최소8자이상)</td>
-   </tr>
-   <tr>
-     <th>비밀번호 확인</th>
+     <th class="left">비밀번호 확인</th>
    </tr>
    <tr> 
-     <td><input type="password" id="pwd2" /></td>
+     <td><input class="ps_box" type="password" id="pwd2" /></td>
    </tr>
    <tr>
-     <th>이름</th>
+     <th class="left">이름</th>
    </tr>
    <tr> 
-     <td><input type="text" name="username" id="username"/></td>
+     <td><input class="ps_box" type="text" name="username" id="username"/></td>
    </tr>
    <tr>
-     <th>생년월일</th>
+     <th class="left">생년월일</th>
    </tr>
    <tr> 
-     <td><input type="date" name="birthday" id="birth"/> </td>
+     <td><input class="ps_box" type="date" name="birthday" id="birth"/> </td>
    </tr>
    <tr>
-     <th>성별</th>
+     <th class="left">성별</th>
    </tr>
    <tr> 
      <td><input type="radio" name="gender" value="남"/>남
-         <input type="radio" name="gender" value="여"/>여</td>
+         <input type="radio" name="gender" value="여"/>여
+         <input type="radio" name="gender" value="선택안함"/>선택안함</td>
    </tr>
    <tr>
-     <th>주소</th>
+     <th class="left">주소</th>
    </tr>
    <tr>
-     <td><input type="text" name="addr" id="add"/></td>
+     <td><input class="ps_box" type="text" name="addr" id="add"/></td>
    </tr>
    <tr> 
-     <th>이메일</th>
+     <th class="left">이메일</th>
    </tr>
    <tr>
-     <td><input type="email" name="email" id ="email"/>
+     <td><input class="ps_box" type="email" name="email" id ="email"/>
          <input type="button" value="중복체크" id="emailCheck" />
          <span id="emailCheckresult"></span>
      </td>
    </tr>
    <tr>
-     <th>닉네임</th>
+     <th class="left">닉네임</th>
    </tr>
    <tr>  
-     <td><input type="text" name="nickname" id="nickname"/>
+     <td><input class="ps_box" type="text" name="nickname" id="nickname"/>
          <input type="button" value="중복체크" id="nicknameCheck" />
          <span id="nicknameCheckresult"></span>
      </td>
