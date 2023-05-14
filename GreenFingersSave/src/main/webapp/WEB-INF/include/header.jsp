@@ -65,13 +65,13 @@
 				<c:if test="${submenu.menu_id eq menu.menu_id }">
 				<c:choose>
 				<c:when	test="${(submenu.menu_id eq 'MENU01') or (submenu.menu_id eq 'MENU02')}">
-					<li><a href="/Board/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Board/List?menu_id=${ submenu.menu_id }&submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU03'}">
-					<li><a href="/Market/List?submenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Market/List?menu_id=${ submenu.menu_id }&submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU04'}">
-					<li><a href="/Event/EventList?submenu_id=${submenu.submenu_id}&nowpage=1">
+					<li><a href="/Event/EventList?menu_id=${ submenu.menu_id }&submenu_id=${submenu.submenu_id}&nowpage=1">
 						${submenu.submenu_name}</a></li></c:when>
 				<c:when	test="${submenu.menu_id eq 'MENU05'}">
 					<li><a href="/Wiki/List?submenu_id=${submenu.submenu_id}&nowpage=1">

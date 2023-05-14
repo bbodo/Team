@@ -412,7 +412,9 @@ public class MarketController {
     
     	UserVo userVo = (UserVo) session.getAttribute("login");
 		int usercode = userVo.getUsercode();
+		int point    = userVo.getPoint();
 		map.put("usercode", usercode);
+		map.put("point", point);
     	
     	// 메뉴 목록	
 		List<MenuVo>    menuList    = menuService.getMenuList();
@@ -450,14 +452,14 @@ public class MarketController {
 		int usercode = userVo.getUsercode();
 		map.put("usercode", usercode);
  		
+		MarketVo marketVo = marketService.getBoard(map);
+		
 		// 상품 결제
 		marketService.productPay(map);
 		
-		
 		String submenu_id  =  map.get("submenu_id").toString();
- 		String nowpage     = String.valueOf(map.get("nowpage"));
- 		String fmt 		   = "redirect:/Market/List?submenu_id=%s&nowpage=%s";
- 		String loc 		   = String.format(fmt, submenu_id, nowpage);
+ 		String fmt 		   = "redirect:/Market/List?menu_id=MENU03&submenu_id=%s&nowpage=1";
+ 		String loc 		   = String.format(fmt, submenu_id);
 		
  		ModelAndView   mv  = new ModelAndView();
  		mv.setViewName(loc);

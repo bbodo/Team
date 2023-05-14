@@ -111,7 +111,15 @@
 
 </style>
 
-<script src="https://code.jquery.com/jquery.min.js"></script>
+<!-- 상품 금액 & 예상 잔여 포인트 자동 계산    -->
+<script>
+function getAmount() {
+	  document.getElementById('prouduct_amount').innerText = 
+	    event.target.value * ${ marketVo.market_value };
+	  document.getElementById('remain').innerText = 
+		  ${ map.point } - event.target.value * ${ marketVo.market_value };
+	}
+</script>
 
 </head>
 <body>
@@ -125,9 +133,10 @@
 		</c:otherwise>
 	</c:choose>
 	
-     <div id="title">
+	<%@include file="/WEB-INF/include/subBanner.jsp"%>
+    <!--  <div id="title">
      	<p style="font-size: 40px; font-weight: bold;">그린마켓</p>  
-     </div>
+     </div> -->
      <div id="aside">
       <ul id="sidemenu">
      	<li><a href="/Market/List?submenu_id=SUBMENU15&nowpage=1">입양원해요</a></li>
@@ -157,34 +166,38 @@
 				<td style="text-align: center;">상품명</td>
 				<td name="board_title">${ marketVo.board_title }</td>
 			</tr>
+		 <form name="pay">	
 			<tr>
 				<td style="text-align: center;">수량</td>
-				<td name="transaction_su">
-				<label for="selectAmount1">1개</label>
-	               	<input type="radio" name="amount" value="1" id="selectAmount1" checked />
+				<td name="transaction">
+					<label for="selectAmount1">1개</label>
+	               <!-- 	<input type="radio" name="amount" value="1" id="selectAmount1" checked /> -->
+	               	<input type="radio" name="transaction_su" value="1" id="selectAmount1" onclick="getAmount()" />
 	    			<label for="selectAmount2">2개</label>
-	               	<input type="radio" name="amount" value="2" id="selectAmount2" />
+	               	<input type="radio" name="transaction_su" value="2" id="selectAmount2" onclick="getAmount()" />
 	               	<label for="selectAmount3">3개</label>
-	               	<input type="radio" name="amount" value="3" id="selectAmount3" />
+	               	<input type="radio" name="transaction_su" value="3" id="selectAmount3" onclick="getAmount()" />
 				</td>
 			</tr>
 			<tr>
 				<td style="text-align: center;">상품 금액</td>
-				<td>calc(${ marketVo.market_value }*2)</td>
+				<%-- <input id="prouduct_amount">${ marketVo.market_value } --%>
+				<td id="prouduct_amount"></td>
+			</tr>
+		</form>	
+			<tr>
+				<td style="text-align: center;">현재 보유 포인트</td>
+				<td>${ map.point }</td>
 			</tr>
 			<tr>
-				<td style="text-align: center;">배송비</td>
-				<td>2500</td>
-			</tr>
-			<tr>
-				<td style="text-align: center;">총 결제 포인트</td>
-				<td name="point"></td>
+				<td style="text-align: center;">예상 잔여 포인트</td>
+				<td id="remain" name="point"></td>
 			</tr>
 			
 			
 		</table>
 		<div class="btn">
-		<input type="submit" value="결제" />
+		<input type="submit" value="결제" onclick="if(!confirm('상품 금액만큼 포인트가 차감됩니다.\n정말로 결제하시겠습니까?')){return false;}" />
 		</div>
 	  </form>
      </div>

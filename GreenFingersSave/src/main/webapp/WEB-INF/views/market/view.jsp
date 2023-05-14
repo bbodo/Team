@@ -344,15 +344,16 @@
 			<%@include file="/WEB-INF/include/header2.jsp" %>
 		</c:otherwise>
 	</c:choose>
+	<%@include file="/WEB-INF/include/subBanner.jsp"%>
 	<div id="section">
-     <div id="title">
+     <!-- <div id="title">
      	<p>그린마켓</p>
-     </div>
+     </div> -->
      <div id="aside">
       <ul id="sidemenu">
-     	<li><a href="/Market/List?submenu_id=SUBMENU15&nowpage=1">입양원해요</a></li><br />
-     	<li><a href="/Market/List?submenu_id=SUBMENU16&nowpage=1">나눔합니다</a></li><br />
-     	<li><a href="/Market/List?submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a></li><br />
+     	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU15&nowpage=1">입양원해요</a></li><br />
+     	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU16&nowpage=1">나눔합니다</a></li><br />
+     	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a></li><br />
       </ul>
      </div>
      
@@ -398,11 +399,8 @@
 			   <td>
 			     <select name="amount">
 					<option value="">최대 3개 제한</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
 			     </select>
-			     <a href="/Market/PointPayForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&userid=${sessionScope.login.userid}">
+			     <a href="/Market/PointPayForm?menu_id=${ map.menu_id }&submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&userid=${sessionScope.login.userid}">
 			     <button>구매</button>
 			     </a>
 			   </td>

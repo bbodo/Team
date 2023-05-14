@@ -207,7 +207,7 @@
 	         <c:when test="${ marketVo.lvl eq 0 }">
 	           <c:choose>
 	            <c:when test="${ marketVo.delboard eq 0 }">
-	              <a href="/Market/View?submenu_id=${marketVo.submenu_id}&board_idx=${marketVo.board_idx}&nowpage=${map.nowpage}">
+	              <a href="/Market/View?menu_id=${ map.menu_id }&submenu_id=${marketVo.submenu_id}&board_idx=${marketVo.board_idx}&nowpage=${map.nowpage}">
 	       		   ${ marketVo.board_title }
 	       		  </a>
 	       		</c:when>
@@ -223,7 +223,7 @@
 	            
 	            <c:choose>
 	              <c:when test="${ marketVo.delboard eq 0 }">
-	                <a href="/Market/View?submenu_id=${marketVo.submenu_id}&board_idx=${marketVo.board_idx}&nowpage=${map.nowpage}">
+	                <a href="/Market/View?menu_id=${ map.menu_id }&submenu_id=${marketVo.submenu_id}&board_idx=${marketVo.board_idx}&nowpage=${map.nowpage}">
 	              	  [답글] ${ marketVo.board_title }
 	         	    </a>
 	         	  </c:when>
