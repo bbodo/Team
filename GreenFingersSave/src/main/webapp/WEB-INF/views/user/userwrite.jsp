@@ -16,15 +16,16 @@
    table {margin  : auto; }  
    h2 {text-align : center}
    
-   #title {
-		width: 100%;
-		text-align: center;
-		height: 100px;
-		background-color: limegreen;
-	}
-#title p { font-size: 20px; font-weight: bolder;
-		 line-height: 100px;
-	}
+#title {
+	width: 100%;
+	text-align: center;
+	height: 200px;
+	background-color: white;
+}
+#main {
+	width: 100%;
+	padding-right: 0px;
+}
    
   #id {
   width:300px;
@@ -268,64 +269,84 @@ span    { padding: 10px; }
 </script>
 </head>
 <body>
-     <div id="title">
-     	<p>반려식물 회원가입</p>
-     </div>
-  <div id="main">
-  <h2>회원 가입</h2>
+	<div id="wrapper">
+		<div id="title">
+			<a href="/"><img src="/img/common/logo.png" alt="logo" style="display: block; margin: auto;"/></a>
+		</div>
+  	<div id="main">
+  	<div id="write">
+  	<h2>회원 가입</h2>
   <form action="/User/Write" method="POST" >
   <input type="hidden" name="uri" value="${map.uri}">
   <table>
    <tr>
      <th>아이디</th>
-     <td><input type="text" name="userid"  id="id" value=""/>
+   </tr>
+   <tr> 
+     <td ><input type="text" name="userid"  id="id" value=""/>
          <input type="button" value="중복체크" id="idCheck" />
          <span id="idCheckresult"></span>
      </td>
-   </tr> 
+   </tr>
    <tr>
      <th>비밀번호</th>
+   </tr>
+   <tr> 
      <td><input type="password" name="passwd" id="pwd1" /></td>
-   </tr> 
+   </tr>
    <tr>
       <td colspan="2" style="text-align:center; font-size: 12px;">
       (최소문자1개,숫자1개,특수문자1개 포함. 최소8자이상)</td>
    </tr>
    <tr>
      <th>비밀번호 확인</th>
+   </tr>
+   <tr> 
      <td><input type="password" id="pwd2" /></td>
-   </tr> 
+   </tr>
    <tr>
      <th>이름</th>
+   </tr>
+   <tr> 
      <td><input type="text" name="username" id="username"/></td>
-   </tr> 
+   </tr>
    <tr>
      <th>생년월일</th>
+   </tr>
+   <tr> 
      <td><input type="date" name="birthday" id="birth"/> </td>
-   </tr> 
+   </tr>
    <tr>
      <th>성별</th>
+   </tr>
+   <tr> 
      <td><input type="radio" name="gender" value="남"/>남
          <input type="radio" name="gender" value="여"/>여</td>
-   </tr> 
+   </tr>
    <tr>
      <th>주소</th>
-     <td><input type="text" name="addr" id="add"/></td>
-   </tr>  
+   </tr>
    <tr>
+     <td><input type="text" name="addr" id="add"/></td>
+   </tr>
+   <tr> 
      <th>이메일</th>
+   </tr>
+   <tr>
      <td><input type="email" name="email" id ="email"/>
          <input type="button" value="중복체크" id="emailCheck" />
          <span id="emailCheckresult"></span>
      </td>
-   </tr> 
+   </tr>
    <tr>
      <th>닉네임</th>
+   </tr>
+   <tr>  
      <td><input type="text" name="nickname" id="nickname"/>
          <input type="button" value="중복체크" id="nicknameCheck" />
          <span id="nicknameCheckresult"></span>
      </td>
-   </tr>  
+   </tr>
    <tr>     
      <td colspan="2" style="text-align:center; padding: 10px;">
      <input type="submit" style="width:60pt; height:30pt;" value="가입" />
@@ -333,6 +354,8 @@ span    { padding: 10px; }
    </tr> 
   </table>
   </form>
+  </div>
+  </div>
   </div>
 </body>
 </html>

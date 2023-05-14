@@ -8,9 +8,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>로그인 창</title>
 <link rel="shortcut icon" href="/img/favicon.ico">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
+	crossorigin="anonymous"> -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/common.css" />
 <style>
 
@@ -20,22 +21,58 @@ div{text-align : center}
 table {margin  : auto; }  
 
 #title {
-		width: 100%;
-		text-align: center;
-		height: 200px;
-		background-color: white;
-	}
+	width: 100%;
+	text-align: center;
+	height: 200px;
+	background-color: white;
+}
 #id {
-  width:300px;
-  height:50px;
-  font-size:20px;
+	width:300px;
+	height:30px;
+	font-size:20px;
 }
 
 #pwd {
-  width:300px;
-  height:50px;
-  font-size:20px;
+	width:300px;
+	height:30px;
+	font-size:20px;
 }
+#main {
+	width: 100%;
+	padding-right: 0px;
+}
+#login {f
+	border: 1px solid #C0C0C0;
+	width: 40%;
+	margin: auto;
+	border-radius: 5px;
+}
+a {
+	color: #888;
+}
+a:hover {
+	text-decoration: none;
+	color: #3CB371;
+}
+.input_row {
+    position: relative;
+    display: block;
+    height: 100%;
+    border: 1px solid #dadada;
+    padding: 16px 18px 15px;
+    border-radius: 6px;
+    box-sizing: border-box;
+    text-align: left;
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,.08);
+}
+.id_pw_wrap .input_row:first-child {
+    border-radius: 6px 6px 0 0;
+    box-shadow: none;
+}
+.id_pw_wrap .input_row:last-child {
+    border-radius: 0 0 6px 6px;
+}
+
 
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -85,27 +122,34 @@ table {margin  : auto; }
 <body>
 	<div id="wrapper">
      <div id="title">
-		<img src="/img/common/logo.png" alt="logo" />
+		<a href="/"><img src="/img/common/logo.png" alt="logo" style="display: block; margin: auto;"/></a>
      </div>
-	<div id= "main">	
-	<h2> 로그인 </h2>
+	<div id="main">
+	<div id="login">
+	<h2 style="margin: 20px;"> 로그인 </h2>
 		<form action = "/User/LoginProcess" method="POST">
 		<input type="hidden" name="uri" value="${uri}" />
 		<table>
 			<tr>
-			<th>아이디</th>
-			<td><input type="text" name="userid" id="id" value="sky"/></td>
-			</tr>
-			<tr>
-			<th>암호</th>
-			<td><input type="password" name="passwd" id="pwd" value="1234"/></td>
+				<td>
+					<div class="id_pw_wrap">
+						<div class="input_row">
+							<input type="text" name="userid" id="id" value="sky" placeholder="아이디" style="border: none;"/>
+						</div>
+						<div class="input_row"
+							><input type="password" name="passwd" id="pwd" value="1234" placeholder="비밀번호" style="border: none;"/>
+						</div>
+					</div>
+				</td>
 			</tr>
 			<tr>
 			 <td colspan="2">
-			<input type="submit" value="로그인"/>
+				<input class="btn btn-success" type="submit" value="로그인" style="margin: 20px 0px; width: 350px; height: 55px;"/>
 			<td>
 			</tr>
-			<tr>
+			</table>
+			</form>
+			</div>
 			<c:choose>
 				<c:when test="${noid eq 'noid' }">
 					 <td colspan="2" style="color:red;">
@@ -116,12 +160,11 @@ table {margin  : auto; }
 						비밀번호가 틀립니다</td>
 				</c:when>
 			</c:choose>
-			</tr>
-			</table>
-			</form>
 			<%-- <a href="/User/WriteForm?uri=${uri}">회원가입</a> --%>
-			<a href="/User/FindForm">아이디 / 비밀번호 찾기</a> <br />
-			<a href="javascript:gouri('${uri}')">회원가입</a>
+			<div style="margin: 15px; color: #888">
+				<a href="/User/FindForm">아이디 / 비밀번호 찾기</a> <span style="margin: 10px;">|</span>
+				<a href="javascript:gouri('${uri}')">회원가입</a>
+			</div>
 	</div>
 	</div>
 </body>

@@ -124,8 +124,6 @@
  		FROM
  			MEMBER
  		WHERE
- 			USERNAME = #{ username }
- 		AND
  			EMAIL = #{ email }
  	
  	</select>
