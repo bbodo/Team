@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.green.myPage.dao.MyPageDao;
+import com.green.myPage.vo.FilesVo;
 import com.green.myPage.vo.MyPageVo;
 
 @Repository("MyPageDao")
@@ -120,10 +121,15 @@ public class MyPageDaoImpl implements MyPageDao {
 	@Override
 	public void updateUser(HashMap<String, Object> map) {
 
-		System.out.println(map);
-		
 		sqlSession.update("MyPage.UpdateUser", map);
 		
+	}
+
+	@Override
+	public void setSave(HashMap<String, Object> map) {
+		List<FilesVo> fileList = (List<FilesVo>) map.get("fileList");
+		if(fileList.size() !=0 )
+			sqlSession.insert("MyPage.UpdateProfile", map);
 	}
 	
 	

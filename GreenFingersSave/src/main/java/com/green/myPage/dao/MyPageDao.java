@@ -36,4 +36,6 @@ public interface MyPageDao {
 	// 개인정보수정
 	void updateUser(HashMap<String, Object> map);
 
+	void setSave(HashMap<String, Object> map);
+
 }

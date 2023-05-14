@@ -191,6 +191,24 @@
 			USERCODE = #{ usercode }
 	
 	</update>
+	
+	 <!-- 파일 저장 -->
+    <insert  id="UpdateProfile">
+      <foreach collection="fileList" item="file"
+           index      = "i"  
+           open       = "INSERT ALL"    
+           close      = "SELECT * FROM DUAL"
+           separator  = " " >
+           INTO  BOARD_FILES  VALUES (
+                GET_FILENUM()
+              , ( SELECT MAX(BOARD_IDX) FROM BOARD  )
+              , #{ file.filename   }
+              , #{ file.fileext    }
+              , #{ file.sfilename  }
+           )
+      </foreach>
+   
+   </insert>
 
 </mapper>
 

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="seminarMapper">   
+
+	<!-- 글 작성 -->
+	<insert id="InsertSave">
+		INSERT INTO
+			BOARD
+			(
+				BOARD_IDX,
+				SUBMENU_ID,
+				BOARD_TITLE,
+				BOARD_CONT,
+				USERCODE,
+				BNUM,
+				NREF
+			)
+		VALUES
+			(
+				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
+				'SUBMENU21',
+				#{ board_title },
+				#{ editorTxt },
+				(SELECT USERCODE FROM MEMBER WHERE USERID = 'admin'),
+				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
+				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD)
+			)
+	</insert>
+	
+	 <!-- 파일 저장 -->
+    <insert  id="Updatefile">
+      <foreach collection="fileList" item="file"
+           index      = "i"  
+           open       = "INSERT ALL"    
+           close      = "SELECT * FROM DUAL"
+           separator  = " " >
+           INTO  BOARD_FILES  VALUES (
+                GET_FILENUM()
+              , ( SELECT MAX(BOARD_IDX) FROM BOARD  )
+              , #{ file.filename   }
+              , #{ file.fileext    }
+              , #{ file.sfilename  }
+           )
+      </foreach>
+   
+   </insert>
+
+</mapper>
+
+
+
+
+
+   

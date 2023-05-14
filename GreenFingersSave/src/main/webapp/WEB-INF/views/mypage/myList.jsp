@@ -114,7 +114,6 @@
 		if(inWidthCal == 100){
 			inWidth.style.width = "0%";
 			gradeMark.style.marginLeft = "0%";
-			
 		}else{
 			inWidth.style.width = inWidthCal + "%";
 			gradeMark.style.marginLeft = inWidthCal + "%";
@@ -126,19 +125,17 @@
 			return (part / whole) * 100;
 		}
 		
-		
-		$('#btnAddFile').on('click', function(e) {
-		  let tag = '<input type="file"  name="upfile' + num + '" class="upfile"/><br>';
-		  $('#tdfile').append( tag );		  
-		  num++;
-		});
 	
 	}/*  window */
 	
 	//프로필 사진 변경
 	function profile() {
-		let profileFile = document.getElementById("upfile");
-		profileFile.click();
+		let upfile = document.getElementById("upfile");
+		let btnAddFile = document.getElementById("btnAddFile");
+		let proFileBtn = document.getElementById("proFileBtn");
+		upfile.click();
+		btnAddFile.style.display = "block";
+		proFileBtn.style.display = "none";
 	}
 	
 	//받는 쪽지 보낸 쪽지 구분
@@ -221,9 +218,10 @@
      			<div><img src="/img/common/profile.png" alt="myimg"/></div>
      			<div><p>${userVo.userid} 님</p></div>
      			<div><p>등급 :</p> <p>${userVo.usercode}</p></div>
-     			<button >프로필 변경</button>
-     			<form action="/mypage/myList?nowpage=1" method="POST" enctype="Multipart/form-data">
-	     			<input  type="file" name="upfile"  id="upfile"/>
+     			<button id="proFileBtn" onclick="profile()">프로필 변경</button>
+     			<form action="/mypage/myProfile?nowpage=1" method="POST" enctype="Multipart/form-data" >
+	     			 <input style="display:none;" type="file" name="upfile" id="upfile" value="프로필변경"/>
+     				 <input style="display:none;" type="submit"  id="btnAddFile" value="변경확인" />
      			</form>
      		</div>
      		

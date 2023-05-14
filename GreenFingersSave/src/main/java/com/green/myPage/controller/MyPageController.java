@@ -3,6 +3,7 @@ package com.green.myPage.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +68,6 @@ public class MyPageController {
 		//쪽지 등록 
 		int myNoteInsertCheck = myPageService.insertMyNote(map);
 		
-		
 		//쪽지등록에 실패 했을 경우
 		if(myNoteInsertCheck != 1) {
 			mv.setViewName("/error/error");
@@ -109,8 +109,6 @@ public class MyPageController {
 		Object usercode = userVo.getUsercode();
 		map.put("sendusercode", usercode);
 		
-		System.out.println("wkadhsek"+map.toString());
-		
 		//쪽지등록 전 필요한 값 들고오기
 		MyPageVo myNoteAnswerForm =  myPageService.getMyNoteAnswerForm(map);
 		
@@ -137,7 +135,7 @@ public class MyPageController {
 	
 	@RequestMapping("/myList")
 	public ModelAndView myNoteList (@RequestParam HashMap<String, Object> map,
-			HttpSession session) {
+			HttpSession session, HttpServletRequest request) {
 		
 		UserVo userVo = (UserVo) session.getAttribute("login");
 		int usercode = userVo.getUsercode();
@@ -167,12 +165,14 @@ public class MyPageController {
 		// 내공 보답 할 사람 리스트
 		List<MyPageVo>   sendPointList  =  myPageService.getSendPointList( map );
 		
+		/*
+		 * //파일저장 myPageService.updateProfile(map, request);
+		 */
+		
 		//paging가 사용할 변수
 		MyPageVo         sendNotePagingVo   =  (MyPageVo) map.get("sendNotePaging");
 		MyPageVo         recNotePagingVo   =  (MyPageVo) map.get("recNotePaging");
 		MyPageVo         sendPointPagingVo   =  (MyPageVo) map.get("SendPointPaging");
-		
-		System.out.println("dfhuahf" + userVo);
 		
 		List<MenuVo> menuList = menuService.getMenuList();
 		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
@@ -188,6 +188,23 @@ public class MyPageController {
 		mv.addObject("sendPagingVo", sendNotePagingVo);
 		mv.addObject("recPagingVo", recNotePagingVo);
 		mv.addObject("sendPointPagingVo", sendPointPagingVo);
+		return mv;
+	}
+	
+	@RequestMapping("/myProfile")
+	public ModelAndView myProfile (@RequestParam HashMap<String, Object> map,
+			HttpSession session, HttpServletRequest request) {
+		
+		UserVo userVo = (UserVo) session.getAttribute("login");
+		int usercode = userVo.getUsercode();
+		map.put("usercode", usercode);
+		
+		//파일저장
+		myPageService.updateProfile(map, request);
+		
+		ModelAndView  mv  = new ModelAndView();
+		mv.addObject("map", map);
+		mv.setViewName("redirect:/mypage/myList?nowpage=1");
 		return mv;
 	}
 	
