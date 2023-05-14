@@ -335,10 +335,11 @@
 			<%@include file="/WEB-INF/include/header2.jsp" %>
 		</c:otherwise>
 	</c:choose>
+	<%@include file="/WEB-INF/include/subBanner.jsp" %>
 	
-	 <div id="title">
+	<!--  <div id="title">
      	<p style="font-size: 40px; font-weight: bold;">그린 위키</p>
-     </div>
+     </div> -->
 	
 	<div class="search" style="height: auto; width: 100%; min-height:800px; padding: 20px 20px;" >
 	<h2>그린 위키 검색</h2>
