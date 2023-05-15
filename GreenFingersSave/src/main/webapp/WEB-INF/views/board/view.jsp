@@ -110,7 +110,7 @@
 		margin-top: 5px;
 	}
 	.contSpace {
-		width: 50%;
+		width: 60%;
 		padding: 10px;
 		text-align: left;
 	}
@@ -180,7 +180,6 @@
 <script src="https://code.jquery.com/jquery.min.js"></script>
 
 <script>
-
 		function comment_update(coment_idx, coment_cont) {
 
 			let cont = $("#comment_update_" + coment_idx).val();
@@ -216,7 +215,7 @@
 		function comment_back(coment_idx, coment_cont) {
 			let html  = '';
 				html += '<div>';
-				html += '<div class="floatleft" id="commentCont_'+ coment_idx +'" onclick="c(' + coment_idx + ')">'+ coment_cont +'</div>';
+				html += '<div class="floatleft contSpace" id="commentCont_'+ coment_idx +'" onclick="c(' + coment_idx + ')">'+ coment_cont +'</div>';
 				html += '</div>';
 				
 			$('#comment_li_'+ coment_idx +' .smbtn').css('display', 'inline-block');
@@ -320,6 +319,15 @@
 		}
 	window.onload = function() {
 		
+		$('#coment_cont').keyup(function(e) {
+			console.log(e)
+			if(e.key == 'Enter') {
+				$('#writeBtn').click();
+			} else {
+				
+			}
+		})
+		
 		const writeBtnEl = document.getElementById("writeBtn");
 		const coment_contEl = document.getElementById("coment_cont");
 		const readCEl = document.getElementById("readC");
@@ -402,7 +410,7 @@
 				<td class="padd8">${vo.board_title }</td>
 			</tr>
 			<tr>
-				<td class="padd8">작성자</td>
+				<td class="padd8" style="width: 10%">작성자</td>
 				<td class="padd8">${vo.nickname }</td>
 				<td class="padd8">작성일</td>
 				<td class="padd8">${vo.board_regdate }</td>

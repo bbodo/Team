@@ -62,7 +62,8 @@
 	}
 	#main {
 		width: 80%;
-		height: 1500px;
+		min-height: 1500px;
+		height: auto;
 		float: left;
 		padding: 10px;
 		background-color: white;
@@ -74,15 +75,12 @@
 		margin-bottom: 30px;
 	}
 	
-	
- 	
 	#givelist { 
         display: flex;
         gap : 30px;
         text-decoration : none;
-        margin-top: 30px;
-        margin-left: 350px;
-        
+        margin-top: 20px; 
+		justify-content: center;        
     } 
     .plant  { 
         margin: 0 0 15px 0;
@@ -101,7 +99,7 @@
         gap : 30px;
         text-decoration : none;
         margin-top: 20px; 
-        margin-left: 350px;     
+         justify-content: center;
     } 
     
 	.tag {

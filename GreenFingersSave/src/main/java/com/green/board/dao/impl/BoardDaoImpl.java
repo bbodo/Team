@@ -17,6 +17,7 @@ public class BoardDaoImpl implements BoardDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	// 게시판 게시글 정보 가져가기
 	@Override
 	public List<BoardVo> getBoardList(HashMap<String, Object> map) {
 			
@@ -32,6 +33,7 @@ public class BoardDaoImpl implements BoardDao {
 		return boardList;
 	}
 
+	// 게시글 정보 가져가기
 	@Override
 	public BoardVo getBoard(HashMap<String, Object> map) {
 		
@@ -42,6 +44,7 @@ public class BoardDaoImpl implements BoardDao {
 		return vo;
 	}
 
+	// 게시글 작성
 	@Override
 	public void setWrite(HashMap<String, Object> map) {
 
@@ -64,6 +67,7 @@ public class BoardDaoImpl implements BoardDao {
 		
 	}
 
+	// 파일리스트 정보 가져가기
 	@Override
 	public List<FileVo> getFileList(HashMap<String, Object> map) {
 
@@ -72,6 +76,7 @@ public class BoardDaoImpl implements BoardDao {
 		return fileList;
 	}
 
+	// 수정중 파일 삭제하기
 	@Override
 	public void deleteUploadFile(HashMap<String, Object> map) {
 
@@ -79,6 +84,7 @@ public class BoardDaoImpl implements BoardDao {
 		
 	}
 
+	// 게시글 수정하기
 	@Override
 	public void setUpdate(HashMap<String, Object> map) {
 
@@ -91,6 +97,7 @@ public class BoardDaoImpl implements BoardDao {
 			sqlSession.insert("Board.FileUpdate", map );
 	}
 
+	// 삭제하기
 	@Override
 	public void setDelete(HashMap<String, Object> map) {
 		

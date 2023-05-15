@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>회원 등록</title>
 <link rel="shortcut icon" href="/img/favicon.ico">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/common.css" />
 
 <style>
@@ -16,51 +17,51 @@
    table {margin  : auto; }  
    h2 {text-align : center}
 
-#title {
-	width: 100%;
-	text-align: center;
-	height: 200px;
-	background-color: white;
-}
-#main {
-	width: 100%;
-	padding-right: 0px;
-}
-   
-  #id {
-  height:50px;
-  font-size:20px;
-}
-  #pwd1 {
-  height:50px;
-  font-size:20px;
-}
-  #pwd2 {
-  height:50px;
-  font-size:20px;
-}
-  #username {
-  height:50px;
-  font-size:20px;
-}
-  #birh {
-  height:50px;
-  font-size:20px;
-}
-  #email {
-  height:50px; 
-  font-size:20px;
-}
-
-  #add {
-  height:50px;
-  font-size:20px;
-}
-  #nickname {
-  height:50px;
-  font-size:20px;
-}
-.ps_box {
+	#title {
+		width: 100%;
+		text-align: center;
+		height: 200px;
+		background-color: white;
+	}
+	#main {
+		width: 100%;
+		padding-right: 0px;
+	}
+	   
+	  #id {
+	  height:50px;
+	  font-size:20px;
+	}
+	  #pwd1 {
+	  height:50px;
+	  font-size:20px;
+	}
+	  #pwd2 {
+	  height:50px;
+	  font-size:20px;
+	}
+	  #username {
+	  height:50px;
+	  font-size:20px;
+	}
+	  #birh {
+	  height:50px;
+	  font-size:20px;
+	}
+	  #email {
+	  height:50px; 
+	  font-size:20px;
+	}
+	
+	  #add {
+	  height:50px;
+	  font-size:20px;
+	}
+	  #nickname {
+	  height:50px;
+	  font-size:20px;
+	}
+	.ps_box {
     display: block;
     position: relative;
     width: 100%;
@@ -70,15 +71,33 @@
     background: #fff;
     box-sizing: border-box;
     vertical-align: top;
-}
+	}
 
-.left {
-	text-align: left;
-}
+	.left {
+		text-align: left;
+	}
+	.regbtn {
+		background-color:#44c767;
+		color:#ffffff;
+		font-size:15px;
+		font-weight:bold;
+		margin: 30px 0;
+	    width: 100%;
+	    height: 60px;
+		text-decoration:none;
+		border: none;
+	}
+	.regbtn:hover {
+		background-color:#5cbf2a;
+	}
+	.regbtn:active {
+		position:relative;
+		top:1px;
+	}
 
-.green  { color: green; }
-.red    { color: red; }
-span    { padding: 10px; }
+	.green  { color: green; }
+	.red    { color: red; }
+	span    { padding: 10px; }
    
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -424,9 +443,15 @@ span    { padding: 10px; }
    </tr>
    <tr> 
      <td>
-     	 <input type="radio" name="gender" value="남"/>남
+     	<select id="gender" class="ps_box">
+			<option value="">성별</option>
+			<option value="남">남</option>
+			<option value="여">여</option>
+			<option value="무">선택안함</option>
+		</select>
+     	 <!-- <input type="radio" name="gender" value="남"/>남
          <input type="radio" name="gender" value="여"/>여
-         <input type="radio" name="gender" value=""/>선택안함</td>
+         <input type="radio" name="gender" value=""/>선택안함</td> -->
    </tr>
    <tr>
      <th class="left">주소</th>
@@ -455,8 +480,8 @@ span    { padding: 10px; }
      </td>
    </tr>
    <tr>     
-     <td colspan="2" style="text-align:center; padding: 10px;">
-     <input type="submit" style="width:60pt; height:30pt;" value="가입" />
+     <td colspan="2" style="text-align:center; padding: 10px 0px 50px 0px;">
+     <input type="submit" style="width:100%; height: 55px" value="가입" class="btn btn-success" />
      <span id="checkresult"></span>
      </td>
    </tr> 

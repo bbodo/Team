@@ -146,7 +146,7 @@
 					$('#pwd1Checkresult').html("<b style='color:red;'>비밀번호 형식이 틀립니다</b>");
 					/* pwd1El.value = ''; */
 				} else {
-					$('#pwd1Checkresult').html("<b style='color:green;'></b>");
+					$('#pwd1Checkresult').html("<b style='color:green;'>사용할 수 있는 비밀번호입니다.</b>");
 				}
 			} else {
 				$('#pwd1Checkresult').html("<b style='color:red;'>비밀번호를 입력하세요</b>");
@@ -450,7 +450,7 @@
 			</tr>
 			<tr>
 				<td class="left">
-					<select id="gender" class="ps_box">
+					<select id="gender" name="gender" class="ps_box">
 						<option value="">성별</option>
 						<option value="남">남</option>
 						<option value="여">여</option>
