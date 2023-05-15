@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.green.event.Vo.EventVo;
 import com.green.manager.service.ManagerService;
 import com.green.manager.vo.AdminEventVo;
 import com.green.manager.vo.StoreVo;
@@ -428,19 +429,25 @@ public class ManagerController {
   			@RequestParam HashMap<String, Object> map
   			) {
   		
-  	// 메뉴 목록	
-  	List<MenuVo> menuList   = menuService.getMenuList();
-  	List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+  		// 메뉴 목록	
+  		List<MenuVo> menuList   = menuService.getMenuList();
+  		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+  		
+  	
+  		//--------------------------------------------------------------------------------------
   	
   	
  	// 게시글 목록 불러오기
  	List<AdminEventVo> eventList = managerService.getEventList(map);
+ 	
+
  	
  	
  	ModelAndView mv = new ModelAndView();
  	mv.setViewName("admin/adminEventList");
  	mv.addObject("menuList", menuList);
  	mv.addObject("submenuList", submenuList);
+
  	mv.addObject("eventList", eventList);
  	
  	return mv;

@@ -118,8 +118,6 @@
   </tr>  
   </c:forEach>
 		</table>
-		</table> 		
-			    <%@include file="/WEB-INF/include/eventPaging.jsp" %>
      </div>    
      </div>
         <%@include file="/WEB-INF/include/footer.jsp" %>
