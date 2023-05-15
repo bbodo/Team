@@ -29,9 +29,7 @@
 <body>
 	 <!-- header	 -->
 		 <%@include file="/WEB-INF/include/adminHeader.jsp" %>
-     <div id="title">
-     	<p>회원관리</p>
-     </div>
+   <img src ="/img/common/subbanner.png" alt="subbanner" />
       <div id="aside">
        <ul id="sidemenu">
 			<li><a href="/Manager/Member">회원 관리</a><br /></li>

@@ -154,10 +154,7 @@
 <body>
 	<!-- header -->
 	 	 <%@include file="/WEB-INF/include/adminHeader.jsp" %>
-	<div id="section">
-     <div id="title">
-     	<p  style="font-size: 40px; font-weight: bold;" >이벤트</p>
-     </div>
+	<img src ="/img/common/subbanner.png" alt="subbanner" />
     <div id="aside">
      	<ul id="sidemenu">
      	     <a href="/Manager/EventList?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1" >이벤트</a>  <br>  	     	  

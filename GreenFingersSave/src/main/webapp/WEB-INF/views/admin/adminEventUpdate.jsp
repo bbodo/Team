@@ -109,9 +109,7 @@
 <body>
 	 <!-- header -->
 	 	 <%@include file="/WEB-INF/include/adminHeader.jsp" %>
-     <div id="title">
-     	<p style="font-size: 40px; font-weight: bold;">이벤트</p>
-     </div>
+     <img src ="/img/common/subbanner.png" alt="subbanner" />
      <div id="main">
 	     <div><a id="board_title" href="/Manager/EventList?submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 게시판</a></div>
      	

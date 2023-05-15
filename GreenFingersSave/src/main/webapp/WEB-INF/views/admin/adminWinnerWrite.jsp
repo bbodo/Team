@@ -152,16 +152,16 @@
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
-     <div id="title">
-     	<p>이벤트</p>
-     </div>
-     <div id="aside">
-     	<ul id="sidemenu">
-     	     <a href="/Manager/EventList?menu_id=${ map.menu_id }&submenu_id=SUBMENU18&nowpage=1" >이벤트</a>  <br>  	     	  
-     	     <a href="/Manager/WinnerList?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1">당첨자</a>   		
-     	</ul>
-     </div>
-     
+     <img src ="/img/common/subbanner.png" alt="subbanner" />
+   
+   <div id="aside">
+		<ul id="sidemenu">
+     	<li class="sidemenuTitle">SIDEMENU</li>
+			<li><a href="/Manager/EventList?menu_id=${ map.menu_id }&submenu_id=SUBMENU18&nowpage=1" >이벤트</a></li>
+			<li> <a href="/Manager/WinnerList?menu_id=${ map.menu_id }&submenu_id=SUBMENU19&nowpage=1">이벤트 당첨자</a></li>
+		</ul>
+	</div>
+	
      <div id="main">
 		<div><a id="board_title" href="/Manager/WinnerList?submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 게시판</a></div>
      

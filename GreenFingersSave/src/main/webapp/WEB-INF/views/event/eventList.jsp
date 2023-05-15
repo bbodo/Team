@@ -68,11 +68,14 @@
 	  <tr>
 	  
 	  <td  colspan="3" >
-	         <c:forEach var="file"  items="${ fileList }" begin="3" end="3" >         
+	         <c:forEach var="file"  items="${ fileList }" >         
+	  <c:if test="${ eventVo.board_idx == file.board_idx}">
+	  
 				 <div>
 					<img id="img1" src="/upload/${ file.sfilename }" onclick="javascript:location.href='http://localhost:9090/Event/EventView?submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}'" >
 				 </div>
             
+					</c:if>
             </c:forEach>    
              <td colspan="3" >
 	       <!-- 제목(새글/답글) -->

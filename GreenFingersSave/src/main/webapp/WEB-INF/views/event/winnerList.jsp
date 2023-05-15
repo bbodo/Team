@@ -49,7 +49,8 @@
 		<h2 style="font-size: 24px;">${ map.submenu_name }</h2>     
 		<table id="cont">
 					<tr>
-				<th colspan="6"><a href="http://localhost:9090/Event/EventList?submenu_id=SUBMENU18&nowpage=1">이벤트로 다시 가고싶으면 눌러봐</a></th>
+				<th colspan="2"><a href="http://localhost:9090/Event/EventList?submenu_id=SUBMENU18&nowpage=1">이벤트</a></th>
+				<th colspan="3"><a href="http://localhost:9090/Winner/WinnerList?submenu_id=SUBMENU19&nowpage=1">당첨자</a></th>
 			</tr>
 		
 			<tr>
@@ -110,6 +111,6 @@
 	    	<%@include file="/WEB-INF/include/winnerPaging.jsp" %>
      </div>
      </div>
-<%@include file="/WEB-INF/include/footer.jsp" %>
+          <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>
