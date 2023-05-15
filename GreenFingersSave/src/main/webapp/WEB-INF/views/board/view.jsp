@@ -43,9 +43,10 @@
 		border-bottom: 1px solid #228B22;
 	}
 	#reply_coment_cont {
-		width: 60%;
+		width: 100%;
 		height: 60px;
 		resize: none;
+		padding: 3px;
 	}
 	#replyComment {
 		text-align: left;
@@ -106,6 +107,7 @@
 		padding: 3px;
 		height: 70px;
 		resize: none;
+		margin-top: 5px;
 	}
 	.contSpace {
 		width: 50%;
@@ -133,7 +135,45 @@
 	#wrapper {
 		margin-top: 70px;
 	}
-	
+	.regbtn {
+		background-color:#44c767;
+		color:#ffffff;
+		font-size:15px;
+		font-weight:bold;
+		padding:25px 23px;
+		text-decoration:none;
+		border: none;
+	}
+	.regbtn:hover {
+		background-color:#5cbf2a;
+	}
+	.regbtn:active {
+		position:relative;
+		top:1px;
+	}
+	.smbtn {
+	    background-color: #44c767;
+	    color: #ffffff;
+	    font-size: 15px;
+	    font-weight: bold;
+	    text-decoration: none;
+	    width: 73px;
+	    border: none;
+	    display: inline-block;
+	}
+	.smbtn:hover {
+		background-color:#5cbf2a;
+	}
+	.smbtn:active {
+		position:relative;
+		top:1px;
+	}
+	.upForm {
+		padding: 3px;
+		resize: none;
+		width: 100%;
+	}
+
 
 </style>
 
@@ -178,6 +218,7 @@
 				html += '<div class="floatleft" id="commentCont_'+ coment_idx +'" onclick="c(' + coment_idx + ')">'+ coment_cont +'</div>';
 				html += '</div>';
 				
+			$('#comment_li_'+ coment_idx +' .smbtn').css('display', 'inline-block');
 			console.log($('#comment_updateForm_'+ coment_idx));
 			$('#comment_updateForm_'+ coment_idx).replaceWith(html);
 		}
@@ -185,11 +226,14 @@
 		function updateForm_comment(coment_idx, coment_cont) {
 			let html  = '';
 				html += `<div id="comment_updateForm_\${coment_idx}">`;
-			    html += `<textarea name="coment_cont" id="comment_update_\${coment_idx}">\${coment_cont}</textarea>`;
-			    html += `<input type="button" value="수정" onclick="comment_update(\${coment_idx})"/>`;
-			    html += `<input type="button" value="취소" onclick="comment_back(\${coment_idx}, '\${coment_cont}')"/>`;
+			    html += `<textarea class="upForm" name="coment_cont" id="comment_update_\${coment_idx}">\${coment_cont}</textarea>`;
+			    html += '<div style="float: right">'
+			    html += `<input class="smbtn" type="button" value="수정" onclick="comment_update(\${coment_idx})"/>`;
+			    html += `<input class="smbtn" type="button" value="취소" onclick="comment_back(\${coment_idx}, '\${coment_cont}')"/>`;
+			    html += '</div>'
 			    html += '</div>';
 			
+			$('#comment_li_'+ coment_idx +' .smbtn').css('display', 'none');
 			$('#commentCont_'+ coment_idx).replaceWith(html);
 			$('#comment_update_' + coment_idx).focus();
 		}
@@ -226,7 +270,7 @@
 				let html  = '<li class="comment_empty" id=comment_empty_' + coment_idx + '>'
 					html += '<div id="replyComment">'
 				    html += `<b style="display:inline-block; width:\${com_lvl * 40}px"></b><textarea id="reply_coment_cont" name="comment_cont"></textarea><br />`;
-					html += `<b style="display:inline-block; width:\${com_lvl * 40}px"></b><input type="button" value="대댓작성" id="replyBtn" onclick="reply_comment( \${coment_idx}, \${board_idx}, \${com_bnum}, \${com_lvl}, \${com_step}, \${com_nref}, \${com_parent})">`
+					html += `<b style="display:inline-block; width:\${com_lvl * 40}px"></b><input class="smbtn" type="button" value="대댓작성" style="float: right;" onclick="reply_comment( \${coment_idx}, \${board_idx}, \${com_bnum}, \${com_lvl}, \${com_step}, \${com_nref}, \${com_parent})">`
 					html += '</div><br /></li>';
 				
 					commentEl.append(html);
@@ -242,8 +286,8 @@
 						html += '<div class="floatleft nameSpace"><p><h2>'+ comm.nickname +'</h2></p></div>';
 						html += `<div class="floatleft contSpace" id="commentCont_\${comm.coment_idx}" onclick="c(\${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})">\${comm.coment_cont}</div><br />`;
 						if(comm.usercode == ${login.usercode}) {
-							html += '<div class="floatright btns"><input type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
-							html += '<input type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br />';
+							html += '<div class="floatright"><input class="smbtn" type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
+							html += '<input class="smbtn" type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br />';
 						}						
 						html += '<div class="floatright dateSpace"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
 					} else {
@@ -255,14 +299,14 @@
 						html += `<div class="floatleft nameSpace"><p><h2><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.nickname}</h2></p></div>`;
 						html += `<div class="floatleft contSpace" id="commentCont_\${ comm.coment_idx }" onclick="c( \${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})"><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.coment_cont}</div><br />`;
 						if(comm.usercode == ${login.usercode}) {
-							html += '<div class="floatright btns"><input type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
-							html += '<input type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br />';
+							html += '<div class="floatright btns"><input class="smbtn" type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
+							html += '<input class="smbtn" type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br />';
 						}	
 						html += '<div class="floatright dateSpace"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
 					} else {
 						html += `<div class="floatleft"><p><h2><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.nickname}</h2></p></div>`;
+						html += `<s class="floatleft"><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>삭제된 댓글입니다.</s><br />`;
 						html += '<div class="floatright"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
-						html += `<s><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>삭제된 댓글입니다.</s><br />`;
 					}
 				}
 				html += '<br /></li>';
@@ -407,13 +451,13 @@
 			<input type="hidden"  name="usercode" value="${ login.usercode }" />
 			<table>
 				<tr>
-					<th><div class="nameSpace">${ login.nickname }</div></th>
+					<th><div class="nameSpace" style="min-width: 80px;">${ login.nickname }</div></th>
 					<td style="width: 1000px;">
 						<textarea name="coment_cont" placeholder="내용을 작성하세요."
 					     required class="coment_cont" id="coment_cont"></textarea>
 					</td>
 					<td style="width: 100px;">
-						<input class="btns" type="button" id="writeBtn" value="등록"/>
+						<input class="regbtn" type="button" id="writeBtn" value="등록"/>
 					</td>
 				</tr>
 			</table>

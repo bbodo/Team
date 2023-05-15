@@ -31,12 +31,13 @@
 	}
 	#main {
 		width: 85%;
-		height: 800px;
+		min-height: 800px;
 		float: left;
 		padding: 10px;
 		padding-right: 15%;
 		background-color: white;
 		text-align: center;
+		height: auto;
 	}
 	#tt {
 		text-align: left;
