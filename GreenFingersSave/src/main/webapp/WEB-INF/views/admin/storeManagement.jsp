@@ -162,7 +162,6 @@
      </tr>
      </c:forEach>   
 	</table>
-	<%@include file="/WEB-INF/include/paging.jsp" %>
      </div>
 	<%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

@@ -132,7 +132,7 @@ public class MarketController {
 	map.put("submenu_name", submenu_name);
 
 	//System.out.println("마켓리스트" + adoptList);
-	System.out.println("마켓맵" + map);
+	//System.out.println("마켓맵" + map);
 	
 	ModelAndView mv = new ModelAndView();
 	mv.setViewName("market/list");
@@ -427,9 +427,9 @@ public class MarketController {
  		
  		MarketVo marketVo = marketService.getBoard(map);
  		
- 		System.out.println("스토어Vo:" + marketVo);
+ 		//System.out.println("스토어Vo:" + marketVo);
  		
- 		System.out.println("스토어map:" + map);
+ 		//System.out.println("스토어map:" + map);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("market/pointPay");

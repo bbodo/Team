@@ -181,7 +181,7 @@
      <caption><h2>나눔</h2></caption>
      <div id="givelist">
       <figure>
-      <a href="/Market/View?submenu_id=SUBMENU16&board_idx=80&nowpage=1">
+      <a href="/Market/View?menu_id=MENU03&submenu_id=SUBMENU16&board_idx=80&nowpage=1">
      <div class="plant">
 	     <img class="mainimg" src="/img/market/그린마켓1.png" >
 	  </div>
@@ -190,7 +190,7 @@
 	     <p>루브라 나눔합니다</p>
 	  </figure>
       <figure>
-      <a href="/Market/View?submenu_id=SUBMENU16&board_idx=82&nowpage=1">
+      <a href="/Market/View?menu_id=MENU03&submenu_id=SUBMENU16&board_idx=82&nowpage=1">
      <div class="plant">
 	     <img class="mainimg" src="/img/market/그린마켓2.png" >
 	  </div>
@@ -198,7 +198,7 @@
 	     <p>제라늄 데려가실 분</p>
 	  </figure>
       <figure>
-      <a href="/Market/View?submenu_id=SUBMENU16&board_idx=83&nowpage=1">
+      <a href="/Market/View?menu_id=MENU03&submenu_id=SUBMENU16&board_idx=83&nowpage=1">
      <div class="plant">
 	     <img class="mainimg" src="/img/market/그린마켓3.png">
 	  </div>

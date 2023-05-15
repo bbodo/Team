@@ -201,7 +201,7 @@ function layerPopupShow(){
 }
 //레이어팝업 비노출
 function layerPopupHide(state){
-    //닫기버튼 오늘하루보지않기 버튼 무관하계 레이어팝업은 닫는다.
+    //닫기버튼 오늘하루보지않기 버튼 무관하게 레이어팝업은 닫는다.
     $layerPopup.style.display = 'none'
 
     //오늘하루보지않기 버튼을 누른 경우

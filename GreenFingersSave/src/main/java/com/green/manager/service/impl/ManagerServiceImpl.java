@@ -117,7 +117,9 @@ public class ManagerServiceImpl implements ManagerService {
 	//-----------------------------------------------------------
 	// 스토어 관리 
 	@Override
-	public List<StoreVo> getStoreList() {
+	public List<StoreVo> getStoreList(
+			
+			) {
 		
 		List<StoreVo> storeList = managerDao.getStoreList();
 		

@@ -187,15 +187,15 @@
 			<%@include file="/WEB-INF/include/header2.jsp" %>
 		</c:otherwise>
 	</c:choose>
-	
-     <div id="title">
+	<%@include file="/WEB-INF/include/subBanner.jsp"%>	
+    <!--  <div id="title">
      	<p style="font-size: 40px; font-weight: bold;">그린마켓</p>  
-     </div>
+     </div> -->
      <div id="aside">
       <ul id="sidemenu">
-     	<li><a href="/Market/List?submenu_id=SUBMENU15&nowpage=1">입양원해요</a></li><br />
-     	<li><a href="/Market/List?submenu_id=SUBMENU16&nowpage=1">나눔합니다</a></li><br />
-     	<li><a href="/Market/List?submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a></li><br />
+     	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU15&nowpage=1">입양원해요</a></li><br />
+     	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU16&nowpage=1">나눔합니다</a></li><br />
+     	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a></li><br />
      </ul>
      </div>
      <div id="main">

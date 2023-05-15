@@ -159,7 +159,7 @@
 	 	<c:choose>	
 			<c:when test="${ map.submenu_id != 'SUBMENU17' }">
 			<div class="right">
-			<a href="/Market/WriteForm?submenu_id=${ map.submenu_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
+			<a href="/Market/WriteForm?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&bnum=0&lvl=0&step=0&nref=0&nowpage=1&userid=${ sessionScope.login.userid }">새글 작성</a>
 	 		</div>
 	  	</c:when>
 		<c:otherwise>
@@ -270,7 +270,7 @@
 	  </c:forEach>
 		</table> 
 	<br>
-	 <%@include file="/WEB-INF/include/paging.jsp" %>
+	 <%@include file="/WEB-INF/include/marketPaging.jsp" %>
      </div>
      
   <!--    footer -->

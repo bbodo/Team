@@ -214,8 +214,8 @@
 		</table>
 		
 		<div class="right">
-		<a href="/Manager/storeUpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}">수정</a>
-		<a href="/Manager/storeDelete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }">삭제</a>
+		<a href="/Manager/storeUpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}">수정</a>&nbsp
+		<a href="/Manager/storeDelete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }" onclick="if(!confirm('정말로 삭제하시겠습니까?')){return false;}">삭제</a>&nbsp
 		<a href="/Manager/Store">목록으로</a>
 		</div>
 	
