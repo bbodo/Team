@@ -86,8 +86,8 @@ span    { padding: 10px; }
 
 	/* Id 중복 체크  */
 	function idCheck() {
-		const idCheckEl = document.getElementById('idCheck');
-		idCheckEl.addEventListener('click', function() {
+		const idEl = document.getElementById('id');
+		idEl.addEventListener('blur', function() {
 			event.preventDefault();
 			event.stopPropagation();
 			let userid = $("#id").val();
@@ -115,8 +115,8 @@ span    { padding: 10px; }
 	}
 	/* Email 중복 체크  */
 	function emailCheck() {
-		const emailCheckEl = document.getElementById('emailCheck');
-		emailCheckEl.addEventListener('click', function() {
+		const emailEl = document.getElementById('email');
+		emailEl.addEventListener('blur', function() {
 			event.preventDefault();
 			event.stopPropagation();
 			let email = $("#email").val();
@@ -144,8 +144,8 @@ span    { padding: 10px; }
 	}
 	/* Nickname 중복 체크  */
 	function nicknameCheck() {
-		const nicknameCheckEl = document.getElementById('nicknameCheck');
-		nicknameCheckEl.addEventListener('click', function() {
+		const nicknameEl = document.getElementById('nickname');
+		nicknameEl.addEventListener('blur', function() {
 			event.preventDefault();
 			event.stopPropagation();
 			let nickname = $("#nickname").val();
@@ -291,7 +291,6 @@ span    { padding: 10px; }
    </tr>
    <tr> 
      <td><input class="ps_box" type="text" name="userid"  id="id" value=""/>
-         <input type="button" value="중복체크" id="idCheck" />
          <span id="idCheckresult"></span>
      </td>
    </tr>
@@ -338,7 +337,6 @@ span    { padding: 10px; }
    </tr>
    <tr>
      <td><input class="ps_box" type="email" name="email" id ="email"/>
-         <input type="button" value="중복체크" id="emailCheck" />
          <span id="emailCheckresult"></span>
      </td>
    </tr>
@@ -347,7 +345,6 @@ span    { padding: 10px; }
    </tr>
    <tr>  
      <td><input class="ps_box" type="text" name="nickname" id="nickname"/>
-         <input type="button" value="중복체크" id="nicknameCheck" />
          <span id="nicknameCheckresult"></span>
      </td>
    </tr>
