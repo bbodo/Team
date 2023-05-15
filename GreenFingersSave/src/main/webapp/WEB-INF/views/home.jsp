@@ -13,7 +13,7 @@
  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
  <script src="/js/home.js"></script>
- <script src="/js/common.js"></script>
+ <!--<script src="/js/common.js"></script> -->
 
 <style>
 .layerPopup {
@@ -154,15 +154,99 @@
 	<a href="/myPage/myList?nowpage=1">마이페이지</a>
 	<h2>Home</h2> -->
 	
+<<<<<<< Updated upstream
 	<section id="sec1" style="min-height: 100px; height: auto; ">
 		<div>
 					
 		</div>
 	</section>
+=======
+	<div id="homeWrap">
+		<section id="sec1" style="height: auto; ">
+			<div id="sec1Con1">
+				<p class="mainTitle"><span>씨앗나누리에</span> 오신 걸 환영합니다</p>
+				<div class="titleDeco"></div>
+				
+				<div>
+					<div class="sec1Con1Box">
+						<a href="#">
+							<img src="/img/home/mainImg1.png" alt="mainImg"/>
+							<p>식물의 날</p>
+							<div></div>
+						</a>
+					</div>
+					<div class="sec1Con1Box">
+						<a href="#">
+							<img src="/img/home/mainImg2.jpg" alt="mainImg"/>
+							<p>다양한 그린마켓</p>
+							<div></div>
+						</a>
+					</div>
+					<div class="sec1Con1Box">
+						<a href="#">
+							<img src="/img/home/mainImg3.jpg" alt="mainImg"/>
+							<p>다양한 </p>
+							<div></div>
+						</a>
+					</div>
+					<div class="sec1Con1Box">
+						<a href="#">
+							<img src="/img/home/mainImg3.jpg" alt="mainImg"/>
+							<p>다양한 </p>
+							<div></div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section id="sec2">
+			<div id="sec2Con1">
+				<img src="/img/home/seednanori.png" alt="mainImg"/>
+				<p class="mainTitle">매주 활동들을 확인하세요</p>
+				<div class="titleDeco"></div>
+			</div>
+			
+			<div id="sec2Con2">
+				<div id="sec2Con2Wrap">
+					<div>
+						<a href="#"> 
+							<img src="/img/home/mainImg5.jpg" alt="mainImg" />
+							<p>다양한</p>
+							<div></div>
+						</a>
+					</div>
+					
+					<div>
+						<a href="#"> <img src="/img/home/mainImg3.jpg" alt="mainImg" />
+							<p>다양한</p>
+							<div></div>
+						</a>
+					</div>
+					
+					<div>
+						<a href="#"> <img src="/img/home/mainImg3.jpg" alt="mainImg" />
+							<p>다양한</p>
+							<div></div>
+						</a>
+					</div>
+					
+					<div>
+						<a href="#"> <img src="/img/home/mainImg3.jpg" alt="mainImg" />
+							<p>다양한</p>
+							<div></div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+	</div>
+>>>>>>> Stashed changes
 	
 	
   <!-- footer -->
-  <%@include file="/WEB-INF/include/footer.jsp" %>
+  <%-- <%@include file="/WEB-INF/include/footer.jsp" %> --%>
   
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>

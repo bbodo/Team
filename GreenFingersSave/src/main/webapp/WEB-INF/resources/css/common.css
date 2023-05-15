@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-*{margin:0; padding:0; font-family: 'Noto Sans KR', sans-serif, 'Noto Serif KR', serif; font-size: 15px; box-sizing: border-box;}
+*{margin:0; padding:0; font-family: 'Pretendard-Regular', 'Noto Sans KR', sans-serif, 'Noto Serif KR', serif; font-size: 15px; box-sizing: border-box;}
 html,body {
     position: relative;
     height: 100%;
@@ -24,6 +24,13 @@ a {text-decoration: none; color:#252525;}
     font-family: 'TAEBAEKmilkyway';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/TAEBAEKmilkyway.woff2') format('woff2');
     font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
     font-style: normal;
 }
 
