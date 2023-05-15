@@ -70,6 +70,8 @@ public interface ManagerService {
 
 	void setWinnerUpdate(HashMap<String, Object> map, HttpServletRequest request);
 
+	void insertSeminarSave(HashMap<String, Object> map, HttpServletRequest request);
+
 
 	
 

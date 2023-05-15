@@ -14,6 +14,7 @@ import com.green.manager.vo.AdminEventVo;
 import com.green.manager.vo.StoreVo;
 import com.green.market.vo.FileVo;
 import com.green.market.vo.MarketVo;
+import com.green.myPage.vo.FilesVo;
 import com.green.user.vo.UserVo;
 
 @Repository("managerDao")
@@ -331,6 +332,15 @@ public class ManagerDaoImpl implements ManagerDao {
 			}
 			
 
+		}
+
+		@Override
+		public void setSeminarUpdate(HashMap<String, Object> map) {
+			sqlSession.insert("Manager.SeminarInsert", map);
+			
+			List<FilesVo> fileList = (List<FilesVo>) map.get("fileList");
+			if(fileList.size() !=0 )
+				sqlSession.insert("Manager.FileInsert", map);
 		}
 
 

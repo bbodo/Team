@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -833,12 +834,44 @@ public class ManagerController {
   				
   				ModelAndView   mv  = new ModelAndView();
   				mv.setViewName(loc);
-  				mv.addObject("map", map);
+  				mv.addObject("map", map);s
 
   				return mv;
   			}
   			
-  	 		
+	//행사 등록----------------------------------------------------------------------------
+	@RequestMapping("SeminarWriteForm")
+	public ModelAndView SeminarWriteForm( @RequestParam HashMap<String, Object> map,
+			HttpServletRequest request) {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/admin/seminarWriteSave");
+		return mv;
+	}
+  			
+  	@RequestMapping("SeminarWriteSave")
+	public ModelAndView SeminarWriteSave( @RequestParam HashMap<String, Object> map,
+			HttpServletRequest request) {
+		
+		String  submenu_id  =  (String) map.get("submenu_id");
+		int     nowpage  =  Integer.parseInt(String.valueOf(map.get("nowpage")));
+		String  menu_id = (String) map.get("menu_id");
+		
+		System.out.println(request);
+		System.out.println(request.toString());
+		System.out.println(map.toString());
+		
+		//등록 
+		managerService.insertSeminarSave(map, request);
+		
+		String fmt = "redirect:/Event/SeminarList?menu_id=%s&submenu_id=%s&nowpage=%d";
+		String loc = String.format(fmt, menu_id, submenu_id, nowpage);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName(loc);
+		return mv;
+	}
+  			 		
   		
  			
   //-------------------------------------------------------------------

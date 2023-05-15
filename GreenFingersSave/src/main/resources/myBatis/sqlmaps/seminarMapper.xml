@@ -21,10 +21,10 @@
 		VALUES
 			(
 				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
-				'SUBMENU21',
+				#{ board_title },
 				#{ board_title },
 				#{ editorTxt },
-				(SELECT USERCODE FROM MEMBER WHERE USERID = 'admin'),
+				0,
 				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
 				(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD)
 			)

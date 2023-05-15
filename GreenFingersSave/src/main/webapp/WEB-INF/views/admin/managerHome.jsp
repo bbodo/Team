@@ -140,7 +140,7 @@ html, body {
 	
 	<h2>Home</h2>
 
-	
+	<a href="/Manager/SeminarWriteForm?submenu_id=SUBMENU21&nowpage=1">나누리행사등록</a>
 	
   <!-- footer -->
 

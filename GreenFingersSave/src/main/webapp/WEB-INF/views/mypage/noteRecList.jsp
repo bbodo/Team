@@ -22,14 +22,13 @@
 	}
 	
 	#sendPaing, #myBoardList, #sendPointList {
-	display:none;
+		display:none;
 	}
 </style>
 
 <script type="text/javascript">
 	window.onload = function() {
-		
-	}/*  window */
+}/*  window */
 </script>
 
 </head>

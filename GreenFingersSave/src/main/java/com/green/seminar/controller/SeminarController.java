@@ -33,14 +33,6 @@ public class SeminarController {
 			@RequestParam HashMap<String, Object> map,
 			HttpServletRequest request) {
 		
-		UserVo userVo = (UserVo) session.getAttribute("login");
-		//Object usercode = userVo.getUsercode();
-		map.put("usercode", 0);
-		
-		System.out.println(request);
-		System.out.println(request.toString());
-		System.out.println(map.toString());
-		
 		//등록 
 		seminarservice.insertSeminar(map, request);
 		
@@ -160,5 +152,33 @@ public class SeminarController {
 		mv.setViewName("/event/seminarWrite");
 		return mv;
 	} 
+	
+	//----------------------------------------------------------------------------------------------
+	/*
+	 * @RequestMapping("SeminarWriteSave") public ModelAndView
+	 * SeminarWriteSave(HttpSession session,
+	 * 
+	 * @RequestParam HashMap<String, Object> map, HttpServletRequest request) {
+	 * 
+	 * UserVo userVo = (UserVo) session.getAttribute("login"); //Object usercode =
+	 * userVo.getUsercode(); //map.put("usercode", 0);
+	 * 
+	 * System.out.println("userVo관리자" + userVo);
+	 * 
+	 * String submenu_id = (String) map.get("submenu_id"); int nowpage =
+	 * Integer.parseInt(String.valueOf(map.get("nowpage"))); String menu_id =
+	 * (String) map.get("menu_id");
+	 * 
+	 * System.out.println(request); System.out.println(request.toString());
+	 * System.out.println(map.toString());
+	 * 
+	 * //등록 //seminarservice.insertSeminarSave(map, request);
+	 * 
+	 * String fmt = "redirect:/Board/List?menu_id=%s&submenu_id=%s&nowpage=%d";
+	 * String loc = String.format(fmt, menu_id, submenu_id, nowpage);
+	 * 
+	 * ModelAndView mv = new ModelAndView(); mv.setViewName("/event/seminarList");
+	 * //mv.addObject("seminarservice", seminarservice); return mv; }
+	 */
 	
 }

@@ -12,6 +12,7 @@
  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+ <link rel="stylesheet" href="/css/home.css" />
  <script src="/js/home.js"></script>
  <!--<script src="/js/common.js"></script> -->
 
@@ -154,13 +155,6 @@
 	<a href="/myPage/myList?nowpage=1">마이페이지</a>
 	<h2>Home</h2> -->
 	
-<<<<<<< Updated upstream
-	<section id="sec1" style="min-height: 100px; height: auto; ">
-		<div>
-					
-		</div>
-	</section>
-=======
 	<div id="homeWrap">
 		<section id="sec1" style="height: auto; ">
 			<div id="sec1Con1">
@@ -212,7 +206,7 @@
 					<div>
 						<a href="#"> 
 							<img src="/img/home/mainImg5.jpg" alt="mainImg" />
-							<p>다양한</p>
+							<p>식물 키우기 꿀팁<br/><span>전문가가 말해주는 꿀팁! 놓치지마세요</span></p>
 							<div></div>
 						</a>
 					</div>
@@ -242,7 +236,6 @@
 		</section>
 		
 	</div>
->>>>>>> Stashed changes
 	
 	
   <!-- footer -->

@@ -68,6 +68,8 @@ public interface ManagerDao {
 
 	void setWinnerUpdate(HashMap<String, Object> map);
 
+	void setSeminarUpdate(HashMap<String, Object> map);
+
 
 
 }

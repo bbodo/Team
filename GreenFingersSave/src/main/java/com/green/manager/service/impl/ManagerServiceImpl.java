@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.green.board.service.impl.BoardFile;
+import com.green.common.service.CommonService;
 import com.green.event.Vo.EventVo;
 import com.green.event.service.impl.EventFile;
 import com.green.event.service.impl.EventPaging;
@@ -323,6 +324,14 @@ public class ManagerServiceImpl implements ManagerService {
 		// Files table  file_num 번 자료를 삭제		
 		managerDao.deleteUploadFile( map );
 		
+	}
+
+	@Override
+	public void insertSeminarSave(HashMap<String, Object> map, HttpServletRequest request) {
+		//파일저장
+		CommonService.save(map, request);
+		//DB저장	
+		managerDao.setSeminarUpdate(map);
 	}
 
 
