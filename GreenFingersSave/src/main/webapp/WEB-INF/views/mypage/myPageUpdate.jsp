@@ -36,6 +36,7 @@
     background: #fff;
     box-sizing: border-box;
     vertical-align: top;
+    margin-bottom: 15px;
 	}
 	#ppwd1 {
 		position: relative;
@@ -45,11 +46,41 @@
 	}
 	.abs {
 		position: absolute;
-		top: 11px; 
-   		left: 588px;
+		top: 10px; 
+   		right: 0px;
 		width: 30px; 
 	}
-
+	#wrapper {
+	    width: 50%;
+	}
+	.green {
+		color: green;
+		float: left;
+		padding: 10px 0px;
+	}
+	.red {
+		color: red;
+		float: left;
+		padding: 10px 0px;
+	}
+	.regbtn {
+		background-color:#44c767;
+		color:#ffffff;
+		font-size:15px;
+		font-weight:bold;
+		margin: 30px 0;
+	    width: 100%;
+	    height: 60px;
+		text-decoration:none;
+		border: none;
+	}
+	.regbtn:hover {
+		background-color:#5cbf2a;
+	}
+	.regbtn:active {
+		position:relative;
+		top:1px;
+	}
 </style>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -72,7 +103,7 @@
 
 	function memberDelete() {
 		let code = $('#usercode').val();
-		if(window.confirm("정말 탈퇴시키겠습니까?")) {
+		if(window.confirm("정말 탈퇴하시겠습니까?")) {
 			$.ajax({
 				url : "/Manager/memberDelete",
 				data : {usercode : code},
@@ -103,10 +134,85 @@
 		$('#ppwd2').prepend(html);
 	})
 
-	/* Email 중복 체크  */
+	/* 비밀번호 정규식 체크 */
+	function pwd1Check() {
+		const pwd1El = document.getElementById('pwd1');
+		pwd1El.addEventListener('blur', function() {
+			let regex = RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/);
+			if (pwd1El.value.trim() != '') {
+				if (!regex.test(pwd1El.value.trim())) {
+					event.preventDefault();
+					event.stopPropagation();
+					$('#pwd1Checkresult').html("<b style='color:red;'>비밀번호 형식이 틀립니다</b>");
+					/* pwd1El.value = ''; */
+				} else {
+					$('#pwd1Checkresult').html("<b style='color:green;'></b>");
+				}
+			} else {
+				$('#pwd1Checkresult').html("<b style='color:red;'>비밀번호를 입력하세요</b>");
+			}
+		});
+	}
+	
+	/* 비밀번호 일치 확인 체크 */
+	function pwd2Check() {
+		const pwd1El = document.getElementById('pwd1');
+		const pwd2El = document.getElementById('pwd2');
+		pwd2El.addEventListener('blur', function() {
+			if (pwd2El.value.trim() != '') {
+				if (pwd1El.value != pwd2El.value) {
+					event.preventDefault();
+					event.stopPropagation();
+					$('#pwd2Checkresult').html("<b class=red >비밀번호가 일치하지 않습니다</b>");
+					/* pwd2El.value = ''; */
+					/* pwd2El.focus(); */
+				} else {
+					$('#pwd2Checkresult').html("<b class=green>일치합니다</b>");
+				}
+			} else {
+				$('#pwd2Checkresult').html("<b class=red>비밀번호확인을 입력하세요</b>");
+			}
+		});
+	}
+	
+	/* Email 정규식 체크 */
+	function emailRegCheck() {
+		const emailEl = document.getElementById('email');
+		emailEl.addEventListener('blur', function() {
+			let regex = RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i);
+			if (emailEl.value.trim() != '') {
+				if (!regex.test(emailEl.value.trim())) {
+					event.preventDefault();
+					event.stopPropagation();
+					$('#emailCheckresult').html("<b style='color:red;'>이메일 형식이 아닙니다</b>");
+				} else {
+					let email = $("#email").val();
+					$.ajax({
+						type     : 'POST',
+						url      : '/User/EmailCheck',
+						data     : 'email='+ email,
+						dataType : 'json',
+						success  : function(result) {
+							if(result == '0') {
+								$('#emailCheckresult').html("<b class='green' value='green'>사용가능</b>");
+							} else {
+								$('#emailCheckresult').html("<b class='red' value='red'>사용중인 이메일입니다</b>");
+							}
+						},
+						error : function(error) { alert('에러'); }
+					});
+				}
+			} else {
+				$('#emailCheckresult').html("<b style='color:red;'>이메일을 입력하세요</b>");
+			}
+		});
+	}
+	
+	/*
+	Email 중복 체크  
 	function emailCheck() {
 		const emailCheckEl = document.getElementById('emailCheck');
-		emailCheckEl.addEventListener('click', function() {
+		emailCheckEl.addEventListener('blur', function() {
 			event.preventDefault();
 			event.stopPropagation();
 			let email = $("#email").val();
@@ -131,11 +237,12 @@
 			}
 		});
 		
-	}
+	} */
+	
 	/* Nickname 중복 체크  */
 	function nicknameCheck() {
-		const nicknameCheckEl = document.getElementById('nicknameCheck');
-		nicknameCheckEl.addEventListener('click', function() {
+		const nicknameCheckEl = document.getElementById('nickname');
+		nicknameCheckEl.addEventListener('blur', function() {
 			event.preventDefault();
 			event.stopPropagation();
 			let nickname = $("#nickname").val();
@@ -163,7 +270,11 @@
 	}
 	
 	function loadchk() {
-		$('input:radio[name="gender"]:input[value="${login.gender}"]').prop('checked',true);
+		$('#gender').val('${login.gender}').prop('checked',true);
+	}
+	
+	function gohome() {
+		location.replace("/mypage/myList?nowpage=1");
 	}
 
 	window.onload = function() {
@@ -176,7 +287,9 @@
 		let nicknameEl = document.querySelector('[name=nickname]');
 		
 		loadchk();
-		emailCheck(); 
+		pwd1Check();
+		pwd2Check();
+		emailRegCheck(); 
 		nicknameCheck();
 		
 		formEl.onsubmit = function(event) {
@@ -255,11 +368,12 @@
      <div id="title">
      	<p>마이 페이지</p>
      </div>
+     <div id="wrapper">
      <div id="main">
      	<form action="/mypage/updateUser" method="POST">
      	<input type="hidden" value="${ login.userid }" name="userid"/>
      	<input type="hidden" value="${ login.usercode }" name="usercode" id="usercode"/>
-		<table style="margin: 0 auto; width: 50%;">
+		<table style="margin: 0 auto; width: 100%;">
 			<tr>
 				<!-- id는 수정불가하게 -->
 				<td class="left" style="padding-bottom: 5px;">
@@ -281,6 +395,7 @@
 				<td class="left" id="ppwd1">
 					<input class="ps_box" type="password" name="passwd" id="pwd1" /> 
 					<button type="button"><img src="/img/common/lock.png" alt="lock" id="seepw" class="abs" /></button>
+					<span id="pwd1Checkresult"></span>
 				</td>
 			</tr>
 			<tr>
@@ -292,6 +407,7 @@
 				<td class="left" id="ppwd2">
 					<input class="ps_box" type="password" id="pwd2" />
 					<button type="button"><img src="/img/common/lock.png" alt="lock" id="seepw2" class="abs" /></button>
+					<span id="pwd2Checkresult"></span>
 					<!-- <input type="button" value="비밀번호보이게하기" id="seepw2"/> -->
 				</td>
 			</tr>
@@ -303,7 +419,7 @@
 			<tr>
 				<td class="left">
 				<input class="ps_box" type="text" name="nickname" id="nickname" value="${ login.nickname }"/> 
-				<input type="button" value="중복체크" id="nicknameCheck"/>
+				<!-- <input type="button" value="중복체크" id="nicknameCheck"/> -->
 				<span id="nicknameCheckresult"></span>
 				</td>
 			</tr>
@@ -334,8 +450,14 @@
 			</tr>
 			<tr>
 				<td class="left">
-				    <input type="radio" name="gender" value="남"/>남
-        			<input type="radio" name="gender" value="여"/>여</td>
+					<select id="gender" class="ps_box">
+						<option value="">성별</option>
+						<option value="남">남</option>
+						<option value="여">여</option>
+						<option value="무">선택안함</option>
+					</select>
+				    <!-- <input type="radio" name="gender" value="남"/>남
+        			<input type="radio" name="gender" value="여"/>여</td> -->
 			</tr>
 			<tr>
 				<td class="left" style="padding-bottom: 5px;">
@@ -345,7 +467,7 @@
 			<tr>
 				<td class="left">
 					<input class="ps_box" type="email" name="email" id ="email"/>
-					<input type="button" value="중복체크" id="emailCheck" />
+					<!-- <input type="button" value="중복체크" id="emailCheck" /> -->
 					<span id="emailCheckresult"></span>
 				</td>
 			</tr>
@@ -360,11 +482,13 @@
 				</td>
 			</tr>
 		</table>
-	    <div style="float: right;">
-	    	<input type="submit" value="수정 하기"/> &nbsp; &nbsp;
-	    	<input type="button" value="탈퇴 시키기" onclick=memberDelete() />
+	    <div>
+	    	<input type="button" value="탈퇴" onclick=memberDelete() class="regbtn"/>
+	    	<input type="submit" value="수정" class="regbtn"/>
+	    	<input type="button" value="취소" onclick=gohome() class="regbtn"/>
 	    </div>
 		</form>
+     </div>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

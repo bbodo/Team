@@ -21,6 +21,11 @@
 	#title p {
 		 line-height: 100px;
 	}
+	#main {
+		margin: 0 auto;
+		display: block;
+		padding-right: 0%;
+	}
 	
 	/*현 페이지에서만 쓰는 것*/
 	.sendList {
@@ -199,13 +204,13 @@
 
 </head>
 <body>
-<div id="wrap">
 	 <%@include file="/WEB-INF/include/header.jsp" %>
 	 
      <div id="title">
      	<p>마이 페이지</p>
      </div>
      
+	<div id="wrap">
      <div id="main">
      	
      	<!-- <section1 시작> -->
