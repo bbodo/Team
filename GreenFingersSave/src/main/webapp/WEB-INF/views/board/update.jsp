@@ -60,6 +60,24 @@
 	#wrapper {
 		margin-top: 70px;
 	}
+	.regbtn {
+		background-color:#44c767;
+		color:#ffffff;
+		font-size:15px;
+		font-weight:bold;
+		margin: 30px 0;
+	    width: 100%;
+	    height: 60px;
+		text-decoration:none;
+		border: none;
+	}
+	.regbtn:hover {
+		background-color:#5cbf2a;
+	}
+	.regbtn:active {
+		position:relative;
+		top:1px;
+	}
 
 </style>
 
@@ -184,7 +202,7 @@
 			</tr>
 		</table>
 		<div class="center">
-			<input type="submit" value="작성" />
+			<input class="regbtn" type="submit" value="작성" />
 		</div>
 		</form>
      </div>

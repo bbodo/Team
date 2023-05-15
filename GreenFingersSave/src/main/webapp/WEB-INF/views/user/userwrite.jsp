@@ -390,33 +390,41 @@ span    { padding: 10px; }
      <td class="left"><span style="font-weight: bold; text-align: left; padding: 0px;">비밀번호</span><span style="font-size: 12px;">(최소문자1개,숫자1개,특수문자1개 포함. 최소8자이상)</span></td>
    </tr>
    <tr> 
-     <td><input class="ps_box" type="password" name="passwd" id="pwd1" />
-     	 <span id="pwd1Checkresult"></span></td>
+     <td>
+     	<input class="ps_box" type="password" name="passwd" id="pwd1" />
+     	 <span id="pwd1Checkresult"></span>
+     </td>
    </tr>
    <tr>
      <th class="left">비밀번호 확인</th>
    </tr>
    <tr> 
-     <td><input class="ps_box" type="password" id="pwd2" />
-         <span id="pwd2Checkresult"></span></td>
+     <td>
+     	<input class="ps_box" type="password" id="pwd2" />
+        <span id="pwd2Checkresult"></span></td>
    </tr>
    <tr>
      <th class="left">이름</th>
    </tr>
    <tr> 
-     <td><input class="ps_box" type="text" name="username" id="username"/></td>
+     <td>
+     	<input class="ps_box" type="text" name="username" id="username"/>
+     </td>
    </tr>
    <tr>
      <th class="left">생년월일</th>
    </tr>
    <tr> 
-     <td><input class="ps_box" type="date" name="birthday" id="birth"/> </td>
+     <td>
+     	<input class="ps_box" type="date" name="birthday" id="birth"/>
+     </td>
    </tr>
    <tr>
      <th class="left">성별</th>
    </tr>
    <tr> 
-     <td><input type="radio" name="gender" value="남"/>남
+     <td>
+     	 <input type="radio" name="gender" value="남"/>남
          <input type="radio" name="gender" value="여"/>여
          <input type="radio" name="gender" value=""/>선택안함</td>
    </tr>
@@ -424,22 +432,26 @@ span    { padding: 10px; }
      <th class="left">주소</th>
    </tr>
    <tr>
-     <td><input class="ps_box" type="text" name="addr" id="add"/></td>
+     <td>
+     	<input class="ps_box" type="text" name="addr" id="add"/>
+     </td>
    </tr>
    <tr> 
      <th class="left">이메일</th>
    </tr>
    <tr>
-     <td><input class="ps_box" type="email" name="email" id ="email"/>
-         <span id="emailCheckresult"></span>
+     <td>
+     	<input class="ps_box" type="email" name="email" id ="email"/>
+        <span id="emailCheckresult"></span>
      </td>
    </tr>
    <tr>
      <th class="left">닉네임</th>
    </tr>
    <tr>  
-     <td><input class="ps_box" type="text" name="nickname" id="nickname"/>
-         <span id="nicknameCheckresult"></span>
+     <td>
+     	<input class="ps_box" type="text" name="nickname" id="nickname"/>
+        <span id="nicknameCheckresult"></span>
      </td>
    </tr>
    <tr>     

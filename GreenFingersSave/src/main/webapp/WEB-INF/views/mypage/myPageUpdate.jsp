@@ -13,39 +13,12 @@
 	* {
 		box-sizing: border-box;
 	}
-
-	#title {
-		width: 100%;
-		text-align: center;
-		height: 100px;
-		background-color: orange;
-	}
-	#title p {
-		 line-height: 100px;
-	}
-	#aside {
-		float: left;
-		height: 800px;
-		background-color: navy;
-		width: 20%;
-		padding: 10px;
-	}
 	#main {
-		width: 80%;
+		width: 100%;
 		min-height: 800px;
-		float: left;
 		padding: 10px;
-		background-color: gray;
 		text-align: center;
 		height: auto;
-	}
-	#cont {
-		background-color: #fff;
-		margin: 0 auto;
-		width: 85%;
-	}
-	#cont th {
-		background-color: #666;
 	}
 	.right {
 		text-align: right;
@@ -53,11 +26,82 @@
 	.left {
 		text-align: left;
 	}
+	.ps_box {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 51px;
+    border: solid 1px #dadada;
+    padding: 10px 110px 10px 14px;
+    background: #fff;
+    box-sizing: border-box;
+    vertical-align: top;
+	}
+	#ppwd1 {
+		position: relative;
+	}
+	#ppwd2 {
+		position: relative;
+	}
+	.abs {
+		position: absolute;
+		top: 11px; 
+   		left: 588px;
+		width: 30px; 
+	}
 
 </style>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+
+	$(document).on("click","#seepw",function() {
+		let pwd1 = $('#pwd1').val();
+		let html = '';
+		
+		if($('#ppwd1 [type=password]').length) {
+			$('#ppwd1 [type=password]').remove();
+			html = '<input class="ps_box" type="text" name="passwd" id="pwd1" value="'+ pwd1 +'" />';
+		} else {
+			$('#ppwd1 [type=text]').remove();
+			html = '<input class="ps_box" type="password" name="passwd" id="pwd1" value="'+ pwd1 +'"/>';
+		}
+		
+		$('#ppwd1').prepend(html);
+	})
+
+	function memberDelete() {
+		let code = $('#usercode').val();
+		if(window.confirm("정말 탈퇴시키겠습니까?")) {
+			$.ajax({
+				url : "/Manager/memberDelete",
+				data : {usercode : code},
+				type : "POST",
+				success : function(data) {
+					alert("탈퇴되었습니다 !");
+					location.replace("/");
+				},
+				error : function() {
+					alert("에러!!")
+				}
+			});
+		};
+	}
+	
+	$(document).on("click","#seepw2",function() {
+		let pwd = $('#pwd2').val();
+		let html = '';
+		
+		if($('#ppwd2 [type=password]').length) {
+			$('#ppwd2 [type=password]').remove();
+			html = '<input class="ps_box" type="text" name="passwd" id="pwd2" value="'+ pwd +'" />';
+		} else {
+			$('#ppwd2 [type=text]').remove();
+			html = '<input class="ps_box" type="password" name="passwd" id="pwd2" value="'+ pwd +'"/>';
+		}
+		
+		$('#ppwd2').prepend(html);
+	})
 
 	/* Email 중복 체크  */
 	function emailCheck() {
@@ -211,94 +255,108 @@
      <div id="title">
      	<p>마이 페이지</p>
      </div>
-     <div id="aside">
-     	내정보<br />
-     	작성글<br />
-     	쪽지<br />
-     </div>
      <div id="main">
      	<form action="/mypage/updateUser" method="POST">
      	<input type="hidden" value="${ login.userid }" name="userid"/>
      	<input type="hidden" value="${ login.usercode }" name="usercode" id="usercode"/>
-     	<input type="hidden" value="${ login.birthday }" name="usercode" id="birthday"/>
-		<table id="cont">
+		<table style="margin: 0 auto; width: 50%;">
 			<tr>
 				<!-- id는 수정불가하게 -->
-				<td class="left"><h2>아이디</h2></td>
+				<td class="left" style="padding-bottom: 5px;">
+					<h2>아이디</h2>
+				</td>
 			</tr>
 			<tr>
-				<td class="left" style="padding-left: 35px;">${ login.userid }</td>
-			</tr>
-			<tr>
-				<!-- 자물쇠 버튼 눌러서 보이게하는 기능 ?? -->
 				<td class="left">
+					<input class="ps_box" type="text" name="userid" id ="userid" value="${ login.userid }" readonly/>
+				</td>
+			</tr>
+			<tr>
+				<td class="left" style="padding-bottom: 5px;">
 					<h2 style="display: inline-block;">비밀번호</h2> 
 					<span style="font-size: 12px; font-weight: lighter;">(최소문자1개,숫자1개,특수문자1개 포함. 최소8자이상)</span>
 				</td>
 			</tr>
 			<tr>
-				<td class="left" style="padding-left: 35px;">
-					<input type="password" value="${ vo.passwd }" name="passwd" id="pwd1"/> 
-					<input type="button" value="비밀번호보이게하기"/>
+				<td class="left" id="ppwd1">
+					<input class="ps_box" type="password" name="passwd" id="pwd1" /> 
+					<button type="button"><img src="/img/common/lock.png" alt="lock" id="seepw" class="abs" /></button>
 				</td>
 			</tr>
 			<tr>
-				<!-- 자물쇠 버튼 눌러서 보이게하는 기능 ?? -->
-				<td class="left"><h2>비밀번호 확인</h2></td>
-			</tr>
-			<tr>
-				<td class="left" style="padding-left: 35px;">
-					<input type="password" id="pwd2" />
+				<td class="left" style="padding-bottom: 5px;">
+					<h2>비밀번호 확인</h2>
 				</td>
 			</tr>
 			<tr>
-				<td class="left"><h2>닉네임</h2></td>
+				<td class="left" id="ppwd2">
+					<input class="ps_box" type="password" id="pwd2" />
+					<button type="button"><img src="/img/common/lock.png" alt="lock" id="seepw2" class="abs" /></button>
+					<!-- <input type="button" value="비밀번호보이게하기" id="seepw2"/> -->
+				</td>
 			</tr>
 			<tr>
-				<td class="left" style="padding-left: 35px;">
-				<input type="text" value="${ login.nickname }" id="nickname" name="nickname"/> 
+				<td class="left" style="padding-bottom: 5px;">
+					<h2>닉네임</h2>
+				</td>
+			</tr>
+			<tr>
+				<td class="left">
+				<input class="ps_box" type="text" name="nickname" id="nickname" value="${ login.nickname }"/> 
 				<input type="button" value="중복체크" id="nicknameCheck"/>
 				<span id="nicknameCheckresult"></span>
 				</td>
 			</tr>
 			<tr>
-				<td class="left"><h2>이름</h2></td>
-			</tr>
-			<tr>
-				<td class="left" style="padding-left: 35px;">${ login.username }</td>
-			</tr>
-			<tr>
-				<td class="left"><h2>생년월일</h2></td>
-			</tr>
-			<tr>
-				<td class="left" style="padding-left: 35px;">
-					${ login.birthday }
+				<td class="left" style="padding-bottom: 5px;">
+					<h2>이름</h2>
 				</td>
 			</tr>
 			<tr>
-				<td class="left"><h2>성별</h2></td>
+				<td class="left">
+				<input class="ps_box" type="text" name="username" id="username" value="${ login.username }" readonly/>
+				</td>
 			</tr>
 			<tr>
-				<td class="left" style="padding-left: 35px;">
+				<td class="left" style="padding-bottom: 5px;">
+					<h2>생년월일</h2>
+				</td>
+			</tr>
+			<tr>
+				<td class="left">
+					<input class="ps_box" type="date" name="birthday" id="birth" value="${ login.birthday }"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="left" style="padding-bottom: 5px;">
+					<h2>성별</h2>
+				</td>
+			</tr>
+			<tr>
+				<td class="left">
 				    <input type="radio" name="gender" value="남"/>남
         			<input type="radio" name="gender" value="여"/>여</td>
 			</tr>
 			<tr>
-				<td class="left"><h2>이메일</h2></td>
+				<td class="left" style="padding-bottom: 5px;">
+					<h2>이메일</h2>
+				</td>
 			</tr>
 			<tr>
-				<td class="left" style="padding-left: 35px;">
-					<input type="text" value="${ login.email }" name="email" id="email"/>
+				<td class="left">
+					<input class="ps_box" type="email" name="email" id ="email"/>
 					<input type="button" value="중복체크" id="emailCheck" />
 					<span id="emailCheckresult"></span>
 				</td>
 			</tr>
 			<tr>
-				<td class="left"><h2>주소</h2></td>
+				<td class="left" style="padding-bottom: 5px;">
+					<h2>주소</h2>
+				</td>
 			</tr>
 			<tr>
-				<td class="left" style="padding-left: 35px;">
-					<input type="text" value="${ login.addr }" name="addr"/>
+				<td class="left">
+					<input class="ps_box" type="text" name="addr" id="add" value="${ login.addr }"/>
 				</td>
 			</tr>
 		</table>

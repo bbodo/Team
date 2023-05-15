@@ -57,6 +57,20 @@
        </if>
    </select>
    
+   
+   <!-- 포인트 자료수 조회 -->
+   <select   id             = "GetTotalSendPointCount"
+             parameterType  = "hashmap"
+             resultType     = "_int">
+      SELECT
+         COUNT( SEND_USERCODE )  AS   TOTALCOUNT
+       FROM   
+         NOTE
+       WHERE     
+          SEND_USERCODE = #{usercode}
+
+   </select>
+   
    <!-- 쪽지 페이징 list  -->
    <select  id="GetMyPageList"
             resultType="com.green.myPage.vo.MyPageVo">
@@ -91,19 +105,6 @@
                 BETWEEN  #{startnum}  AND  #{endnum}  
    </select>
    
-   <!-- 포인트 자료수 조회 -->
-   <select   id             = "GetTotalSendPointCount"
-             parameterType  = "hashmap"
-             resultType     = "_int">
-      SELECT
-         COUNT( SEND_USERCODE )  AS   TOTALCOUNT
-       FROM   
-         NOTE
-       WHERE     
-          SEND_USERCODE = #{usercode}
-
-   </select>
-   
    <!-- 쪽지 내용 보기 -->
    <select   id             = "GetNoteView"
              resultType="com.green.myPage.vo.MyPageVo">
@@ -127,7 +128,8 @@
    <!-- 내공주기  -->
    <update  id="UpdatePoint">
    	  UPDATE   MEMBER
-      SET      POINT 		=  POINT + #{point}
+      SET      POINT 		=   POINT + #{point},
+      		   GRADEPOINT   =   GRADEPOINT + #{point}
       WHERE    NICKNAME  	=   #{nickname}
    </update>
    
@@ -209,6 +211,73 @@
       </foreach>
    
    </insert>
+   
+   
+    <!-- 페이징된 리스트 가져오기 -->
+	<select id="MyBoardList"
+			resultType="com.green.board.vo.BoardVo">
+	
+	SELECT * FROM
+	(
+		SELECT
+			ROW_NUMBER() OVER(ORDER BY B.NREF DESC, B.STEP ASC)  RNUM,
+			B.BOARD_IDX,
+			B.SUBMENU_ID,
+			B.BOARD_TITLE,
+			B.BOARD_CONT,
+			B.USERCODE,
+			TO_CHAR(B.BOARD_REGDATE, 'YYYY-MM-DD HH24:MI:SS') BOARD_REGDATE,
+			B.READCOUNT,
+			B.BNUM,
+			B.LVL,
+			B.STEP,
+			B.NREF,
+			B.DELBOARD,
+			B.PARENT,
+			M.NICKNAME
+		FROM
+			BOARD B
+		JOIN 
+			MEMBER M
+		ON 
+			B.USERCODE = M.USERCODE
+		WHERE     
+          B.USERCODE = #{usercode}
+<!-- 		<if test="menu_id != null or menu_id !=''">
+        WHERE     
+          SUBMENU_ID  =  #{submenu_id} AND USERCODE = #{usercode}
+       </if>   -->  
+	) T 
+	WHERE 
+		T.RNUM BETWEEN #{startnum} AND #{endnum}
+		
+	</select>
+	
+	<!-- 전체 자료수 조회 -->
+	<select   id             = "GetTotalMyBoardCount"
+	          parameterType  = "hashmap"
+	          resultType     = "_int">
+	          
+		SELECT
+	    	COUNT( BOARD_IDX )  AS   TOTALCOUNT
+		FROM   
+	    	BOARD
+	    WHERE     
+          USERCODE = #{usercode}
+	</select>
+	
+	<!-- 내가 쓴 게시글 수 -->
+	<select   id             = "GetMyBoardCount"
+	          parameterType  = "hashmap"
+	          resultType     = "_int">
+		SELECT
+	    	COUNT( BOARD_IDX )  AS   TOTALCOUNT
+		FROM   
+	    	BOARD
+	    WHERE     
+          USERCODE = #{usercode} AND LVL = 0
+	</select>
+	
 
 </mapper>
 

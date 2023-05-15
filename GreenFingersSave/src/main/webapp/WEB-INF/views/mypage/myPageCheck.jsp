@@ -23,19 +23,10 @@
 	#title p {
 		 line-height: 100px;
 	}
-	#aside {
-		float: left;
-		height: 800px;
-		background-color: navy;
-		width: 20%;
-		padding: 10px;
-	}
 	#main {
-		width: 80%;
+		width: 100%;
 		height: 800px;
-		float: left;
 		padding: 10px;
-		background-color: gray;
 		text-align: center;
 	}
 	#cont {
@@ -49,7 +40,38 @@
 	.right {
 		text-align: right;
 	}
-
+	.input_row {
+    position: relative;
+    display: block;
+    height: 100%;
+    border: 1px solid #dadada;
+    padding: 16px 18px 15px;
+    border-radius: 30px;
+    box-sizing: border-box;
+    text-align: left;
+    box-shadow: 0 2px 6px 0 rgba(68,68,68,.08);
+    width: 50%;
+    margin: 0 auto;
+	}
+	.regbtn {
+	background-color: #44c767;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 30px 0;
+    width: 30%;
+    height: 60px;
+    text-decoration: none;
+    border: none;
+    border-radius: 30px;
+	}
+	.regbtn:hover {
+		background-color:#5cbf2a;
+	}
+	.regbtn:active {
+		position:relative;
+		top:1px;
+	}
 </style>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -91,19 +113,16 @@ $(document).ready(function() {
      <div id="title">
      	<p>마이 페이지</p>
      </div>
-     <div id="aside">
-     	내정보<br />
-     	작성글<br />
-     	쪽지<br />
-     </div>
      <div id="main">
-		<div style="float: left;">내 정보 수정하기</div> <br />
-		<hr />
-		<div>
-			<p>비밀번호 확인</p><br />
-			<input type="password" name="passwd" id="passwd"> <br />
+		<div style="margin: 250px 0;">
+			<h2 style="font-size: 40px; margin-bottom: 100px;">비밀번호 확인</h2>
+			<div class="findid_wrap">
+				<div class="input_row">
+					<input type="password" name="passwd" id="passwd" placeholder="비밀번호" style="border: none; font-size: 25px; width: 100%;"/>
+				</div>
+			</div>
 			<input type="hidden" value="${login.usercode}" id="usercode" />
-			<input type="button" value="확인" id="cnfBtn"/>			
+			<input class="regbtn" type="button" value="확인" id="cnfBtn"/>			
 		</div>     
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>

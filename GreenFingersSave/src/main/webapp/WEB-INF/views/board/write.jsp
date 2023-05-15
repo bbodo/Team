@@ -99,6 +99,24 @@
 	#wrapper {
 		margin-top: 70px;
 	}
+	.regbtn {
+		background-color:#44c767;
+		color:#ffffff;
+		font-size:15px;
+		font-weight:bold;
+		margin: 30px 0;
+	    width: 100%;
+	    height: 60px;
+		text-decoration:none;
+		border: none;
+	}
+	.regbtn:hover {
+		background-color:#5cbf2a;
+	}
+	.regbtn:active {
+		position:relative;
+		top:1px;
+	}
 
 </style>
 
@@ -198,7 +216,7 @@
 			</tr>
 			<tr>
 				<td style="text-align: center;">글 내용</td>
-				<td><textarea name="board_cont" maxlength="1000">${ vo.board_cont }</textarea></td>
+				<td><textarea name="board_cont" maxlength="1000" style="resize: none;">${ vo.board_cont }</textarea></td>
 			</tr>
 			
 			<div class="form-group" >
@@ -218,9 +236,7 @@
 		   		</td>
 			</tr>
 		</table>
-		<div class="btn">
-		<input type="submit" value="등록" />
-		</div>
+		<input class="regbtn" type="submit" value="등록" />
 		</form>
      </div>
      </div>

@@ -477,8 +477,13 @@ public class MyPageController {
 	@RequestMapping("/checkUpdateForm")
 	public ModelAndView checkUpdateForm() {
 		
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/mypage/myPageCheck");
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		
 		return mv;
 	}
@@ -499,8 +504,13 @@ public class MyPageController {
 	@RequestMapping("/myUpdate")
 	public ModelAndView myUpdate() {
 		
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/mypage/myPageUpdate");
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		
 		return mv;
 	}
