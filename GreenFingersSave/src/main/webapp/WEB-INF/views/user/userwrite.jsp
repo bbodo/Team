@@ -101,19 +101,95 @@ span    { padding: 10px; }
 						if(result == '0') {
 							$('#idCheckresult').html("<b class='green' value='green'>사용가능</b>");
 						} else {
-							$('#idCheckresult').html("<b class='red' value='red'>사용불가</b>");
+							$('#idCheckresult').html("<b class='red' value='red'>사용중인 아이디입니다</b>");
 						}
 					},
 					error : function(error) { alert('에러'); }
 				});
 				
 			} else {
-				alert('아이디를 입력하세요');
+				$('#idCheckresult').html("<b style='color:red;'>아이디를 입력하세요</b>");
 			}
 		});
 		
 	}
-	/* Email 중복 체크  */
+	
+	/* 비밀번호 정규식 체크 */
+	function pwd1Check() {
+		const pwd1El = document.getElementById('pwd1');
+		pwd1El.addEventListener('blur', function() {
+			let regex = RegExp(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/);
+			if (pwd1El.value.trim() != '') {
+				if (!regex.test(pwd1El.value.trim())) {
+					event.preventDefault();
+					event.stopPropagation();
+					$('#pwd1Checkresult').html("<b style='color:red;'>비밀번호 형식이 틀립니다</b>");
+					pwd1El.value = '';
+				} else {
+					$('#pwd1Checkresult').html("<b style='color:green;'></b>");
+				}
+			} else {
+				$('#pwd1Checkresult').html("<b style='color:red;'>비밀번호를 입력하세요</b>");
+			}
+		});
+	}
+	
+	/* 비밀번호 일치 확인 체크 */
+	function pwd2Check() {
+		const pwd1El = document.getElementById('pwd1');
+		const pwd2El = document.getElementById('pwd2');
+		pwd2El.addEventListener('blur', function() {
+			if (pwd2El.value.trim() != '') {
+				if (pwd1El.value != pwd2El.value) {
+					event.preventDefault();
+					event.stopPropagation();
+					$('#pwd2Checkresult').html("<b style='color:red;'>비밀번호가 일치하지 않습니다</b>");
+					pwd2El.value = '';
+					pwd2El.focus();
+				} else {
+					$('#pwd2Checkresult').html("<b style='color:green;'>일치합니다</b>");
+				}
+			} else {
+				$('#pwd2Checkresult').html("<b style='color:red;'>비밀번호확인을 입력하세요</b>");
+			}
+		});
+	}
+	
+	/* Email 정규식 체크 */
+	function emailRegCheck() {
+		const emailEl = document.getElementById('email');
+		emailEl.addEventListener('blur', function() {
+			let regex = RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i);
+			if (emailEl.value.trim() != '') {
+				if (!regex.test(emailEl.value.trim())) {
+					event.preventDefault();
+					event.stopPropagation();
+					$('#emailCheckresult').html("<b style='color:red;'>이메일 형식이 아닙니다</b>");
+					pwd1El.value = '';
+				} else {
+					let email = $("#email").val();
+					$.ajax({
+						type     : 'POST',
+						url      : '/User/EmailCheck',
+						data     : 'email='+ email,
+						dataType : 'json',
+						success  : function(result) {
+							if(result == '0') {
+								$('#emailCheckresult').html("<b class='green' value='green'>사용가능</b>");
+							} else {
+								$('#emailCheckresult').html("<b class='red' value='red'>사용중인 이메일입니다</b>");
+							}
+						},
+						error : function(error) { alert('에러'); }
+					});
+				}
+			} else {
+				$('#emailCheckresult').html("<b style='color:red;'>이메일을 입력하세요</b>");
+			}
+		});
+	}
+	
+	/* Email 중복 체크  
 	function emailCheck() {
 		const emailEl = document.getElementById('email');
 		emailEl.addEventListener('blur', function() {
@@ -130,18 +206,18 @@ span    { padding: 10px; }
 						if(result == '0') {
 							$('#emailCheckresult').html("<b class='green' value='green'>사용가능</b>");
 						} else {
-							$('#emailCheckresult').html("<b class='red' value='red'>사용불가</b>");
+							$('#emailCheckresult').html("<b class='red' value='red'>사용중인 이메일입니다</b>");
 						}
 					},
 					error : function(error) { alert('에러'); }
 				});
 				
 			} else {
-				alert('이메일을 입력하세요');
+				$('#emailCheckresult').html("<b style='color:red;'>이메일을 입력하세요</b>");
 			}
 		});
 		
-	}
+	}*/
 	/* Nickname 중복 체크  */
 	function nicknameCheck() {
 		const nicknameEl = document.getElementById('nickname');
@@ -159,14 +235,14 @@ span    { padding: 10px; }
 						if(result == '0') {
 							$('#nicknameCheckresult').html("<b class='green' value='green'>사용가능</b>");
 						} else {
-							$('#nicknameCheckresult').html("<b class='red' value='red'>사용불가</b>");
+							$('#nicknameCheckresult').html("<b class='red' value='red'>사용중인 닉네임입니다/b>");
 						}
 					},
 					error : function(error) { alert('에러'); }
 				});
 				
 			} else {
-				alert('닉네임을 입력하세요');
+				$('#nicknameCheckresult').html("<b style='color:red;'>닉네임을 입력하세요</b>");
 			}
 		});
 		
@@ -184,7 +260,13 @@ span    { padding: 10px; }
 		let nicknameEl = document.querySelector('[name=nickname]');
 	
 		idCheck();
-		emailCheck(); 
+		pwd1Check();
+		pwd2Check();
+		emailRegCheck();
+		/* if(emailRegCheck() == true) {
+			emailCheck(); 
+			
+		} */
 		nicknameCheck();
 		
 		formEl.onsubmit = function(event) {
@@ -193,14 +275,14 @@ span    { padding: 10px; }
 			if (useridEl.value.trim() == '') {
 				event.preventDefault();
 				event.stopPropagation();
-				alert('아이디를 입력하세요');
+				$('#checkresult').html("<b style='color:red;'>아이디를 입력하세요</b>");
 				useridEl.focus();
 				
 			} else {
 				if (passwdEl.value.trim() == '') {
 					event.preventDefault();
 					event.stopPropagation();
-					alert('비밀번호를 입력하세요');
+					$('#checkresult').html("<b style='color:red;'>비밀번호를 입력하세요</b>");
 					passwdEl.focus();
 					
 				} else {
@@ -209,7 +291,7 @@ span    { padding: 10px; }
 					if (!regex.test(passwdEl.value.trim())) {
 						event.preventDefault();
 						event.stopPropagation();
-						alert('비밀번호 형식이 틀립니당');
+						$('#checkresult').html("<b style='color:red;'>비밀번호 형식이 틀립니다</b>");
 						passwdEl.value = '';
 						passwdEl.focus();
 						
@@ -217,14 +299,14 @@ span    { padding: 10px; }
 						if (pwd2El.value.trim() == '') {
 							event.preventDefault();
 							event.stopPropagation();
-							alert('비밀번호 확인을 입력하세요');
+							$('#checkresult').html("<b style='color:red;'>비밀번호확인을 입력하세요</b>");
 							pwd2El.focus();
 							
 						} else {
 							if (passwdEl.value != pwd2El.value) {
 								event.preventDefault();
 								event.stopPropagation();
-								alert('비밀번호가 일치하지 않습니다');
+								$('#checkresult').html("<b style='color:red;'>비밀번호가 일치하지 않습니다</b>");
 								pwd2El.value = '';
 								pwd2El.focus();
 								
@@ -232,35 +314,45 @@ span    { padding: 10px; }
 								if (usernameEl.value.trim() == '') {
 									event.preventDefault();
 									event.stopPropagation();
-									alert('이름을 입력하세요');
+									$('#checkresult').html("<b style='color:red;'>이름을 입력하세요</b>");
 									usernameEl.focus();
 									
 								} else {
 									if (addrEl.value.trim() == '') {
 										event.preventDefault();
 										event.stopPropagation();
-										alert('주소를 입력하세요');
+										$('#checkresult').html("<b style='color:red;'>주소를 입력하세요</b>");
 										addrEl.focus();
 										
 									} else {
+										
 										if (emailEl.value.trim() == '') {
 											event.preventDefault();
 											event.stopPropagation();
-											alert('이메일을 입력하세요');
+											$('#checkresult').html("<b style='color:red;'>이메일을 입력하세요</b>");
 											emailEl.focus();
 											
 										} else {
-											if (nicknameEl.value.trim() == '') {
+											
+											let regex = RegExp(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i);
+											if (!regex.test(emailEl.value.trim())) {
 												event.preventDefault();
 												event.stopPropagation();
-												alert('닉네임을 입력하세요');
-												nicknameEl.focus();
-												
+												$('#checkresult').html("<b style='color:red;'>이메일 형식이 아닙니다</b>");
+												pwd1El.value = '';
 											} else {
-												if(greencheck != '3') {
+												if (nicknameEl.value.trim() == '') {
 													event.preventDefault();
 													event.stopPropagation();
-													alert('중복체크를 확인하세요');
+													$('#checkresult').html("<b style='color:red;'>닉네임을 입력하세요</b>");
+													nicknameEl.focus();
+													
+												} else {
+													if(greencheck != '3') {
+														event.preventDefault();
+														event.stopPropagation();
+														$('#checkresult').html("<b style='color:red;'>아이디,이메일,닉네임 중복을 확인하세요</b>");
+													}
 												}
 											}
 										}
@@ -298,13 +390,15 @@ span    { padding: 10px; }
      <td class="left"><span style="font-weight: bold; text-align: left; padding: 0px;">비밀번호</span><span style="font-size: 12px;">(최소문자1개,숫자1개,특수문자1개 포함. 최소8자이상)</span></td>
    </tr>
    <tr> 
-     <td><input class="ps_box" type="password" name="passwd" id="pwd1" /></td>
+     <td><input class="ps_box" type="password" name="passwd" id="pwd1" />
+     	 <span id="pwd1Checkresult"></span></td>
    </tr>
    <tr>
      <th class="left">비밀번호 확인</th>
    </tr>
    <tr> 
-     <td><input class="ps_box" type="password" id="pwd2" /></td>
+     <td><input class="ps_box" type="password" id="pwd2" />
+         <span id="pwd2Checkresult"></span></td>
    </tr>
    <tr>
      <th class="left">이름</th>
@@ -324,7 +418,7 @@ span    { padding: 10px; }
    <tr> 
      <td><input type="radio" name="gender" value="남"/>남
          <input type="radio" name="gender" value="여"/>여
-         <input type="radio" name="gender" value="선택안함"/>선택안함</td>
+         <input type="radio" name="gender" value=""/>선택안함</td>
    </tr>
    <tr>
      <th class="left">주소</th>
@@ -351,6 +445,7 @@ span    { padding: 10px; }
    <tr>     
      <td colspan="2" style="text-align:center; padding: 10px;">
      <input type="submit" style="width:60pt; height:30pt;" value="가입" />
+     <span id="checkresult"></span>
      </td>
    </tr> 
   </table>
