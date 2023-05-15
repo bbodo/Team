@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.green.board.vo.BoardVo;
 import com.green.menus.service.MenuService;
 import com.green.menus.vo.MenuVo;
 import com.green.menus.vo.SubmenuVo;
@@ -140,6 +141,7 @@ public class MyPageController {
 		UserVo userVo = (UserVo) session.getAttribute("login");
 		int usercode = userVo.getUsercode();
 		map.put("usercode", usercode);
+		System.out.println("userVo"+userVo);
 		
 		// ---------------------------------------------------------------------
 		// 페이징 정보 준비
@@ -156,6 +158,16 @@ public class MyPageController {
 		map.put("endnum",    endnum );		
 		
 		// ---------------------------------------------------------------------
+		// 내가 쓴 글
+		List<BoardVo> boardList  = myPageService.getMyBoardList(map);
+		
+		//paging가 사용할 변수
+		BoardVo boardVo = (BoardVo) map.get("boardVo");
+		
+		//내가 쓴 게시글 수
+		 myPageService.getMyBoardCount(map);
+		 int myBoardCount = (int) map.get("myBoardCount");
+		//----------------------------------------------------------------------
 		// 보낸 쪽지
 		List<MyPageVo>   sendPagePaingList  =  myPageService.getSendPageList( map );
 		
@@ -164,10 +176,6 @@ public class MyPageController {
 		
 		// 내공 보답 할 사람 리스트
 		List<MyPageVo>   sendPointList  =  myPageService.getSendPointList( map );
-		
-		/*
-		 * //파일저장 myPageService.updateProfile(map, request);
-		 */
 		
 		//paging가 사용할 변수
 		MyPageVo         sendNotePagingVo   =  (MyPageVo) map.get("sendNotePaging");
@@ -182,12 +190,18 @@ public class MyPageController {
 		mv.addObject("userVo", userVo);
 		mv.addObject("menuList", menuList);
 		mv.addObject("submenuList", submenuList);
+		//쪽지 관련
 		mv.addObject("sendPagePaingList", sendPagePaingList);
 		mv.addObject("recPagePaingList", recPagePaingList);
 		mv.addObject("sendPointList", sendPointList);
 		mv.addObject("sendPagingVo", sendNotePagingVo);
 		mv.addObject("recPagingVo", recNotePagingVo);
+		//내공보답
 		mv.addObject("sendPointPagingVo", sendPointPagingVo);
+		//내가 쓴 글
+		mv.addObject("boardList", boardList);
+		mv.addObject("boardVo", boardVo);
+		mv.addObject("myBoardCount", myBoardCount);
 		return mv;
 	}
 	
@@ -366,8 +380,8 @@ public class MyPageController {
 	}
 	
 	//내공 전체 보기
-	/*@RequestMapping("/sendPoint")
-	public ModelAndView sendPoint (@RequestParam HashMap<String, Object> map,
+	@RequestMapping("/sendPointList")
+	public ModelAndView sendPointList (@RequestParam HashMap<String, Object> map,
 			HttpSession session) {
 		
 		UserVo userVo = (UserVo) session.getAttribute("login");
@@ -397,12 +411,12 @@ public class MyPageController {
 		
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("mypage/noteRecList");
+		mv.setViewName("mypage/sendPointList");
 		mv.addObject("userVo", userVo);
 		mv.addObject("sendPointList", sendPointList);
 		mv.addObject("sendPointPagingVo", sendPointPagingVo);
 		return mv;
-	}*/
+	}
 	
 	//내공 주기
 	@RequestMapping("/sendPoint")
@@ -418,6 +432,44 @@ public class MyPageController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:/mypage/myList?nowpage=1");
 		mv.addObject("userVo", userVo);
+		return mv;
+	}
+	
+	//내가 쓴 글 전체보기
+	@RequestMapping("/myBoardList")
+	public ModelAndView myBoardList (@RequestParam HashMap<String, Object> map,
+			HttpSession session) {
+		
+		UserVo userVo = (UserVo) session.getAttribute("login");
+		int usercode = userVo.getUsercode();
+		map.put("usercode", usercode);
+		
+		// ---------------------------------------------------------------------
+		// 페이징 정보 준비
+		int           nowpage   =  Integer.parseInt( (String) map.get("nowpage") ); 
+		int           pagecount =  10;    // 한페이지 당 출력할 줄(row)수  - 10
+
+		// sql 사용할 변수 : 조회할 레코드 번호
+		int           startnum  =  ( nowpage - 1 ) * pagecount + 1;
+		int           endnum    =  nowpage  *  pagecount;
+		
+		map.put("nowpage",   nowpage );
+		map.put("pagecount", pagecount );
+		map.put("startnum",  startnum );
+		map.put("endnum",    endnum );		
+		
+		// ---------------------------------------------------------------------
+		// 받은 쪽지
+		List<BoardVo>   myBoardList  = myPageService.getMyBoardList(map);
+		
+		//paging가 사용할 변수
+		BoardVo boardVo = (BoardVo) map.get("boardVo");	
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("mypage/myBoardList");
+		mv.addObject("userVo", userVo);
+		mv.addObject("boardList", myBoardList);
+		mv.addObject("boardVo", boardVo);
 		return mv;
 	}
 	

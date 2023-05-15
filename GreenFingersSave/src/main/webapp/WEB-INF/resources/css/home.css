@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.mainTitle {
+	font-size:20px;
+	text-align: center;
+	font-weight: 500;
+}
+
+#sec1Con1 {
+	width:100%;
+}
+
+.sec1Con1Box {
+	width:400px;
+	height: 400px;
+	background-color: blue;
+}

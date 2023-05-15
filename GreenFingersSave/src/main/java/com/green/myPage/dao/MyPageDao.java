@@ -3,6 +3,7 @@ package com.green.myPage.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import com.green.board.vo.BoardVo;
 import com.green.myPage.vo.MyPageVo;
 
 public interface MyPageDao {
@@ -37,5 +38,9 @@ public interface MyPageDao {
 	void updateUser(HashMap<String, Object> map);
 
 	void setSave(HashMap<String, Object> map);
+
+	List<BoardVo> getMyBoardList(HashMap<String, Object> map);
+
+	void getMyBoardCount(HashMap<String, Object> map);
 
 }

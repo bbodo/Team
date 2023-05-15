@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.green.board.vo.BoardVo;
 import com.green.myPage.dao.MyPageDao;
 import com.green.myPage.vo.FilesVo;
 import com.green.myPage.vo.MyPageVo;
@@ -130,6 +131,24 @@ public class MyPageDaoImpl implements MyPageDao {
 		List<FilesVo> fileList = (List<FilesVo>) map.get("fileList");
 		if(fileList.size() !=0 )
 			sqlSession.insert("MyPage.UpdateProfile", map);
+	}
+
+	@Override
+	public List<BoardVo> getMyBoardList(HashMap<String, Object> map) {
+		// 전체 자료수 조회
+		int totalcount = sqlSession.selectOne("MyPage.GetTotalMyBoardCount", map);
+		map.put("totalcount", totalcount);
+		
+		// 메뉴 목록 조회 (페이징)
+		List<BoardVo> boardList = sqlSession.selectList("MyPage.MyBoardList", map);
+		
+		return boardList;
+	}
+
+	@Override
+	public void getMyBoardCount(HashMap<String, Object> map) {
+		int myBoardCount = sqlSession.selectOne("MyPage.GetMyBoardCount", map);
+		map.put("myBoardCount", myBoardCount);
 	}
 	
 	

@@ -75,3 +75,77 @@
    </tr>    
   </table>   
 </div>
+
+<!-- 내가 쓴 쪽지 -->
+<div id="myBoardList">
+<c:set  var="startnum2"           value="${ boardVo.pagestartnum    }" /> 
+<c:set  var="endnum2"             value="${ boardVo.pageendnum      }" /> 
+<c:set  var="totalpagecount2"     value="${ boardVo.totalpagecount  }" /> 
+  <table width="500" height="25"  align="center"  >
+   <tr>
+     <td width="500" height="25"  align="center" >
+   
+   <!-- 처음/ 이전 -->     
+   <c:if test="${ startnum2 gt 1 }">
+     <a href="/mypage/myBoardList?nowpage=1">처음</a>
+     <a href="/mypage/myBoardList?nowpage=${ startnum2 - 1 }">
+     [이전]
+     </a>
+   </c:if>
+   
+   <!-- 1 2 3 4 5 6 [7] 8 9 10  -->
+   <c:forEach  var="pagenum"  begin="${startnum2}"  end="${endnum2}"  step="1">
+      <a href="/mypage/myBoardList?nowpage=${ pagenum }">
+      ${ pagenum }
+      </a>&nbsp;&nbsp;     
+   </c:forEach>    
+   
+   <!-- 다음 / 마지막 -->
+   <c:if test="${ totalpagecount2 ne endnum2 }">
+     <a href="/mypage/myBoardList?nowpage=${ endnum2 + 1 }">
+     [다음]
+     </a>
+     <a href="/mypage/myBoardList?nowpage=${ totalpagecount2 }">마지막</a>
+   </c:if>    
+   
+    </td>
+   </tr>    
+  </table>   
+</div>
+
+<!-- 내공 전체보기 -->
+<div id="sendPointList">
+<c:set  var="startnum3"           value="${ sendPointPagingVo.pagestartnum    }" /> 
+<c:set  var="endnum3"             value="${ sendPointPagingVo.pageendnum      }" /> 
+<c:set  var="totalpagecount3"     value="${ sendPointPagingVo.totalpagecount  }" /> 
+  <table width="500" height="25"  align="center"  >
+   <tr>
+     <td width="500" height="25"  align="center" >
+   
+   <!-- 처음/ 이전 -->     
+   <c:if test="${ startnum3 gt 1 }">
+     <a href="/mypage/sendPointList?nowpage=1">처음</a>
+     <a href="/mypage/sendPointList?nowpage=${ startnum3 - 1 }">
+     [이전]
+     </a>
+   </c:if>
+   
+   <!-- 1 2 3 4 5 6 [7] 8 9 10  -->
+   <c:forEach  var="pagenum"  begin="${startnum3}"  end="${endnum3}"  step="1">
+      <a href="/mypage/sendPointList?nowpage=${ pagenum }">
+      ${ pagenum }
+      </a>&nbsp;&nbsp;     
+   </c:forEach>    
+   
+   <!-- 다음 / 마지막 -->
+   <c:if test="${ totalpagecount3 ne endnum3 }">
+     <a href="/mypage/sendPointList?nowpage=${ endnum3 + 1 }">
+     [다음]
+     </a>
+     <a href="/mypage/sendPointList?nowpage=${ totalpagecount3 }">마지막</a>
+   </c:if>    
+   
+    </td>
+   </tr>    
+  </table>   
+</div>

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.green.board.vo.BoardVo;
 import com.green.myPage.vo.MyPageVo;
 
 public interface MyPageService {
@@ -39,5 +40,9 @@ public interface MyPageService {
 	void updateUser(HashMap<String, Object> map);
 
 	void updateProfile(HashMap<String, Object> map, HttpServletRequest request);
+
+	List<BoardVo> getMyBoardList(HashMap<String, Object> map);
+
+	void getMyBoardCount(HashMap<String, Object> map);
 	
 }

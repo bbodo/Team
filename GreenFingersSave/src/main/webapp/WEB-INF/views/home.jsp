@@ -11,6 +11,7 @@
 <title>홈</title>
 
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+ <link rel="stylesheet" href="/css/home.css" />
  <script src="/js/home.js"></script>
  <script src="/js/common.js"></script>
 
@@ -100,8 +101,31 @@
 	<h2>Home</h2> -->
 	
 	<section id="sec1" style="min-height: 100px; height: auto; ">
-		<div>
-					
+		<div id="sec1Con1">
+			<p class="mainTitle">그린 종합커뮤니티에 오신 걸 환영합니다</p>
+			<div>
+				<div class="sec1Con1Box">
+					<a href="#">
+						<img src="" alt="mainImg"/>
+						<p>다양한 커뮤니티 글</p>
+						<div></div>
+					</a>
+				</div>
+				<div class="sec1Con1Box">
+					<a href="#">
+						<img src="" alt="mainImg"/>
+						<p>다양한 그린마켓</p>
+						<div></div>
+					</a>
+				</div>
+				<div class="sec1Con1Box">
+					<a href="#">
+						<img src="" alt="mainImg"/>
+						<p>다양한 </p>
+						<div></div>
+					</a>
+				</div>
+			</div>
 		</div>
 	</section>
 	

@@ -21,7 +21,7 @@
 		 line-height: 100px;
 	}
 	
-	#recPaing {
+	#recPaing, #myBoardList, #sendPointList {
 	display:none;
 	}
 </style>
