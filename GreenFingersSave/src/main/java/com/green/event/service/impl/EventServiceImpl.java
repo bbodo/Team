@@ -38,7 +38,7 @@ public class EventServiceImpl implements EventService {
 		
 		List<EventVo>  eventList = eventDao.getEventList(map);
 		
-		int  pagetotalcount =  10;  // paging.jsp 페이지 번호 출력 갯수
+		int  pagetotalcount =  3;  // paging.jsp 페이지 번호 출력 갯수
 				
 		int        nowpage     =  Integer.parseInt( String.valueOf( map.get("nowpage") ) );    // 현재 페이지
 		int        pagecount   =  Integer.parseInt( String.valueOf( map.get("pagecount")) );  // 한페이지에 보여줄 자료수
