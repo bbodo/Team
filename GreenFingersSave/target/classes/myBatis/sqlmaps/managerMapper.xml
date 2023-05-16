@@ -640,7 +640,7 @@
 			(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
 			#{ submenu_id  },
 			#{ board_title },
-			#{ board_cont },
+			#{board_contAddress},
 			'0',
 			'1',
 			(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
@@ -648,7 +648,36 @@
 		)
 	</insert>
 	
-	
+	<select id="SeminarList"
+			resultType="com.green.manager.vo.AdminEventVo">
+	SELECT * FROM(
+	SELECT
+			ROW_NUMBER() OVER(ORDER BY NREF DESC, STEP ASC)  RNUM,
+			B.BOARD_IDX,
+			B.SUBMENU_ID,
+			B.BOARD_TITLE,
+			B.BOARD_CONT,
+			B.MARKET_VALUE,
+			TO_CHAR(B.BOARD_REGDATE, 'YYYY-MM-DD HH24:MI:SS') BOARD_REGDATE,
+			B.READCOUNT,
+			B.BNUM,
+			B.LVL,
+			B.STEP,
+			B.NREF,
+			B.DELBOARD,
+			B.PARENT
+		FROM
+			BOARD B
+        WHERE 
+       
+            SUBMENU_ID  =  #{submenu_id}
+            ) T
+       WHERE 
+		T.RNUM BETWEEN #{startnum} AND #{endnum}
+		ORDER BY
+		 NREF  DESC, STEP   ASC   
+		
+	</select>
 	
 </mapper>
 
