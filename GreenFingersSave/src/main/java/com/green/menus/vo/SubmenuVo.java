@@ -7,16 +7,18 @@ public class SubmenuVo {
 	private String submenu_name;
 	private int    submenu_seq;
 	private String menu_id;
+	private String submenu_uri;
 	
 	// 생성자
 	public SubmenuVo() { }
-	public SubmenuVo(String submenu_id, String submenu_name, int submenu_seq, String menu_id) {
+	public SubmenuVo(String submenu_id, String submenu_name, int submenu_seq, String menu_id, String submenu_uri) {
 		this.submenu_id = submenu_id;
 		this.submenu_name = submenu_name;
 		this.submenu_seq = submenu_seq;
 		this.menu_id = menu_id;
+		this.submenu_uri = submenu_uri;
 	}
-	
+
 	// Getter / Setter
 	public String getSubmenu_id() {
 		return submenu_id;
@@ -42,12 +44,18 @@ public class SubmenuVo {
 	public void setMenu_id(String menu_id) {
 		this.menu_id = menu_id;
 	}
+	public String getSubmenu_uri() {
+		return submenu_uri;
+	}
+	public void setSubmenu_uri(String submenu_uri) {
+		this.submenu_uri = submenu_uri;
+	}
 	
 	// toString
 	@Override
 	public String toString() {
 		return "SubmenuVo [submenu_id=" + submenu_id + ", submenu_name=" + submenu_name + ", submenu_seq=" + submenu_seq
-				+ ", menu_id=" + menu_id + "]";
+				+ ", menu_id=" + menu_id + ", submenu_uri=" + submenu_uri + "]";
 	}
 	
 }

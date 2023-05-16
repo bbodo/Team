@@ -59,14 +59,14 @@
     }
 
     #modal .modal-window {
-        background: rgba( 69, 139, 197, 0.70 );
+        background: LemonChiffon;
         box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
         backdrop-filter: blur( 13.5px );
         -webkit-backdrop-filter: blur( 13.5px );
         border-radius: 10px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
 		overflow-y: auto;
-        width: 600px;
+        width: 700px;
         height: 600px;
         position: relative;
         top: 50px;
@@ -77,8 +77,8 @@
     #modal .title {
         padding-left: 10px;
         display: block;
-        text-shadow: 1px 1px 2px gray;
-        color: white;
+        /* text-shadow: 1px 1px 2px gray; */
+        color: Navy;
     }
 
     #modal .title h2 {
@@ -90,15 +90,15 @@
         float: right;
         padding-right: 10px;
         cursor: pointer;
-        text-shadow: 1px 1px 2px gray;
-        color: white;
+        /* text-shadow: 1px 1px 2px gray; */
+        color: Navy;
     }
     
     #modal .content {
         margin-top: 20px;
         padding: 0px 10px;
-        text-shadow: 1px 1px 2px gray;
-        color: white;
+        /* text-shadow: 1px 1px 2px gray; */
+        color: Navy;
     }
 </style>
 <script>

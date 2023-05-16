@@ -7,14 +7,14 @@
   
    <!-- 메뉴 목록 가져오기 -->
    <select id="MenuList" resultType="com.green.menus.vo.MenuVo">
-      SELECT   MENU_ID, MENU_NAME, MENU_SEQ
+      SELECT   MENU_ID, MENU_NAME, MENU_SEQ, MENU_URI
       FROM     MENUS
       ORDER BY MENU_ID ASC
    </select>
    
    <!-- menu_id를 가지고 서브메뉴 목록 가져오기 -->
    <select id="SubmenuList" resultType="com.green.menus.vo.SubmenuVo">
-      SELECT   SUBMENU_ID, SUBMENU_NAME,  SUBMENU_SEQ, MENU_ID
+      SELECT   SUBMENU_ID, SUBMENU_NAME,  SUBMENU_SEQ, MENU_ID, SUBMENU_URI
       FROM     SUBMENUS
       WHERE    MENU_ID = #{menu_id}
       ORDER BY SUBMENU_ID ASC
@@ -35,7 +35,7 @@
 	
    <!-- 서브메뉴 목록 가져오기 -->
    <select id="SubmenuList1" resultType="com.green.menus.vo.SubmenuVo">
-      SELECT   SUBMENU_ID, SUBMENU_NAME, SUBMENU_SEQ, MENU_ID
+      SELECT   SUBMENU_ID, SUBMENU_NAME, SUBMENU_SEQ, MENU_ID, SUBMENU_URI
       FROM     SUBMENUS
       ORDER BY SUBMENU_ID ASC
    </select>
