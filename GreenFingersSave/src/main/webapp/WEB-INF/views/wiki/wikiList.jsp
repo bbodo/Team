@@ -37,6 +37,12 @@
 		  height: 200px;
 		  object-fit: cover;
 	}
+	#paging { margin-left: 50px;
+	          margin-top: 20px; }
+	#paging > .h { padding: 0px 4px;}
+	#paging1 {text-align: center; margin-bottom: 20px;}
+	#paging1 > .h {padding: 0 5px;}
+	
 </style>
 <style>
 	
@@ -107,6 +113,7 @@
 	function data_display(data) {
 		const btnOkEl  = document.querySelector('#btnOk');
 		const pagingEl = document.getElementById('paging');
+		const paging1El = document.getElementById('paging1');
 		let   keyword  = $('#search').val();
 		let   phtml    = '';
 		
@@ -133,6 +140,7 @@
 		}
 		
 		pagingEl.innerHTML = phtml;
+		paging1El.innerHTML = phtml;
 		
 		let arr  = body.items.item;
 		let html = '';
@@ -360,9 +368,8 @@
 	function modalOn() {
 		modal.style.display = "flex"
 		   		}
-	
 	</script>
-
+	<div id="paging1"></div>
 	<!-- footer -->
     <%@include file="/WEB-INF/include/footer.jsp" %> 
     <!-- Swiper JS -->
