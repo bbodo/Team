@@ -337,35 +337,14 @@
    </insert>
    
    <!-- 포인트 차감 업데이트  -->
-   <update id="PointUpdate">
+	<update id="PointUpdate">
 		UPDATE
-		  MEMBER M
-		SET 
-		 M.POINT = M.POINT - (
-		  (SELECT B.MARKET_VALUE 
-		     FROM 
-		          BOARD B 
-		     JOIN 
-		          TRANSACTION T
-		     ON   
-		          B.BOARD_IDX = T.BOARD_IDX
-		     WHERE 
-		          B.BOARD_IDX = T.BOARD_IDX)
-		
-		   *
-		  (SELECT T.TRANSACTION_SU 
-		     FROM 
-		          TRANSACTION T 
-		     JOIN 
-		          BOARD B
-		     ON   
-		          B.BOARD_IDX = T.BOARD_IDX
-		     WHERE 
-		          B.BOARD_IDX = T.BOARD_IDX)
-		)
+		 MEMBER
+		SET
+		 POINT    = #{point}
 		WHERE
-		 USERCODE = #{usercode}
-</update>
+	 	 USERCODE = #{usercode}
+	</update>
 
 
 </mapper>

@@ -157,6 +157,8 @@ function getAmount() {
 	  <input type="hidden"  name="nref"       value="${ map.nref       }" /> 
 	  <input type="hidden"  name="parent"     value="${ map.board_idx  }" /> 
 	  <input type="hidden"  name="nowpage"    value="${ map.nowpage    }" /> 
+	  <input type="hidden"  name="market_value"    value="${ marketVo.market_value    }" /> 
+	  <input type="hidden"  name="point"      value="${ map.point      }" />
      
      
 		<div id="storename">스토어 상세 결제창</div>

@@ -457,6 +457,8 @@ public class MarketController {
 		// 상품 결제
 		marketService.productPay(map);
 		
+		System.out.println("상품결제:" + map);
+		
 		String submenu_id  =  map.get("submenu_id").toString();
  		String fmt 		   = "redirect:/Market/List?menu_id=MENU03&submenu_id=%s&nowpage=1";
  		String loc 		   = String.format(fmt, submenu_id);
@@ -464,6 +466,7 @@ public class MarketController {
  		ModelAndView   mv  = new ModelAndView();
  		mv.setViewName(loc);
  		mv.addObject("userVo", userVo);
+ 		mv.addObject("marketVo", marketVo);
  		mv.addObject("map", map);
  		return mv;
  	}
