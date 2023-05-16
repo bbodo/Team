@@ -336,7 +336,7 @@
    
    </insert>
    
-   <!-- 포인트 차감 업데이트  -->
+   <!-- 포인트 차감 업데이트  --> 
 	<update id="PointUpdate">
 		UPDATE
 		 MEMBER

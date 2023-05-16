@@ -134,7 +134,7 @@ public class MarketDaoImpl implements MarketDao {
 		// 거래 내역 추가
 		sqlSession.insert("Market.TransactionInsert", map);
 		
-		// 포인트 차감
+		// 포인트 차감 
 		sqlSession.update("Market.PointUpdate", map);
 	}
 

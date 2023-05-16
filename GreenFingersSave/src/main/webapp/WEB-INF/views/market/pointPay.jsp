@@ -198,7 +198,7 @@ function getAmount() {
 			
 			
 		</table>
-		<div class="btn">
+		<div class="btn"> 
 		<input type="submit" value="결제" onclick="if(!confirm('상품 금액만큼 포인트가 차감됩니다.\n정말로 결제하시겠습니까?')){return false;}" />
 		</div>
 	  </form>

@@ -117,7 +117,7 @@ public class MarketServiceImpl implements MarketService {
 		MarketFile.deleteM(fileList);
 	}
 
-	// 스토어 결제
+	// 스토어 결제 
 	@Override
 	public void productPay(HashMap<String, Object> map) {
 
