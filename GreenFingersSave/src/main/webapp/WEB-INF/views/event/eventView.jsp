@@ -295,9 +295,10 @@
 						if(comm.usercode == usercode) {
 							html += '<div class="floatright"><input class="smbtn" type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
 							html += '<input class="smbtn" type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br />';
-						}						
+						}			
 						html += '<div class="floatright dateSpace"><p><h2>'+ comm.coment_regdate +'</h2></p></div><br />';
-					} else {
+					} 
+					else {
 						html += '<b>삭제된 댓글입니다.</b>';
 					}					
 				} else {

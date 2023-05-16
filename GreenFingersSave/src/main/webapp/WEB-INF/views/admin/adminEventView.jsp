@@ -190,7 +190,7 @@
 			let cont = $("#comment_update_" + coment_idx).val();
 			let usercode = $('#usercode').val();
 			
-				fetch("/Comment/CommentUpdate?coment_idx=" + coment_idx + "&coment_cont="+ cont +"&usercode=" + usercode)
+				fetch("/Comment/CommentUpdate?coment_idx=" + coment_idx + "&coment_cont="+ cont +"&usercode=" + "18")
 				.then(res => res.json())
 				.then(data => {
 					comment_display(data);
@@ -204,7 +204,7 @@
 		function reply_comment(coment_idx, board_idx, com_bnum, com_lvl, com_step, com_nref, com_parent) {
 			let coment_cont = $("#reply_coment_cont").val();
 			
-			fetch("/Comment/ReCommentWrite?coment_idx=" + coment_idx + "&board_idx=" + board_idx + "&coment_cont=" + coment_cont + "&usercode=" + ${login.usercode}
+			fetch("/Comment/ReCommentWrite?coment_idx=" + coment_idx + "&board_idx=" + board_idx + "&coment_cont=" + coment_cont + "&usercode=" + "18"
 				  +"&com_bnum=" + com_bnum + "&com_lvl=" + com_lvl + "&com_step=" + com_step + "&com_nref=" + com_nref +
 				  "&com_parent=" + com_parent)
 				.then(res => res.json())
@@ -284,7 +284,7 @@
 		
 		function comment_display(data) {
 			let html = '';
-			let usercode = $('#usercode').val();
+			let usercode = $('#usercode').val();			
 			console.log(usercode);
 			for (let comm of data) {
 				html += '<li id="comment_li_' + comm.coment_idx +'">';
@@ -292,7 +292,7 @@
 					if(comm.delcoment == 0) {
 						html += '<div class="floatleft nameSpace"><p><h2>'+ comm.nickname +'</h2></p></div>';
 						html += `<div class="floatleft contSpace" id="commentCont_\${comm.coment_idx}" onclick="c(\${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})">\${comm.coment_cont}</div><br />`;
-						if(comm.usercode == usercode) {
+						if(comm.usercode >= 0 && comm.usercode <= 9999) {
 							html += '<div class="floatright"><input class="smbtn" type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
 							html += '<input class="smbtn" type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br />';
 						}						
@@ -305,7 +305,7 @@
 						html += `<b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>`;
 						html += `<div class="floatleft nameSpace"><p><h2><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.nickname}</h2></p></div>`;
 						html += `<div class="floatleft contSpace" id="commentCont_\${ comm.coment_idx }" onclick="c( \${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})"><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.coment_cont}</div><br />`;
-						if(comm.usercode == usercode) {
+						if(comm.usercode >= 0 && comm.usercode <= 9999) {
 							html += '<div class="floatright btns"><input class="smbtn" type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
 							html += '<input class="smbtn" type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div><br />';
 						}	
@@ -377,6 +377,7 @@
 
 
 
+
 </head>
 <body>
 	<!-- header -->
@@ -426,10 +427,10 @@
 		<div id="writeComment">
 			<form id="writeC">
 			<input type="hidden"  name="board_idx" value="${ vo.board_idx }" />
-			<input type="hidden"  name="usercode" value="0" />
+			<input type="hidden"  name="usercode" value="18" />
 			<table>
 				<tr>
-					<th><div class="nameSpace">admin</div></th>
+					<th><div class="nameSpace">관리자전용</div></th>
 					<td style="width: 1000px;">
 						<textarea name="coment_cont" placeholder="내용을 작성하세요."
 					     required class="coment_cont" id="coment_cont"></textarea>
