@@ -25,41 +25,6 @@
 	#title p {
 		 line-height: 100px; 
 	}
-	#aside {
-		float: left;
-		height: 1500px;
-		background-color: white;
-		width: 20%;
-		padding: 10px;
-	}
-	#sidemenu {
-		padding: 30px;
-	}
-	#sidemenu li {
-		padding: 10px;
-	}
-	#sidemenu li a {
-		position: relative;
-		display: block;
-		font-size: 20px;
-	}
-	#sidemenu li a:after {
-		content: "";
-		position: absolute;
-		left: 0;
-		bottom: 24px;
-		width: 0px;
-		height: 3px;
-		margin: 5px 0 0;
-		transition: all 0.2s ease-in-out;
-		transition-duration: 0.3s;
-		opacity: 0;
-		background-color: #2E8B57;
-	}
-	#sidemenu li a:hover:after {
-		width: 100%;
-		opacity: 1;
-	}
 	#main {
 		width: 80%;
 		min-height: 1500px;
@@ -165,6 +130,7 @@
     <div id="wrapper">
      <div id="aside">
       <ul id="sidemenu">
+      <li class="sidemenuTitle">SIDEMENU</li>
      	<li><a href=/Market/List?menu_id=MENU03&submenu_id=SUBMENU15&nowpage=1>입양원해요</a></li>
      	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU16&nowpage=1">나눔합니다</a></li>
      	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a></li>

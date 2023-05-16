@@ -23,13 +23,13 @@
 	#title p {
 		 line-height: 100px;
 	}
-	#aside {
+	/* #aside {
 		float: left;
 		height: 1200px;
 		background-color: white;
 		width: 15%;
 		padding: 10px;
-	}
+	} */
 	#main {
 		width: 85%;
 		height: 1200px;
@@ -57,7 +57,7 @@
 		font-size: 32px;
 		font-weight: bold;
 	}
-	#sidemenu {
+	/* #sidemenu {
 		padding: 30px;
 	}
 	#sidemenu li {
@@ -84,7 +84,7 @@
 	#sidemenu li a:hover:after {
 		width: 100%;
 		opacity: 1;
-	}
+	} */
 	.right {
 		text-align: right;
 	}
@@ -188,11 +188,10 @@
 		</c:otherwise>
 	</c:choose>
 	<%@include file="/WEB-INF/include/subBanner.jsp"%>	
-    <!--  <div id="title">
-     	<p style="font-size: 40px; font-weight: bold;">그린마켓</p>  
-     </div> -->
+     <div id="wrapper">
      <div id="aside">
       <ul id="sidemenu">
+      <li class="sidemenuTitle">SIDEMENU</li>
      	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU15&nowpage=1">입양원해요</a></li><br />
      	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU16&nowpage=1">나눔합니다</a></li><br />
      	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a></li><br />
@@ -244,6 +243,7 @@
 		<input type="submit" value="등록" />
 		</div>
 		</form>
+     </div>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

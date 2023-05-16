@@ -11,78 +11,29 @@
 <%@include file="/WEB-INF/include/comHead.jsp" %>
 <title>${ map.submenu_name } 게시판</title>
 
-<!-- <script src="/js/home.js"></script> -->
-
 <style type="text/css">
 
 	* {
 		box-sizing: border-box;
 	}
 	
-	#title {
-		width: 100%;
-		text-align: center;
-		height: 100px;
-		background-color: orange; 
-	}
-	#title p {
-		 line-height: 100px; 
-	}
-	#aside {
-		float: left;
-		height: 1000px;
-		background-color: white;
-		width: 20%;
-		padding: 10px;
-	}
-	#sidemenu {
-		padding: 30px;
-	}
-	#sidemenu li {
-		padding: 10px;
-	}
-	#sidemenu li a {
-		position: relative;
-		display: block;
-		font-size: 20px;
-	}
-	#sidemenu li a:after {
-		content: "";
-		position: absolute;
-		left: 0;
-		bottom: 24px;
-		width: 0px;
-		height: 3px;
-		margin: 5px 0 0;
-		transition: all 0.2s ease-in-out;
-		transition-duration: 0.3s;
-		opacity: 0;
-		background-color: #2E8B57;
-	}
-	#sidemenu li a:hover:after {
-		width: 100%;
-		opacity: 1;
-	}
 	#main {
-		width: 80%;
+		width: 85%;
 		height: auto;
 		min-height: 1000px;
-		float: left;
 		padding: 10px;
+		padding-right: 15%;
 		background-color: white;
 		text-align: center;
+		display: inline-block;
 	}
 	
-	#main p {
-		margin-top: 30px;
-		margin-bottom: 30px;
-	}
 	#tt {
 		text-align: left;
 	}
 	#cont {
 		background-color: #fff;
-		padding: 10px;
+		/* padding: 10px; */
 		margin: 0 auto;
 		width: 90%;
 		border-collapse: collapse;
@@ -103,9 +54,6 @@
 	.right {
 		text-align: right;
 	} 
-	#main { 
-		display: block; 
-		}
 	
 	#main a {
 		margin-right: 100px;
@@ -128,30 +76,29 @@
 	</c:choose>
 	
 	<%@include file="/WEB-INF/include/subBanner.jsp"%>
-     <!-- <div id="title">
-     	<p style="font-size: 40px; font-weight: bold;">그린마켓</p>
-     </div> -->
+	<div id="wrapper">
      <div id="aside">
       <ul id="sidemenu">
+      <li class="sidemenuTitle">SIDEMENU</li>
      	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU15&nowpage=1">입양원해요</a></li>
      	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU16&nowpage=1">나눔합니다</a></li>
      	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a></li>
       </ul>
      </div>
      <div id="main">
-     <h2 style="font-size: 24px;">${ map.submenu_name }</h2>
+     <p style="font-size: 24px;  font-weight: bold; text-align: left; padding-left: 50px; margin-bottom: 10px;">${ map.submenu_name }</p>
      <!-- 하위 메뉴 바뀔 때마다 내용 달라지게  -->
      <c:choose>
        <c:when test="${ map.submenu_id == 'SUBMENU15' }">
-     <p style="font-size:15px;">그린핑거 회원이라면 누구나 입양 신청글 작성이 가능합니다<br>
+     <p class="left" style="padding-left: 50px;">그린핑거 회원이라면 누구나 입양 신청글 작성이 가능합니다<br>
      입양 완료 후 답례를 원한다면 내공이나 후기글로 고마움을 표현하세요</p>
        </c:when>
        <c:when test="${ map.submenu_id == 'SUBMENU16' }">
-     <p style="font-size:15px;">그린핑거 회원이라면 누구나 나눔할 수 있습니다<br>
+     <p class="left" style="padding-left: 50px;">그린핑거 회원이라면 누구나 나눔할 수 있습니다<br>
      나눔 후 답례를 원한다면 내공이나 후기글로 고마움을 표현하세요</p>
        </c:when>
        <c:otherwise>
-       <p style="font-size:15px;">지금까지 모은 포인트로 물건을 구입하세요</p>
+       <p class="left" style="padding-left: 50px;">지금까지 모은 포인트로 물건을 구입하세요</p>
        </c:otherwise>
      </c:choose>
      
@@ -272,7 +219,7 @@
 	<br>
 	 <%@include file="/WEB-INF/include/marketPaging.jsp" %>
      </div>
-     
+     </div>
   <!--    footer -->
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
