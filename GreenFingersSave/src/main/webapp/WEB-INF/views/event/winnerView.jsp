@@ -420,34 +420,7 @@
 				</td>
 			</tr>
 		</table>
-		<div id="commentNoti">댓글</div>
-		<br />
 		
-		<div id="writeComment">
-			<form id="writeC">
-			<input type="hidden"  name="board_idx" value="${ vo.board_idx }" />
-			<input type="hidden"  name="usercode" value="${ login.usercode }" id="usercode" />
-			<table>
-				<tr>
-					<th><div class="nameSpace" style="min-width: 80px;">${ login.nickname }</div></th>
-					<td style="width: 1000px;">
-						<textarea name="coment_cont" placeholder="내용을 작성하세요."
-					     required class="coment_cont" id="coment_cont"></textarea>
-					</td>
-					<td style="width: 100px;">
-						<input type="button" id="writeBtn" value="등록"/>
-					</td>
-				</tr>
-			</table>
-			</form>
-		</div>
-		<br />
-		<div id="readComment">
-			<form id="readC">
-			<input type="hidden"  name="board_idx" value="${ vo.board_idx }" />
-			<ul id="commentList"></ul>
-			</form>
-		</div>
      </div>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
