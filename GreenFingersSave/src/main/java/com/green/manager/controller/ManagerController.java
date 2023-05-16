@@ -834,7 +834,7 @@ public class ManagerController {
   				
   				ModelAndView   mv  = new ModelAndView();
   				mv.setViewName(loc);
-  				mv.addObject("map", map);s
+  				mv.addObject("map", map);
 
   				return mv;
   			}

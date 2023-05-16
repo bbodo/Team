@@ -9,20 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.green.board.service.impl.BoardFile;
 import com.green.common.service.CommonService;
-import com.green.event.Vo.EventVo;
 import com.green.event.service.impl.EventFile;
-import com.green.event.service.impl.EventPaging;
 import com.green.manager.dao.ManagerDao;
 import com.green.manager.service.ManagerService;
 import com.green.manager.vo.AdminEventVo;
-import com.green.manager.vo.ManagerVo;
 import com.green.manager.vo.StoreVo;
 import com.green.market.service.impl.MarketFile;
-import com.green.market.service.impl.MarketPaging;
 import com.green.market.vo.FileVo;
-import com.green.market.vo.MarketVo;
 import com.green.user.vo.UserVo;
 
 @Service("managerService")

@@ -611,6 +611,33 @@
 			)
 	</insert>
 	
+	<!-- 행사 등록  -->
+	<insert id="SeminarInsert">
+	INSERT INTO
+		BOARD
+		(
+			BOARD_IDX,
+			SUBMENU_ID,
+			BOARD_TITLE,
+			BOARD_CONT,
+			USERCODE,
+			MANAGERCODE,
+			BNUM,
+			NREF
+		)
+	VALUES
+		(
+			(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
+			#{ submenu_id  },
+			#{ board_title },
+			#{ board_cont },
+			'0',
+			'1',
+			(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD),
+			(SELECT  NVL( MAX(BOARD_IDX), 0 ) + 1 FROM BOARD)
+		)
+	</insert>
+	
 	
 </mapper>
 
