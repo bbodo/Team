@@ -242,7 +242,7 @@
 	  </div>
 	  </a>
 	     <span class="tag">3000p</span>
-	     <p>귀여운 코끼리 물뿌리개</p>
+	     <p>귀여운 코끼리 물뿌리개</p> 
 	  </figure>
       <figure>
       <a href="/Market/View?menu_id=MENU03&submenu_id=SUBMENU17&board_idx=108&nowpage=1">
