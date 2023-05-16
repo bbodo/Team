@@ -189,10 +189,10 @@ $(document).on("click","#seepw",function() {
 	
 	if($('#ppwd1 [type=password]').length) {
 		$('#ppwd1 [type=password]').remove();
-		html = '<input class="ps_box" type="text" name="passwd" id="pwd1" value="'+ pwd1 +'" />';
+		html = '<input class="ps_box" type="text" name="passwd" onblur="pwd1Check()" id="pwd1" value="'+ pwd1 +'" />';
 	} else {
 		$('#ppwd1 [type=text]').remove();
-		html = '<input class="ps_box" type="password" name="passwd" id="pwd1" value="'+ pwd1 +'"/>';
+		html = '<input class="ps_box" type="password" name="passwd" onblur="pwd1Check()" id="pwd1" value="'+ pwd1 +'"/>';
 	}
 	
 	$('#ppwd1').prepend(html);
@@ -222,10 +222,10 @@ $(document).on("click","#seepw2",function() {
 	
 	if($('#ppwd2 [type=password]').length) {
 		$('#ppwd2 [type=password]').remove();
-		html = '<input class="ps_box" type="text" name="passwd" id="pwd2" value="'+ pwd +'" />';
+		html = '<input class="ps_box" type="text" name="passwd" onblur="pwd2Check()" id="pwd2" value="'+ pwd +'" />';
 	} else {
 		$('#ppwd2 [type=text]').remove();
-		html = '<input class="ps_box" type="password" name="passwd" id="pwd2" value="'+ pwd +'"/>';
+		html = '<input class="ps_box" type="password" name="passwd" onblur="pwd2Check()" id="pwd2" value="'+ pwd +'"/>';
 	}
 	
 	$('#ppwd2').prepend(html);
