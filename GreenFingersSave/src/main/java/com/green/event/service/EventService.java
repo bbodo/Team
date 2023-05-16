@@ -27,6 +27,6 @@ public interface EventService {
 
 	List<FileVo> getFileList1(String submenu_id);
 
-
+	List<BoardVo> getSeminarList(HashMap<String, Object> map);
 
 }

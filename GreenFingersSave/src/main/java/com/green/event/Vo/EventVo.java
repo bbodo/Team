@@ -1,7 +1,5 @@
 package com.green.event.Vo;
 
-import java.util.List;
-
 public class EventVo {
 
 	// Fields
@@ -23,6 +21,9 @@ public class EventVo {
 		private String	userid;
 		private String  nickname;
 		
+		//행사장 주소
+		private String address;
+		
 		
 		// paging 처리를 위한 추가 정보
 		// sql 문을 위한 변수
@@ -40,7 +41,7 @@ public class EventVo {
 	public EventVo(int board_idx, String submenu_id, String board_title, String board_cont, int market_value,
 			int usercode, int managercode, String board_regdate, int readcount, int bnum, int lvl, int step, int nref,
 			int delboard, int parent, String userid, String nickname, int nowpage, int pagecount, int totalcount,
-			int totalpagecount, int pagestartnum, int pageendnum, int pagegrpnum) {
+			int totalpagecount, int pagestartnum, int pageendnum, int pagegrpnum, String address) {
 		super();
 		this.board_idx = board_idx;
 		this.submenu_id = submenu_id;
@@ -66,6 +67,7 @@ public class EventVo {
 		this.pagestartnum = pagestartnum;
 		this.pageendnum = pageendnum;
 		this.pagegrpnum = pagegrpnum;
+		this.address = address;
 	}
 	public int getBoard_idx() {
 		return board_idx;
@@ -211,18 +213,22 @@ public class EventVo {
 	public void setPagegrpnum(int pagegrpnum) {
 		this.pagegrpnum = pagegrpnum;
 	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	@Override
 	public String toString() {
 		return "EventVo [board_idx=" + board_idx + ", submenu_id=" + submenu_id + ", board_title=" + board_title
 				+ ", board_cont=" + board_cont + ", market_value=" + market_value + ", usercode=" + usercode
 				+ ", managercode=" + managercode + ", board_regdate=" + board_regdate + ", readcount=" + readcount
 				+ ", bnum=" + bnum + ", lvl=" + lvl + ", step=" + step + ", nref=" + nref + ", delboard=" + delboard
-				+ ", parent=" + parent + ", userid=" + userid + ", nickname=" + nickname + ", nowpage=" + nowpage
-				+ ", pagecount=" + pagecount + ", totalcount=" + totalcount + ", totalpagecount=" + totalpagecount
-				+ ", pagestartnum=" + pagestartnum + ", pageendnum=" + pageendnum + ", pagegrpnum=" + pagegrpnum + "]";
+				+ ", parent=" + parent + ", userid=" + userid + ", nickname=" + nickname + ", address=" + address
+				+ ", nowpage=" + nowpage + ", pagecount=" + pagecount + ", totalcount=" + totalcount
+				+ ", totalpagecount=" + totalpagecount + ", pagestartnum=" + pagestartnum + ", pageendnum=" + pageendnum
+				+ ", pagegrpnum=" + pagegrpnum + "]";
 	}
-	
-
-	
 		
 }

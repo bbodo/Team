@@ -141,6 +141,12 @@ public class EventDaoImpl implements EventDao {
 	}
 
 
+	@Override
+	public List<BoardVo> getSeminarList(HashMap<String, Object> map) {
+		//행사 목록 들고오기
+		List<BoardVo> seminarList = sqlSession.selectList("Event.EventList", map);
+		return seminarList;
+	}
 	
 
 }

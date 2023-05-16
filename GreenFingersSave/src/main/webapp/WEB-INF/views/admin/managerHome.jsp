@@ -141,6 +141,7 @@ html, body {
 	<h2>Home</h2>
 
 	<a href="/Manager/SeminarWriteForm?submenu_id=SUBMENU21&nowpage=1">나누리행사등록</a>
+	<a href="/Event/SeminarList?menu_id=MENU04&submenu_id=SUBMENU21&nowpage=1">나누리행사목록</a>
 	
   <!-- footer -->
 

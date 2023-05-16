@@ -100,6 +100,7 @@
 	        <if test = "recData == 'recData'" >
 	         WHERE	    n.RECEIVER_USERCODE = #{usercode} 
 	        </if>
+	        ORDER BY RNUM DESC
 	  ) T 
       WHERE     T.RNUM  
                 BETWEEN  #{startnum}  AND  #{endnum}  
@@ -143,6 +144,7 @@
 	  		FROM	    NOTE n JOIN MEMBER m ON n.RECEIVER_USERCODE = m.USERCODE
 	        
 	        WHERE	n.SEND_USERCODE = #{usercode}
+	        ORDER BY RNUM DESC
 	  ) T 
       WHERE     T.RNUM  
                 BETWEEN  #{startnum}  AND  #{endnum}  

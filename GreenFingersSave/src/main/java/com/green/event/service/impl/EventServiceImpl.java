@@ -132,6 +132,12 @@ public class EventServiceImpl implements EventService {
 		List<FileVo> fileList = eventDao.getFileList1(submenu_id);
 		return fileList;
 	}
+	
+	@Override
+	public List<BoardVo> getSeminarList(HashMap<String, Object> map) {
+		List<BoardVo> seminarList = eventDao.getSeminarList(map);
+		return seminarList;
+	}
 
 
 }

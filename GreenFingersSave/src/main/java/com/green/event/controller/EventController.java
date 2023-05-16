@@ -302,6 +302,104 @@ public class EventController {
 			return mv;
 		}
 		
+		//행사부분시작------------------------------------------------------------------------------------------
+		@RequestMapping("SeminarList")
+		public ModelAndView SeminarList( @RequestParam HashMap<String, Object> map,
+				HttpServletRequest request) {
+			
+			// ---------------------------------------------------------------------
+			// 페이징 정보 준비
+			int           nowpage   =  Integer.parseInt( (String) map.get("nowpage") ); 
+			int           pagecount =  10;    // 한페이지 당 출력할 줄(row)수  - 10
+
+			// sql 사용할 변수 : 조회할 레코드 번호
+			int           startnum  =  ( nowpage - 1 ) * pagecount + 1;
+			int           endnum    =  nowpage  *  pagecount;
+
+			map.put("pagecount", pagecount );
+			map.put("startnum",  startnum );
+			map.put("endnum",    endnum );		
+			// ---------------------------------------------------------------------
+			
+			System.out.println(request);
+			System.out.println(request.toString());
+			System.out.println(map.toString());
+			
+			//목록 조회
+			String 		  submenu_id = (String) map.get("submenu_id");
+			List<BoardVo> boardList  = eventService.getSeminarList(map);
+			
+			BoardVo boardVo = (BoardVo) map.get("boardVo");
+			
+			// 메뉴 이름 알아오기
+			String submenu_name = menuService.getMenuName(submenu_id);
+			
+			List<MenuVo> menuList = menuService.getMenuList();
+			List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+			
+			map.put("submenu_name", submenu_name);
+
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("event/seminarList");
+			mv.addObject("menuList", menuList);
+			mv.addObject("submenuList", submenuList);
+			mv.addObject("boardList", boardList);
+			mv.addObject("boardVo", boardVo);
+			mv.addObject("map", map);
+			return mv;
+		}
+		
+		//view
+		@RequestMapping("SeminarView")
+		public ModelAndView SeminarView( @RequestParam HashMap<String, Object> map,
+				HttpServletRequest request) {
+			
+			// 메뉴이름
+			String  submenu_id   =  (String) map.get("submenu_id");
+			String  submenu_name = menuService.getMenuName(submenu_id);
+			map.put("submenu_name", submenu_name);
+			map.put("submenu_id", submenu_id);
+			
+			// 보여줄 게시글 내용
+			EventVo eventVo = eventService.getBoard(map);
+			
+			//게시글 주소 분리 작업
+			String boardAddress_cont = eventVo.getBoard_cont();
+			int addressStart = boardAddress_cont.lastIndexOf("주소:");
+			/* System.out.println(addressStart + "addressStart"); */
+			//내용 저장
+			String board_cont = boardAddress_cont.substring(0 , addressStart -1);
+			map.put("board_cont", board_cont);
+			/* System.out.println(board_cont + "board_cont"); */
+			//주소 저장
+			String address = boardAddress_cont.substring(addressStart + 3);
+			map.put("address", address);
+			/* System.out.println(map.toString() + "map"); */
+			
+			String content = eventVo.getBoard_cont();
+			if(content == null) {
+				eventVo.setBoard_cont("------------------------------내용이 없습니다------------------------------");
+			} else {
+				String cont = content.replace("\n", "<br>");
+				eventVo.setBoard_cont(cont);
+			}
+			
+			List<FileVo> fileList = eventService.getFileList(map);
+			
+			List<MenuVo> menuList = menuService.getMenuList();
+			List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+			
+			System.out.println(submenuList);
+			
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("event/seminarView");
+			mv.addObject("menuList", menuList);
+			mv.addObject("submenuList", submenuList);
+			mv.addObject("map", map);
+			mv.addObject("fileList", fileList);
+			mv.addObject("vo", eventVo);
+			return mv;
+		}
 		
 
 		

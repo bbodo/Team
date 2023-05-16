@@ -10,19 +10,11 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed41893c3ac9a9dea296267ef4123b8d&libraries=services"></script>
 <title>Insert title here</title>
 
 <script>
 	window.onload = function() {
-		let board_regdate = document.getElementById('board_regdate');
-		
-		var now = new Date();
-		var year = now.getFullYear();
-		var month = now.getMonth();
-		var date = now.getDate();
-		var sysdate = year + "년 " + month + "월 " + date + "일";
-		
-		board_regdate.value = sysdate;
 		
 	}//end
 	
@@ -57,15 +49,25 @@
 		
      } */
 	
-     
 	
 
 </script>
 
 <style type="text/css">
 
+	* {
+		box-sizing: border-box;
+	}
 
-
+	#title {
+		width: 100%;
+		text-align: center;
+		height: 100px;
+		background-color: orange;
+	}
+	#title p {
+		 line-height: 100px;
+	}
 	#aside {
 		float: left;
 		height: 800px;
@@ -81,23 +83,25 @@
 		padding-right : 15%;
 		background-color: white;
 	}
-/* 	#cont {
+	#cont {
 		background-color: #fff;
 		margin: 0 auto;
 		width: 100%;
 		border-collapse: collapse;
 		margin-top: 10px;
 		border-top: 3px solid #228B22;
-	} */
-	
-	/* #cont tr td {
+	}
+	#cont tr td {
 		padding: 15px;
 		border-bottom: 1px solid #C0C0C0;
-	}  */
-	/* #cont tr:nth-of-type(2) {
+	} 
+	#cont tr:nth-of-type(2) {
 		border-bottom: 1px solid #228B22;
-	} */
-	
+	}
+	#board_title {
+		font-size: 32px;
+		font-weight: bold;
+	}
 	#sidemenu {
 		padding: 30px;
 	}
@@ -157,14 +161,58 @@
      </div>
      
      <div id="main">
-		<form action="/Manager/SeminarWriteSave?menu_id=MENU04&submenu_id=SUBMENU21&nowpage=1" method="POST" enctype="multipart/form-data" >
+		<form action="/Manager/SeminarWriteSave?submenu_id=SUBMENU21&nowpage=1" method="POST" enctype="multipart/form-data" >
+			<table class="cont" style="border-top: 3px solid #228B22;">
+				<tr>
+					<td class="padd8">작성자</td>
+					<td class="padd8"><input name="manager_name" type="text" value="관리자" disabled/></td>
+					<td class="padd8">등록일</td>
+					<td class="padd8"><input name="board_regdate" type="text" value="${vo.board_regdate }" disabled/></td>
+					<td class="padd8">조회수</td>
+					<td class="padd8">${vo.readcount }</td>
+				</tr>
+				<tr>
+					<td class="padd8">제목</td>
+					<td colspan="5" class="padd8">${vo.board_title }</td>
+				</tr>
+				<tr>
+					<td class="padd8">주소</td>
+					<td id="address" colspan="5" class="padd8">${map.address }</td>
+				</tr>
+				<tr>
+					<td colspan="6" class="padd8"><div id="map" style="width:100%;height:250px;"></div></td>
+				</tr>
+				
+				<tr>
+					<td>내용</td>
+					<td colspan="5" id="bc" style="padding: 50px;">
+						<c:forEach var="file" items="${ fileList }">
+							<div>
+								<img src="/upload/${ file.sfilename }">
+							</div>
+						</c:forEach>
+						<div style="min-height: 300px; height: auto; text-align: left;">
+							${ map.board_cont }</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="padd8">파일 첨부</td>
+					<td><c:forEach var="file" items="${ fileList }">
+							<div>
+								<a href="/Board/download/external/${ file.sfilename }"> ${ file.filename }
+								</a>
+							</div>
+						</c:forEach>
+					</td>
+				</tr>
+			</table>
 
-			<table id="cont">
+			<!-- <table id="cont">
 				<tr>
 					<th>작성자</th>
-					<td><input name="manager_name" type="text" value="관리자" disabled/></td>
+					<td><input name="manager_name" type="text" value="" /></td>
 					<th>등록일</th>
-					<td><input id="board_regdate" name="board_regdate" type="text" value="" disabled/></td>
+					<td><input name="board_regdate" type="text" value="" /></td>
 				</tr>
 				<tr>
 					<th>제목</th>
@@ -184,7 +232,7 @@
 				                  style="width: 100%"></textarea>
 				      </div>
 					</td>
-					<!-- <td colspan="3"><textarea id="notecont" name="notecont"></textarea></td> -->
+					<td colspan="3"><textarea id="notecont" name="notecont"></textarea></td>
 				</tr>
 				
 				<tr>
@@ -196,19 +244,19 @@
 				</tr>
 
 				<tr>
-					<td colspan="4">
+					<td colspan="2">
 					<a id="btnUpdate"href="/Data/Update" class="btn btn-primary btn-sm">수정</a> 
 					<a id="btnDelete" href="/Data/Del" class="btn btn-primary btn-sm">삭제</a>
-					<a id="btnDelete" href="/Event/SeminarList?menu_id=MENU04&submenu_id=SUBMENU21&nowpage=1" class="btn btn-primary btn-sm">목록으로</a>
 					<input type="button" id="btnClear" class="btn btn-primary btn-sm"value="Clear" />
 					<input style="float: right;" id="submitBtn" type="submit" value="전송"/>
 					</td>
 				</tr>
-			</table>
+			</table> -->
 			
 		</form>
-		<!-- <button id="cencelBtn" style="float: left;">취소 버튼</button> -->
+		<button id="cencelBtn" style="float: left;">취소 버튼</button>
 	</div>
+	
 	
 	 <!--   <form enctype="multipart/form-data" method="post" >
       <div id="smarteditor">
@@ -219,5 +267,52 @@
       </div>
       <input type="button" value="전송"  onclick="submitPost()"/>
     </form> -->
+    
+<script>
+	//카카오맵---------------------------------------------------------------------
+	var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+	
+	var mapContainer = document.getElementById('map'), 
+	    mapOption = {
+	        center: new kakao.maps.LatLng(37.566826, 126.9786567), 
+	        level: 3 
+	    };  
+	
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+	
+	var ps = new kakao.maps.services.Places(); 
+	
+	function placesSearchCB (data, status, pagination) {
+	    if (status === kakao.maps.services.Status.OK) {
+	        var bounds = new kakao.maps.LatLngBounds();
+	
+	        for (var i=0; i<data.length; i++) {
+	            displayMarker(data[i]);    
+	            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+	        }       
+	
+	        map.setBounds(bounds);
+	    } 
+	}
+	
+	function displayMarker(place) {
+	    
+	    var marker = new kakao.maps.Marker({
+	        map: map,
+	        position: new kakao.maps.LatLng(place.y, place.x) 
+	    });
+	
+	    kakao.maps.event.addListener(marker, 'click', function() {
+	        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+	        infowindow.open(map, marker);
+	    });
+	}
+	
+	let address = document.getElementById("address").textContent;
+	console.log(address);
+	ps.keywordSearch(address, placesSearchCB); 
+	
+	//-----------------------------------------
+</script>
 </body>
 </html>
