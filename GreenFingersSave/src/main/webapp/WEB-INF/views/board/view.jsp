@@ -297,7 +297,9 @@
 							html += '<input class="smbtn" type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div>';
 						}						
 					} else {
-						html += '<b>삭제된 댓글입니다.</b>';
+						html += '<li id="comment_li_' + comm.coment_idx +'">';
+						html += '<div class="nameSpace" style="display: flex"><span><h2>'+ comm.nickname +'</h2></span><span class="regdate">'+ comm.coment_regdate +'</span></div>';
+						html += '<div class="contSpace"><s>삭제된 댓글입니다.</s></div>';
 					}					
 				} else {
 					if(comm.delcoment == 0) {
@@ -308,8 +310,9 @@
 							html += '<input class="smbtn" type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div>';
 						}	
 					} else {
-						html += `<div class="floatleft"><p><h2><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>\${comm.nickname}</h2></p></div>`;
-						html += `<s class="floatleft"><b style="display:inline-block; width:\${comm.com_lvl*20}px"></b>삭제된 댓글입니다.</s>`;
+						html += `<li id="comment_li_\${comm.coment_idx}" style="padding-left:\${comm.com_lvl*20}px">`;
+						html += `<div class="nameSpace" style="display: flex"><span><h2>\${comm.nickname}</h2></span><span class="regdate">\${comm.coment_regdate}</span></div>`;
+						html += `<div class="contSpace"><s>삭제된 댓글입니다.</s></div>`;
 					}
 				}
 				html += '</li>';
