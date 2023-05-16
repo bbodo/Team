@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.green.common.vo.FilesVo;
 import com.green.myPage.service.impl.CheckFileName;
 
-public class CommonService {
+public class ComFilesService {
 	
 	public static void save(
 			HashMap<String, Object> map, 

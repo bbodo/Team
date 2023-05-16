@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,7 @@ import com.green.board.vo.BoardVo;
 import com.green.board.vo.FileVo;
 import com.green.event.Vo.EventVo;
 import com.green.event.service.EventService;
+import com.green.manager.vo.ManagerVo;
 import com.green.market.vo.MarketVo;
 import com.green.menus.service.MenuService;
 import com.green.menus.vo.MenuVo;
@@ -352,7 +354,15 @@ public class EventController {
 		//view
 		@RequestMapping("SeminarView")
 		public ModelAndView SeminarView( @RequestParam HashMap<String, Object> map,
-				HttpServletRequest request) {
+				HttpServletRequest reques,HttpSession session) {
+			
+			ManagerVo ManagerVo = (ManagerVo) session.getAttribute("managerlogin");
+			if(ManagerVo != null) {
+				Object Managercode = ManagerVo.getManagercode();
+				Object manager_pw = ManagerVo.getManager_pw();
+				map.put("managercode", Managercode);
+				map.put("manager_pw", manager_pw);
+			}
 			
 			// 메뉴이름
 			String  submenu_id   =  (String) map.get("submenu_id");
@@ -388,8 +398,6 @@ public class EventController {
 			
 			List<MenuVo> menuList = menuService.getMenuList();
 			List<SubmenuVo> submenuList = menuService.getSubmenuList1();
-			
-			System.out.println(submenuList);
 			
 			ModelAndView mv = new ModelAndView();
 			mv.setViewName("event/seminarView");

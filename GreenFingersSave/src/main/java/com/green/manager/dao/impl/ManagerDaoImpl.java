@@ -346,5 +346,18 @@ public class ManagerDaoImpl implements ManagerDao {
 				sqlSession.insert("Manager.FileInsert", map);
 		}
 
+		@Override
+		public List<AdminEventVo> getSeminarList(HashMap<String, Object> map) {
+			//행사 목록 들고오기
+			List<AdminEventVo> seminarList = sqlSession.selectList("Manager.SeminarList", map);
+			return seminarList;
+		}
+
+		@Override
+		public AdminEventVo getSeminarUpdateForm(HashMap<String, Object> map) {
+			AdminEventVo vo = sqlSession.selectOne("Manager.GetEventBoard", map);
+			return vo;
+		}
+
 
 }

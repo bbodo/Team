@@ -72,6 +72,10 @@ public interface ManagerService {
 
 	void insertSeminarSave(HashMap<String, Object> map, HttpServletRequest request);
 
+	List<AdminEventVo> getSeminarList(HashMap<String, Object> map);
+
+	AdminEventVo getSeminarUpdateForm(HashMap<String, Object> map);
+
 
 	
 

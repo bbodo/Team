@@ -62,11 +62,21 @@
 
 tr td {
 	border-right: 2px solid #e3e3e3;
+	border-top: 2px solid #e3e3e3;
 }
 
 tr td:last-of-type {
 	border-right: none;
 }
+
+tr:first-child td {
+	border-top: none;
+}
+
+tr td span {
+	font-weight: 600;
+}
+
 /* 	* {
 		box-sizing: border-box;
 	}
@@ -207,13 +217,13 @@ tr td:last-of-type {
 									<img src="/upload/${ file.sfilename }">
 								</div>
 							</c:forEach>
-							<div style="min-height: 300px; height: auto; text-align: left;">
+							<div style="min-height: 80px; height: auto; text-align: left;">
 								${ map.board_cont }</div>
 						</td>
 					</tr>
 					
 					<tr>
-						<td id="address" colspan="6" class="padd8"><span>찾아오시는 길:</span> &emsp; ${map.address }</td>
+						<td colspan="6" class="padd8"><p>찾아오시는 길: &emsp; <span id="address" >${map.address }</span></p></td>
 					</tr>
 					<tr>
 						<td colspan="6" class="padd8"><div id="map" style="width:100%;height:250px;"></div></td>
@@ -221,63 +231,25 @@ tr td:last-of-type {
 					
 					<tr>
 						<td class="padd8">파일 첨부</td>
-						<td><c:forEach var="file" items="${ fileList }">
+						<td td colspan="5"><c:forEach var="file" items="${ fileList }">
 								<div>
-									<a href="/Board/download/external/${ file.sfilename }"> ${ file.filename }
-									</a>
+									<a href="/Event/download/external/${ file.sfilename }">
+									${ file.filename }
+									</a> 
 								</div>
 							</c:forEach>
 						</td>
 					</tr>
 				</table>
-	
-				<!-- <table id="cont">
-					<tr>
-						<th>작성자</th>
-						<td><input name="manager_name" type="text" value="" /></td>
-						<th>등록일</th>
-						<td><input name="board_regdate" type="text" value="" /></td>
-					</tr>
-					<tr>
-						<th>제목</th>
-						<td colspan="3"><input id="board_title" name="board_title" type="text" /></td>
-					</tr>
-					<tr>
-						<th>주소</th>
-						<td colspan="3"><input id="address" name="address" type="text" /></td>
-					</tr>
-					<tr>
-						<th>내용</th>
-						<td colspan="3">
-					      <div id="smarteditor" >
-					        <textarea name="board_cont" id="board_cont" 
-					                  rows="20" cols="10" 
-					                  placeholder="내용을 입력해주세요"
-					                  style="width: 100%"></textarea>
-					      </div>
-						</td>
-						<td colspan="3"><textarea id="notecont" name="notecont"></textarea></td>
-					</tr>
-					
-					<tr>
-						<td style="text-align: center;">파일 첨부</td>
-						<td colspan="3" id="tdfile">
-				      	 <input type="button"  id="btnAddFile2" value="파일 추가(최대 100M byte)" /><br>
-				       	 <input type="file"  name="upfile"  class="upfile"/><br>
-				   		</td>
-					</tr>
-	
-					<tr>
-						<td colspan="2">
-						<a id="btnUpdate"href="/Data/Update" class="btn btn-primary btn-sm">수정</a> 
-						<a id="btnDelete" href="/Data/Del" class="btn btn-primary btn-sm">삭제</a>
-						<input type="button" id="btnClear" class="btn btn-primary btn-sm"value="Clear" />
-						<input style="float: right;" id="submitBtn" type="submit" value="전송"/>
-						</td>
-					</tr>
-				</table> -->
-				
 			</form>
+			
+			<c:if test="${map.managercode != null && map.manager_pw != null}" var="delnote">
+				<div>
+					<a href="/Manager/SeminarUpdateForm?submenu_id=SUBMENU21&nowpage=1&board_idx=${ vo.board_idx }&manager_code=${ map.managercode }" ><button>수정</button></a>
+					<a href="/Manager/SeminarDelete?submenu_id=SUBMENU21&nowpage=1&manager_code=${ map.managercode }" ><button>삭제</button></a>
+				</div>
+			</c:if>
+			
 			<button id="cencelBtn" style="float: left;">취소 버튼</button>
 		</div>
 	</div>

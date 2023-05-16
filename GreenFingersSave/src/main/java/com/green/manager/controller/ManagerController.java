@@ -25,9 +25,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.green.board.vo.BoardVo;
 import com.green.event.Vo.EventVo;
 import com.green.manager.service.ManagerService;
 import com.green.manager.vo.AdminEventVo;
+import com.green.manager.vo.ManagerVo;
 import com.green.manager.vo.StoreVo;
 import com.green.market.vo.FileVo;
 import com.green.menus.service.MenuService;
@@ -877,7 +879,7 @@ public class ManagerController {
   		return mv;
   	}
     			
-    	@RequestMapping("SeminarWriteSave")
+    @RequestMapping("SeminarWriteSave")
   	public ModelAndView SeminarWriteSave1( @RequestParam HashMap<String, Object> map,
   			HttpServletRequest request) {
   		
@@ -890,10 +892,6 @@ public class ManagerController {
   		String  board_contAddress = board_cont + "주소:" + address;
   		map.put("board_contAddress", board_contAddress);
   		
-  		System.out.println(request);
-  		System.out.println(request.toString());
-  		System.out.println(map.toString());
-  		
   		//등록 
   		managerService.insertSeminarSave(map, request);
   		
@@ -904,9 +902,120 @@ public class ManagerController {
   		mv.setViewName(loc);
   		return mv;
   	}
-  			 		
-  		
- 			
+    
+    //행사 list 
+    @RequestMapping("SeminarList")
+	public ModelAndView SeminarList( @RequestParam HashMap<String, Object> map,
+			HttpServletRequest request, HttpSession session) {
+    	
+    	ManagerVo ManagerVo = (ManagerVo) session.getAttribute("managerlogin");
+		Object Managercode = ManagerVo.getManagercode();
+		Object manager_pw = ManagerVo.getManager_pw();
+		map.put("Managercode", Managercode);
+		map.put("manager_pw", manager_pw);
+		
+		// ---------------------------------------------------------------------
+		// 페이징 정보 준비
+		int           nowpage   =  Integer.parseInt( (String) map.get("nowpage") ); 
+		int           pagecount =  10;    // 한페이지 당 출력할 줄(row)수  - 10
+
+		// sql 사용할 변수 : 조회할 레코드 번호
+		int           startnum  =  ( nowpage - 1 ) * pagecount + 1;
+		int           endnum    =  nowpage  *  pagecount;
+
+		map.put("pagecount", pagecount );
+		map.put("startnum",  startnum );
+		map.put("endnum",    endnum );		
+		// ---------------------------------------------------------------------
+		
+		//목록 조회
+		String 		  submenu_id = (String) map.get("submenu_id");
+		List<AdminEventVo> boardList  = managerService.getSeminarList(map);
+		
+		AdminEventVo boardVo = (AdminEventVo) map.get("AdminEventVo");
+		
+		// 메뉴 이름 알아오기
+		String submenu_name = menuService.getMenuName(submenu_id);
+		
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		
+		map.put("submenu_name", submenu_name);
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("admin/seminarList");
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
+		mv.addObject("boardList", boardList);
+		mv.addObject("boardVo", boardVo);
+		mv.addObject("map", map);
+		return mv;
+	}
+    
+    // 행사 수정 원 글 들고오기
+ 	@RequestMapping("/SeminarUpdateForm")
+     public ModelAndView SeminarUpdateForm(
+     		@RequestParam	HashMap<String, Object>  map) {
+ 		
+ 		// fileList
+ 		List<FileVo>  fileList =  managerService.getFileList( map );
+ 		
+ 		// 보여줄 게시글 내용
+ 		AdminEventVo eventVo = managerService.getSeminarUpdateForm(map);
+ 		
+ 		//게시글 주소 분리 작업
+		String boardAddress_cont = eventVo.getBoard_cont();
+		int addressStart = boardAddress_cont.lastIndexOf("주소:");
+		/* System.out.println(addressStart + "addressStart"); */
+		//내용 저장
+		String board_cont = boardAddress_cont.substring(0 , addressStart -1);
+		map.put("board_cont", board_cont);
+		/* System.out.println(board_cont + "board_cont"); */
+		//주소 저장
+		String address = boardAddress_cont.substring(addressStart + 3);
+		map.put("address", address);
+		/* System.out.println(map.toString() + "map"); */
+		
+ 		ModelAndView mv = new ModelAndView();
+ 		mv.setViewName("admin/seminarWriteSave");
+ 		mv.addObject("map", map);
+ 		mv.addObject("fileList", fileList);
+ 		mv.addObject("vo", eventVo);
+ 		
+ 		return mv;
+ 	}
+ 	
+ 	// 행사 수정창
+    @RequestMapping("/SeminarUpdate")
+    public ModelAndView SeminarUpdate(
+     		@RequestParam  HashMap<String, Object> map,
+ 			HttpServletRequest request) {
+     	
+	    managerService.setUpdate(map, request);
+	    
+	 	ModelAndView mv = new ModelAndView();
+	 	mv.addObject("map", map);
+	 	mv.setViewName("redirect:/Manager/Store");
+	     
+	 	return mv;
+    }
+     
+     // 스토어 상품 삭제
+     @RequestMapping("/SeminarDelete")
+     public ModelAndView SeminarDelete(
+     		@RequestParam   HashMap<String,  Object>  map
+     			) {
+     	
+     	managerService.deleteStore(map);
+     	
+     	ModelAndView   mv  = new ModelAndView();
+ 		mv.setViewName("redirect:/Manager/Store");
+ 		mv.addObject("map", map);
+
+ 		return mv;	
+     }
+    
+			
   //-------------------------------------------------------------------
   // 파일 처리
   	@RequestMapping(value  = "/download/{type}/{sfile:.+}",

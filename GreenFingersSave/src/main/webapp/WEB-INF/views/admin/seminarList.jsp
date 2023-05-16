@@ -20,32 +20,16 @@
 	<!-- header	 -->
 	
 	
-	<c:choose>
-		<c:when test="${ sessionScope.login eq null }">
-			<%@include file="/WEB-INF/include/header.jsp" %>
-		</c:when>
-		<c:otherwise>
-			<%@include file="/WEB-INF/include/header2.jsp" %>
-		</c:otherwise>
-	</c:choose>
-     <!-- <div id="title">
-     	<p style="font-size: 40px; font-weight: bold;">식물 연합</p>
-     </div> -->
-	<%@include file="/WEB-INF/include/subBanner.jsp" %>
-	
-	<div id="wrapper">
-     <div id="aside">
-     	<ul id="sidemenu">
-     	<li class="sidemenuTitle">SIDEMENU</li>
-     	<li><a href="/Board/List?menu_id=${ menu.menu_id }&submenu_id=${menu.submenu_id}&nowpage=1">${menu.submenu_name}</a></li>
-     	<li><a href="/Board/List?menu_id=${ menu.menu_id }&submenu_id=${menu.submenu_id}&nowpage=1">${menu.submenu_name}</a></li>
-     	<li><a href="http://localhost:9090/Event/SeminarList?menu_id=MENU04&submenu_id=SUBMENU21&nowpage=1">행사</a></li>
-     	</ul>
+	<%@include file="/WEB-INF/include/adminHeader.jsp" %>
+	  <div id="title">
+     	<p>행사관리</p>
      </div>
-     
+	<div id="wrapper">  
      <div id="main">
-		
      <p style="font-size: 24px; font-weight: bold; text-align: left; padding:0 0 20px 50px; margin-bottom: 10px;">${ map.submenu_name }</p>
+	 <div class="right" style="padding: 20px; padding-right: 80px;">
+		<a class="as" href="/Manager/SeminarWriteForm?submenu_id=SUBMENU21&nowpage=1&manager_code=${ sessionScope.managerlogin.managercode }">새글 작성</a>
+	 </div>
 	 
 		<table id="cont">
 			<tr>
@@ -78,24 +62,8 @@
        		   <s>삭제된 게시물 입니다</s>
        		</c:otherwise>
        	   </c:choose>	 
-       		
+       	   
          </c:when>
-         <%-- <c:otherwise>
-         
-            <b style="display:inline-block; width:${boardVo.lvl*20}px"></b> 
-            
-            <c:choose>
-              <c:when test="${ boardVo.delboard eq 0 }">
-                <a style="font-weight: bold;" href="/Board/View?menu_id=${ map.menu_id }&submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}">
-              	  [답글] ${ boardVo.board_title }
-         	    </a>
-         	  </c:when>
-         	  <c:otherwise>
-         	     [답글] <s>삭제된 글입니다</s>
-         	  </c:otherwise>
-         	</c:choose>
-         	
-         </c:otherwise> --%>
        </c:choose>
      </td>
      

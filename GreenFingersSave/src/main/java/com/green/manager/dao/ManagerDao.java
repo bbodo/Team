@@ -70,6 +70,10 @@ public interface ManagerDao {
 
 	void setSeminarUpdate(HashMap<String, Object> map);
 
+	List<AdminEventVo> getSeminarList(HashMap<String, Object> map);
+
+	AdminEventVo getSeminarUpdateForm(HashMap<String, Object> map);
+
 
 
 }

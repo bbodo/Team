@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.green.common.service.CommonService;
+import com.green.board.vo.BoardVo;
+import com.green.common.service.ComFilesService;
 import com.green.event.service.impl.EventFile;
 import com.green.manager.dao.ManagerDao;
 import com.green.manager.service.ManagerService;
@@ -342,9 +343,21 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public void insertSeminarSave(HashMap<String, Object> map, HttpServletRequest request) {
 		//파일저장
-		CommonService.save(map, request);
+		ComFilesService.save(map, request);
 		//DB저장	
 		managerDao.setSeminarUpdate(map);
+	}
+
+	@Override
+	public List<AdminEventVo> getSeminarList(HashMap<String, Object> map) {
+		List<AdminEventVo> seminarList = managerDao.getSeminarList(map);
+		return seminarList;
+	}
+
+	@Override
+	public AdminEventVo getSeminarUpdateForm(HashMap<String, Object> map) {
+		AdminEventVo vo = managerDao.getSeminarUpdateForm(map);
+		return vo;
 	}
 
 

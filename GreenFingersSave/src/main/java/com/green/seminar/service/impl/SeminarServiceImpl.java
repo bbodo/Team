@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.green.common.service.CommonService;
+import com.green.common.service.ComFilesService;
 import com.green.common.vo.FilesVo;
 import com.green.myPage.dao.MyPageDao;
 import com.green.myPage.service.impl.MypageFile;
@@ -21,7 +21,7 @@ public class SeminarServiceImpl implements SeminarService {
 
 	@Override
 	public void insertSeminar(HashMap<String, Object> map, HttpServletRequest request) {
-		CommonService.save(map, request);
+		ComFilesService.save(map, request);
 		seminarDao.setSave(map);
 	}
 
