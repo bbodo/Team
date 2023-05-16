@@ -13,16 +13,6 @@
 	* {
 		box-sizing: border-box;
 	}
-
-	#title {
-		width: 100%;
-		text-align: center;
-		height: 100px;
-		background-color: orange;
-	}
-	#title p {
-		 line-height: 100px;
-	}
 	#aside {
 		float: left;
 		height: 800px;
@@ -32,7 +22,8 @@
 	}
 	#main {
 		width: 85%;
-		height: 800px;
+		height: auto;
+		min-height: 800px;
 		float: left;
 		padding: 10px;
 		padding-right : 15%;
@@ -99,6 +90,32 @@
 		width: 100%;
 		height: 400px;
 		padding: 20px;
+	}
+	.btn {
+		margin-top : 30px;
+		text-align: right;
+		margin-right: 130px;
+	}
+	#wrapper {
+		margin-top: 70px;
+	}
+	.regbtn {
+		background-color:#44c767;
+		color:#ffffff;
+		font-size:15px;
+		font-weight:bold;
+		margin: 30px 0;
+	    width: 100%;
+	    height: 60px;
+		text-decoration:none;
+		border: none;
+	}
+	.regbtn:hover {
+		background-color:#5cbf2a;
+	}
+	.regbtn:active {
+		position:relative;
+		top:1px;
 	}
 
 </style>
@@ -200,7 +217,7 @@
 
 			
 		</table>
-		<input type="submit" value="올리기" />
+		<input class="regbtn" type="submit" value="당첨자 리스트 올리기" />
 		</form>
      </div>
 </body>
