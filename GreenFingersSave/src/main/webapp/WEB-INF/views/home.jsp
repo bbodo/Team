@@ -67,7 +67,7 @@
 <div style="position: relative; z-index: 2;" class="layerPopup">
     <div class="layerBox">
         <figure class="cont">
-            <img src="/img/home/popup_oneday.jpg" alt="" width="400" height="500">
+            <img src="/img/home/popup_oneday1.png" alt="" width="400" height="500">
         </figure>
         	<a href="javascrfipt:;" class="btnClose">닫기</a>
         	<a href="javascript:;" class="btnTodayHide">오늘 하루 보지 않기✔</a>
