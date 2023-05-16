@@ -11,3 +11,13 @@
   height: 100px;
   object-fit: cover;
 }
+
+#wrapper ul {
+	padding-legt:0;
+}
+
+.cont {
+	width:100%;
+}
+
+

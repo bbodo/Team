@@ -207,18 +207,19 @@ header img {
 }
 
 #sidemenu {
-	padding: 0 30px 30px 30px;
-}
-
-.sidemenuTitle{
-	font-weight: 600;
-	font-size: 17px;
-	color:#616161;
-	border-bottom: 2px solid #C0C0C0;
+	padding: 0 30px 30px 0;
 }
 
 #sidemenu li {
-	padding: 14px;
+	padding: 14px 0;
+}
+
+#sidemenu .sidemenuTitle{
+	font-weight: 600;
+	font-size: 17px;
+	color:#616161;
+	border-bottom: 2px solid #e3e3e3;
+	margin-right: 10px;
 }
 
 #sidemenu li a {
@@ -509,5 +510,5 @@ footer #footerLogo img{width:70px;}
 
 
 .padd8{
-		padding: 8px;"
+		padding: 8px;
 	}

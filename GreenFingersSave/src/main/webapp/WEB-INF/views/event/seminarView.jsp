@@ -11,6 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ed41893c3ac9a9dea296267ef4123b8d&libraries=services"></script>
+<link rel="stylesheet" href="/css/event.css" />
 <title>Insert title here</title>
 
 <script>
@@ -49,13 +50,24 @@
 		
      } */
 	
-	
 
 </script>
 
 <style type="text/css">
+.cont {width:100%;}
 
-	* {
+#wrapper ul {
+	padding-legt:0;
+}
+
+tr td {
+	border-right: 2px solid #e3e3e3;
+}
+
+tr td:last-of-type {
+	border-right: none;
+}
+/* 	* {
 		box-sizing: border-box;
 	}
 
@@ -144,117 +156,130 @@
 		width: 100%;
 		height: 400px;
 		padding: 20px;
-	}
+	} */
 
 </style>
 
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
-     <div id="title">
-     	<p>행사 등록 관리자페이지임</p>
-     </div>
-     <div id="aside">
-     	내정보<br />
-     	작성글<br />
-     	쪽지<br />
-     </div>
+	 <%@include file="/WEB-INF/include/subBanner.jsp" %>
      
-     <div id="main">
-		<form action="/Manager/SeminarWriteSave?submenu_id=SUBMENU21&nowpage=1" method="POST" enctype="multipart/form-data" >
-			<table class="cont" style="border-top: 3px solid #228B22;">
-				<tr>
-					<td class="padd8">작성자</td>
-					<td class="padd8"><input name="manager_name" type="text" value="관리자" disabled/></td>
-					<td class="padd8">등록일</td>
-					<td class="padd8"><input name="board_regdate" type="text" value="${vo.board_regdate }" disabled/></td>
-					<td class="padd8">조회수</td>
-					<td class="padd8">${vo.readcount }</td>
-				</tr>
-				<tr>
-					<td class="padd8">제목</td>
-					<td colspan="5" class="padd8">${vo.board_title }</td>
-				</tr>
-				<tr>
-					<td class="padd8">주소</td>
-					<td id="address" colspan="5" class="padd8">${map.address }</td>
-				</tr>
-				<tr>
-					<td colspan="6" class="padd8"><div id="map" style="width:100%;height:250px;"></div></td>
-				</tr>
-				
-				<tr>
-					<td>내용</td>
-					<td colspan="5" id="bc" style="padding: 50px;">
-						<c:forEach var="file" items="${ fileList }">
-							<div>
-								<img src="/upload/${ file.sfilename }">
-							</div>
-						</c:forEach>
-						<div style="min-height: 300px; height: auto; text-align: left;">
-							${ map.board_cont }</div>
-					</td>
-				</tr>
-				<tr>
-					<td class="padd8">파일 첨부</td>
-					<td><c:forEach var="file" items="${ fileList }">
-							<div>
-								<a href="/Board/download/external/${ file.sfilename }"> ${ file.filename }
+     <div id="wrapper">
+		<div id="aside">
+			<ul id="sidemenu">
+				<li class="sidemenuTitle">SIDEMENU</li>
+				<c:forEach var="menu" items="${ submenuList }">
+					<c:choose>
+						<c:when test="${menu.menu_id eq map.menu_id }">
+							<li><a href="/Board/List?menu_id=${ menu.menu_id }&submenu_id=${menu.submenu_id}&nowpage=1">
+								${menu.submenu_name}
 								</a>
-							</div>
-						</c:forEach>
-					</td>
-				</tr>
-			</table>
+							</li>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+			</ul>
+		</div>
 
-			<!-- <table id="cont">
-				<tr>
-					<th>작성자</th>
-					<td><input name="manager_name" type="text" value="" /></td>
-					<th>등록일</th>
-					<td><input name="board_regdate" type="text" value="" /></td>
-				</tr>
-				<tr>
-					<th>제목</th>
-					<td colspan="3"><input id="board_title" name="board_title" type="text" /></td>
-				</tr>
-				<tr>
-					<th>주소</th>
-					<td colspan="3"><input id="address" name="address" type="text" /></td>
-				</tr>
-				<tr>
-					<th>내용</th>
-					<td colspan="3">
-				      <div id="smarteditor" >
-				        <textarea name="board_cont" id="board_cont" 
-				                  rows="20" cols="10" 
-				                  placeholder="내용을 입력해주세요"
-				                  style="width: 100%"></textarea>
-				      </div>
-					</td>
-					<td colspan="3"><textarea id="notecont" name="notecont"></textarea></td>
-				</tr>
+		<div id="main">
+			<form action="/Manager/SeminarWriteSave?submenu_id=SUBMENU21&nowpage=1" method="POST" enctype="multipart/form-data" >
+				<table class="cont" style="border-top: 3px solid #228B22;">
+					<tr>
+						<td class="padd8">작성자</td>
+						<td class="padd8"><input name="manager_name" type="text" value="관리자" disabled/></td>
+						<td class="padd8">등록일</td>
+						<td class="padd8"><input name="board_regdate" type="text" value="${vo.board_regdate }" disabled/></td>
+						<td class="padd8">조회수</td>
+						<td class="padd8">${vo.readcount }</td>
+					</tr>
+					<tr>
+						<td class="padd8">제목</td>
+						<td colspan="5" class="padd8">${vo.board_title }</td>
+					</tr>
+					<!-- <tr>
+						<td colspan="6" class="padd8"><div id="map" style="width:100%;height:250px;">내용</div></td>
+					</tr> -->
+					<tr>
+						<td colspan="6" id="bc" style="padding: 50px;">
+							<c:forEach var="file" items="${ fileList }">
+								<div>
+									<img src="/upload/${ file.sfilename }">
+								</div>
+							</c:forEach>
+							<div style="min-height: 300px; height: auto; text-align: left;">
+								${ map.board_cont }</div>
+						</td>
+					</tr>
+					
+					<tr>
+						<td id="address" colspan="6" class="padd8"><span>찾아오시는 길:</span> &emsp; ${map.address }</td>
+					</tr>
+					<tr>
+						<td colspan="6" class="padd8"><div id="map" style="width:100%;height:250px;"></div></td>
+					</tr>
+					
+					<tr>
+						<td class="padd8">파일 첨부</td>
+						<td><c:forEach var="file" items="${ fileList }">
+								<div>
+									<a href="/Board/download/external/${ file.sfilename }"> ${ file.filename }
+									</a>
+								</div>
+							</c:forEach>
+						</td>
+					</tr>
+				</table>
+	
+				<!-- <table id="cont">
+					<tr>
+						<th>작성자</th>
+						<td><input name="manager_name" type="text" value="" /></td>
+						<th>등록일</th>
+						<td><input name="board_regdate" type="text" value="" /></td>
+					</tr>
+					<tr>
+						<th>제목</th>
+						<td colspan="3"><input id="board_title" name="board_title" type="text" /></td>
+					</tr>
+					<tr>
+						<th>주소</th>
+						<td colspan="3"><input id="address" name="address" type="text" /></td>
+					</tr>
+					<tr>
+						<th>내용</th>
+						<td colspan="3">
+					      <div id="smarteditor" >
+					        <textarea name="board_cont" id="board_cont" 
+					                  rows="20" cols="10" 
+					                  placeholder="내용을 입력해주세요"
+					                  style="width: 100%"></textarea>
+					      </div>
+						</td>
+						<td colspan="3"><textarea id="notecont" name="notecont"></textarea></td>
+					</tr>
+					
+					<tr>
+						<td style="text-align: center;">파일 첨부</td>
+						<td colspan="3" id="tdfile">
+				      	 <input type="button"  id="btnAddFile2" value="파일 추가(최대 100M byte)" /><br>
+				       	 <input type="file"  name="upfile"  class="upfile"/><br>
+				   		</td>
+					</tr>
+	
+					<tr>
+						<td colspan="2">
+						<a id="btnUpdate"href="/Data/Update" class="btn btn-primary btn-sm">수정</a> 
+						<a id="btnDelete" href="/Data/Del" class="btn btn-primary btn-sm">삭제</a>
+						<input type="button" id="btnClear" class="btn btn-primary btn-sm"value="Clear" />
+						<input style="float: right;" id="submitBtn" type="submit" value="전송"/>
+						</td>
+					</tr>
+				</table> -->
 				
-				<tr>
-					<td style="text-align: center;">파일 첨부</td>
-					<td colspan="3" id="tdfile">
-			      	 <input type="button"  id="btnAddFile2" value="파일 추가(최대 100M byte)" /><br>
-			       	 <input type="file"  name="upfile"  class="upfile"/><br>
-			   		</td>
-				</tr>
-
-				<tr>
-					<td colspan="2">
-					<a id="btnUpdate"href="/Data/Update" class="btn btn-primary btn-sm">수정</a> 
-					<a id="btnDelete" href="/Data/Del" class="btn btn-primary btn-sm">삭제</a>
-					<input type="button" id="btnClear" class="btn btn-primary btn-sm"value="Clear" />
-					<input style="float: right;" id="submitBtn" type="submit" value="전송"/>
-					</td>
-				</tr>
-			</table> -->
-			
-		</form>
-		<button id="cencelBtn" style="float: left;">취소 버튼</button>
+			</form>
+			<button id="cencelBtn" style="float: left;">취소 버튼</button>
+		</div>
 	</div>
 	
 	

@@ -18,6 +18,8 @@
 </head>
 <body>
 	<!-- header	 -->
+	
+	
 	<c:choose>
 		<c:when test="${ sessionScope.login eq null }">
 			<%@include file="/WEB-INF/include/header.jsp" %>
@@ -30,6 +32,7 @@
      	<p style="font-size: 40px; font-weight: bold;">식물 연합</p>
      </div> -->
 	<%@include file="/WEB-INF/include/subBanner.jsp" %>
+	
 	<div id="wrapper">
      <div id="aside">
      	<ul id="sidemenu">
