@@ -178,6 +178,12 @@
 		margin-left: 10px;
   		margin-top: 5px;
 	}
+	#bc {
+    	height: 500px;
+    	vertical-align: top;
+    	padding: 50px;
+   		text-align: left;
+    }
 
 
 </style>
@@ -424,7 +430,7 @@
 				<tr><td colspan="6"></td></tr>
 			<tr>
 				<td>내용</td>
-				<td colspan="5" id="bc" style=" padding: 50px;">
+				<td colspan="5" id="bc">
 				<c:forEach var="file"  items="${ fileList }" >
 				 <div>
 					<img src="/upload/${ file.sfilename }">

@@ -113,14 +113,7 @@
 </head>
 <body>
 	 <!-- header	 -->
-	<c:choose>
-		<c:when test="${ sessionScope.login eq null }">
-			<%@include file="/WEB-INF/include/header.jsp" %>
-		</c:when>
-		<c:otherwise>
-			<%@include file="/WEB-INF/include/header2.jsp" %>
-		</c:otherwise>
-	</c:choose>
+		<%@include file="/WEB-INF/include/header.jsp" %>
 	 <%@include file="/WEB-INF/include/subBanner.jsp"%>
 	 
     <!-- <div id="title">
@@ -195,7 +188,7 @@
 	         <c:when test="${ marketVo.lvl eq 0 }">
 	           <c:choose>
 	            <c:when test="${ marketVo.delboard eq 0 }">
-	              <a href="/Market/View?submenu_id=${marketVo.submenu_id}&board_idx=${marketVo.board_idx}&nowpage=${map.nowpage}">
+	              <a href="/Market/View?menu_id=MENU03&submenu_id=${marketVo.submenu_id}&board_idx=${marketVo.board_idx}&nowpage=${map.nowpage}">
 	       		   ${ marketVo.board_title }
 	       		  </a>
 	       		</c:when>
@@ -211,7 +204,7 @@
 	            
 	            <c:choose>
 	              <c:when test="${ marketVo.delnum eq 0 }">
-	                <a href="/Market/View?submenu_id=${marketVo.submenu_id}&board_idx=${marketVo.board_idx}&nowpage=${map.nowpage}">
+	                <a href="/Market/View?menu_id=MENU03&submenu_id=${marketVo.submenu_id}&board_idx=${marketVo.board_idx}&nowpage=${map.nowpage}">
 	              	  [답글] ${ marketVo.board_title }
 	         	    </a>
 	         	  </c:when>
@@ -243,7 +236,7 @@
 	  <caption><h2>포인트 스토어</h2></caption>	
 	  <div id="pointlist">
       <figure>
-      <a href="/Market/View?submenu_id=SUBMENU17&board_idx=107&nowpage=1">
+      <a href="/Market/View?menu_id=MENU03&submenu_id=SUBMENU17&board_idx=107&nowpage=1">
      <div class="plant">
 	     <img class="mainimg" src="/img/market/포인트스토어1.jpg" >
 	  </div>
@@ -252,7 +245,7 @@
 	     <p>귀여운 코끼리 물뿌리개</p>
 	  </figure>
       <figure>
-      <a href="/Market/View?submenu_id=SUBMENU17&board_idx=108&nowpage=1">
+      <a href="/Market/View?menu_id=MENU03&submenu_id=SUBMENU17&board_idx=108&nowpage=1">
      <div class="plant">
 	     <img class="mainimg" src="/img/market/포인트스토어2.jpg" >
 	  </div>
@@ -261,7 +254,7 @@
 	     <p>파쯔파쯔 국내생산 흙</p>
 	  </figure>
       <figure>
-      <a href="/Market/View?submenu_id=SUBMENU17&board_idx=112&nowpage=1">
+      <a href="/Market/View?menu_id=MENU03&submenu_id=SUBMENU17&board_idx=112&nowpage=1">
      <div class="plant">
 	     <img class="mainimg" src="/img/market/포인트스토어3.jpg">
 	  </div>

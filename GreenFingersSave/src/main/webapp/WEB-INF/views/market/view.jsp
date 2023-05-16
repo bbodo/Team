@@ -17,24 +17,6 @@
 * {
 		box-sizing: border-box;
 	}
-	#section {
-		height: auto;
-	}
-	#aside {
-		float: left;
-		height: auto;
-		background-color: white;
-		width: 15%;
-		padding: 10px;
-	}
-	#main {
-		width: 85%;
-		height: auto;
-		padding: 10px;
-		padding-right : 15%;
-		background-color: white;
-		display: inline-block;
-	}
 	.cont {
 		background-color: #fff;
 		margin: 0 auto;
@@ -72,7 +54,7 @@
 		display: inline-block;
 		border-top: 3px solid #228B22;
 	}
-	#sidemenu {
+/* 	#sidemenu {
 		padding: 30px;
 	}
 	#sidemenu li {
@@ -99,7 +81,7 @@
 	#sidemenu li a:hover:after {
 		width: 100%;
 		opacity: 1;
-	}
+	} */
 	.nameSpace {
 		/* padding: 10px; */
 		margin-right: 10px
@@ -184,7 +166,8 @@
     #bc {
     	height: 500px;
     	vertical-align: top;
-    	padding-top: 10px;
+    	padding: 50px;
+ 		text-align: left;
     }
 
 </style>
@@ -388,21 +371,12 @@ writeBtnEl.addEventListener("click", function(e) {
 </head>
 <body>
 	 <!-- header -->
-	 <c:choose>
-		<c:when test="${ sessionScope.login eq null }">
-			<%@include file="/WEB-INF/include/header.jsp" %>
-		</c:when>
-		<c:otherwise>
-			<%@include file="/WEB-INF/include/header2.jsp" %>
-		</c:otherwise>
-	</c:choose>
+	<%@include file="/WEB-INF/include/header.jsp" %>
 	<%@include file="/WEB-INF/include/subBanner.jsp"%>
 	<div id="wrapper">
-     <!-- <div id="title">
-     	<p>그린마켓</p>
-     </div> -->
      <div id="aside">
       <ul id="sidemenu">
+        <li class="sidemenuTitle">SIDEMENU</li>
      	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU15&nowpage=1">입양원해요</a></li><br />
      	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU16&nowpage=1">나눔합니다</a></li><br />
      	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a></li><br />
@@ -432,11 +406,21 @@ writeBtnEl.addEventListener("click", function(e) {
 			 </c:when>
 			<c:otherwise>
 			</c:otherwise>
-			</c:choose>		
-				<td class="padd8">작성일</td>
-				<td class="padd8">${ vo.board_regdate }</td>
-				<td class="padd8" >조회수</td>
-				<td class="padd8">${ vo.readcount }</td>
+			</c:choose>
+			<c:choose>
+				<c:when test="${ map.submenu_id == 'SUBMENU17' }">
+					<td class="padd8" style="border-bottom: 1px solid white;">작성일</td>
+					<td class="padd8" style="border-bottom: 1px solid white;">${ vo.board_regdate }</td>
+					<td class="padd8" style="border-bottom: 1px solid white;">조회수</td>
+					<td class="padd8" style="border-bottom: 1px solid white;">${ vo.readcount }</td>
+				</c:when>
+				<c:otherwise>
+					<td class="padd8">작성일</td>
+					<td class="padd8">${ vo.board_regdate }</td>
+					<td class="padd8" >조회수</td>
+					<td class="padd8">${ vo.readcount }</td>
+				</c:otherwise>
+			</c:choose>
 			</tr>
 		
 		<!-- 포인트 스토에서만 활성화  -->	
@@ -446,7 +430,7 @@ writeBtnEl.addEventListener("click", function(e) {
 			   <td class="padd8">가격</td>
 			   <td class="padd8">${ vo.market_value }</td>
 			</tr>
-			<tr>
+			<tr style="border-bottom: 1px solid #228B22;">
 			   <td class="padd8">수량</td>
 			   <td>
 			     <select name="amount">
@@ -505,9 +489,10 @@ writeBtnEl.addEventListener("click", function(e) {
 		<br />
 		
 		<div id="writeComment">
+		<br />
 			<form id="writeC">
 			<input type="hidden"  name="board_idx" value="${ vo.board_idx }" />
-			<input type="hidden"  name="usercode" value="${ login.usercode }" />
+			<input type="hidden"  name="usercode" value="${ login.usercode }" id="usercode" />
 			<table>
 				<tr>
 					<th><div class="nameSpace" style="min-width: 80px;">${ login.nickname }</div></th>
@@ -516,11 +501,12 @@ writeBtnEl.addEventListener("click", function(e) {
 					     required class="coment_cont" id="coment_cont"></textarea>
 					</td>
 					<td style="width: 100px;">
-						<input class="btns" type="button" id="writeBtn" value="등록"/>
+						<input class="regbtn" type="button" id="writeBtn" value="등록"/>
 					</td>
 				</tr>
 			</table>
 			</form>
+			<br />
 		</div>
 		<br />
 		<div id="readComment">
