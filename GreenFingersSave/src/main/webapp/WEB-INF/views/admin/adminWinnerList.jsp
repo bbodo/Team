@@ -35,8 +35,8 @@
 			<li><a href="/Manager/Member">회원 관리</a><br /></li>
        		<li><a href="/Manager/Menu">메뉴 관리</a> <br /></li>
      		<li><a href="/Manager/subMenu"> - 하위 메뉴</a><br /></li>
-     		<li><a href="/Manager/EventList">이벤트 등록</a><br /></li>
-     		<li><a href="/Manager/WinnerList">당첨자 등록</a><br /></li>
+     		<li><a href="/Manager/EventList?submenu_id=&nowpage=1">이벤트 등록</a><br /></li>
+     		<li><a href="/Manager/WinnerList?submenu_id=&nowpage=1">당첨자 등록</a><br /></li>
      		<li><a href="/Manager/Store">상품 등록</a><br /></li>
        </ul>
      </div>
@@ -117,8 +117,8 @@
   </tr>  
   </c:forEach>
 		</table>	
-
      </div>    
+          <%@include file="/WEB-INF/include/adminWinnerPaging.jsp" %>
      </div>
         <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

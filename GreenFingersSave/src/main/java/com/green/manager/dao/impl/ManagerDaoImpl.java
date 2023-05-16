@@ -190,11 +190,11 @@ public class ManagerDaoImpl implements ManagerDao {
 		public List<AdminEventVo> getEventList(
 				HashMap<String, Object> map
 				) {
-		/*
+		
 			// 전체 자료수 조회
 			int totalcount = sqlSession.selectOne("Manager.GetTotalCount", map);
 			map.put("totalcount", totalcount);
-			*/
+			
 			
 			
 			// 메뉴 목록 조회 (페이징)
@@ -269,6 +269,9 @@ public class ManagerDaoImpl implements ManagerDao {
 		public List<AdminEventVo> getWinnerList(HashMap<String, Object> map) {
 	     List<AdminEventVo> winnerList = sqlSession.selectList("Manager.WinnerList", map);
 			
+	      // 전체 자료수 조회
+	  			int totalcount = sqlSession.selectOne("Manager.GetTotalCount", map);
+	  			map.put("totalcount", totalcount);
 			
 			return winnerList;
 		}

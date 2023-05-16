@@ -430,9 +430,23 @@ public class ManagerController {
   			@RequestParam HashMap<String, Object> map
   			) {
   		
-  		// 메뉴 목록	
+  	// 메뉴 목록	
   		List<MenuVo> menuList   = menuService.getMenuList();
   		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+  		
+  		// 페이징 정보 준비
+  		int           nowpage   =  Integer.parseInt( (String) map.get("nowpage") ); 
+  		int           pagecount =  10;    // 한페이지 당 출력할 줄(row)수  
+
+  		// sql 사용할 변수 : 조회할 레코드 번호
+  		int           startnum  =  ( nowpage - 1 ) * pagecount + 1;
+  		int           endnum    =  nowpage  *  pagecount;
+
+  		map.put("pagecount", pagecount ); 
+  		map.put("startnum",  startnum ); 
+  		map.put("endnum",    endnum );		
+  		
+        
   		
   	
   		//--------------------------------------------------------------------------------------
@@ -441,16 +455,16 @@ public class ManagerController {
  	// 게시글 목록 불러오기
  	List<AdminEventVo> eventList = managerService.getEventList(map);
  	
-
+ 	AdminEventVo adminEventVo = (AdminEventVo) map.get("adminEventVo");   
  	
  	
  	ModelAndView mv = new ModelAndView();
  	mv.setViewName("admin/adminEventList");
  	mv.addObject("menuList", menuList);
  	mv.addObject("submenuList", submenuList);
-
+ 	mv.addObject("adminEventVo", adminEventVo);
  	mv.addObject("eventList", eventList);
- 	
+ 	mv.addObject("map", map);
  	return mv;
      
       
@@ -642,19 +656,32 @@ public class ManagerController {
   		 			) {
   		 		
   		 	// 메뉴 목록	
-  		 	List<MenuVo> menuList   = menuService.getMenuList();
-  		 	List<SubmenuVo> submenuList = menuService.getSubmenuList1();
-  		 	
+  		  		List<MenuVo> menuList   = menuService.getMenuList();
+  		  		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+  		  		
+  		  		// 페이징 정보 준비
+  		  		int           nowpage   =  Integer.parseInt( (String) map.get("nowpage") ); 
+  		  		int           pagecount =  10;    // 한페이지 당 출력할 줄(row)수  
+
+  		  		// sql 사용할 변수 : 조회할 레코드 번호
+  		  		int           startnum  =  ( nowpage - 1 ) * pagecount + 1;
+  		  		int           endnum    =  nowpage  *  pagecount;
+
+  		  		map.put("pagecount", pagecount ); 
+  		  		map.put("startnum",  startnum ); 
+  		  		map.put("endnum",    endnum );		
+  		  		//---------------------------------------------------------------------
   		 	
   			// 게시글 목록 불러오기
   			List<AdminEventVo> winnerList = managerService.getWinnerList(map);
   			
-  			//System.out.println("스토어목록" + storeList);
+  			AdminEventVo adminEventVo = (AdminEventVo) map.get("adminEventVo");
   			
   			ModelAndView mv = new ModelAndView();
   			mv.setViewName("admin/adminWinnerList");
   			mv.addObject("menuList", menuList);
   			mv.addObject("submenuList", submenuList);
+  			mv.addObject("adminEventVo", adminEventVo);
   			mv.addObject("winnerList", winnerList);
   			
   			return mv;

@@ -115,7 +115,7 @@
 	  </tr>  
 	  </c:forEach>
 		</table> 		
-			    <%@include file="/WEB-INF/include/eventPaging.jsp" %>
+			    <%@include file="/WEB-INF/include/adminEventPaging.jsp" %>
      </div>    
      </div>
         <%@include file="/WEB-INF/include/footer.jsp" %>

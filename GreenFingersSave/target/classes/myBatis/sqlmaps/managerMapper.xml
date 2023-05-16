@@ -411,7 +411,7 @@
     	<!-- 페이징된 리스트 가져오기 -->
 	<select id="EventList"
 			resultType="com.green.manager.vo.AdminEventVo">
-	
+	SELECT * FROM(
 	SELECT
 			ROW_NUMBER() OVER(ORDER BY NREF DESC, STEP ASC)  RNUM,
 			B.BOARD_IDX,
@@ -431,7 +431,11 @@
 			BOARD B
         WHERE 
             SUBMENU_ID  =  'SUBMENU18'
-		
+            ) T
+       WHERE 
+		T.RNUM BETWEEN #{startnum} AND #{endnum}
+		ORDER BY
+		 NREF  DESC, STEP   ASC   
 	</select>
 	
 	<select   id             = "GetEventBoard"
@@ -563,7 +567,7 @@
 	
 	<select id="WinnerList"
 			resultType="com.green.manager.vo.AdminEventVo">
-	
+	SELECT * FROM(
 	SELECT
 			ROW_NUMBER() OVER(ORDER BY NREF DESC, STEP ASC)  RNUM,
 			B.BOARD_IDX,
@@ -582,7 +586,13 @@
 		FROM
 			BOARD B
         WHERE 
+       
             SUBMENU_ID  =  'SUBMENU19'
+            ) T
+       WHERE 
+		T.RNUM BETWEEN #{startnum} AND #{endnum}
+		ORDER BY
+		 NREF  DESC, STEP   ASC   
 		
 	</select>
 	
