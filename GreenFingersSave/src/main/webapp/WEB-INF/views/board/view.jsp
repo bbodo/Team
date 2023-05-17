@@ -185,7 +185,10 @@
    		text-align: left;
     }
 
-
+	#imgsize {max-width: 100%;
+  height: auto;
+  display: block;
+	}
 </style>
 
 <script src="https://code.jquery.com/jquery.min.js"></script>
@@ -433,7 +436,7 @@
 				<td colspan="5" id="bc">
 				<c:forEach var="file"  items="${ fileList }" >
 				 <div>
-					<img src="/upload/${ file.sfilename }">
+					<img id="imgsize" src="/upload/${ file.sfilename }">
 				 </div>
 				</c:forEach>
 				<div style="min-height: 300px; height: auto; text-align: left;">
