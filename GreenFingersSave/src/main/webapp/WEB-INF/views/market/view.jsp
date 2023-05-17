@@ -436,12 +436,12 @@ writeBtnEl.addEventListener("click", function(e) {
 			</tr>
 			<tr style="border-bottom: 1px solid #228B22;">
 			   <td class="padd8">수량</td>
-			   <td colspan="5">
-			      최대 3개 제한
+			   <td>
+					<span>최대 3개 제한</span>
 			     <a href="/Market/PointPayForm?menu_id=${ map.menu_id }&submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&userid=${sessionScope.login.userid}">
 			     <button>구매</button>
 			     </a>
-			   </td>  
+			   </td>
 			</tr>
 			</c:when>
 			<c:otherwise>
@@ -456,7 +456,6 @@ writeBtnEl.addEventListener("click", function(e) {
 					<img id="imgsize"  src="/upload/${ file.sfilename }">
 				 </div>
 				</c:forEach>
-				<br>
 				${ vo.board_cont }
 				</td>
 			</tr>
@@ -479,7 +478,7 @@ writeBtnEl.addEventListener("click", function(e) {
 
 		<div class="right">
 		
-		<a href="/Market/WriteForm?menu_id=${vo.menu_id}&submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">답글쓰기</a>
+		<a href="/Market/WriteForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">답글쓰기</a>
 		
 			<c:if test="${vo.usercode eq login.usercode}">
 			<a href="/myPage/myNoteWriteForm?board_idx=${vo.board_idx}">쪽지</a>
