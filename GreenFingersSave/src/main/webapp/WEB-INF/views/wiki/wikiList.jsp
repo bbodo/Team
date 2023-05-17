@@ -40,7 +40,7 @@
 	#paging { margin-left: 50px;
 	          margin-top: 20px; }
 	#paging > .h { padding: 0px 4px;}
-	#paging2 {text-align: center; margin-bottom: 20px;}
+	#paging2 {text-align: center; margin: 10px;}
 	#paging2 > .h {padding: 0 5px;}
 	
 </style>

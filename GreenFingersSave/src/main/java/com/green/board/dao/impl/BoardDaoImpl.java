@@ -52,6 +52,14 @@ public class BoardDaoImpl implements BoardDao {
 		// Board  에 저장
 		int  bnum = Integer.parseInt( (String) map.get("bnum") );
 		if ( bnum == 0 ) {
+			/*
+			 * for (int i = 1; i < 107; i++) {
+			 * 
+			 * map.put("board_title", "열매 입력테스트 title" + i); map.put("board_cont",
+			 * "테스트 열매 내용....." + i);
+			 * 
+			 * }
+			 */
 			sqlSession.insert("Board.BoardInsert", map); // 새글
 			sqlSession.update("Board.GetPoint", map); // 포인트 증가
 		} else {

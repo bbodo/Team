@@ -17,8 +17,8 @@
      
      <!-- 처음/ 이전 -->     
      <c:if test="${ startnum gt 1 }">
-       <a href="/Board/List?${ map.menu_id }&submenu_id=${ menu_id }&nowpage=1">처음</a>
-       <a href="/Board/List?${ map.menu_id }&submenu_id=${ menu_id }&nowpage=${ startnum - 1 }">
+       <a href="/Board/List?menu_id=${ map.menu_id }&submenu_id=${ menu_id }&nowpage=1">처음</a>
+       <a href="/Board/List?menu_id=${ map.menu_id }&submenu_id=${ menu_id }&nowpage=${ startnum - 1 }">
        [이전]
        </a>
      </c:if>
@@ -32,10 +32,10 @@
      
      <!-- 다음 / 마지막 -->
      <c:if test="${ totalpagecount ne endnum }">
-       <a href="/Board/List?${ map.menu_id }&submenu_id=${ menu_id }&nowpage=${ endnum + 1 }">
+       <a href="/Board/List?menu_id=${ map.menu_id }&submenu_id=${ menu_id }&nowpage=${ endnum + 1 }">
        [다음]
        </a>
-       <a href="/Board/List?${ map.menu_id }&submenu_id=${ menu_id }&nowpage=${ totalpagecount }">마지막</a>
+       <a href="/Board/List?menu_id=${ map.menu_id }&submenu_id=${ menu_id }&nowpage=${ totalpagecount }">마지막</a>
      </c:if>    
       </td>
      </tr>    
