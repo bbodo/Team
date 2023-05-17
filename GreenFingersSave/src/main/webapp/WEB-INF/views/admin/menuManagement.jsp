@@ -146,11 +146,13 @@
  	 <div id="wrapper">
       <div id="aside">
        <ul id="sidemenu">
+       		<li class="sidemenuTitle">SIDEMENU</li>
 			<li><a href="/Manager/Member?menu_id=Member">회원 관리</a><br /></li>
        		<li><a href="/Manager/Menu?menu_id=Menu">메뉴 관리</a> <br /></li>
      		<li><a href="/Manager/subMenu?menu_id=subMenu"> - 하위 메뉴</a><br /></li>
-     		<li><a href="/Manager/EventList?submenu_id=&nowpage=1">이벤트 등록</a><br /></li>
-     		<li><a href="/Manager/Store">상품 등록</a><br /></li>
+     		<li><a href="/Manager/EventList?menu_id=Event&nowpage=1">이벤트 관리</a><br /></li>
+     		<li><a href="/Manager/WinnerList?menu_id=Winner&nowpage=1">당첨자관리</a><br /></li>
+     		<li><a href="/Manager/Store?menu_id=Store">상품 등록</a><br /></li>
        </ul>
      </div>
      <div id="main">
@@ -165,7 +167,7 @@
      <tr>
        <td colspan="5" class="right">
          <!--  <a href="/Manager/menuWriteForm">상세 등록</a> &nbsp;&nbsp; -->
-          <a href="/Manager/menuSimpleWriteForm">간편 등록</a>
+          <a href="/Manager/menuSimpleWriteForm?menu_id=Menu">간편 등록</a>
        </td>       
      </tr>
      <c:forEach var="menu" items="${ menuList }">
@@ -173,8 +175,8 @@
        <td>${ menu.menu_id }</td>
        <td>${ menu.menu_name }</td>
        <td>${ menu.menu_seq }</td>
-       <td><input type="button" value="삭제" onclick=menuDelete('${menu.menu_id}') /></td>
-       <td><a href="/Manager/menuUpdateForm?menu_id=${ menu.menu_id }&menu_name=${ menu.menu_name }&menu_seq=${ menu.menu_seq }">수정</a></td>
+       <td><a href="" onclick=menuDelete('${menu.menu_id}')>삭제</a></td>
+       <td><a href="/Manager/menuUpdateForm?menu_id=Menu&menu_id1=${menu.menu_id }&menu_name=${ menu.menu_name }&menu_seq=${ menu.menu_seq }">수정</a></td>
      </tr>   
      </c:forEach>
 		</table>

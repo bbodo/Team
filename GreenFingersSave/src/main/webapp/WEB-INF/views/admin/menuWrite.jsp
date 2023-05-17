@@ -116,6 +116,7 @@
 </head>
 <body>
 <%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
+    <div id="wrapper">
     <div id="aside">
        <ul id="sidemenu">
 			<li><a href="/Manager/Member">회원 관리</a><br /></li>
@@ -152,6 +153,7 @@
 			<input type="submit" value="등록버튼"/>
 		</div>
 		</form>
+     </div>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

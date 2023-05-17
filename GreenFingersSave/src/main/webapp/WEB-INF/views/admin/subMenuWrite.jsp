@@ -113,50 +113,96 @@
 		width: 100%;
  		opacity: 1;$
 	}
-
+	.ps_box {
+	    display: block;
+	    position: relative;
+	    width: 50%;
+	    height: 51px;
+	    border: solid 1px #dadada;
+	    padding: 10px 110px 10px 14px;
+	    background: #fff;
+	    box-sizing: border-box;
+	    vertical-align: top;
+	    border-radius: 30px;
+	    margin: 0 auto;
+	}
+	.input_row {
+	    position: relative;
+	    display: block;
+	    height: 100%;
+	    border: 1px solid #dadada;
+	    padding: 16px 18px 15px;
+	    border-radius: 30px;
+	    box-sizing: border-box;
+	    text-align: left;
+	    box-shadow: 0 2px 6px 0 rgba(68,68,68,.08);
+	    width: 50%;
+	    margin: 0 auto;
+	    margin-bottom: 25px;
+	}
+	.regbtn {
+		background-color: #44c767;
+	    color: #ffffff;
+	    font-size: 15px;
+	    font-weight: bold;
+	    margin: 30px 0;
+	    width: 50%;
+	    height: 60px;
+	    text-decoration: none;
+	    border: none;
+	    border-radius: 30px;
+	}
+	.regbtn:hover {
+		background-color:#5cbf2a;
+	}
+	.regbtn:active {
+		position:relative;
+		top:1px;
+	}
 </style>
+<script type="text/javascript">
 
+	function gohome() {
+		location.replace("/Manager/subMenu?menu_id=subMenu");		
+	}
+
+</script>
 </head>
 <body>
+<%@include file="/WEB-INF/include/adminHeader.jsp" %>
 <%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
+     <div id="wrapper">
      <div id="aside">
        <ul id="sidemenu">
-			<li><a href="/Manager/Member">회원 관리</a><br /></li>
-       		<li><a href="/Manager/Menu">메뉴 관리</a> <br /></li>
-     		<li><a href="/Manager/subMenu"> - 하위 메뉴</a><br /></li>
-     		<li><a href="">이벤트 등록</a><br /></li>
-     		<li><a href="/Manager/Store">상품 등록</a><br /></li>
+       		<li class="sidemenuTitle">SIDEMENU</li>
+			<li><a href="/Manager/Member?menu_id=Member">회원 관리</a><br /></li>
+       		<li><a href="/Manager/Menu?menu_id=Menu">메뉴 관리</a> <br /></li>
+     		<li><a href="/Manager/subMenu?menu_id=subMenu"> - 하위 메뉴</a><br /></li>
+     		<li><a href="/Manager/EventList?menu_id=Event&nowpage=1">이벤트 관리</a><br /></li>
+     		<li><a href="/Manager/WinnerList?menu_id=Winner&nowpage=1">당첨자관리</a><br /></li>
+     		<li><a href="/Manager/Store?menu_id=Store">상품 등록</a><br /></li>
        </ul>
      </div>
      <div id="main">
      	<form action="/Manager/subMenuWrite" method="POST">
-		<table id="cont">
-			<tr>
-				<td>상위메뉴</td>
-			</tr>
-				<tr>
-					<td>
-						<select name="menu_id" required>
-							<option value="">상위메뉴</option>
-						<c:forEach var="menu" items="${ menuList }">
-							<option value="${ menu.menu_id }">${ menu.menu_name }</option>
-						</c:forEach>
-						</select>
-					</td>
-				</tr>
-			<tr>
-				<td>메뉴 이름</td>
-			</tr>
-			<tr>
-				<td><input type="text" name="submenu_name" required/></td>
-			</tr>
-		</table>
-		<div style="float: right;">
-			<a href="/Manager/subMenu">취소버튼</a>
-			<input type="submit"  value="등록"/> 
+		<div class="findid_wrap">
+		<h2 style="font-size: 20px; margin: 20px 0px;">상위 메뉴</h2>
+		<select name="menu_id" class="ps_box">
+			<option value="">상위 메뉴</option>
+			<c:forEach var="menu" items="${ menuList }">
+				<option value="${ menu.menu_id }">${ menu.menu_name }</option>
+			</c:forEach>
+		</select>
+		<h2 style="font-size: 20px; margin: 20px 0px;">메뉴 이름</h2>
+			<div class="input_row">
+				<input type="text" name="submenu_name" id="submenu_name" style="border: none; font-size: 25px; width: 100%;"/>
+		</div>
+			<input type="submit" value="등록" class="regbtn"/>
+			<input type="button"  class="regbtn" value="취소" onclick=gohome(); />
 		</div>
 		</form>
-     </div>
+    	 </div>
+	     </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>

@@ -190,7 +190,7 @@ public class ManagerController {
 		managerService.addSubMenu(map);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/Manager/subMenu");
+		mv.setViewName("redirect:/Manager/subMenu?menu_id=subMenu");
 		
 		return mv;
 	}
@@ -230,12 +230,10 @@ public class ManagerController {
 			@RequestParam HashMap<String, Object> map
 			) {
 		
-		System.out.println(map);
-		
 		managerService.updateSubmenu(map);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/Manager/subMenu");
+		mv.setViewName("redirect:/Manager/subMenu?menu_id=subMenu");
 		
 		return mv;
 	}

@@ -149,12 +149,14 @@
      <%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
      <div id="wrapper">
        <div id="aside">
-       <ul id="sidemenu">
+		<ul id="sidemenu">
+			<li class="sidemenuTitle">SIDEMENU</li>
 			<li><a href="/Manager/Member?menu_id=Member">회원 관리</a><br /></li>
        		<li><a href="/Manager/Menu?menu_id=Menu">메뉴 관리</a> <br /></li>
      		<li><a href="/Manager/subMenu?menu_id=subMenu"> - 하위 메뉴</a><br /></li>
-     		<li><a href="/Manager/EventList?submenu_id=&nowpage=1">이벤트 등록</a><br /></li>
-     		<li><a href="/Manager/Store">상품 등록</a><br /></li>
+     		<li><a href="/Manager/EventList?menu_id=Event&nowpage=1">이벤트 관리</a><br /></li>
+     		<li><a href="/Manager/WinnerList?menu_id=Winner&nowpage=1">당첨자관리</a><br /></li>
+     		<li><a href="/Manager/Store?menu_id=Store">상품 등록</a><br /></li>
        </ul>
      </div>
      <div id="main">
@@ -169,7 +171,7 @@
      </tr>
      <tr>
        <td colspan="6" class="right">
-          <a href="/Manager/subMenuWriteForm">하위 메뉴 등록</a>
+          <a href="/Manager/subMenuWriteForm?menu_id=subMenu">하위 메뉴 등록</a>
        </td>       
      </tr>
      <c:forEach var="submenu" items="${ submenuList }">
@@ -178,8 +180,8 @@
        <td>${ submenu.submenu_id }</td>
        <td>${ submenu.submenu_name }</td>
        <td>${ submenu.submenu_seq }</td>
-       <td><input type="button" value="삭제" onclick=submenuDelete('${ submenu.submenu_id }') /></td>
-       <td><a href="/Manager/submenuUpdateForm?menu_id=${ submenu.menu_id }&submenu_id=${ submenu.submenu_id }&submenu_name=${ submenu.submenu_name }&submenu_seq=${ submenu.submenu_seq }">수정</a></td>
+        <td><a href="javascript:void(0);" onclick=submenuDelete('${submenu.submenu_id}') >삭제</a></td>
+       <td><a href="/Manager/submenuUpdateForm?menu_id=subMenu&menu_id1=${ submenu.menu_id }&submenu_id=${ submenu.submenu_id }&submenu_name=${ submenu.submenu_name }&submenu_seq=${ submenu.submenu_seq }">수정</a></td>
      </tr>   
      </c:forEach>
 		</table>
