@@ -24,11 +24,19 @@
 		 line-height: 100px;
 	}
 	#main {
-		width: 100%;
-		height: 1300px;
-		float: left;
+		width: 85%;
+		height: auto;
 		padding: 10px;
-		padding: 50px 200px 50px 200px;
+		padding-right : 15%;
+		background-color: white;
+		display: inline-block;
+	}
+	.cont {
+		background-color: #fff;
+		margin: 0 auto;
+		width: 90%;
+		border-collapse: collapse;
+		margin-top: 10px;
 	}
 	table {
 		border-collapse: collapse;
@@ -36,7 +44,7 @@
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
-		width: 100%;
+		width: 90%;
 		border-collapse: collapse;
 		margin-top: 10px;
 		border-top: 3px solid #228B22;
@@ -174,18 +182,17 @@
 </head>
 <body>
 	 <!-- header -->
-	 <c:choose>
-		<c:when test="${ sessionScope.login eq null }">
-			<%@include file="/WEB-INF/include/header.jsp" %>
-		</c:when>
-		<c:otherwise>
-			<%@include file="/WEB-INF/include/header2.jsp" %>
-		</c:otherwise>
-	</c:choose>
-     <div id="title">
-     	<p style="font-size: 40px; font-weight: bold;">그린마켓</p>  
+	<%@include file="/WEB-INF/include/header.jsp" %>
+	<%@include file="/WEB-INF/include/subBanner.jsp" %>
+	<div id="wrapper">
+	<div id="aside">
+      <ul id="sidemenu">
+        <li class="sidemenuTitle">SIDEMENU</li>
+     	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU15&nowpage=1">입양원해요</a></li><br />
+     	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU16&nowpage=1">나눔합니다</a></li><br />
+     	<li><a href="/Market/List?menu_id=MENU03&submenu_id=SUBMENU17&nowpage=1">포인트 스토어</a></li><br />
+      </ul>
      </div>
-	
      <div id="main">
 	     <c:choose>	
 		  <c:when test="${ map.submenu_id == 'SUBMENU17' }">
@@ -216,7 +223,7 @@
 		</tr>
 		<tr>
 			<td style="text-align: center;">글 내용</td>
-			<td><textarea name="board_cont">${ vo.board_cont }</textarea></td>
+			<td><textarea name="board_cont" style="resize: none;">${ vo.board_cont }</textarea></td>
 		</tr>
 		
 		   <div class="form-group" >
@@ -256,6 +263,7 @@
 	</div>
 	</form>
      </div>  <!-- main end -->
+     </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>

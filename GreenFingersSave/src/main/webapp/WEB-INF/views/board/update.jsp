@@ -14,19 +14,19 @@
 		box-sizing: border-box;
 	}
 	#main {
-		width: 100%;
+		width: 85%;
 		height: auto;
-		mein-height: 800px;
 		padding: 10px;
-		padding: 50px 200px 50px 200px;
+		padding-right : 15%;
+		background-color: white;
+		display: inline-block;
 	}
-	#cont {
+	.cont {
 		background-color: #fff;
 		margin: 0 auto;
-		width: 100%;
+		width: 90%;
 		border-collapse: collapse;
 		margin-top: 10px;
-		border-top: 3px solid #228B22;
 	}
 	#cont tr td {
 		padding: 15px;
@@ -81,11 +81,18 @@
 
 </style>
 
+<script src="https://code.jquery.com/jquery.min.js"></script>
+
 <script type="text/javascript">
 
+		function gohome() {
+		let menu_idEl = $('[name=menu_id]').val();
+		let submenu_idEl = $('[name=submenu_id]').val();
+			location.replace('/Board/List?menu_id=' + menu_idEl + '&submenu_id=' + submenu_idEl + '&nowpage=1');		
+		}
+
    function readURL(input) {
-      var file = input.files[0] 
-      console.log(file)
+      var file = input.files[0];
       if (file != '') {
          var reader = new FileReader();
          reader.readAsDataURL(file);
@@ -98,9 +105,9 @@
   }  
 </script>
 
-<script src="https://code.jquery.com/jquery.min.js"></script>
 
 <script>
+
   $( function() {
 	  let num = 1;
 	  // 파일추가 버튼 클릭
@@ -130,22 +137,30 @@
 			  alert('오류발생:' + JSON.stringify(error) );
 		  } ) ;
 	  })
-  });  
+  });
+  
 </script>
 
 </head>
 <body>
 	 <!-- header -->
-	 <c:choose>
-		<c:when test="${ sessionScope.login eq null }">
-			<%@include file="/WEB-INF/include/header.jsp" %>
-		</c:when>
-		<c:otherwise>
-			<%@include file="/WEB-INF/include/header2.jsp" %>
-		</c:otherwise>
-	</c:choose>
+	<%@include file="/WEB-INF/include/header.jsp" %>
      <%@include file="/WEB-INF/include/subBanner.jsp" %>
      <div id="wrapper">
+     <div id="aside">
+     	<ul id="sidemenu">
+     	<li class="sidemenuTitle">SIDEMENU</li>
+     	<c:forEach var="menu" items="${ submenuList }">
+     		<c:choose>
+			<c:when test="${menu.menu_id eq map.menu_id }">
+				<li><a href="/Board/List?menu_id=${ menu.menu_id }&submenu_id=${menu.submenu_id}&nowpage=1">
+						${menu.submenu_name}</a></li>
+			</c:when>
+			</c:choose>
+     	</c:forEach>
+     	</ul>
+     </div>
+     
      <div id="main">
 	     <div><a id="board_title" href="/Board/List?submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 게시판</a></div>
      	
@@ -201,11 +216,9 @@
 			</td>
 			</tr>
 		</table>
-		<div class="center">
 			<input class="regbtn" type="submit" value="작성" />
-		</div>
 		</form>
-     </div>
+			<input type="button" class="regbtn" value="취소" onclick=gohome(); />
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

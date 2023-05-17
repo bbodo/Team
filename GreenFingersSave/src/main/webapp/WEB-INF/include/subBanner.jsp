@@ -55,6 +55,10 @@
 				<img src ="/img/common/subbanner.png" alt="subbanner"/>
 			</c:if>
 		</c:when>
+		<c:when test="${param.menu_id eq 'mypage' }">
+				<p>마이페이지</p>
+				<img src ="/img/common/subbanner.png" alt="subbanner"/>
+		</c:when>
 	</c:choose>
 	</c:forEach>
 </div>

@@ -481,7 +481,8 @@ public class MyPageController {
 		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/mypage/myPageCheck");
+		
+		mv.setViewName("mypage/myPageCheck");
 		mv.addObject("menuList", menuList);
 		mv.addObject("submenuList", submenuList);
 		
@@ -508,7 +509,7 @@ public class MyPageController {
 		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/mypage/myPageUpdate");
+		mv.setViewName("mypage/myPageUpdate");
 		mv.addObject("menuList", menuList);
 		mv.addObject("submenuList", submenuList);
 		

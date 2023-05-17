@@ -205,18 +205,14 @@
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
-	 
-     <div id="title">
-     	<p>마이 페이지</p>
-     </div>
-     
+	<%@include file="/WEB-INF/include/subBanner.jsp" %>     
 	<div id="wrap">
      <div id="main">
      	
      	<!-- <section1 시작> -->
      	<div class="titleWrap">
      		<p class="title">내 정보</p>
-     		<p><a href="/mypage/checkUpdateForm">내 정보 수정하기</a></p>
+     		<p><a href="/mypage/checkUpdateForm?menu_id=mypage">내 정보 수정하기</a></p>
      	</div>
      	
      	<section id="sec1">

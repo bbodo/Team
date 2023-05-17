@@ -27,13 +27,13 @@
 		<c:choose>
 			<c:when test="${ sessionScope.login ne null }">
 				<div id="mypageWrap">
-					<div><a href="/mypage/myList?nowpage=1">${login.nickname}  님의 마이페이지</a></div>
+					<div><a href="/mypage/myList?nowpage=1&menu_id=mypage">${login.nickname}  님의 마이페이지</a></div>
 					<div><a href="/User/Logout">로그아웃</a></div>
 				</div>
 			</c:when>
 			<c:when test="${ sessionScope.managerlogin ne null }">
 				<div id="mypageWrap">
-					<div><a href="/mypage/myList?nowpage=1">${login.manager_name}  님의 마이페이지</a></div>
+					<div><a href="/mypage/myList?nowpage=1&menu_id=mypage">${login.manager_name}  님의 마이페이지</a></div>
 					<div><a href="/User/Logout">로그아웃</a></div>
 				</div>
 			</c:when>

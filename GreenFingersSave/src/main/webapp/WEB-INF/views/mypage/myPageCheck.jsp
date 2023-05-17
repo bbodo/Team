@@ -90,7 +90,7 @@ $(document).ready(function() {
 	      success : function(data) {
 	    	  console.log(data)
 			if(data == 1) {
-				location.replace("/mypage/myUpdate")
+				location.replace("/mypage/myUpdate?menu_id=mypage")
 			} else {
 				alert("틀린 비밀번호 입니다 !")
 				$('#passwd').val('');
@@ -109,10 +109,8 @@ $(document).ready(function() {
 
 </head>
 <body>
-	 <%@include file="/WEB-INF/include/header.jsp" %>
-     <div id="title">
-     	<p>마이 페이지</p>
-     </div>
+	<%@include file="/WEB-INF/include/header.jsp" %>
+	<%@include file="/WEB-INF/include/subBanner.jsp" %>
      <div id="main">
 		<div style="margin: 250px 0;">
 			<h2 style="font-size: 40px; margin-bottom: 100px;">비밀번호 확인</h2>

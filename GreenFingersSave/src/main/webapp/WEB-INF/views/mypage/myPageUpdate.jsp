@@ -365,9 +365,7 @@
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
-     <div id="title">
-     	<p>마이 페이지</p>
-     </div>
+	 <%@include file="/WEB-INF/include/subBanner.jsp" %>
      <div id="wrapper">
      <div id="main">
      	<form action="/mypage/updateUser" method="POST">
@@ -456,8 +454,6 @@
 						<option value="여">여</option>
 						<option value="무">선택안함</option>
 					</select>
-				    <!-- <input type="radio" name="gender" value="남"/>남
-        			<input type="radio" name="gender" value="여"/>여</td> -->
 			</tr>
 			<tr>
 				<td class="left" style="padding-bottom: 5px;">
@@ -467,7 +463,6 @@
 			<tr>
 				<td class="left">
 					<input class="ps_box" type="email" name="email" id ="email"/>
-					<!-- <input type="button" value="중복체크" id="emailCheck" /> -->
 					<span id="emailCheckresult"></span>
 				</td>
 			</tr>
@@ -483,9 +478,9 @@
 			</tr>
 		</table>
 	    <div>
-	    	<input type="button" value="탈퇴" onclick=memberDelete() class="regbtn"/>
 	    	<input type="submit" value="수정" class="regbtn"/>
 	    	<input type="button" value="취소" onclick=gohome() class="regbtn"/>
+	    	<input type="button" value="탈퇴" onclick=memberDelete() class="regbtn"/>
 	    </div>
 		</form>
      </div>
