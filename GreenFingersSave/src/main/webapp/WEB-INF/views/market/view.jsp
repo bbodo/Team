@@ -169,6 +169,10 @@
     	padding: 50px;
  		text-align: left;
     }
+    #imgsize {max-width: 100%;
+		height: auto;
+		display: block;
+	}
 
 </style>
 
@@ -451,7 +455,7 @@ writeBtnEl.addEventListener("click", function(e) {
 				<td colspan="5" id="bc">
 				<c:forEach var="file"  items="${ fileList }" >
 				 <div>
-					<img src="/upload/${ file.sfilename }">
+					<img id="imgsize"  src="/upload/${ file.sfilename }">
 				 </div>
 				</c:forEach>
 				${ vo.board_cont }
