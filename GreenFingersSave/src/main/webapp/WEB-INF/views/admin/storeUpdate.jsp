@@ -174,18 +174,8 @@
 </head>
 <body>
 	 <!-- header -->
-	 <c:choose>
-		<c:when test="${ sessionScope.login eq null }">
-			<%@include file="/WEB-INF/include/header.jsp" %>
-		</c:when>
-		<c:otherwise>
-			<%@include file="/WEB-INF/include/header2.jsp" %>
-		</c:otherwise>
-	</c:choose>
-     <div id="title">
-     	<p style="font-size: 40px; font-weight: bold;">그린마켓</p>  
-     </div>
-	
+	 <%@include file="/WEB-INF/include/header.jsp" %>
+	 <%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
      <div id="main">
 	     <c:choose>	
 		  <c:when test="${ map.submenu_id == 'SUBMENU17' }">
