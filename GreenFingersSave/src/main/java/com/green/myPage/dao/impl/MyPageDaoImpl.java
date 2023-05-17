@@ -75,6 +75,7 @@ public class MyPageDaoImpl implements MyPageDao {
 	@Override
 	public void updatePoint(HashMap<String, Object> map) {
 		sqlSession.update("MyPage.UpdatePoint",map);
+		sqlSession.update("MyPage.myUpdatePoint",map);
 	}
 
 	@Override
@@ -149,6 +150,28 @@ public class MyPageDaoImpl implements MyPageDao {
 	public void getMyBoardCount(HashMap<String, Object> map) {
 		int myBoardCount = sqlSession.selectOne("MyPage.GetMyBoardCount", map);
 		map.put("myBoardCount", myBoardCount);
+	}
+
+	@Override
+	public List<MyPageVo> getresSendUsercode(HashMap<String, Object> map) {
+		//1차 작업 : send_usercode 기준으로 for문 사용해서, receiveusercode를 받는다
+		List<MyPageVo> toMySendUser  =  sqlSession.selectList("MyPage.GetToMySendUser", map);
+		map.put("toMySendUser", toMySendUser);
+		System.out.println(toMySendUser + "toMySendUser");
+		
+		/*
+		 * MyPageVo mypageVo = new MyPageVo(); mypageVo.getSend_usercode();
+		 */
+		
+		//2차 작업 : send_usercode 기준으로 for문 사용해서, receiveusercode를 받는다
+		//List<MyPageVo> getresSendUsercode  =  sqlSession.selectList("MyPage.GetResSendUsercode", toMySendUser);
+		//System.out.println(getresSendUsercode + "getresSendUsercode");
+		
+		//3차 작업 : 받은 쪽지 사람 nickname
+		//List<MyPageVo> lastResSendNickname  =  sqlSession.selectList("MyPage.LastResSendNickname", getresSendUsercode);
+		//System.out.println(lastResSendNickname + "lastResSendNickname");
+		
+		return toMySendUser;
 	}
 	
 	

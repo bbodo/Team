@@ -179,6 +179,13 @@ public class MyPageServiceImpl implements MyPageService {
 		 myPageDao.getMyBoardCount(map);
 	}
 
+	@Override
+	public List<MyPageVo> getresSendUsercode(HashMap<String, Object> map) {
+		// 필요한 자료를 조회( 10개 rows 만)
+		List<MyPageVo>  getresSendUsercode = myPageDao.getresSendUsercode( map);
+		return getresSendUsercode;
+	}
+
 
 
 

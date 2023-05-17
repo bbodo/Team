@@ -43,4 +43,6 @@ public interface MyPageDao {
 
 	void getMyBoardCount(HashMap<String, Object> map);
 
+	List<MyPageVo> getresSendUsercode(HashMap<String, Object> map);
+
 }

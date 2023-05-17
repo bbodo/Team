@@ -159,6 +159,7 @@
 		}
 		
 		noteTitle[1].innerHTML = "받은 쪽지";
+		document.getElementById('recsenBtn').innerHTML = "보낸 사람";
 		
 		//쪽지 전체 보기
 		document.getElementById("NoteSelect").href = "/mypage/noteRecList?nowpage=1";
@@ -175,6 +176,7 @@
 		}
 		
 		noteTitle[1].innerHTML = "보낸 쪽지";
+		document.getElementById('recsenBtn').innerHTML = "받는 사람";
 		
 		//쪽지 전체 보기
 		document.getElementById("NoteSelect").href = "/mypage/noteSendList?nowpage=1";
@@ -297,7 +299,7 @@
 			<table id="sec2Cont">
 				<tr>
 					<th>번호</th>
-					<th>보낸 사람</th>
+					<th id="recsenBtn">보낸 사람</th>
 					<th>제목</th>
 					<th>날짜</th>
 					<th>읽음 상태</th>

@@ -307,6 +307,40 @@ public class MyPageController {
 		int usercode = userVo.getUsercode();
 		map.put("usercode", usercode);
 		
+		// 쪽지 view 
+		MyPageVo   myNoteView  =  myPageService.myNoteView( map );
+		
+		System.out.println("쪽ㄷㅈ확인니닌" + map);
+		
+		//받은 쪽지 닉네임 / 내가 받은 쪽지 기준으로 내보낸 사람 코드 가져와서 내보낸 사람 코드들을 map에 저장하고 그 내보낸 사람들을 for문 돌려서 멤버에 닉네임을 최종적으로 받는다
+		//1차 작업 : 나한테 보낸 사람 코드 받기
+		//List<MyPageVo>   u  =  myPageService.getRecPageList( map );
+		//System.out.println(myNoteView + "myNoteView");
+		//나한테 보낸 사람 nickname 구하기
+		List<MyPageVo>   resSendUserNickname  =  myPageService.getresSendUsercode( map );
+		System.out.println(resSendUserNickname + "resSendUserNickname 최종 전");
+		
+		//3차 작업 : receiveusercode를 member에 연결하여 닉네임을 받는다.
+		//List<MyPageVo>   recPagePaingList  =  myPageService.getRecPageList( map );
+		
+		//readmark 읽음
+		myPageService.readmarkCheck(map);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("mypage/myNoteView");
+		mv.addObject("userVo", userVo);
+		mv.addObject("myNoteView", myNoteView);
+		return mv;
+	}
+	
+	//받은 쪽지 View
+	@RequestMapping("/myNoteView2")
+	public ModelAndView sendNoteView2 (@RequestParam HashMap<String, Object> map,
+			HttpSession session) {
+		UserVo userVo = (UserVo) session.getAttribute("login");
+		int usercode = userVo.getUsercode();
+		map.put("usercode", usercode);
+		
 		// 보낸 쪽지
 		MyPageVo   myNoteView  =  myPageService.myNoteView( map );
 		
@@ -318,7 +352,7 @@ public class MyPageController {
 		myPageService.readmarkCheck(map);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("mypage/myNoteView");
+		mv.setViewName("mypage/myNoteView2");
 		mv.addObject("userVo", userVo);
 		mv.addObject("myNoteView", myNoteView);
 		return mv;
@@ -427,7 +461,11 @@ public class MyPageController {
 		int usercode = userVo.getUsercode();
 		map.put("usercode", usercode);
 		
+		//받는 사람 포인트 등급 추가
 		myPageService.updatePoint(map);
+		
+		//보낸 사람 포인트 등급 감소
+		//myPageService.myUpdatePoint(map);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:/mypage/myList?nowpage=1");

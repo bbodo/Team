@@ -44,5 +44,7 @@ public interface MyPageService {
 	List<BoardVo> getMyBoardList(HashMap<String, Object> map);
 
 	void getMyBoardCount(HashMap<String, Object> map);
+
+	List<MyPageVo> getresSendUsercode(HashMap<String, Object> map);
 	
 }

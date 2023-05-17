@@ -103,24 +103,20 @@
 	}
 	
 	/* 현재 페이지에만 속한 css */
-	#cencelBtn, #answerBtn {display:block;}
+	#cencelBtn {display:block;}
 
 </style>
 
 <script>
 	window.onload = function() {
-		//삭제, 답장 버튼 생성여부
+		//삭제버튼 생성여부
 		const  cencelBtn = document.getElementById('cencelBtn');
-		const  answerBtn = document.getElementById('answerBtn');
 		let receiver_usercode = "${myNoteView.receiver_usercode}";
 		let usercode = "${userVo.usercode}";
 		if(receiver_usercode === usercode){
 			cencelBtn.style.display = "none";
-			answerBtn.style.display = "block";
-		}else {
-			cencelBtn.style.display = "block";
-			answerBtn.style.display = "none";
 		}
+		
 		
 		const  submitBtn = document.getElementById('submitBtn');
 		const  notetitle = document.getElementById('notetitle');
@@ -165,7 +161,7 @@
 			<input type="hidden" name="receiver_usercode" value="${myNoteView.receiver_usercode}" />
 			<table id="cont">
 				<tr>
-					<th>받는 사람</th>
+					<th>보낸 사람</th>
 					<td><input name="nickname" type="text" value="${myNoteView.nickname}"  disabled/></td>
 				</tr>
 				<tr>
