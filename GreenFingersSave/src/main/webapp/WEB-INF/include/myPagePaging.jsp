@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
-
 <div id="sendPaing">
 <c:set  var="startnum"           value="${ sendPagingVo.pagestartnum    }" /> 
 <c:set  var="endnum"             value="${ sendPagingVo.pageendnum      }" /> 
@@ -50,25 +49,25 @@
    
    <!-- 처음/ 이전 -->     
    <c:if test="${ startnum1 gt 1 }">
-     <a href="/mypage/noteRecList?nowpage=1">처음</a>
-     <a href="/mypage/noteRecList?nowpage=${ startnum1 - 1 }">
+     <a href="/mypage/noteRecList?nowpage=1&menu_id=mypage">처음</a>
+     <a href="/mypage/noteRecList?nowpage=${ startnum1 - 1 }&menu_id=mypage">
      [이전]
      </a>
    </c:if>
    
    <!-- 1 2 3 4 5 6 [7] 8 9 10  -->
    <c:forEach  var="pagenum"  begin="${startnum1}"  end="${endnum1}"  step="1">
-      <a href="/mypage/noteRecList?nowpage=${ pagenum }">
+      <a href="/mypage/noteRecList?nowpage=${ pagenum }&menu_id=mypage">
       ${ pagenum }
       </a>&nbsp;&nbsp;     
    </c:forEach>    
    
    <!-- 다음 / 마지막 -->
    <c:if test="${ totalpagecount1 ne endnum1 }">
-     <a href="/mypage/noteRecList?nowpage=${ endnum1 + 1 }">
+     <a href="/mypage/noteRecList?nowpage=${ endnum1 + 1 }&menu_id=mypage">
      [다음]
      </a>
-     <a href="/mypage/noteRecList?nowpage=${ totalpagecount1 }">마지막</a>
+     <a href="/mypage/noteRecList?nowpage=${ totalpagecount1 }&menu_id=mypage">마지막</a>
    </c:if>    
    
     </td>
@@ -87,25 +86,25 @@
    
    <!-- 처음/ 이전 -->     
    <c:if test="${ startnum2 gt 1 }">
-     <a href="/mypage/myBoardList?nowpage=1">처음</a>
-     <a href="/mypage/myBoardList?nowpage=${ startnum2 - 1 }">
+     <a href="/mypage/myBoardList?nowpage=1&menu_id=mypage">처음</a>
+     <a href="/mypage/myBoardList?nowpage=${ startnum2 - 1 }&menu_id=mypage">
      [이전]
      </a>
    </c:if>
    
    <!-- 1 2 3 4 5 6 [7] 8 9 10  -->
    <c:forEach  var="pagenum"  begin="${startnum2}"  end="${endnum2}"  step="1">
-      <a href="/mypage/myBoardList?nowpage=${ pagenum }">
+      <a href="/mypage/myBoardList?nowpage=${ pagenum }&menu_id=mypage">
       ${ pagenum }
       </a>&nbsp;&nbsp;     
    </c:forEach>    
    
    <!-- 다음 / 마지막 -->
    <c:if test="${ totalpagecount2 ne endnum2 }">
-     <a href="/mypage/myBoardList?nowpage=${ endnum2 + 1 }">
+     <a href="/mypage/myBoardList?nowpage=${ endnum2 + 1 }&menu_id=mypage">
      [다음]
      </a>
-     <a href="/mypage/myBoardList?nowpage=${ totalpagecount2 }">마지막</a>
+     <a href="/mypage/myBoardList?nowpage=${ totalpagecount2 }&menu_id=mypage">마지막</a>
    </c:if>    
    
     </td>
@@ -124,25 +123,25 @@
    
    <!-- 처음/ 이전 -->     
    <c:if test="${ startnum3 gt 1 }">
-     <a href="/mypage/sendPointList?nowpage=1">처음</a>
-     <a href="/mypage/sendPointList?nowpage=${ startnum3 - 1 }">
+     <a href="/mypage/sendPointList?nowpage=1&menu_id=mypage">처음</a>
+     <a href="/mypage/sendPointList?nowpage=${ startnum3 - 1 }&menu_id=mypage">
      [이전]
      </a>
    </c:if>
    
    <!-- 1 2 3 4 5 6 [7] 8 9 10  -->
    <c:forEach  var="pagenum"  begin="${startnum3}"  end="${endnum3}"  step="1">
-      <a href="/mypage/sendPointList?nowpage=${ pagenum }">
+      <a href="/mypage/sendPointList?nowpage=${ pagenum }&menu_id=mypage">
       ${ pagenum }
       </a>&nbsp;&nbsp;     
    </c:forEach>    
    
    <!-- 다음 / 마지막 -->
    <c:if test="${ totalpagecount3 ne endnum3 }">
-     <a href="/mypage/sendPointList?nowpage=${ endnum3 + 1 }">
+     <a href="/mypage/sendPointList?nowpage=${ endnum3 + 1 }&menu_id=mypage">
      [다음]
      </a>
-     <a href="/mypage/sendPointList?nowpage=${ totalpagecount3 }">마지막</a>
+     <a href="/mypage/sendPointList?nowpage=${ totalpagecount3 }&menu_id=mypage">마지막</a>
    </c:if>    
    
     </td>

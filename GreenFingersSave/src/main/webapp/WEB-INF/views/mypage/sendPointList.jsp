@@ -65,7 +65,7 @@
 			</table>
 			
 			<div>
-				<button>삭제</button>
+				<button class="deleteButton">삭제</button>
 				<!-- <button><a href="/mypage/myNoteWriteForm?board_idx=5">쪽지보내기</a></button> -->
 			</div>
      	</section>

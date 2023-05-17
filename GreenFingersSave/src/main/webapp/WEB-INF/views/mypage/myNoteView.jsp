@@ -31,13 +31,14 @@
 		width: 15%;
 		padding: 10px;
 	}
+	#wrap {width:100%;}
 	#main {
-		width: 85%;
+		width: 1560px;
 		height: 800px;
-		float: left;
-		padding: 10px;
-		padding-right : 15%;
+		display: block;
+		padding :100px 0;
 		background-color: white;
+		margin: 0 auto;
 	}
 	#cont {
 		background-color: #fff;
@@ -152,14 +153,9 @@
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
 	 <%@include file="/WEB-INF/include/subBanner.jsp" %>
-     <div id="aside">
-     	내정보<br />
-     	작성글<br />
-     	쪽지<br />
-     </div>
-     
+     <div id="wrap">
      <div id="main">
-		<form action="/mypage/myNoteWrite?nowpage=1" method="POST">
+		<form action="/mypage/myNoteWrite?nowpage=1&menu_id=mypage" method="POST">
 			<input type="hidden" name="receiver_usercode" value="${myNoteView.receiver_usercode}" />
 			<table id="cont">
 				<tr>
@@ -170,20 +166,16 @@
 					<th>제목</th>
 					<td><input id="notetitle" name="notetitle" type="text" value="${myNoteView.note_title}" disabled/></td>
 				</tr>
-				<%-- <tr>
-					<th>그린마켓</th>
-					<td><a href="">${myNoteView.board_title}</a></td>
-				</tr> --%>
 				<tr>
 					<th>내용</th>
 					<td><textarea id="notecont" name="notecont" disabled>${myNoteView.note_cont}</textarea></td>
 				</tr>
 			</table>
 		</form>
-		<button id="answerBtn" style="float: left;"><a href="/mypage/myNoteAnswer?nowpage=1&note_idx=${myNoteView.note_idx}">답장</a></button>
-		<button id="cencelBtn" style="float: left;"><a href="/mypage/noteDelete?nowpage=1&note_idx=${myNoteView.note_idx}">삭제</a></button>
+		<button id="answerBtn" style="float: right; margin-top:20px;"><a href="/mypage/myNoteAnswer?nowpage=1&note_idx=${myNoteView.note_idx}">답장</a></button>
+		<button id="cencelBtn" style="float: right; margin-top:20px;"><a href="/mypage/noteDelete?nowpage=1&note_idx=${myNoteView.note_idx}">삭제</a></button>
 	</div>
-	
+	</div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>

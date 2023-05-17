@@ -72,25 +72,21 @@
 				
 					<c:if test="${recNoteVo.delnote eq 0}" var="delnote">
 					<tr class="recList">
-						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.rnum}</a></td>
-						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.send_usercode}</a></td>
-						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.note_title}</a></td>
-						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.note_regdate}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}&menu_id=mypage">${recNoteVo.rnum}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}&menu_id=mypage">${recNoteVo.send_usercode}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}&menu_id=mypage">${recNoteVo.note_title}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}&menu_id=mypage">${recNoteVo.note_regdate}</a></td>
 						<c:if test="${recNoteVo.readmark eq 0}" var="delnote">					
-							<td class="readMark"><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">x</a></td>
+							<td class="readMark"><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}&menu_id=mypage">x</a></td>
 						</c:if>
 						<c:if test="${recNoteVo.readmark eq 1}" var="delnote">					
-							<td class="readMark"><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">o</a></td>
+							<td class="readMark"><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}&menu_id=mypage">o</a></td>
 						</c:if>
 					</tr>
 					</c:if>
 				</c:forEach>
 			</table>
 			
-			<div>
-				<button>삭제</button>
-				<!-- <button><a href="/mypage/myNoteWriteForm?board_idx=5">쪽지보내기</a></button> -->
-			</div>
      	</section>
 		
 	     <%@include file="/WEB-INF/include/myPagePaging.jsp" %>
