@@ -1,4 +1,4 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -57,34 +57,6 @@
 		font-size: 32px;
 		font-weight: bold;
 	}
-	/* #sidemenu {
-		padding: 30px;
-	}
-	#sidemenu li {
-		padding: 10px;
-	}
-	#sidemenu li a {
-		position: relative;
-		display: block;
-		font-size: 20px;
-	}
-	#sidemenu li a:after {
-		content: "";
-		position: absolute;
-		left: 0;
-		bottom: 24px;
-		width: 0px;
-		height: 3px;
-		margin: 5px 0 0;
-		transition: all 0.2s ease-in-out;
-		transition-duration: 0.3s;
-		opacity: 0;
-		background-color: #2E8B57;
-	}
-	#sidemenu li a:hover:after {
-		width: 100%;
-		opacity: 1;
-	} */
 	.right {
 		text-align: right;
 	}
@@ -98,10 +70,26 @@
 		height: 400px;
 		padding: 20px;
 	}
-	.btn {
-		margin-top : 30px;
-		text-align: right;
-		margin-right: 130px;
+	#wrapper {
+		margin-top: 70px;
+	}
+	.regbtn {
+		background-color:#44c767;
+		color:#ffffff;
+		font-size:15px;
+		font-weight:bold;
+		margin: 30px 0;
+	    width: 100%;
+	    height: 60px;
+		text-decoration:none;
+		border: none;
+	}
+	.regbtn:hover {
+		background-color:#5cbf2a;
+	}
+	.regbtn:active {
+		position:relative;
+		top:1px;
 	}
 
 </style>
@@ -240,7 +228,7 @@
 			</tr>
 		</table>
 		<div class="btn">
-		<input type="submit" value="등록" />
+		<input class="regbtn" type="submit" value="등록" />
 		</div>
 		</form>
      </div>
