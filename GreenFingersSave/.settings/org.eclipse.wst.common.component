@@ -68,9 +68,14 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+<<<<<<< Updated upstream
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <property name="java-output-path" value="/GreenFingersSave/target/classes"/>
         <property name="context-root" value="basic"/>
+=======
+        <property name="java-output-path" value="/GreenFingersSave/target/classes"/>
+        <property name="context-root" value="/"/>
+>>>>>>> Stashed changes
                                                                                                             
     
     

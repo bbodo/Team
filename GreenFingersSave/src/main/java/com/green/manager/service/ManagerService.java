@@ -76,6 +76,8 @@ public interface ManagerService {
 
 	AdminEventVo getSeminarUpdateForm(HashMap<String, Object> map);
 
+	void setSeminarEdit(HashMap<String, Object> map, HttpServletRequest request);
+
 
 	
 

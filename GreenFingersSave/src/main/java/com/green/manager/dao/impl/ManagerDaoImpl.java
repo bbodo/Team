@@ -359,5 +359,16 @@ public class ManagerDaoImpl implements ManagerDao {
 			return vo;
 		}
 
+		@Override
+		public void setSeminarEdit(HashMap<String, Object> map) {
+			// Board 정보 수정
+			sqlSession.update("Manager.SetSeminarEdit", map);
+			
+			// File 정보 수정
+			List<FileVo>  fileList  =  (List<FileVo>) map.get("fileList");
+			if( fileList.size() > 0 )
+				sqlSession.insert("Manager.FileUpdate", map );
+		}
+
 
 }

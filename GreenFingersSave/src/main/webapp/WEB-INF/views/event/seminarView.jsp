@@ -246,7 +246,7 @@ tr td span {
 			<c:if test="${map.managercode != null && map.manager_pw != null}" var="delnote">
 				<div>
 					<a href="/Manager/SeminarUpdateForm?submenu_id=SUBMENU21&nowpage=1&board_idx=${ vo.board_idx }&manager_code=${ map.managercode }" ><button>수정</button></a>
-					<a href="/Manager/SeminarDelete?submenu_id=SUBMENU21&nowpage=1&manager_code=${ map.managercode }" ><button>삭제</button></a>
+					<a href="/Manager/SeminarDelete?menu_id=MENU04&submenu_id=SUBMENU21&board_idx=${map.board_idx }&nowpage=1" ><button>삭제</button></a>
 				</div>
 			</c:if>
 			

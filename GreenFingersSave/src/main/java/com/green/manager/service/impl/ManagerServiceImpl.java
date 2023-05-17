@@ -237,10 +237,10 @@ public class ManagerServiceImpl implements ManagerService {
 		@Override
 		public void setEventUpdate(HashMap<String, Object> map, HttpServletRequest request) {
 			// 넘어온 파일 저장
-					EventFile.save(map, request);
-					
-					// db 정보 저장
-					managerDao.setEventUpdate(map);
+			EventFile.save(map, request);
+			
+			// db 정보 저장
+			managerDao.setEventUpdate(map);
 			
 		}
 		
@@ -358,6 +358,15 @@ public class ManagerServiceImpl implements ManagerService {
 	public AdminEventVo getSeminarUpdateForm(HashMap<String, Object> map) {
 		AdminEventVo vo = managerDao.getSeminarUpdateForm(map);
 		return vo;
+	}
+
+	@Override
+	public void setSeminarEdit(HashMap<String, Object> map, HttpServletRequest request) {
+		// 넘어온 파일 저장
+		EventFile.save(map, request);
+		
+		// db 정보 저장
+		managerDao.setSeminarEdit(map);
 	}
 
 

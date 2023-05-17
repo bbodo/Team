@@ -911,10 +911,12 @@ public class ManagerController {
 			HttpServletRequest request, HttpSession session) {
     	
     	ManagerVo ManagerVo = (ManagerVo) session.getAttribute("managerlogin");
-		Object Managercode = ManagerVo.getManagercode();
-		Object manager_pw = ManagerVo.getManager_pw();
-		map.put("Managercode", Managercode);
-		map.put("manager_pw", manager_pw);
+    	if(ManagerVo != null) {
+    		Object Managercode = ManagerVo.getManagercode();
+			Object manager_pw = ManagerVo.getManager_pw();
+			map.put("Managercode", Managercode);
+			map.put("manager_pw", manager_pw);
+    	}
 		
 		// ---------------------------------------------------------------------
 		// 페이징 정보 준비
@@ -977,9 +979,9 @@ public class ManagerController {
 		String address = boardAddress_cont.substring(addressStart + 3);
 		map.put("address", address);
 		/* System.out.println(map.toString() + "map"); */
-		
+		System.out.println(map.toString() + "dddddddddddddddd");
  		ModelAndView mv = new ModelAndView();
- 		mv.setViewName("admin/seminarWriteSave");
+ 		mv.setViewName("admin/seminarUpdate");
  		mv.addObject("map", map);
  		mv.addObject("fileList", fileList);
  		mv.addObject("vo", eventVo);
@@ -992,27 +994,45 @@ public class ManagerController {
     public ModelAndView SeminarUpdate(
      		@RequestParam  HashMap<String, Object> map,
  			HttpServletRequest request) {
-     	
-	    managerService.setUpdate(map, request);
+    	String  submenu_id  =  (String) map.get("submenu_id");
+  		int     nowpage  =  Integer.parseInt(String.valueOf(map.get("nowpage")));
+  		String  menu_id = (String) map.get("menu_id");
+    	
+    	String  address = (String) map.get("address");
+  		String  board_cont = (String) map.get("board_cont");
+  		String  board_contAddress = board_cont + "주소:" + address;
+  		map.put("board_contAddress", board_contAddress);
+  		
+	    managerService.setSeminarEdit(map, request);
 	    
 	 	ModelAndView mv = new ModelAndView();
 	 	mv.addObject("map", map);
-	 	mv.setViewName("redirect:/Manager/Store");
-	     
+	 	
+	 	String fmt = "redirect:/Event/SeminarList?menu_id=%s&submenu_id=%s&nowpage=%d";
+  		String loc = String.format(fmt, menu_id, submenu_id, nowpage);
+  		mv.setViewName(loc);
 	 	return mv;
     }
      
-     // 스토어 상품 삭제
+     //행사 상품 삭제
      @RequestMapping("/SeminarDelete")
      public ModelAndView SeminarDelete(
      		@RequestParam   HashMap<String,  Object>  map
      			) {
+		String  submenu_id  =  (String) map.get("submenu_id");
+  		int     nowpage  =  Integer.parseInt(String.valueOf(map.get("nowpage")));
+  		String  menu_id = (String) map.get("menu_id");
      	
-     	managerService.deleteStore(map);
+  		System.out.println(map.toString());
+  		
+     	managerService.setEventDelete(map);
      	
      	ModelAndView   mv  = new ModelAndView();
- 		mv.setViewName("redirect:/Manager/Store");
  		mv.addObject("map", map);
+ 		
+ 		String fmt = "redirect:/Event/SeminarList?menu_id=%s&submenu_id=%s&nowpage=%d";
+  		String loc = String.format(fmt, menu_id, submenu_id, nowpage);
+  		mv.setViewName(loc);
 
  		return mv;	
      }

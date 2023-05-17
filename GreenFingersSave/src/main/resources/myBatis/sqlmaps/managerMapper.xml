@@ -29,7 +29,6 @@
  			DELMEM &lt;= 0
 		ORDER BY
 			USERCODE DESC
-			
 	</select>
  	
  	<!-- 유저 정보 담아가기 -->
@@ -678,6 +677,16 @@
 		 NREF  DESC, STEP   ASC   
 		
 	</select>
+	
+	<update   id = "SetSeminarEdit">
+		UPDATE
+			BOARD
+		SET
+			BOARD_TITLE  = #{ board_title },
+        	BOARD_CONT   = #{ board_contAddress  }
+		WHERE
+			BOARD_IDX    = #{ board_idx }    
+    </update>
 	
 </mapper>
 
