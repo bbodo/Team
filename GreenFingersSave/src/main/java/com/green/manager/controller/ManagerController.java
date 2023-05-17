@@ -638,7 +638,7 @@ public class ManagerController {
   				
   				String submenu_id  =  map.get("submenu_id").toString();
   				String nowpage     = String.valueOf(map.get("nowpage"));
-  				String fmt 		   = "redirect:/Manager/EventList?submenu_id=%s&nowpage=%s";
+  				String fmt 		   = "redirect:/Manager/EventList?menu_id=Event&submenu_id=%s&nowpage=%s";
   				String loc 		   = String.format(fmt, submenu_id, nowpage);
   				
   				System.out.println(map);
@@ -836,7 +836,7 @@ public class ManagerController {
   				int     board_idx   =  Integer.parseInt( String.valueOf(map.get("board_idx")) );  
   				String  submenu_id  =  (String) map.get( "submenu_id" );
   				String  nowpage     =  String.valueOf(map.get("nowpage"));
-  				String  fmt      	=  "redirect:/Manager/WinnerView?board_idx=%d&submenu_id=%s&nowpage=%s";
+  				String  fmt      	=  "redirect:/Manager/WinnerView?menu_id=Winner&board_idx=%d&submenu_id=%s&nowpage=%s";
   				String  loc      	=  String.format(fmt, board_idx, submenu_id, nowpage);
   				
   				ModelAndView mv = new ModelAndView();
@@ -856,7 +856,7 @@ public class ManagerController {
   				
   				String submenu_id  =  map.get("submenu_id").toString();
   				String nowpage     = String.valueOf(map.get("nowpage"));
-  				String fmt 		   = "redirect:/Manager/WinnerList?submenu_id=%s&nowpage=%s";
+  				String fmt 		   = "redirect:/Manager/WinnerList?menu_id=Winner&submenu_id=%s&nowpage=%s";
   				String loc 		   = String.format(fmt, submenu_id, nowpage);
   				
   				System.out.println(map);
@@ -867,6 +867,7 @@ public class ManagerController {
 
   				return mv;
   			}
+
 
   	
   //행사 등록----------------------------------------------------------------------------

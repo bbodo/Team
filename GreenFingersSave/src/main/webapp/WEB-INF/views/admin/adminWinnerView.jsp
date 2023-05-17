@@ -40,10 +40,11 @@
 		float: left;
 		padding: 50px 200px 50px 50px;
 	}#img1{
-	    width: 80%;
-	    height: 150px;
+	    max-width: 100%;
+	    height: auto;
+	    display:block;
 	    object-fit : contain;
-	}
+	}	
 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
@@ -190,8 +191,8 @@
 			</tr>
 		</table>
 		<div class="right">			
-				<a class="btns" href="/Manager/WinnerUpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
-				<a class="btns" href="/Manager/WinnerDelete?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">삭제</a> <br />			
+				<a class="btns" href="/Manager/WinnerUpdateForm?menu_id=Winner&submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
+				<a class="btns" href="/Manager/WinnerDelete?menu_id=Winner&submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">삭제</a> <br />			
 		</div>
 		
 	

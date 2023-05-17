@@ -11,18 +11,114 @@
 <title>${ map.submenu_name } 게시판</title>
 </head>
 
-<style>
-#img1{
-	    width: 60%;
-		height: 150px;
+<style type="text/css">
+	* {
+		box-sizing: border-box;
+	} 
+	#title {
+		width: 100%;
+		text-align: center;
+		height: 100px;
+		background-color: orange;
 	}
-.right{
-	width:90%;
-	margin:0 auto 20px auto;
-}
-.tableList tr td:hover {
-	background-color: #D3D3D3;
-}
+	#title p {
+		 line-height: 100px;
+	}
+	#aside {
+		height: 800px;
+		background-color: white;
+		width: 15%;
+		padding: 10px;
+		float: left;
+	}
+	#main {
+		width: 85%;
+		height: auto;
+		min-height: 800px;
+		float: left;
+		padding: 10px;
+		padding-right: 15%;
+		background-color: white;
+		text-align: center;
+	}
+	#tt {
+		text-align: left;
+	}
+	#cont {
+		background-color: #fff;
+		margin: 0 auto;
+		width: 90%;
+		border-collapse: collapse;
+		margin-bottom: 50px;
+    	border-bottom: 3px solid #228B22;
+	}
+	#cont th {
+		background-color: white;
+		border-top: 3px solid #C0C0C0;
+		border-bottom: 1px solid #C0C0C0;
+		padding: 20px;
+	}
+	#cont tr td {
+		padding: 15px;
+		border-bottom: 1px solid #C0C0C0;
+	} 
+	#cont tr:hover {
+		background-color: #D3D3D3;
+	}
+	#sidemenu {
+		padding: 30px;
+	}
+	#sidemenu li {
+		padding: 10px;
+	}
+	#sidemenu li a {
+		position: relative;
+		display: block;
+		font-size: 20px;
+	}
+	#sidemenu li a:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: 24px;
+		width: 0px;
+		height: 3px;
+		margin: 5px 0 0;
+		transition: all 0.2s ease-in-out;
+		transition-duration: 0.3s;
+		opacity: 0;
+		background-color: #2E8B57;
+	}
+	#sidemenu li a:hover:after {
+		width: 100%;
+		opacity: 1;
+	}
+	.right {
+		text-align: right;
+	}
+	.as {
+		position: relative;
+	}
+	.as:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: -10px;
+		width: 0px;
+		height: 2px;
+		margin: 5px 0 0;
+		transition: all 0.2s ease-in-out;
+		transition-duration: 0.3s;
+		opacity: 0;
+		background-color: #8fd3f4;
+	}
+	.as:hover:after {
+		width: 100%;
+ 		opacity: 1;$
+	}
+	#wrapper {
+		min-height: 100%;
+	}
 
 </style>
 
@@ -30,27 +126,26 @@
 	 <!-- header	 -->
 		 <%@include file="/WEB-INF/include/adminHeader.jsp" %>
    <%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
+    <div id="wrapper">
       <div id="aside">
        <ul id="sidemenu">
 			<li><a href="/Manager/Member">회원 관리</a><br /></li>
        		<li><a href="/Manager/Menu">메뉴 관리</a> <br /></li>
      		<li><a href="/Manager/subMenu"> - 하위 메뉴</a><br /></li>
-     		<li><a href="/Manager/EventList?submenu_id=&nowpage=1">이벤트 등록</a><br /></li>
-     		<li><a href="/Manager/WinnerList?submenu_id=&nowpage=1">당첨자 등록</a><br /></li>
+     		<li><a href="/Manager/EventList?menu_id=Event&nowpage=1">이벤트 등록</a><br /></li>
+     		<li><a href="/Manager/WinnerList?menu_id=Winner&nowpage=1">당첨자 등록</a><br /></li>
      		<li><a href="/Manager/Store">상품 등록</a><br /></li>
        </ul>
      </div>
 	
     <div id="main">
 		<h2 style="font-size: 24px;">${ map.submenu_name }</h2>   
-      <div class="right">
-		<a href="/Manager/WinnerWriteForm?submenu_id=SUBMENU19&bnum=0&lvl=0&step=0&nref=0&nowpage=1">새글 작성</a>
-	 </div>
+    
 		<table id="cont">
 			<tr>
 				<td colspan="3" style="width: 50%">
 					<div style="float: left;">
-			     		<h2>이벤트</h2>
+			     		<h2>당첨자</h2>
 			     	</div>
 				</td>				
 				<tr>
@@ -74,7 +169,7 @@
          <c:when test="${ winnerVo.lvl eq 0 }">
            <c:choose>
             <c:when test="${ winnerVo.delboard eq 0 }">
-              <a href="/Manager/WinnerView?submenu_id=${winnerVo.submenu_id}&board_idx=${winnerVo.board_idx}&nowpage=1">
+              <a href="/Manager/WinnerView?menu_id=Winner&submenu_id=${winnerVo.submenu_id}&board_idx=${winnerVo.board_idx}&nowpage=1">
        		   <h2>${ winnerVo.board_title }</h2>
        		  </a>
        		</c:when>
@@ -86,7 +181,7 @@
          </c:when>
          <c:otherwise>
          
-            <b style="display:inline-block; width:${winnerVo.lvl*20}px"></b> 
+              <b style="display:inline-block; width:${winnerVo.lvl*20}px"></b>
             
             <c:choose>
               <c:when test="${ winnerVo.delboard eq 0 }">
@@ -117,6 +212,10 @@
   </tr>  
   </c:forEach>
 		</table>	
+		 <div class="right">
+		<a href="/Manager/WinnerWriteForm?menu_id=Winner&submenu_id=SUBMENU19&bnum=0&lvl=0&step=0&nref=0&nowpage=1"
+		style="font-size: 22px;position: absolute; right: 510px; padding: 10px;background-color: rgb(149 209 176);     color: #ffffff; border-radius: 15px;" >새글 작성</a>
+	 </div>
      </div>    
           <%@include file="/WEB-INF/include/adminWinnerPaging.jsp" %>
      </div>

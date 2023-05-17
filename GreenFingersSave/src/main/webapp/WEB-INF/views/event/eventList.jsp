@@ -43,14 +43,7 @@
     <div id="main">
 		<h2 style="font-size: 24px;">${ map.submenu_name }</h2>   
 		<table id="cont">
-			<tr>
-				<td colspan="3" style="width: 50%">
-					<div style="float: left;">
-			     		<h2>이벤트</h2>
-			     	</div>
-				</td>				
-			</tr>
-			
+					
 			<tr>
 				<th colspan="4"><a href="http://localhost:9090/Event/EventList?submenu_id=${map.submenu_id}&nowpage=1">이벤트</a></th>
 				<th colspan="4"><a href="http://localhost:9090/Winner/WinnerList?submenu_id=SUBMENU19&nowpage=1">당첨자</a></th>

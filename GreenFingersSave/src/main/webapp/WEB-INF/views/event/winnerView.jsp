@@ -32,10 +32,11 @@
 		background-color: white;
 		display: inline-block;
 	}#img1{
-	    width: 80%;
-	    height: 150px;
+	    max-width: 100%;
+	    height: auto;
+	    display:block;
 	    object-fit : contain;
-	}	
+	}		
 	.cont {
 		background-color: #fff;
 		margin: 0 auto;
@@ -377,8 +378,15 @@
 </head>
 <body>
 	<!-- header -->
-	<%@include file="/WEB-INF/include/header.jsp" %>
-	<%@include file="/WEB-INF/include/subBanner.jsp" %>
+	 <c:choose>
+		<c:when test="${ sessionScope.login eq null }">
+			<%@include file="/WEB-INF/include/header.jsp" %>
+		</c:when>
+		<c:otherwise>
+			<%@include file="/WEB-INF/include/header2.jsp" %>
+		</c:otherwise>
+	</c:choose>
+	  <%@include file="/WEB-INF/include/subBanner.jsp" %>
 	<div id="wrapper">
     <div id="aside">
      	<ul id="sidemenu">
@@ -388,7 +396,7 @@
      </div>
 
      <div id="main">
-     <div><a id="board_title" href="/Winner/WinnerList?submenu_id=${map.submenu_id}&nowpage=1">${map.submenu_name} 게시판</a></div>
+     <div><a id="board_title" href="/Winner/WinnerList?submenu_id=${map.submenu_id}&nowpage=1">당첨자 게시판</a></div>
 		<table id="cont">
 			<tr>
 				<th class="padd8">제목</th>

@@ -32,8 +32,9 @@
 		background-color: white;
 		display: inline-block;
 	}#img1{
-	    width: 80%;
-	    height: 150px;
+	    max-width: 100%;
+	    height: auto;
+	    display:block;
 	    object-fit : contain;
 	}	
 	.cont {
@@ -458,6 +459,5 @@
 			</form>
 			</div>
 			</div>		
-			</div>	
 </body>
 </html>

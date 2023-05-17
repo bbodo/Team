@@ -66,6 +66,25 @@
 		height: 400px;
 		padding: 20px;
 	}
+	.regbtn {
+		background-color:#44c767;
+		color:#ffffff;
+		font-size:15px;
+		font-weight:bold;
+		margin: 30px 0;
+	    width: 40%;
+	    height: 60px;
+		text-decoration:none;
+		border: none;
+		border-radius: 20px;
+	}
+	.regbtn:hover {
+		background-color:#5cbf2a;
+	}
+	.regbtn:active {
+		position:relative;
+		top:1px;
+	}
 
 </style>
 
@@ -152,16 +171,16 @@
 				</c:forEach>  
 			<br>     
 			<!-- 새 파일 추가 -->
-			   <input type="button"  id="btnAddFile" value="파일 추가(최대 100M byte)" /><br>
+			    <input type="button"  id="btnAddFile" value="파일 추가(최대 100M byte)" 
+			        style="background-color: aliceblue;  border-radius: 15px;  padding: 3px;  color: #978686;  border-color: aliceblue;"/><br>
 			   <input type="file"  name="upfile"  class="upfile"/><br>
 			</td>
 			</tr>
 		</table>
 		<div class="center">
-			<input type="submit" value="수정" />
+			<input class="regbtn" type="submit" value="수정" />
 		</div>
 		</form>
      </div>
-     <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>

@@ -109,6 +109,7 @@
 	    height: 60px;
 		text-decoration:none;
 		border: none;
+		border-radius: 20px;
 	}
 	.regbtn:hover {
 		background-color:#5cbf2a;
@@ -174,7 +175,7 @@
 	
 	 <%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
 	 
-	<div id="wrapper">
+
 	<div id="aside">
 		<ul id="sidemenu">
      	<li class="sidemenuTitle">SIDEMENU</li>
@@ -212,8 +213,8 @@
 			<div class="form-group" >
 				<td style="text-align: center;">이미지 첨부</td>
 				<td id="imgplus"> 
-				<input type="button"  id="btnAddFile1" value="파일 추가(최대 100M byte)" /><br>
-          			<input type="file" name="upFile" class="upfile" onchange="readURL(this);"/>
+          			<input type="file" name="upFile" class="upfile" 
+          			style="padding: 5px;  background-color: aliceblue;  border-radius: 5px; color: cadetblue;  border: 1px solid;" onchange="readURL(this); "/>
 				<img id="preview" src="#" width=200 height=180 alt="선택된 이미지가 없습니다" style="align-content: flex-end; ">
 				</td>
 			</div> 
