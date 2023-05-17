@@ -393,8 +393,9 @@
 	 	 <%@include file="/WEB-INF/include/adminHeader.jsp" %>
 	<%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
 	<div id="wrapper">
-    <div id="aside">
-     	<ul id="sidemenu">
+      <div id="aside">
+       <ul id="sidemenu">
+       <li class="sidemenuTitle">SIDEMENU</li>
      	     <a href="/Manager/EventList?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1" >이벤트</a>  <br>  	     	  
      	     <a href="/Manager/WinnerList?menu_id=${ map.menu_id }&submenu_id=SUBMENU19&nowpage=1">당첨자</a>   		
      	</ul>
