@@ -165,7 +165,7 @@
 
      <div id="main">
      <div><a id="board_title" href="/Manager/EventList?submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 게시판</a></div>
-		<table id="cont">
+		<table class="cont" style="border-top: 3px solid #228B22;">
 			<tr>
 				<th class="padd8">제목</th>
 				<td class="padd8">${vo.board_title }</td>

@@ -46,7 +46,7 @@ public class EventServiceImpl implements EventService {
 		// menu_id 에 해당되는 전체 자료수 - pdsDaoImpl 가 돌려준 map 에 저장
 		int        totalcount  =  Integer.parseInt( String.valueOf( map.get("totalcount") ) );   
 	
-		    
+		
 		
 		String     submenu_id  =  String.valueOf(map.get("submenu_id")); 
 		EventPaging   mp      =  new EventPaging(
