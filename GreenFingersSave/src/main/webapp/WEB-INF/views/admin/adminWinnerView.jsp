@@ -170,7 +170,7 @@
 				<th class="padd8">제목</th>
 				<td class="padd8">${vo.board_title }</td>
 			</tr>
-			<tr>
+			<tr> 
 				<th class="padd8">작성자</th>
 				<td class="padd8">관리자</td>
 				<th class="padd8">작성일</th>
