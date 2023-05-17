@@ -40,8 +40,8 @@
 	#paging { margin-left: 50px;
 	          margin-top: 20px; }
 	#paging > .h { padding: 0px 4px;}
-	#paging1 {text-align: center; margin-bottom: 20px;}
-	#paging1 > .h {padding: 0 5px;}
+	#paging2 {text-align: center; margin-bottom: 20px;}
+	#paging2 > .h {padding: 0 5px;}
 	
 </style>
 <style>
@@ -116,6 +116,7 @@
 		const paging1El = document.getElementById('paging1');
 		let   keyword  = $('#search').val();
 		let   phtml    = '';
+		let   phtml1    = '';
 		
 		let body           = data.response.body;
 		let pageNo         = body.pageNo;
@@ -140,7 +141,6 @@
 		}
 		
 		pagingEl.innerHTML = phtml;
-		paging1El.innerHTML = phtml;
 		
 		let arr  = body.items.item;
 		let html = '';
@@ -165,6 +165,10 @@
 			html += '</ul></div>';
 			html += '</div>';
 		});
+		
+		phtml1 += '<div style="text-align: center"><h7>페이지 : ' + pageNo  + '페이지</h7></div>';
+		phtml1 += '<div id="paging2">' + phtml + '</div>';
+		paging1El.innerHTML = phtml1;
 		return html;
 	}
 	
