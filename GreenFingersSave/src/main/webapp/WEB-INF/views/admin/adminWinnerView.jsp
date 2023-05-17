@@ -154,7 +154,7 @@
 <body>
 	<!-- header -->
 	 	 <%@include file="/WEB-INF/include/adminHeader.jsp" %>
-	<img src ="/img/common/subbanner.png" alt="subbanner" />
+	<%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
     <div id="aside">
      	<ul id="sidemenu">
      	     <a href="/Manager/EventList?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1" >이벤트</a>  <br>  	     	  

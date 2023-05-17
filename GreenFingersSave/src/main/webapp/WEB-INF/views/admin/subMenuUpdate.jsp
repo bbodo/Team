@@ -128,9 +128,7 @@
 
 </head>
 <body>
-     <div id="title">
-     	<p>하위 메뉴 관리</p>
-     </div>
+<%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
      <div id="aside">
        <ul id="sidemenu">
 			<li><a href="/Manager/Member">회원 관리</a><br /></li>

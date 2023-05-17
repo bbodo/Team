@@ -29,8 +29,8 @@
 <body>
 	 <!-- header	 -->
 		 <%@include file="/WEB-INF/include/adminHeader.jsp" %>
-     <img src ="/img/common/subbanner.png" alt="subbanner" />
-     
+     <%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
+     <div id="wrapper">
       <div id="aside">
        <ul id="sidemenu">
 			<li><a href="/Manager/Member">회원 관리</a><br /></li>
@@ -45,7 +45,7 @@
     <div id="main">
 		<h2 style="font-size: 24px;">${ map.submenu_name }</h2>   
       <div class="right">
-		<a href="/Manager/EventWriteForm?submenu_id=SUBMENU18&bnum=0&lvl=0&step=0&nref=0&nowpage=1">새글 작성</a>
+		<a href="/Manager/EventWriteForm?menu_id=Event&submenu_id=SUBMENU18&bnum=0&lvl=0&step=0&nref=0&nowpage=1">새글 작성</a>
 	 </div>
 		<table id="cont">
 			<tr>
@@ -75,7 +75,7 @@
          <c:when test="${ eventVo.lvl eq 0 }">
            <c:choose>
             <c:when test="${ eventVo.delboard eq 0 }">
-              <a href="/Manager/EventView?submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=1">
+              <a href="/Manager/EventView?menu_id=Event&submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=1">
        		   <h2>${ eventVo.board_title }</h2>
        		  </a>
        		</c:when>
@@ -91,7 +91,7 @@
             
             <c:choose>
               <c:when test="${ eventVo.delboard eq 0 }">
-                <a style="font-weight: bold;" href="/Manager/EventView?menu_id=${ map.menu_id }&submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}">
+                <a style="font-weight: bold;" href="/Manager/EventView?menu_id=Event&submenu_id=${eventVo.submenu_id}&board_idx=${eventVo.board_idx}&nowpage=${map.nowpage}">
               	  [답글] ${ eventVo.board_title }
          	    </a>
          	  </c:when>
@@ -120,6 +120,7 @@
 		</table>
      </div>    
                <%@include file="/WEB-INF/include/adminEventPaging.jsp" %>
+     </div>
      </div>
         <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

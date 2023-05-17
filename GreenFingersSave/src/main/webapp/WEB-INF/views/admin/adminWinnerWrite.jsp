@@ -169,7 +169,7 @@
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
-     <img src ="/img/common/subbanner.png" alt="subbanner" />
+     <%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
    
    <div id="aside">
 		<ul id="sidemenu">

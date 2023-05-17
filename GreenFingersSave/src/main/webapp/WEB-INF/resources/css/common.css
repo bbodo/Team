@@ -192,6 +192,30 @@ header img {
 	object-fit: cover;     
 }
 
+.adminsubBanner {
+	width:100%;
+	height:300px;
+	position: relative;
+	overflow: hidden;
+}
+.adminsubBanner p{
+	position: absolute;
+	left:50%;
+	top: 35%;
+	transform: translate(-50%, -50%);
+	font-family: 'TAEBAEKmilkyway';
+	font-weight: 600;
+	font-size:30px;
+	color: #E0FFFF;
+	z-index: 7;
+}
+.adminsubBanner img {
+	position:relative;
+	left:50%;
+    transform: translateX(-50%);
+	object-fit: cover;     
+}
+
 .title {
 	font-weight: 600;
 	font-size: 16px;

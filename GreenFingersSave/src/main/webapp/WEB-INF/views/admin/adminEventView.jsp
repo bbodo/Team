@@ -390,7 +390,7 @@
 <body>
 	<!-- header -->
 	 	 <%@include file="/WEB-INF/include/adminHeader.jsp" %>
-	<img src ="/img/common/subbanner.png" alt="subbanner" />
+	<%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
 	<div id="wrapper">
     <div id="aside">
      	<ul id="sidemenu">
@@ -426,8 +426,8 @@
 			</tr>
 		</table>
 		<div class="right">			
-				<a class="btns" href="/Manager/EventUpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
-				<a class="btns" href="/Manager/EventDelete?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">삭제</a> <br />			
+				<a class="btns" href="/Manager/EventUpdateForm?menu_id=Event&submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">수정</a>
+				<a class="btns" href="/Manager/EventDelete?menu_id=Event&submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&nowpage=${map.nowpage}">삭제</a> <br />			
 		</div>
 			<div id="commentNoti">댓글</div>
 		<br />

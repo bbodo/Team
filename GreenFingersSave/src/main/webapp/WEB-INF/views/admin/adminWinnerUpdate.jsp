@@ -109,7 +109,7 @@
 <body>
 	 <!-- header -->
 	 	 <%@include file="/WEB-INF/include/adminHeader.jsp" %>
-     <img src ="/img/common/subbanner.png" alt="subbanner" />
+     <%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
      <div id="main">
 	     <div><a id="board_title" href="/Manager/EventList?submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 게시판</a></div>
      	

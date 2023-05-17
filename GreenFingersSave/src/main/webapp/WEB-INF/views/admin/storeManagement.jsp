@@ -123,10 +123,9 @@
 
 </head>
 	<%@include file="/WEB-INF/include/adminHeader.jsp" %>
+	
 <body>
-     <div id="title">
-     	<p>스토어 관리</p>
-     </div>
+<%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
      <div id="aside">
        <ul id="sidemenu">
 			<li><a href="/Manager/Member">회원 관리</a><br /></li>

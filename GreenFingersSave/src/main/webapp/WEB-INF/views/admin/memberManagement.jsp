@@ -47,10 +47,12 @@
 		margin: 0 auto;
 		width: 90%;
 		border-collapse: collapse;
+		margin-bottom: 50px;
+ 	    border-bottom: 3px solid #228B22;
 	}
 	#cont th {
 		background-color: white;
-		border-top: 3px solid #C0C0C0;
+ 	    border-top: 3px solid #228B22;
 		border-bottom: 1px solid #C0C0C0;
 		padding: 20px;
 	}
@@ -118,16 +120,17 @@
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/adminHeader.jsp" %>
-     <div id="title">
-     	<p>회원관리</p>
-     </div>
+     <%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
+     <div id="wrapper">
       <div id="aside">
        <ul id="sidemenu">
-			<li><a href="/Manager/Member">회원 관리</a><br /></li>
-       		<li><a href="/Manager/Menu">메뉴 관리</a> <br /></li>
-     		<li><a href="/Manager/subMenu"> - 하위 메뉴</a><br /></li>
-     		<li><a href="/Manager/EventList?submenu_id=&nowpage=1">이벤트 등록</a><br /></li>
-     		<li><a href="/Manager/Store">상품 등록</a><br /></li>
+      		<li class="sidemenuTitle">SIDEMENU</li>
+			<li><a href="/Manager/Member?menu_id=Member">회원 관리</a><br /></li>
+       		<li><a href="/Manager/Menu?menu_id=Menu">메뉴 관리</a> <br /></li>
+     		<li><a href="/Manager/subMenu?menu_id=subMenu"> - 하위 메뉴</a><br /></li>
+     		<li><a href="/Manager/EventList?menu_id=Event&nowpage=1">이벤트 관리</a><br /></li>
+     		<li><a href="/Manager/WinnerList?menu_id=Winner&nowpage=1">당첨자관리</a><br /></li>
+     		<li><a href="/Manager/Store?menu_id=Store">상품 등록</a><br /></li>
        </ul>
      </div>
      <div id="main">
@@ -143,12 +146,13 @@
 			<tr>
 				<td>${ user.usercode }</td>
 				<td>${ user.username }</td>
-				<td><a href="/Manager/memberUpdateForm?usercode=${ user.usercode }">${ user.userid }</a></td>
+				<td><a href="/Manager/memberUpdateForm?menu_id=Member&usercode=${ user.usercode }">${ user.userid }</a></td>
 				<td>${ user.grade }</td>
 				<td>${ user.point }</td>
 			</tr>
 			</c:forEach>
 		</table>
+     </div>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

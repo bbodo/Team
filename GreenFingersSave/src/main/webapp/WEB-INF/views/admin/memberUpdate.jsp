@@ -94,9 +94,6 @@
    		right: 0px;
 		width: 30px; 
 	}
-	#wrapper {
-	    width: 50%;
-	}
 	.green {
 		color: green;
 		float: left;
@@ -305,37 +302,6 @@ function emailRegCheck() {
 	});
 }
 
-/*
-Email 중복 체크  
-function emailCheck() {
-	const emailCheckEl = document.getElementById('emailCheck');
-	emailCheckEl.addEventListener('blur', function() {
-		event.preventDefault();
-		event.stopPropagation();
-		let email = $("#email").val();
-		if(email != '') {
-			$.ajax({
-				type     : 'POST',
-				url      : '/User/EmailCheck',
-				data     : 'email='+ email,
-				dataType : 'json',
-				success  : function(result) {
-					if(result == '0') {
-						$('#emailCheckresult').html("<b class='green' value='green'>사용가능</b>");
-					} else {
-						$('#emailCheckresult').html("<b class='red' value='red'>사용불가</b>");
-					}
-				},
-				error : function(error) { alert('에러'); }
-			});
-			
-		} else {
-			alert('이메일을 입력하세요');
-		}
-	});
-	
-} */
-
 /* Nickname 중복 체크  */
 function nicknameCheck() {
 	const nicknameCheckEl = document.getElementById('nickname');
@@ -371,7 +337,7 @@ function loadchk() {
 }
 
 function gohome() {
-	location.replace("/mypage/myList?nowpage=1");
+	location.replace("/Manager/Member?menu_id=Member&nowpage=1");
 }
 
 window.onload = function() {
@@ -463,9 +429,8 @@ window.onload = function() {
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
-     <div id="title">
-     	<p>상세보기</p>
-     </div>
+	 <%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
+	 <div id="wrapper">
       <div id="aside">
        <ul id="sidemenu">
 			<li><a href="/Manager/Member">회원 관리</a><br /></li>
@@ -479,6 +444,7 @@ window.onload = function() {
      	<form action="/Manager/memberUpdate" method="POST">
      	<input type="hidden" value="${ vo.userid }" name="userid"/>
      	<input type="hidden" value="${ vo.usercode }" name="usercode" id="usercode"/>
+     	<input type="hidden" value="Member" name="menu_id" id="menu_id"/>
 		<table style="margin: 0 auto; width: 60%;">
 			<tr>
 				<!-- id는 수정불가하게 -->
@@ -620,6 +586,7 @@ window.onload = function() {
 	    	<input type="button" value="취소" onclick=gohome() class="regbtn"/>
 	    </div>
 		</form>
+     </div>
      </div>
      <%-- <%@include file="/WEB-INF/include/footer.jsp" %> --%>
 </body>

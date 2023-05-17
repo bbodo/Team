@@ -246,10 +246,10 @@ public class ManagerController {
 		
 		// 유저 정보 가져오기
 		List<UserVo> userList = managerService.getAllUser();
-		System.out.println(userList);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/admin/memberManagement");
 		mv.addObject("userList", userList);
+		mv.addObject("menu_id", "Member");
 		
 		return mv;
 	}
@@ -276,8 +276,10 @@ public class ManagerController {
 		
 		managerService.updateUser(map);
 		
+		String loc = "redirect:/Manager/Member?menu_id=Member";
+		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/Manager/Member");
+		mv.setViewName(loc);
 		
 		return mv;
 	}
@@ -561,7 +563,7 @@ public class ManagerController {
   			// 글쓰기 및 파일저장
   			managerService.setEventWrite(map, request);
   			
-  			String fmt = "redirect:/Manager/EventList?submenu_id=%s&nowpage=%d";
+  			String fmt = "redirect:/Manager/EventList?menu_id=Event&submenu_id=%s&nowpage=%d";
   			String loc = String.format(fmt, submenu_id, nowpage);
   			
   			ModelAndView mv = new ModelAndView();
@@ -618,7 +620,7 @@ public class ManagerController {
   				int     board_idx   =  Integer.parseInt( String.valueOf(map.get("board_idx")) );  
   				String  submenu_id  =  (String) map.get( "submenu_id" );
   				String  nowpage     =  String.valueOf(map.get("nowpage"));
-  				String  fmt      	=  "redirect:/Manager/EventView?board_idx=%d&submenu_id=%s&nowpage=%s";
+  				String  fmt      	=  "redirect:/Manager/EventView?menu_id=Event&board_idx=%d&submenu_id=%s&nowpage=%s";
   				String  loc      	=  String.format(fmt, board_idx, submenu_id, nowpage);
   				
   				ModelAndView mv = new ModelAndView();

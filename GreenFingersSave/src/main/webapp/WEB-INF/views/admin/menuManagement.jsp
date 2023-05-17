@@ -46,6 +46,8 @@
 		margin: 0 auto;
 		width: 90%;
 		border-collapse: collapse;
+		margin-bottom: 50px;
+    	border-bottom: 3px solid #228B22;
 	}
 	#cont th {
 		background-color: white;
@@ -140,15 +142,14 @@
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/adminHeader.jsp" %>
-     <div id="title">
-     	<p>상위 메뉴 관리</p>
-     </div>
-     <div id="aside">
+ 	 <%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
+ 	 <div id="wrapper">
+      <div id="aside">
        <ul id="sidemenu">
-			<li><a href="/Manager/Member">회원 관리</a><br /></li>
-       		<li><a href="/Manager/Menu">메뉴 관리</a> <br /></li>
-     		<li><a href="/Manager/subMenu"> - 하위 메뉴</a><br /></li>
-     		<li><a href="">이벤트 등록</a><br /></li>
+			<li><a href="/Manager/Member?menu_id=Member">회원 관리</a><br /></li>
+       		<li><a href="/Manager/Menu?menu_id=Menu">메뉴 관리</a> <br /></li>
+     		<li><a href="/Manager/subMenu?menu_id=subMenu"> - 하위 메뉴</a><br /></li>
+     		<li><a href="/Manager/EventList?submenu_id=&nowpage=1">이벤트 등록</a><br /></li>
      		<li><a href="/Manager/Store">상품 등록</a><br /></li>
        </ul>
      </div>
@@ -177,6 +178,7 @@
      </tr>   
      </c:forEach>
 		</table>
+     </div>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

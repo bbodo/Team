@@ -172,9 +172,9 @@
 	<%@include file="/WEB-INF/include/adminHeader.jsp" %>
 	
 	
-	 <img src ="/img/common/subbanner.png" alt="subbanner" />
+	 <%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
 	 
-	
+	<div id="wrapper">
 	<div id="aside">
 		<ul id="sidemenu">
      	<li class="sidemenuTitle">SIDEMENU</li>
@@ -223,6 +223,7 @@
 		</table>
 		<input class="regbtn" type="submit" value="이벤트 올리기" />
 		</form>
+     </div>
      </div>
 </body>
 </html>
