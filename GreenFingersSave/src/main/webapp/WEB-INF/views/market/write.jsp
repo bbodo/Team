@@ -99,6 +99,12 @@
 
 <!-- 이미지/파일 추가 버튼 -->
 <script>
+	function gohome() {
+	let menu_idEl = $('[name=menu_id]').val();
+	let submenu_idEl = $('[name=submenu_id]').val();
+		location.replace('/Board/List?menu_id=' + menu_idEl + '&submenu_id=' + submenu_idEl + '&nowpage=1');		
+	}	
+
   $( function() {
 	  let num = 1;
 	  $('#btnAddFile1').on('click', function(e) {
@@ -192,6 +198,7 @@
 		<input type="hidden"  name="parent"     value="${ map.board_idx  }" /> 
 		<input type="hidden"  name="nowpage"    value="${ map.nowpage    }" /> 
 		<input type="hidden"  name="userid"     value="${ map.userid     }" /> 
+		<input type="hidden"  name="menu_id"    value="${ map.menu_id    }" /> 
 		     	
 		<table id="cont">
 			<tr>
@@ -222,6 +229,7 @@
 		</table>
 		<div class="btn">
 		<input class="regbtn" type="submit" value="등록" />
+		<input type="button" class="regbtn" value="취소" onclick=gohome(); />
 		</div>
 		</form>
      </div>

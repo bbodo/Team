@@ -156,7 +156,7 @@ header img {
 
 #main {
 	width: 85%;
-	height: 900px;
+	height: auto;
 	padding: 10px;
 	padding-right: 15%;
 	background-color: white;

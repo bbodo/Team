@@ -12,9 +12,10 @@
 
 <style type="text/css">
 	/*css common 으로 이동*/
-	/* * {
+	 * {
 		box-sizing: border-box;
-	} 
+	}
+	/* 
 	#title {
 		width: 100%;
 		text-align: center;
@@ -116,9 +117,10 @@
 		width: 100%;
  		opacity: 1;
 	}
+	*/
 	#wrapper {
-		margin-top: 30px;
-	} */
+		margin-top: 70px;
+	} 
 	
 
 </style>

@@ -79,14 +79,36 @@
 	}
 	.update {
 		margin-top : 30px;
-		text-align: right;
-		margin-right: 130px;
+	}
+	.regbtn {
+		background-color:#44c767;
+		color:#ffffff;
+		font-size:15px;
+		font-weight:bold;
+		margin: 30px 0;
+	    width: 90%;
+	    height: 60px;
+		text-decoration:none;
+		border: none;
+	}
+	.regbtn:hover {
+		background-color:#5cbf2a;
+	}
+	.regbtn:active {
+		position:relative;
+		top:1px;
 	}
 
 </style>
 
 <!-- 이미지 파일 -->
 <script type="text/javascript">
+
+	function gohome() {
+	let menu_idEl = $('[name=menu_id]').val();
+	let submenu_idEl = $('[name=submenu_id]').val();
+		location.replace('/Board/List?menu_id=' + menu_idEl + '&submenu_id=' + submenu_idEl + '&nowpage=1');		
+	}
 
    function readURL(input) {
       var file = input.files[0] 
@@ -214,6 +236,7 @@
 	  <input type="hidden"  name="nref"       value="${ map.nref       }" /> 
 	  <input type="hidden"  name="parent"     value="${ map.board_idx  }" /> 
 	  <input type="hidden"  name="nowpage"    value="${ map.nowpage    }" /> 
+	  <input type="hidden"  name="menu_id"    value="${ map.menu_id    }" /> 
      
      
 	 <table id="cont">
@@ -259,7 +282,8 @@
 	</table>
 	
 	<div class="update">
-		<input type="submit" value="수정" />
+		<input class="regbtn" type="submit" value="수정" />
+		<input type="button" class="regbtn" value="취소" onclick=gohome(); />
 	</div>
 	</form>
      </div>  <!-- main end -->

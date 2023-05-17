@@ -480,7 +480,7 @@ writeBtnEl.addEventListener("click", function(e) {
 
 		<div class="right">
 		
-		<a href="/Market/WriteForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">답글쓰기</a>
+		<a href="/Market/WriteForm?menu_id=${vo.menu_id}&submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&bnum=${vo.bnum}&lvl=${vo.lvl}&step=${vo.step}&nref=${vo.nref}&nowpage=${map.nowpage}&userid=${login.userid}">답글쓰기</a>
 		
 			<c:if test="${vo.usercode eq login.usercode}">
 			<a href="/myPage/myNoteWriteForm?board_idx=${vo.board_idx}">쪽지</a>

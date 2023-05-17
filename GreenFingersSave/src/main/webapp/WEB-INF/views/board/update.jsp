@@ -216,7 +216,7 @@
 			</td>
 			</tr>
 		</table>
-			<input class="regbtn" type="submit" value="작성" />
+			<input class="regbtn" type="submit" value="수정" />
 		</form>
 			<input type="button" class="regbtn" value="취소" onclick=gohome(); />
      </div>

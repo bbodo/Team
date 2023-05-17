@@ -14,9 +14,6 @@
 	* {
 		box-sizing: border-box;
 	}
-	#section {
-		height: auto;
-	}
 	#aside {
 		float: left;
 		height: auto;

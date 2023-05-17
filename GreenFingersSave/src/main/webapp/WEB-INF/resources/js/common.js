@@ -13,7 +13,7 @@ window.onload = function () {
 	   console.log(loginCheck);
 	   
 	   if(loginCheck != null){
-		   $('#menu1').style.marginLeft = "190px";
+		   $('#menu1').style.marginLeft = "0";
 		    console.log("해당 객체 존재함");
 		}else if(loginCheck == null){
 			$('#menu1').style.marginLeft = "0";
