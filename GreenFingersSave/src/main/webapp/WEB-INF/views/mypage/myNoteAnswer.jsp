@@ -156,10 +156,6 @@
 					<th>제목</th>
 					<td><input id="notetitle" name="notetitle" type="text" /></td>
 				</tr>
-				<%-- <tr>
-					<th>그린마켓</th>
-					<td><a href="">${myNoteView.board_title}</a></td>
-				</tr> --%>
 				<tr>
 					<th>내용</th>
 					<td><textarea id="notecont" name="notecont" ></textarea></td>

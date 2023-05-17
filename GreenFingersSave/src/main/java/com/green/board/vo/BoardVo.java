@@ -20,6 +20,9 @@ public class BoardVo {
 	private int 	parent;
 	private String	nickname;
 	
+	// menu_id 값 
+	private String  menu_id;
+	
 	// paging 처리를 위한 추가 정보
 		// sql 문을 위한 변수
 	private  int      nowpage;          // 현재 페이지
@@ -37,7 +40,7 @@ public class BoardVo {
 	public BoardVo(int board_idx, String submenu_id, String board_title, String board_cont, int market_value,
 			int usercode, int managercode, String board_regdate, int readcount, int bnum, int lvl, int step, int nref,
 			int delboard, int parent, String nickname, int nowpage, int pagecount, int totalcount, int totalpagecount,
-			int pagestartnum, int pageendnum, int pagegrpnum) {
+			int pagestartnum, int pageendnum, int pagegrpnum,String  menu_id) {
 		super();
 		this.board_idx = board_idx;
 		this.submenu_id = submenu_id;
@@ -62,6 +65,7 @@ public class BoardVo {
 		this.pagestartnum = pagestartnum;
 		this.pageendnum = pageendnum;
 		this.pagegrpnum = pagegrpnum;
+		this.menu_id = menu_id;
 	}
 
 
@@ -203,18 +207,21 @@ public class BoardVo {
 	public void setPagegrpnum(int pagegrpnum) {
 		this.pagegrpnum = pagegrpnum;
 	}
-	
+	public String getMenu_id() {
+		return menu_id;
+	}
+	public void setMenu_id(String menu_id) {
+		this.menu_id = menu_id;
+	}
 	@Override
 	public String toString() {
 		return "BoardVo [board_idx=" + board_idx + ", submenu_id=" + submenu_id + ", board_title=" + board_title
 				+ ", board_cont=" + board_cont + ", market_value=" + market_value + ", usercode=" + usercode
 				+ ", managercode=" + managercode + ", board_regdate=" + board_regdate + ", readcount=" + readcount
 				+ ", bnum=" + bnum + ", lvl=" + lvl + ", step=" + step + ", nref=" + nref + ", delboard=" + delboard
-				+ ", parent=" + parent + ", nickname=" + nickname + ", nowpage=" + nowpage + ", pagecount=" + pagecount
-				+ ", totalcount=" + totalcount + ", totalpagecount=" + totalpagecount + ", pagestartnum=" + pagestartnum
-				+ ", pageendnum=" + pageendnum + ", pagegrpnum=" + pagegrpnum + "]";
+				+ ", parent=" + parent + ", nickname=" + nickname + ", menu_id=" + menu_id + ", nowpage=" + nowpage
+				+ ", pagecount=" + pagecount + ", totalcount=" + totalcount + ", totalpagecount=" + totalpagecount
+				+ ", pagestartnum=" + pagestartnum + ", pageendnum=" + pageendnum + ", pagegrpnum=" + pagegrpnum + "]";
 	}
-	
-	
 	
 }

@@ -2,9 +2,6 @@
     pageEncoding="UTF-8"%>
 
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	String menuId = request.getParameter("menu_id");
-%>
 	
 <div class="subBanner">
 	<c:forEach var="menu" items="${ menuList }">

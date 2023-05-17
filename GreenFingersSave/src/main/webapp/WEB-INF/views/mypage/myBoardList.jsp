@@ -37,10 +37,7 @@
 <body>
 <div id="wrap">
 	 <%@include file="/WEB-INF/include/header.jsp" %>
-	 
-     <div id="title">
-     	<p>마이 페이지</p>
-     </div>
+	 <%@include file="/WEB-INF/include/subBanner.jsp" %>
      
      <div id="main">	
      	<!-- <section2 시작> -->

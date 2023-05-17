@@ -36,8 +36,12 @@ public class MyPageController {
 
 		//쪽지등록 전 필요한 값 들고오기
 		MyPageVo myNoteForm =  myPageService.getmyNoteForm(map);
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
 
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		mv.setViewName("mypage/myNoteWrite");
 		mv.addObject("myNoteVo", myNoteForm);
 		return mv;
@@ -52,6 +56,8 @@ public class MyPageController {
 		UserVo userVo = (UserVo) session.getAttribute("login");
 		Object usercode = userVo.getUsercode();
 		map.put("sendusercode", usercode);
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
 		
 		//쪽지등록 전 필요한 값 들고오기
 		MyPageVo myNoteForm =  myPageService.getmyNoteForm(map);
@@ -76,6 +82,8 @@ public class MyPageController {
 		}
 		
 		mv.setViewName("/mypage/myNoteWrite");
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		mv.addObject("myNoteInsertCheck", myNoteInsertCheck);
 		mv.addObject("myNoteVo", myNoteForm);
 		return mv;
@@ -90,12 +98,16 @@ public class MyPageController {
 		UserVo userVo = (UserVo) session.getAttribute("login");
 		Object usercode = userVo.getUsercode();
 		map.put("sendusercode", usercode);
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
 		
 		//쪽지등록 전 필요한 값 들고오기
 		MyPageVo myNoteAnswerForm =  myPageService.getMyNoteAnswerForm(map);
 		
 		mv.setViewName("/mypage/myNoteAnswer");
 		mv.addObject("userVo", userVo);
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		mv.addObject("myNoteAnswerForm", myNoteAnswerForm);
 		return mv;
 	}
@@ -109,6 +121,8 @@ public class MyPageController {
 		UserVo userVo = (UserVo) session.getAttribute("login");
 		Object usercode = userVo.getUsercode();
 		map.put("sendusercode", usercode);
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
 		
 		//쪽지등록 전 필요한 값 들고오기
 		MyPageVo myNoteAnswerForm =  myPageService.getMyNoteAnswerForm(map);
@@ -130,6 +144,8 @@ public class MyPageController {
 		mv.setViewName("/mypage/myNoteAnswer");
 		mv.addObject("myNoteAnswer", myNoteAnswer);
 		mv.addObject("userVo", userVo);
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		mv.addObject("myNoteAnswerForm", myNoteAnswerForm);
 		return mv;
 	}
@@ -141,7 +157,6 @@ public class MyPageController {
 		UserVo userVo = (UserVo) session.getAttribute("login");
 		int usercode = userVo.getUsercode();
 		map.put("usercode", usercode);
-		System.out.println("userVo"+userVo);
 		
 		// ---------------------------------------------------------------------
 		// 페이징 정보 준비
@@ -161,7 +176,7 @@ public class MyPageController {
 		// 내가 쓴 글
 		List<BoardVo> boardList  = myPageService.getMyBoardList(map);
 		
-		//paging가 사용할 변수
+		//paging이 사용할 변수
 		BoardVo boardVo = (BoardVo) map.get("boardVo");
 		
 		//내가 쓴 게시글 수
@@ -231,6 +246,9 @@ public class MyPageController {
 		int usercode = userVo.getUsercode();
 		map.put("usercode", usercode);
 		
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		
 		// ---------------------------------------------------------------------
 		// 페이징 정보 준비
 		int           nowpage   =  Integer.parseInt( (String) map.get("nowpage") ); 
@@ -255,6 +273,8 @@ public class MyPageController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mypage/noteSendList");
 		mv.addObject("userVo", userVo);
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		mv.addObject("sendPagePaingList", sendPagePaingList);
 		mv.addObject("sendPagingVo", sendNotePagingVo);
 		return mv;
@@ -268,6 +288,9 @@ public class MyPageController {
 		UserVo userVo = (UserVo) session.getAttribute("login");
 		int usercode = userVo.getUsercode();
 		map.put("usercode", usercode);
+		
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
 		
 		// ---------------------------------------------------------------------
 		// 페이징 정보 준비
@@ -290,12 +313,14 @@ public class MyPageController {
 		//paging가 사용할 변수
 		MyPageVo         recNotePagingVo   =  (MyPageVo) map.get("recNotePaging");
 		
-		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mypage/noteRecList");
 		mv.addObject("userVo", userVo);
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		mv.addObject("recPagePaingList", recPagePaingList);
 		mv.addObject("recPagingVo", recNotePagingVo);
+		
 		return mv;
 	}
 	
@@ -307,6 +332,10 @@ public class MyPageController {
 		int usercode = userVo.getUsercode();
 		map.put("usercode", usercode);
 		
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		//-----------------------------------------------------------------
+		
 		// 쪽지 view 
 		MyPageVo   myNoteView  =  myPageService.myNoteView( map );
 		
@@ -316,6 +345,7 @@ public class MyPageController {
 		//1차 작업 : 나한테 보낸 사람 코드 받기
 		//List<MyPageVo>   u  =  myPageService.getRecPageList( map );
 		//System.out.println(myNoteView + "myNoteView");
+		
 		//나한테 보낸 사람 nickname 구하기
 		List<MyPageVo>   resSendUserNickname  =  myPageService.getresSendUsercode( map );
 		System.out.println(resSendUserNickname + "resSendUserNickname 최종 전");
@@ -329,6 +359,8 @@ public class MyPageController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mypage/myNoteView");
 		mv.addObject("userVo", userVo);
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		mv.addObject("myNoteView", myNoteView);
 		return mv;
 	}
@@ -340,6 +372,10 @@ public class MyPageController {
 		UserVo userVo = (UserVo) session.getAttribute("login");
 		int usercode = userVo.getUsercode();
 		map.put("usercode", usercode);
+		
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		//-----------------------------------------------------------------
 		
 		// 보낸 쪽지
 		MyPageVo   myNoteView  =  myPageService.myNoteView( map );
@@ -354,6 +390,8 @@ public class MyPageController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mypage/myNoteView2");
 		mv.addObject("userVo", userVo);
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		mv.addObject("myNoteView", myNoteView);
 		return mv;
 	}
@@ -366,6 +404,10 @@ public class MyPageController {
 		UserVo userVo = (UserVo) session.getAttribute("login");
 		int usercode = userVo.getUsercode();
 		map.put("usercode", usercode);
+		
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		//-----------------------------------------------------------------
 		
 		// 보낸 쪽지 삭제
 		int noteDelete = myPageService.noteDelete(map);	
@@ -403,6 +445,9 @@ public class MyPageController {
 		mv.setViewName("mypage/myList");
 		mv.addObject("userVo", userVo);
 		mv.addObject("noteDelete", noteDelete);
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
+		
 		mv.addObject("sendPagePaingList", sendPagePaingList);
 		mv.addObject("recPagePaingList", recPagePaingList);
 		mv.addObject("sendPointList", sendPointList);
@@ -422,6 +467,8 @@ public class MyPageController {
 		int usercode = userVo.getUsercode();
 		map.put("usercode", usercode);
 		
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
 		// ---------------------------------------------------------------------
 		// 페이징 정보 준비
 		int           nowpage   =  Integer.parseInt( (String) map.get("nowpage") ); 
@@ -447,6 +494,8 @@ public class MyPageController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mypage/sendPointList");
 		mv.addObject("userVo", userVo);
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		mv.addObject("sendPointList", sendPointList);
 		mv.addObject("sendPointPagingVo", sendPointPagingVo);
 		return mv;
@@ -460,6 +509,7 @@ public class MyPageController {
 		UserVo userVo = (UserVo) session.getAttribute("login");
 		int usercode = userVo.getUsercode();
 		map.put("usercode", usercode);
+		//-----------------------------------------------------------------
 		
 		//받는 사람 포인트 등급 추가
 		myPageService.updatePoint(map);
@@ -482,6 +532,8 @@ public class MyPageController {
 		int usercode = userVo.getUsercode();
 		map.put("usercode", usercode);
 		
+		List<MenuVo> menuList = menuService.getMenuList();
+		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
 		// ---------------------------------------------------------------------
 		// 페이징 정보 준비
 		int           nowpage   =  Integer.parseInt( (String) map.get("nowpage") ); 
@@ -506,6 +558,8 @@ public class MyPageController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mypage/myBoardList");
 		mv.addObject("userVo", userVo);
+		mv.addObject("menuList", menuList);
+		mv.addObject("submenuList", submenuList);
 		mv.addObject("boardList", myBoardList);
 		mv.addObject("boardVo", boardVo);
 		return mv;

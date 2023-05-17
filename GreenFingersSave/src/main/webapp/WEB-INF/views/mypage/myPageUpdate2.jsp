@@ -59,9 +59,7 @@
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
-     <div id="title">
-     	<p>마이 페이지</p>
-     </div>
+	 <%@include file="/WEB-INF/include/subBanner.jsp" %>
      <div id="aside">
      	내정보<br />
      	작성글<br />

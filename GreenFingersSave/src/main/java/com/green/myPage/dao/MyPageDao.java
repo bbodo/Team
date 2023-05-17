@@ -45,4 +45,5 @@ public interface MyPageDao {
 
 	List<MyPageVo> getresSendUsercode(HashMap<String, Object> map);
 
+
 }

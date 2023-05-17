@@ -173,7 +173,7 @@ public class MyPageDaoImpl implements MyPageDao {
 		
 		return toMySendUser;
 	}
-	
+
 	
 
 }

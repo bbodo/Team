@@ -58,54 +58,60 @@
 		let gradeFont2       	=     document.getElementById('gradeFont2');
 		let gradeFont3       	=     document.getElementById('gradeFont3');
 		let gradeFont4       	=     document.getElementById('gradeFont4');
-		let myGrade 	      	=     document.querySelectorAll('#myGrade>div>img');
+		let myGrade 	      	=     document.querySelectorAll('#myGradeImg>div');
+		let myGradeInfo       	=     document.getElementById('myGradeInfo');
 		
-		if(0 <= gradepoint && gradepoint < 2000) {
+		if(0 <= gradepoint && gradepoint < 20000) {
 			graderName = "씨앗";
 			gradeFont1.innerHTML = "씨앗";
 			gradeFont2.innerHTML = "새싹";
-			gradepointTotal = 2000;
+			gradepointTotal = 20000;
 			inWidth.style.backgroundImage = "linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%)";
 			let gradeFontCal = gradepointTotal - gradepoint;
 			gradeFont4.innerHTML = gradeFontCal + "필요";
 			myGrade[0].style.display = "block";
-		}else if(2000 <= gradepoint && gradepoint < 4000) {
+			myGradeInfo.innerHTML = graderName;
+		}else if(20000 <= gradepoint && gradepoint < 40000) {
 			graderName = "새싹";
 			gradeFont1.innerHTML = "새싹";
 			gradeFont2.innerHTML = "잎새";
-			gradepointTotal = 4000;
+			gradepointTotal = 40000;
 			inWidth.style.backgroundImage = "linear-gradient(to right, #43e97b 0%, #38f9d7 100%)";
 			let gradeFontCal = gradepointTotal - gradepoint;
 			gradeFont4.innerHTML = gradeFontCal + "필요";
 			myGrade[1].style.display = "block";
-		}else if(4000 <= gradepoint && gradepoint < 6000) {
+			myGradeInfo.innerHTML = graderName;
+		}else if(40000 <= gradepoint && gradepoint < 60000) {
 			graderName = "잎새";
 			gradeFont1.innerHTML = "잎새";
 			gradeFont2.innerHTML = "가지";
-			gradepointTotal = 6000;
+			gradepointTotal = 60000;
 			inWidth.style.backgroundImage = "linear-gradient(to top, #5ee7df 0%, #b490ca 100%)";
 			let gradeFontCal = gradepointTotal - gradepoint;
 			gradeFont4.innerHTML = gradeFontCal + "필요";
 			myGrade[2].style.display = "block";
-		}else if(6000 <= gradepoint && gradepoint < 8000) {
+			myGradeInfo.innerHTML = graderName;
+		}else if(60000 <= gradepoint && gradepoint < 80000) {
 			graderName = "가지";
 			gradeFont1.innerHTML = "가지";
 			gradeFont2.innerHTML = "열매";
-			gradepointTotal = 8000;
+			gradepointTotal = 80000;
 			inWidth.style.backgroundImage = "linear-gradient(to right, #43e97b 0%, #38f9d7 100%)";
 			let gradeFontCal = gradepointTotal - gradepoint;
 			gradeFont4.innerHTML = gradeFontCal + "필요";
 			myGrade[3].style.display = "block";
-		}else if(8000 <= gradepoint && gradepoint < 10000) {
+			myGradeInfo.innerHTML = graderName;
+		}else if(80000 <= gradepoint && gradepoint < 100000) {
 			graderName = "열매";
 			gradeFont1.innerHTML = "열매";
 			gradeFont2.innerHTML = "나무";
-			gradepointTotal = 10000;
+			gradepointTotal = 100000;
 			inWidth.style.backgroundImage = "linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%)";
 			let gradeFontCal = gradepointTotal - gradepoint;
 			gradeFont4.innerHTML = gradeFontCal + "필요";
 			myGrade[4].style.display = "block";
-		}else if(10000 <= gradepoint) {
+			myGradeInfo.innerHTML = graderName;
+		}else if(100000 <= gradepoint) {
 			graderName = "나무";
 			gradeFont1.innerHTML = "나무";
 			gradeFont2.innerHTML = "축하합니다! 최고 등급입니다";
@@ -113,6 +119,7 @@
 			inWidth.style.backgroundImage = "linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%)";
 			gradeFont4.innerHTML = "최고등업";
 			myGrade[5].style.display = "block";
+			myGradeInfo.innerHTML = graderName;
 		}
 		
 		let inWidthCal = calculatePercentage(gradepoint, gradepointTotal);
@@ -125,7 +132,7 @@
 			gradeMark.style.marginLeft = inWidthCal + "%";
 		}
 		
-		gradeMark.style.transform = "translateX(-" + inWidthCal + "%)"; 
+		/* gradeMark.style.transform = "translateX(-" + inWidthCal + "%)";  */
 		
 		function calculatePercentage(part, whole) {
 			return (part / whole) * 100;
@@ -207,7 +214,7 @@
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
-	<%@include file="/WEB-INF/include/subBanner.jsp" %>     
+	 <%@include file="/WEB-INF/include/subBanner.jsp" %>     
 	<div id="wrap">
      <div id="main">
      	
@@ -221,7 +228,7 @@
      		<div id="con1">
      			<div><img src="/img/common/profile.png" alt="myimg"/></div>
      			<div><p>${userVo.userid} 님</p></div>
-     			<div><p>등급 :</p> <p>${userVo.usercode}</p></div>
+     			<div><p>등급 :</p> <p id="myGradeInfo"></p><p>닉네임 :</p> <p>${userVo.nickname} </p></div>
      			<button id="proFileBtn" onclick="profile()">프로필 변경</button>
      			<form action="/mypage/myProfile?nowpage=1" method="POST" enctype="Multipart/form-data" >
 	     			 <input style="display:none;" type="file" name="upfile" id="upfile" value="프로필변경"/>
@@ -232,6 +239,7 @@
      		<div id="con2">
      			<div>
      				<div id="gradeMark">
+     					<img src = "/img/mypage/bubble.png">
      					<p>내공</p>
      					<p>${userVo.gradepoint }</p>
      				</div>
@@ -246,38 +254,53 @@
      			
      			<div>
      				<p><span id="gradeFont3">씨앗</span> 등업에 필요한 조건을 만족시켜주세요</p>
-     				<div><p>등업까지 내공 :</p> <p id="gradeFont4">294필요</p></div>
-     				<div><p>게시글 수:</p> <p>${myBoardCount}</p></div>
+     				<div><p>등업까지 내공 :</p> <p id="gradeFont4">294 필요</p></div>
+     				<div><p>게시글 수:</p> <p>${myBoardCount} 개</p></div>
      				<div><p>포인트 :</p> <p>${userVo.point } 점</p></div>
      				<div><p>나의내공:</p> <p>${userVo.gradepoint } 점</p></div>
      			</div>
      		</div>
-     		
-     		<div id="con3">
-     			<div id="myGrade">
+
+			<div id="con3">
+     		<div id="myGradeImg">
      				<div>
-     					<P>씨앗</P>
      					<img src="/img/mypage/grade1.png" alt="Freepik"/>
      				</div>
      				<div>
-     					<P>새싹</P>
      					<img src="/img/mypage/grade2.png" alt="Freepik"/>
      				</div>
      				<div>
-     					<P>잎새</P>
      					<img src="/img/mypage/grade3.png" alt="Freepik"/>
      				</div>
      				<div>
-     					<P>가지</P>
      					<img src="/img/mypage/grade4.png" alt="Freepik"/>
      				</div>
      				<div>
-     					<P>열매</P>
      					<img src="/img/mypage/grade5.png" alt="Freepik"/>
      				</div>
      				<div>
-     					<P>나무</P>
      					<img src="/img/mypage/grade6.png" alt="Freepik"/>
+     				</div>
+     			</div>
+     			
+     			<div id="myGrade">
+     				<div>
+     					<P>씨앗</P>
+     				</div>
+     				<div>
+     					<P>새싹</P>
+     				</div>
+     				<div>
+     					<P>잎새</P>
+     				</div>
+     				<div>
+     					<P>가지</P>
+     				</div>
+     				<div>
+     					<P>열매</P>
+     				</div>
+     				<div>
+     					<P>나무</P>
      				</div>
      			</div>
      		</div>
@@ -288,7 +311,7 @@
      	<section id="sec2">
 	     	<div class="titleWrap">
 	     		<p class="title">받은 쪽지</p>
-	     		<p><a id="NoteSelect" href="/mypage/noteRecList?nowpage=1">전체보기</a></p>
+	     		<p><a id="NoteSelect" href="/mypage/noteRecList?nowpage=1&menu_id=mypage">전체보기</a></p>
 	     	</div>
      	
 			<div>
@@ -323,15 +346,15 @@
 				
 					<c:if test="${recNoteVo.delnote eq 0}" var="delnote">
 					<tr class="recList">
-						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.rnum}</a></td>
-						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.send_usercode}</a></td>
-						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.note_title}</a></td>
-						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">${recNoteVo.note_regdate}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}&menu_id=mypage">${recNoteVo.rnum}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}&menu_id=mypage">${recNoteVo.send_usercode}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}&menu_id=mypage">${recNoteVo.note_title}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}&menu_id=mypage">${recNoteVo.note_regdate}</a></td>
 						<c:if test="${recNoteVo.readmark eq 0}" var="delnote">					
-							<td class="readMark"><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">x</a></td>
+							<td class="readMark"><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}&menu_id=mypage">x</a></td>
 						</c:if>
 						<c:if test="${recNoteVo.readmark eq 1}" var="delnote">					
-							<td class="readMark"><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}">o</a></td>
+							<td class="readMark"><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}&menu_id=mypage">o</a></td>
 						</c:if>
 					</tr>
 					</c:if>
@@ -355,15 +378,15 @@
 				
 					<c:if test="${sendNoteVo.delnote eq 0}" var="delnote">
 					<tr class="sendList">
-						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.rnum}</a></td>
-						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.nickname}</a></td>
-						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.note_title}</a></td>
-						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">${sendNoteVo.note_regdate}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}&menu_id=mypage">${sendNoteVo.rnum}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}&menu_id=mypage">${sendNoteVo.nickname}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}&menu_id=mypage">${sendNoteVo.note_title}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}&menu_id=mypage">${sendNoteVo.note_regdate}</a></td>
 						<c:if test="${sendNoteVo.readmark eq 0}" var="delnote">	
-							<td class="readMark"><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">x</a></td>
+							<td class="readMark"><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}&menu_id=mypage">x</a></td>
 						</c:if>
 						<c:if test="${sendNoteVo.readmark eq 1}" var="delnote">	
-							<td class="readMark"><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}">o</a></td>
+							<td class="readMark"><a href="/mypage/myNoteView?note_idx=${sendNoteVo.note_idx}&menu_id=mypage">o</a></td>
 						</c:if>	
 					</tr>
 					</c:if>
@@ -380,7 +403,7 @@
      	<section id="sec3">
 	     	<div class="titleWrap">
 	     		<p class="title">내공 보답</p>
-	     		<p><a id="NoteSelect" href="/mypage/sendPointList?nowpage=1">전체보기</a></p>
+	     		<p><a id="NoteSelect" href="/mypage/sendPointList?nowpage=1&menu_id=mypage">전체보기</a></p>
 	     	</div>     
 			
 			<table id="sec2Cont">
@@ -402,14 +425,14 @@
 			</table>
 			
 			<div>
-				<button>삭제</button>
+				<button class="deleteButton">삭제</button>
 			</div>
      	</section>
      	
      	<section id="sec4">
 	     	<div class="titleWrap">
 	     		<p class="title">내가 쓴 글</p>
-	     		<p><a id="NoteSelect" href="/mypage/myBoardList?nowpage=1">전체보기</a></p>
+	     		<p><a id="NoteSelect" href="/mypage/myBoardList?nowpage=1&menu_id=mypage">전체보기</a></p>
 	     	</div>     
 			
 			<table id="sec2Cont">
@@ -435,7 +458,7 @@
 				        <c:when test="${ boardVo.lvl eq 0 }">
 				          <c:choose>
 				           <c:when test="${ boardVo.delboard eq 0 }">
-				             <a href="/Board/View?menu_id=${ map.menu_id }&submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}">
+				             <a href="/Board/View?menu_id=${ boardVo.menu_id }&submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}">
 				      		   <h2>${ boardVo.board_title }</h2>
 				      		  </a>
 				      		</c:when>
@@ -451,7 +474,7 @@
 				           
 				           <c:choose>
 				             <c:when test="${ boardVo.delboard eq 0 }">
-				               <a style="font-weight: bold;" href="/Board/View?menu_id=${ map.menu_id }&submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}">
+				               <a style="font-weight: bold;" href="/Board/View?menu_id=${ boardVo.menu_id }&submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}">
 				             	  [답글] ${ boardVo.board_title }
 				        	    </a>
 				        	  </c:when>
@@ -480,7 +503,7 @@
 			</table>
 			
 			<div>
-				<button>삭제</button>
+				<button class="deleteButton">삭제</button>
 			</div>
      	</section>
      	
@@ -524,5 +547,6 @@
    		</div>	
    	</div>
 </div>
+<%@include file="/WEB-INF/include/footer.jsp" %>
 </body>
 </html>

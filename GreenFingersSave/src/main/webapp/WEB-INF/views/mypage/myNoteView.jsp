@@ -151,9 +151,7 @@
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
-     <div id="title">
-     	<p>쪽지 상세보기</p>
-     </div>
+	 <%@include file="/WEB-INF/include/subBanner.jsp" %>
      <div id="aside">
      	내정보<br />
      	작성글<br />

@@ -260,7 +260,6 @@
    
    </insert>
    
-   
     <!-- 페이징된 리스트 가져오기 -->
 	<select id="MyBoardList"
 			resultType="com.green.board.vo.BoardVo">
@@ -282,13 +281,11 @@
 			B.NREF,
 			B.DELBOARD,
 			B.PARENT,
-			M.NICKNAME
+			M.NICKNAME,
+			S.MENU_ID
 		FROM
-			BOARD B
-		JOIN 
-			MEMBER M
-		ON 
-			B.USERCODE = M.USERCODE
+			MEMBER M LEFT JOIN BOARD B ON M.USERCODE = B.USERCODE 
+			LEFT JOIN SUBMENUS S ON B.SUBMENU_ID = S.SUBMENU_ID
 		WHERE     
           B.USERCODE = #{usercode}
 <!-- 		<if test="menu_id != null or menu_id !=''">
@@ -298,7 +295,6 @@
 	) T 
 	WHERE 
 		T.RNUM BETWEEN #{startnum} AND #{endnum}
-		
 	</select>
 	
 	<!-- 전체 자료수 조회 -->
