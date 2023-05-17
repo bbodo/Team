@@ -117,6 +117,46 @@
           n.NOTE_IDX = #{note_idx}
    </select>
    
+     <!-- 받은 쪽지 사람 nickname 작업1 -->
+    <select   id             = "GetToMySendUser"
+             resultType="hashmap">
+      SELECT    SEND_USERCODE
+      FROM	    NOTE 
+      WHERE 	RECEIVER_USERCODE IN #{usercode} 
+   </select>
+   
+    <!-- 받은 쪽지 사람 nickname 작업1 -->
+    <select   id             = "GetResSendUsercode"
+             resultType="hashmap">
+      SELECT    RECEIVER_USERCODE
+      FROM	    NOTE 
+      WHERE 	SEND_USERCODE IN    
+			       #{toMySendUser.send_usercode}
+   </select>
+   
+    <!-- 받은 쪽지 사람 nickname 작업2 -->
+    <select   id             = "LastResSendNickname"
+             resultType="com.green.myPage.vo.MyPageVo">
+      SELECT    n.RECEIVER_USERCODE, m.NICKNAME
+      FROM	    NOTE n JOIN MEMBER m ON n.RECEIVER_USERCODE = m.USERCODE
+      WHERE 	n.RECEIVER_USERCODE IN    
+	          <foreach item="item" index="index" collection="list">
+			       #{receiver_usercode}
+			  </foreach>		 
+   </select>
+   
+   <!-- 받은 쪽지 사람 nickname 작업2 -->
+   <!--  <select   id             = "GetNoteView"
+             resultType="com.green.myPage.vo.MyPageVo">
+      SELECT
+          n.NOTE_IDX, n.NOTE_TITLE, n.NOTE_CONT, n.NOTE_REGDATE, n.SEND_USERCODE
+	  	, n.RECEIVER_USERCODE, n.READMARK, n.DELNOTE, m.NICKNAME
+       FROM	    NOTE n JOIN MEMBER m ON n.RECEIVER_USERCODE = m.USERCODE
+       WHERE     
+          n.SEND_USERCODE = #{send_usercode}
+   </select> -->
+    
+   
    	<!-- 쪽지 삭제  -->
    <update  id="NoteDelete">
    	  UPDATE   NOTE
@@ -126,12 +166,18 @@
    
    	<!-- 쪽지 답장  형식-->
    
-   <!-- 내공주기  -->
+   <!-- 상대방 내공 주기  -->
    <update  id="UpdatePoint">
    	  UPDATE   MEMBER
       SET      POINT 		=   POINT + #{point},
       		   GRADEPOINT   =   GRADEPOINT + #{point}
       WHERE    NICKNAME  	=   #{nickname}
+   </update>
+   <!-- 내 내공 감소 -->
+   <update  id="myUpdatePoint">
+   	  UPDATE   MEMBER
+      SET      POINT 		=   POINT - #{point}
+      WHERE    USERCODE  	=   #{usercode}
    </update>
    
    <!-- 내공 페이징 list  -->

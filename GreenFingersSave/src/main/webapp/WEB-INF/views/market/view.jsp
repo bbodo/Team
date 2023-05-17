@@ -436,14 +436,12 @@ writeBtnEl.addEventListener("click", function(e) {
 			</tr>
 			<tr style="border-bottom: 1px solid #228B22;">
 			   <td class="padd8">수량</td>
-			   <td>
-			     <select name="amount">
-					<option value="">최대 3개 제한</option>
-			     </select>
+			   <td colspan="5">
+			      최대 3개 제한
 			     <a href="/Market/PointPayForm?menu_id=${ map.menu_id }&submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}&userid=${sessionScope.login.userid}">
 			     <button>구매</button>
 			     </a>
-			   </td>
+			   </td>  
 			</tr>
 			</c:when>
 			<c:otherwise>
@@ -458,6 +456,7 @@ writeBtnEl.addEventListener("click", function(e) {
 					<img id="imgsize"  src="/upload/${ file.sfilename }">
 				 </div>
 				</c:forEach>
+				<br>
 				${ vo.board_cont }
 				</td>
 			</tr>
