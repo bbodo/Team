@@ -251,16 +251,18 @@
    		function modalOff() { modal.style.display = "none" }
    		
    		const closeBtn = modal.querySelector(".close-area")
-   		closeBtn.addEventListener("click", e => { modalOff() });
+   		closeBtn.addEventListener("click",function(e) {
+   			modalOff();
+   		});
    		
-   		modal.addEventListener("click", e => {
+   		modal.addEventListener("click", function(e) {
    		    const evTarget = e.target
    		    if(evTarget.classList.contains("modal-overlay")) {
    		        modalOff();
    		    }
    		});
    		
-   		window.addEventListener("keyup", e => {
+   		window.addEventListener("keyup", function(e) {
    		    if(isModalOn() && e.key === "Escape") {
    		        modalOff();
    		    }
@@ -321,8 +323,12 @@
 						} else {
 							alert('검색어를 다시 입력하세요');
 							$('#search').val('');
-							$('.h').each( (index,e) => e.remove());
-							$('.box').each( (index,e) => e.remove());
+							/* $('.h').each( function(index,e) {
+								$(e).remove();
+							});
+							$('.box').each( function(index,e) {
+								$(e).remove();
+							}); */
 						}
 					},
 					error : function(xhr) {
