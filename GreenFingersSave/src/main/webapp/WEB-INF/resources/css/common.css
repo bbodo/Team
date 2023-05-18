@@ -575,6 +575,7 @@ footer #footerLogo img{width:70px;}
 	    height: 60px;
 		text-decoration:none;
 		border: none;
+		height: 70px;
 	}
 	.regbtn:hover {
 		background-color:#5cbf2a;
@@ -587,4 +588,8 @@ footer #footerLogo img{width:70px;}
 		width: 20px;
 		height: 20px;
 		margin-right: 5px;
+	}
+	.jc {
+		display: flex;
+    	justify-content: end;
 	}

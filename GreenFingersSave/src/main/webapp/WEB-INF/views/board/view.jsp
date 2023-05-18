@@ -129,6 +129,7 @@
 	    width: 73px;
 	    border: none;
 	    display: inline-block;
+	    height: auto;
 	}
 	.smbtn:hover {
 		background-color:#5cbf2a;
@@ -141,6 +142,7 @@
 		padding: 3px;
 		resize: none;
 		width: 100%;
+		height: 100px;
 	}
 	.regdate {
 		font-size: 12px;
@@ -156,11 +158,6 @@
     #imgsize {max-width: 100%;
 	  height: auto;
 	  display: block;
-	}
-	.cp {
-		width: 20px;
-		height: 20px;
-		margin-right: 5px;
 	}
 
 </style>
@@ -201,9 +198,8 @@
 		}
 		
 		function comment_back(coment_idx, coment_cont) {
-			let html  = '';
-				html += '<div>';
-				html += '<div class="floatleft contSpace" id="commentCont_'+ coment_idx +'" onclick="c(' + coment_idx + ')">'+ coment_cont +'</div>';
+			let	html  = '<div>';
+				html += '<div class="contSpace" id="commentCont_'+ coment_idx +'" onclick="c(' + coment_idx + ')">'+ coment_cont +'</div>';
 				html += '</div>';
 				
 			$('#comment_li_'+ coment_idx +' .smbtn').css('display', 'inline-block');
@@ -280,7 +276,7 @@
 						html += '<div class="nameSpace" style="display: flex"><span><h2>'+ comm.nickname +'</h2></span><span class="regdate">'+ comm.coment_regdate +'</span></div>';
 						html += `<div class="contSpace" id="commentCont_\${comm.coment_idx}" onclick="c(\${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})">\${comm.coment_cont}</div>`;
 						if(comm.usercode == usercode) {
-							html += '<div class="floatright"><input class="smbtn" type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
+							html += '<div class="jc"><input class="smbtn" type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
 							html += '<input class="smbtn" type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div>';
 						}						
 					} else {
@@ -304,7 +300,7 @@
 						}	
 					} else {
 						html += `<li id="comment_li_\${comm.coment_idx}" style="padding-left:\${comm.com_lvl*20}px">`;
-						html += `<div class="nameSpace" style="display: flex"><span><h2>\${comm.nickname}</h2></span><span class="regdate">\${comm.coment_regdate}</span></div>`;
+						html += `<div class=":nameSpace" style="display: flex"><span><h2>\${comm.nickname}</h2></span><span class="regdate">\${comm.coment_regdate}</span></div>`;
 						html += `<div class="contSpace"><s>삭제된 댓글입니다.</s></div>`;
 					}
 				}

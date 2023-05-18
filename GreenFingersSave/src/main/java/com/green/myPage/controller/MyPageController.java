@@ -243,7 +243,7 @@ public class MyPageController {
 		System.out.println("map흠" + map);
 		ModelAndView  mv  = new ModelAndView();
 		mv.addObject("map", map);
-		mv.setViewName("redirect:/mypage/myList?nowpage=1");
+		mv.setViewName("redirect:/mypage/myList?menu_id=mypage&nowpage=1");
 		return mv;
 	}
 	

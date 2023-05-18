@@ -102,6 +102,13 @@ $(document).ready(function() {
 	      }
 	    })
 	  })
+	  $('#passwd').keyup(function(e) {
+			if(e.key == 'Enter') {
+				$('.regbtn').click();
+			} else {
+				
+			}
+		})
 	});
 
 
