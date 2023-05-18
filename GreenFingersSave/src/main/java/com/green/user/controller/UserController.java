@@ -37,6 +37,11 @@ public class UserController {
 	public ModelAndView login(HttpServletRequest request) {
 		
 		String uri = request.getHeader("Referer");
+		
+		if (uri == null) {
+			uri = "/";
+		};
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/user/login");
 		mv.addObject("uri", uri);
