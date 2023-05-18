@@ -53,6 +53,9 @@
 	.right {
 		text-align: right;
 	}
+	a:hover {
+	color: coral;
+}
 	.as {
 		position: relative;
 	}
