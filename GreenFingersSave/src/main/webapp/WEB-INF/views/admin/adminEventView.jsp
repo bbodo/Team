@@ -267,7 +267,7 @@
 						}
 						html += '<div class="nameSpace" style="display: flex"><span><h2>'+ comm.nickname +'</h2></span><span class="regdate">'+ comm.coment_regdate +'</span></div>';
 						html += `<div class="contSpace" id="commentCont_\${comm.coment_idx}" onclick="c(\${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})">\${comm.coment_cont}</div>`;
-						if(comm.usercode == usercode) {
+						if(comm.usercode >= 0 && comm.usercode <= 9999 ) {
 							html += '<div class="jc"><input class="smbtn" type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
 							html += '<input class="smbtn" type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div>';
 						}						
@@ -286,7 +286,7 @@
 						}
 						html += `<div class="nameSpace" style="display: flex"><span><h2>\${comm.nickname}</h2></span><span class="regdate">\${comm.coment_regdate}</span></div>`;
 						html += `<div class="contSpace" id="commentCont_\${ comm.coment_idx }" onclick="c( \${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})">\${comm.coment_cont}</div>`;
-						if(comm.usercode == usercode) {
+						if(comm.usercode >= 0 && comm.usercode <= 9999) {
 							html += '<div class="floatright btns"><input class="smbtn" type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
 							html += '<input class="smbtn" type="button" onclick="delete_comment(' + comm.coment_idx + ')" value="삭제" /></div>';
 						}	
