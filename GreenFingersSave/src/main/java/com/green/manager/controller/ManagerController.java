@@ -955,6 +955,64 @@ public class ManagerController {
 		return mv;
 	}
     
+  //view
+  		@RequestMapping("SeminarView")
+  		public ModelAndView SeminarView( @RequestParam HashMap<String, Object> map,
+  				HttpServletRequest reques,HttpSession session) {
+  			
+  			ManagerVo ManagerVo = (ManagerVo) session.getAttribute("managerlogin");
+  			if(ManagerVo != null) {
+  				Object Managercode = ManagerVo.getManagercode();
+  				Object manager_pw = ManagerVo.getManager_pw();
+  				map.put("managercode", Managercode);
+  				map.put("manager_pw", manager_pw);
+  			}
+  			
+  			// 메뉴이름
+  			String  submenu_id   =  (String) map.get("submenu_id");
+  			String  submenu_name = menuService.getMenuName(submenu_id);
+  			map.put("submenu_name", submenu_name);
+  			map.put("submenu_id", submenu_id);
+  			
+  			// 보여줄 게시글 내용
+  			AdminEventVo eventVo = managerService.getEventBoard(map);
+  			
+  			//게시글 주소 분리 작업
+  			String boardAddress_cont = eventVo.getBoard_cont();
+  			int addressStart = boardAddress_cont.lastIndexOf("주소:");
+  			/* System.out.println(addressStart + "addressStart"); */
+  			//내용 저장
+  			String board_cont = boardAddress_cont.substring(0 , addressStart -1);
+  			map.put("board_cont", board_cont);
+  			/* System.out.println(board_cont + "board_cont"); */
+  			//주소 저장
+  			String address = boardAddress_cont.substring(addressStart + 3);
+  			map.put("address", address);
+  			/* System.out.println(map.toString() + "map"); */
+  			
+  			String content = eventVo.getBoard_cont();
+  			if(content == null) {
+  				eventVo.setBoard_cont("------------------------------내용이 없습니다------------------------------");
+  			} else {
+  				String cont = content.replace("\n", "<br>");
+  				eventVo.setBoard_cont(cont);
+  			}
+  			
+  			List<FileVo> fileList = managerService.getFileList(map);
+  			
+  			List<MenuVo> menuList = menuService.getMenuList();
+  			List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+  			
+  			ModelAndView mv = new ModelAndView();
+  			mv.setViewName("admin/seminarView");
+  			mv.addObject("menuList", menuList);
+  			mv.addObject("submenuList", submenuList);
+  			mv.addObject("map", map);
+  			mv.addObject("fileList", fileList);
+  			mv.addObject("vo", eventVo);
+  			return mv;
+  		}
+    
     // 행사 수정 원 글 들고오기
  	@RequestMapping("/SeminarUpdateForm")
      public ModelAndView SeminarUpdateForm(

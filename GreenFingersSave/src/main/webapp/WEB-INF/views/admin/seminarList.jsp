@@ -31,6 +31,7 @@
      		<li><a href="/Manager/subMenu?menu_id=subMenu"> - 하위 메뉴</a><br /></li>
      		<li><a href="/Manager/EventList?menu_id=Event&nowpage=1">이벤트 관리</a><br /></li>
      		<li><a href="/Manager/WinnerList?menu_id=Winner&nowpage=1">당첨자 관리</a><br /></li>
+     		<li><a href="/Manager/SeminarList?menu_id=Festival&submenu_id=SUBMENU21&nowpage=1">행사 관리</a></li>
      		<li><a href="/Manager/Store">상품 등록</a><br /></li>
        </ul>
      </div> 
@@ -62,7 +63,7 @@
          <c:when test="${ boardVo.lvl eq 0 }">
            <c:choose>
             <c:when test="${ boardVo.delboard eq 0 }">
-              <a href="/Event/SeminarView?menu_id=${ map.menu_id }&submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}">
+              <a href="/Manager/SeminarView?menu_id=${ map.menu_id }&submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}">
        		   <h2>${ boardVo.board_title }</h2>
        		  </a>
        		</c:when>

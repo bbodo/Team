@@ -349,8 +349,9 @@
       <div id="aside">
        <ul id="sidemenu">
        <li class="sidemenuTitle">SIDEMENU</li>
-     	     <li><a href="/Event/EventList?menu_id=${ map.menu_id }&submenu_id=SUBMENU18&nowpage=1" >이벤트</a><br></li>  	     	  
-     	     <li><a href="/Winner/WinnerList?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1">이벤트 당첨자</a></li>   		
+     	   <li><a href="/Event/EventList?menu_id=${ map.menu_id }&submenu_id=SUBMENU18&nowpage=1" >이벤트</a></li>
+			<li> <a href="/Winner/WinnerList?menu_id=${ map.menu_id }&submenu_id=SUBMENU19&nowpage=1">이벤트 당첨자</a></li>
+			<li> <a href="/Event/SeminarList?menu_id=MENU04&submenu_id=SUBMENU21&nowpage=1">행사</a></li>	
      	</ul>
      </div>
 

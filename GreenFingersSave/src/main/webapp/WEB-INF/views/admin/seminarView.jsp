@@ -172,18 +172,21 @@ tr td span {
 
 </head>
 <body>
-	 <%@include file="/WEB-INF/include/header.jsp" %>
-	 <%@include file="/WEB-INF/include/subBanner.jsp" %>
-     
-     <div id="wrapper">
-		<div id="aside">
-			<ul id="sidemenu">
-				<li class="sidemenuTitle">SIDEMENU</li>
-				<li><a href="/Event/EventList?menu_id=${ map.menu_id }&submenu_id=SUBMENU18&nowpage=1" >이벤트</a></li>
-			<li> <a href="/Winner/WinnerList?menu_id=${ map.menu_id }&submenu_id=SUBMENU19&nowpage=1">이벤트 당첨자</a></li>
-			<li> <a href="/Event/SeminarList?menu_id=MENU04&submenu_id=SUBMENU21&nowpage=1">행사</a></li>
-			</ul>
-		</div>
+	<%@include file="/WEB-INF/include/adminHeader.jsp" %>
+	<%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
+	<div id="wrapper"> 
+	 <div id="aside">
+       <ul id="sidemenu">
+       <li class="sidemenuTitle">SIDEMENU</li>
+			<li><a href="/Manager/Member?menu_id=Member">회원 관리</a><br /></li>
+       		<li><a href="/Manager/Menu?menu_id=Menu">메뉴 관리</a> <br /></li>
+     		<li><a href="/Manager/subMenu?menu_id=subMenu"> - 하위 메뉴</a><br /></li>
+     		<li><a href="/Manager/EventList?menu_id=Event&nowpage=1">이벤트 관리</a><br /></li>
+     		<li><a href="/Manager/WinnerList?menu_id=Winner&nowpage=1">당첨자 관리</a><br /></li>
+     		<li><a href="/Manager/SeminarList?menu_id=Festival&submenu_id=SUBMENU21&nowpage=1">행사 관리</a></li>
+     		<li><a href="/Manager/Store">상품 등록</a><br /></li>
+       </ul>
+     </div> 
 
 		<div id="main">
 			<form action="/Manager/SeminarWriteSave?submenu_id=SUBMENU21&nowpage=1" method="POST" enctype="multipart/form-data" >

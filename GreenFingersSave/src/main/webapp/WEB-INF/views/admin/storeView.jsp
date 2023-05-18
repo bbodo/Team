@@ -162,7 +162,9 @@
      		<li><a href="/Manager/Member">회원 관리</a><br /></li>
        		<li><a href="/Manager/Menu">메뉴 관리</a> <br /></li>
      		<li><a href="/Manager/subMenu"> - 하위 메뉴</a><br /></li>
-     		<li><a href="">이벤트 등록</a><br /></li>
+     		<li><a href="/Manager/EventList?menu_id=Event&nowpage=1">이벤트 관리</a><br /></li>
+     		<li><a href="/Manager/WinnerList?menu_id=Winner&nowpage=1">당첨자관리</a><br /></li>
+     		<li><a href="/Manager/SeminarList?menu_id=Festival&submenu_id=SUBMENU21&nowpage=1">행사 관리</a></li>
      		<li><a href="/Manager/Store">상품 등록</a><br /></li>
       </ul>
      </div>
