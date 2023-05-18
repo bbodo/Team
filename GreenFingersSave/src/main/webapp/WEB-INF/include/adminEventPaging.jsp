@@ -17,25 +17,25 @@
      
      <!-- 처음/ 이전 -->     
      <c:if test="${ startnum gt 1 }">
-       <a href="/Manager/EventList?submenu_id=${ menu_id }&nowpage=1">처음</a>
-       <a href="/Manager/EventList?submenu_id=${ menu_id }&nowpage=${ startnum - 1 }">
+       <a href="/Manager/EventList?menu_id=Event&submenu_id=SUBMENU18&nowpage=1">처음</a>
+       <a href="/Manager/EventList?menu_id=Event&submenu_id=SUBMENU18&nowpage=${ startnum - 1 }">
        [이전]
        </a>
      </c:if>
      
      <!-- 1 2 3 4 5 6 [7] 8 9 10  -->
      <c:forEach  var="pagenum"  begin="${startnum}"  end="${endnum}"  step="1">
-        <a href="/Manager/EventList?submenu_id=${ menu_id }&nowpage=${ pagenum }">
+        <a href="/Manager/EventList?menu_id=Event&submenu_id=SUBMENU18&nowpage=${ pagenum }">
         ${ pagenum }
         </a>&nbsp;&nbsp;     
      </c:forEach>    
      
      <!-- 다음 / 마지막 -->
      <c:if test="${ totalpagecount ne endnum }">
-       <a href="/Manager/EventList?submenu_id=${ menu_id }&nowpage=${ endnum + 1 }">
+       <a href="/Manager/EventList?menu_id=Event&submenu_id=SUBMENU18&nowpage=${ endnum + 1 }">
        [다음]
        </a>
-       <a href="/Manager/EventList?submenu_id=${ menu_id }&nowpage=${ totalpagecount }">마지막</a>
+       <a href="/Manager/EventList?menu_id=Event&submenu_id=SUBMENU18&nowpage=${ totalpagecount }">마지막</a>
      </c:if>    
       </td>
      </tr>    
