@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.green.board.vo.BoardVo;
 import com.green.myPage.vo.MyPageVo;
+import com.green.user.vo.UserVo;
 
 public interface MyPageDao {
 	
@@ -44,9 +45,14 @@ public interface MyPageDao {
 	void getMyBoardCount(HashMap<String, Object> map);
 
 	List<MyPageVo> getresSendUsercode(HashMap<String, Object> map);
+	
+	// 프로필유저닉네임가져오기
+	UserVo getUserid(HashMap<String, Object> map);
 
 	// 실파일명 가져오기
 	String getSfilename(HashMap<String, Object> map);
+
+	void deletesfilename(HashMap<String, Object> map);
 
 
 }

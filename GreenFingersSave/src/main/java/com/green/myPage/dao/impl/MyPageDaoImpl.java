@@ -11,6 +11,7 @@ import com.green.board.vo.BoardVo;
 import com.green.myPage.dao.MyPageDao;
 import com.green.myPage.vo.FilesVo;
 import com.green.myPage.vo.MyPageVo;
+import com.green.user.vo.UserVo;
 
 @Repository("MyPageDao")
 public class MyPageDaoImpl implements MyPageDao {
@@ -175,6 +176,13 @@ public class MyPageDaoImpl implements MyPageDao {
 		
 		return toMySendUser;
 	}
+	
+	// 프로필유저닉네임가져오기
+	@Override
+	public UserVo getUserid(HashMap<String, Object> map) {
+		UserVo userVo = sqlSession.selectOne("MyPage.GetUserid", map );
+		return userVo;
+	}
 
 	// 실파일명 가져오기
 	@Override
@@ -183,6 +191,11 @@ public class MyPageDaoImpl implements MyPageDao {
 		return sfilename;
 	}
 
-	
+	@Override
+	public void deletesfilename(HashMap<String, Object> map) {
+		System.out.println("마지막" + map);
+		sqlSession.delete("MyPage.Deletesfilename", map);
+		
+	}
 
 }

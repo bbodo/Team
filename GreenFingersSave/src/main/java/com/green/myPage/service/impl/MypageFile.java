@@ -28,8 +28,7 @@ public class MypageFile {
 			dir.mkdir();    // make directory   
 		}
 		
-		// 넘어온 파일 저장( d:\\upload\\ ) 처리 -  중복파일 처리
-		CheckFileName   checkFile = new CheckFileName();
+		String userid = (String) map.get("userid");
 		
 		// 파일 저장
 		MultipartHttpServletRequest  multipartHttpServletRequest
@@ -43,9 +42,7 @@ public class MypageFile {
 		List<FilesVo>  fileList      = new ArrayList<>();
 		
 		String         fileName      = null;
-		String         orgFileName   = null;
 		String         fileExt       = null;
-		String         sFileName     = null;
 		
 		// 넘어온 파일을 한개씩 반복 처리한다
 		while( iterator.hasNext() ) {
@@ -53,21 +50,22 @@ public class MypageFile {
 			
 			if( !multipartFile.isEmpty() ) {
 				fileName     =  multipartFile.getOriginalFilename(); // 손.흥민.jpg
-				orgFileName  =  fileName.substring(0, fileName.lastIndexOf('.'));   // 손.흥민  
 				fileExt      =  fileName.substring( fileName.lastIndexOf('.') );   // .jpg  
 				
-				// 손.흥민.jpg 있으면   손.흥민1.jpg 리턴
-				// 중복파일이 존재하면  파일명을 변경하여 리턴
-				sFileName    =  checkFile.getCheckFileName(
-					filePath, orgFileName, fileExt	);   
+			
+				String path = "d:\\uploadProfile\\";
+				String sfile = userid;
+				File   file  = new File(path + sfile);
+				if(file.exists())
+					file.delete();
 				
-				FilesVo  vo   = new FilesVo(0, 0, fileName, fileExt, sFileName);
+				FilesVo  vo   = new FilesVo(0, 0, fileName, fileExt, userid);
 				fileList.add( vo );
 				
 				//  파일 저장
-				File     file = new File( filePath + sFileName ); 
+				File     filesave = new File( filePath + userid); 
 				try {
-					multipartFile.transferTo( file );     // 실제 파일 저장
+					multipartFile.transferTo( filesave );     // 실제 파일 저장
 				} catch (IllegalStateException | IOException e) {
 					e.printStackTrace();
 				}  
@@ -77,19 +75,6 @@ public class MypageFile {
 		}  //hwile end
 		
 		map.put("fileList", fileList );
-		
-	}
-
-	public static void delete(List<FilesVo> fileList) {
-		
-		String path = "d:\\upload\\";
-		
-		fileList.forEach( ( f ) -> {
-			String sfile = f.getSfilename();
-			File   file  = new File(path + sfile);
-			if(file.exists())
-				file.delete();
-		});
 		
 	}
 

@@ -13,6 +13,7 @@ import com.green.board.vo.BoardVo;
 import com.green.myPage.dao.MyPageDao;
 import com.green.myPage.service.MyPageService;
 import com.green.myPage.vo.MyPageVo;
+import com.green.user.vo.UserVo;
 
 @Service("MyPageService")
 public class MyPageServiceImpl implements MyPageService {
@@ -147,8 +148,13 @@ public class MyPageServiceImpl implements MyPageService {
 
 	@Override
 	public void updateProfile(HashMap<String, Object> map, HttpServletRequest request) {
+		UserVo userVo = myPageDao.getUserid(map);
+		map.put("userid", userVo.getUserid());
+		System.out.println("나와라~~" + map);
 		MypageFile.save(map, request);
-		System.out.println("zizi" + map);
+		System.out.println("나와라~~제발" + map);
+		
+		myPageDao.deletesfilename(map);
 		myPageDao.setSave(map);
 	}
 
