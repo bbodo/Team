@@ -47,13 +47,14 @@ public class BoardDaoImpl implements BoardDao {
 	// 게시글 작성
 	@Override
 	public void setWrite(HashMap<String, Object> map) {
-
+		
+		System.out.println("asdf" + map);
+		
 		// db 정보 저장
 		// Board  에 저장
 		int  bnum = Integer.parseInt( (String) map.get("bnum") );
 		if ( bnum == 0 ) {
 			sqlSession.insert("Board.BoardInsert", map); // 새글
-			 
 			sqlSession.update("Board.GetPoint", map); // 포인트 증가
 		} else {
 			sqlSession.update("Board.StepUpdate", map); // 새글			
