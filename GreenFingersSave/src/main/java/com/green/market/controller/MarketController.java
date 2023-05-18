@@ -303,9 +303,10 @@ public class MarketController {
  		
     int     board_idx   =  Integer.parseInt( String.valueOf(map.get("board_idx")) );  
 	String  submenu_id  =  (String) map.get( "submenu_id" );
+	String  menu_id     =  (String) map.get("menu_id");
 	String  nowpage     =  String.valueOf(map.get("nowpage"));
-	String  fmt      	=  "redirect:/Market/View?board_idx=%d&submenu_id=%s&nowpage=%s";
-	String  loc      	=  String.format(fmt, board_idx, submenu_id, nowpage);
+	String  fmt      	=  "redirect:/Market/View?menu_id=%s&board_idx=%d&submenu_id=%s&nowpage=%s";
+	String  loc      	=  String.format(fmt, menu_id, board_idx, submenu_id, nowpage);
 	
 	ModelAndView mv = new ModelAndView();
 	mv.setViewName(loc);
