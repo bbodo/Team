@@ -148,6 +148,7 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public void updateProfile(HashMap<String, Object> map, HttpServletRequest request) {
 		MypageFile.save(map, request);
+		System.out.println("zizi" + map);
 		myPageDao.setSave(map);
 	}
 
@@ -184,6 +185,13 @@ public class MyPageServiceImpl implements MyPageService {
 		// 필요한 자료를 조회( 10개 rows 만)
 		List<MyPageVo>  getresSendUsercode = myPageDao.getresSendUsercode( map);
 		return getresSendUsercode;
+	}
+	
+	// 실파일명 가져오기
+	@Override
+	public String getSfilename(HashMap<String, Object> map) {
+		String sfilename =  myPageDao.getSfilename( map );
+		return sfilename;
 	}
 
 

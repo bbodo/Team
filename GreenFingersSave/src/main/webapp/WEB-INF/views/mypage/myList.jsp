@@ -226,11 +226,21 @@
      	
      	<section id="sec1">
      		<div id="con1">
+     		<c:choose>
+     			<c:when test="${sfilename ne null}">
+     			<div><img src="/uploadProfile/${sfilename}" alt="myimg"/></div>
+     			
+     			</c:when>
+     			<c:otherwise>
      			<div><img src="/img/common/profile.png" alt="myimg"/></div>
+     			
+     			</c:otherwise>
+     		
+     		</c:choose>
      			<div><p>${userVo.userid} 님</p></div>
      			<div><p>등급 :</p> <p id="myGradeInfo"></p><p>닉네임 :</p> <p>${userVo.nickname} </p></div>
      			<button id="proFileBtn" onclick="profile()">프로필 변경</button>
-     			<form action="/mypage/myProfile?nowpage=1" method="POST" enctype="Multipart/form-data" >
+     			<form action="/mypage/myProfile" method="POST" enctype="Multipart/form-data" >
 	     			 <input style="display:none;" type="file" name="upfile" id="upfile" value="프로필변경"/>
      				 <input style="display:none;" type="submit"  id="btnAddFile" value="변경확인" />
      			</form>

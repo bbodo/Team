@@ -206,11 +206,15 @@ public class MyPageController {
 		List<MenuVo> menuList = menuService.getMenuList();
 		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
 		
+		String sfilename =  myPageService.getSfilename( map );
+		System.out.println("흠냐흠냐" + sfilename);
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mypage/myList");
 		mv.addObject("userVo", userVo);
 		mv.addObject("menuList", menuList);
 		mv.addObject("submenuList", submenuList);
+		mv.addObject("sfilename", sfilename);
 		//쪽지 관련
 		mv.addObject("sendPagePaingList", sendPagePaingList);
 		mv.addObject("recPagePaingList", recPagePaingList);
@@ -236,7 +240,7 @@ public class MyPageController {
 		
 		//파일저장
 		myPageService.updateProfile(map, request);
-		
+		System.out.println("map흠" + map);
 		ModelAndView  mv  = new ModelAndView();
 		mv.addObject("map", map);
 		mv.setViewName("redirect:/mypage/myList?nowpage=1");

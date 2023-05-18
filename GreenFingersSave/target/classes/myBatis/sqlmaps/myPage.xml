@@ -71,6 +71,19 @@
 
    </select>
    
+   <!-- 실파일명 조회 -->
+   <select   id             = "GetSfilename"
+            
+             resultType     = "String">
+      SELECT
+        SFILENAME
+       FROM   
+         USER_FILES
+       WHERE     
+          USERCODE = #{usercode}
+
+   </select>
+   
    <!-- 쪽지 페이징 list  -->
    <select  id="GetMyPageList"
             resultType="com.green.myPage.vo.MyPageVo">
@@ -244,19 +257,22 @@
 	
 	 <!-- 파일 저장 -->
     <insert  id="UpdateProfile">
-      <foreach collection="fileList" item="file"
+    
+          <foreach collection="fileList" item="file"
            index      = "i"  
            open       = "INSERT ALL"    
            close      = "SELECT * FROM DUAL"
            separator  = " " >
-           INTO  BOARD_FILES  VALUES (
+           INTO  USER_FILES  VALUES (
                 GET_FILENUM()
-              , ( SELECT MAX(BOARD_IDX) FROM BOARD  )
+              ,#{ usercode }
               , #{ file.filename   }
               , #{ file.fileext    }
               , #{ file.sfilename  }
            )
       </foreach>
+   		
+	
    
    </insert>
    

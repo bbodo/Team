@@ -111,11 +111,11 @@
 	
 	/* 페이징 및 가져온 데이터 화면에 뿌리기 */
 	function data_display(data) {
-		const btnOkEl  = document.querySelector('#btnOk');
-		const pagingEl = document.getElementById('paging');
+		const btnOkEl   = document.querySelector('#btnOk');
+		const pagingEl  = document.getElementById('paging');
 		const paging1El = document.getElementById('paging1');
-		let   keyword  = $('#search').val();
-		let   phtml    = '';
+		let   keyword   = $('#search').val();
+		let   phtml     = '';
 		let   phtml1    = '';
 		
 		let body           = data.response.body;

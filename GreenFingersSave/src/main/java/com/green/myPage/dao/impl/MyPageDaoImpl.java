@@ -176,6 +176,13 @@ public class MyPageDaoImpl implements MyPageDao {
 		return toMySendUser;
 	}
 
+	// 실파일명 가져오기
+	@Override
+	public String getSfilename(HashMap<String, Object> map) {
+		String sfilename =  sqlSession.selectOne("MyPage.GetSfilename", map );
+		return sfilename;
+	}
+
 	
 
 }

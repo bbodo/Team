@@ -45,5 +45,8 @@ public interface MyPageDao {
 
 	List<MyPageVo> getresSendUsercode(HashMap<String, Object> map);
 
+	// 실파일명 가져오기
+	String getSfilename(HashMap<String, Object> map);
+
 
 }
