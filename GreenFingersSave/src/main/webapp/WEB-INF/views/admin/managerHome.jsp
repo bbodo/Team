@@ -56,7 +56,7 @@
 		</tr>
 		<tr>
 			<td>
-				<a href="/Manager/SeminarList?menu_id=Festival&submenu_id=SUBMENU21&nowpage=1"" class="button">행사 관리</a>
+				<a href="/Manager/SeminarList?menu_id=Festival&submenu_id=SUBMENU21&nowpage=1" class="button">행사 관리</a>
 				<a href="/Manager/Store?menu_id=Store" class="button">상품 등록</a>
 			</td>
 		</tr>

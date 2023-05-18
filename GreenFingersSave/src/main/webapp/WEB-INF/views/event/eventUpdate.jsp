@@ -116,8 +116,7 @@
      <div id="main">
 	     <div><a id="board_title" href="/Event/EventList?submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 게시판</a></div>
      	
-	  <form action="/Event/Update" method="POST" 
-       enctype="multipart/form-data"   >
+	  <form action="/Event/Update" method="POST" enctype="multipart/form-data"   >
           
 	  <input type="hidden"  name="board_idx"  value="${ map.board_idx  }" />
 	  <input type="hidden"  name="submenu_id" value="${ map.submenu_id }" />

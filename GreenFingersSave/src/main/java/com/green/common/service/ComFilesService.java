@@ -25,21 +25,21 @@ public class ComFilesService {
 		String menu_id = (String) map.get("menu_id");
 		
 		String  filePath   =  "";
-		
+		System.out.println("dhjkfahlkfa" + menu_id);
 		switch (menu_id) {
-		  case "1":
+		  case "MENU01":
 			  filePath = "d:\\upload\\board1\\";
 		    break;
-		  case "2":
+		  case "MENU02":
 			  filePath = "d:\\upload\\board2\\";
 		    break;
-		  case "3":
+		  case "MENU03":
 			  filePath = "d:\\upload\\menu3\\";
 		    break;
-		  case "4":
+		  case "MENU04":
 			  filePath = "d:\\upload\\event\\";
 		    break;
-		  case "5":
+		  case "MENU05":
 			  filePath = "d:\\upload\\wiki\\";
 		    break;
 		  default:
