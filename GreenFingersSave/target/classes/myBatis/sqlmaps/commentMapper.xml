@@ -32,7 +32,7 @@
 	<select   id             = "ReadComment"
 	          resultType     = "com.green.comment.vo.CommentVo">
 		
-		SELECT
+			SELECT
 			C.COMENT_IDX,
 			C.COMENT_CONT,
 			C.COMENT_REGDATE,
@@ -44,7 +44,15 @@
 			C.COM_STEP,
 			C.COM_NREF,
 			C.COM_PARENT,
-			M.NICKNAME
+			M.NICKNAME,
+            (
+                SELECT 
+                    UF.SFILENAME
+                FROM
+                    USER_FILES UF
+                WHERE
+               		UF.USERCODE = C.USERCODE
+            ) SFILENAME
    		FROM
    			COMENT C
    		JOIN

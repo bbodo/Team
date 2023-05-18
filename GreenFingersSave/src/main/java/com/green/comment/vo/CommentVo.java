@@ -14,11 +14,13 @@ public class CommentVo {
 	private int com_nref;
 	private int com_parent;
 	private String nickname;
+	private String sfilename;
 	
 	// Constructor
 	public CommentVo() {}
 	public CommentVo(int coment_idx, String coment_cont, String coment_regdate, int board_idx, int usercode,
-			int delcoment, int com_bnum, int com_lvl, int com_step, int com_nref, int com_parent, String nickname) {
+			int delcoment, int com_bnum, int com_lvl, int com_step, int com_nref, int com_parent, String nickname,
+			String sfilename) {
 		super();
 		this.coment_idx = coment_idx;
 		this.coment_cont = coment_cont;
@@ -32,6 +34,7 @@ public class CommentVo {
 		this.com_nref = com_nref;
 		this.com_parent = com_parent;
 		this.nickname = nickname;
+		this.sfilename = sfilename;
 	}
 
 	// Getter / Setter
@@ -107,6 +110,12 @@ public class CommentVo {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
+	public String getSfilename() {
+		return sfilename;
+	}
+	public void setSfilename(String sfilename) {
+		this.sfilename = sfilename;
+	}
 
 	// toString
 	@Override
@@ -114,7 +123,7 @@ public class CommentVo {
 		return "CommentVo [coment_idx=" + coment_idx + ", coment_cont=" + coment_cont + ", coment_regdate="
 				+ coment_regdate + ", board_idx=" + board_idx + ", usercode=" + usercode + ", delcoment=" + delcoment
 				+ ", com_bnum=" + com_bnum + ", com_lvl=" + com_lvl + ", com_step=" + com_step + ", com_nref="
-				+ com_nref + ", com_parent=" + com_parent + ", nickname=" + nickname + "]";
+				+ com_nref + ", com_parent=" + com_parent + ", nickname=" + nickname + ", sfilename=" + sfilename + "]";
 	}
 	
 	

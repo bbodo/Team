@@ -41,6 +41,7 @@ public class CommentController {
 			) {
 		
 		List<CommentVo> commentList = commentService.setRead(map);
+		System.out.println(commentList);
 		
 		return commentList;
 	}

@@ -278,11 +278,15 @@ function c(coment_idx, board_idx, com_bnum, com_lvl, com_step, com_nref, com_par
 function comment_display(data) {
 	let html = '';
 	let usercode = $('#usercode').val();
-	console.log(usercode);
 	for (let comm of data) {
 		if(comm.com_lvl == 0) {
 			if(comm.delcoment == 0) {
 				html += '<li id="comment_li_' + comm.coment_idx +'">';
+				if( comm.sfilename == null ) {
+					html += '<div class="floatleft"><img class="cp" src="/img/common/profile.png" alt="myimg"/></div>';
+				} else {
+					html += '<div class="floatleft"><img class="cp" src="/uploadProfile/'+ comm.sfilename +'" alt="myimg"/></div>';
+				}
 				html += '<div class="nameSpace" style="display: flex"><span><h2>'+ comm.nickname +'</h2></span><span class="regdate">'+ comm.coment_regdate +'</span></div>';
 				html += `<div class="contSpace" id="commentCont_\${comm.coment_idx}" onclick="c(\${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})">\${comm.coment_cont}</div>`;
 				if(comm.usercode == usercode) {
@@ -296,7 +300,13 @@ function comment_display(data) {
 			}					
 		} else {
 			if(comm.delcoment == 0) {
-				html += `<li id="comment_li_\${comm.coment_idx}" style="padding-left:\${comm.com_lvl*20}px">`;						html += `<div class="nameSpace" style="display: flex"><span><h2>\${comm.nickname}</h2></span><span class="regdate">\${comm.coment_regdate}</span></div>`;
+				html += `<li id="comment_li_\${comm.coment_idx}" style="padding-left:\${comm.com_lvl*20}px">`;
+				if( comm.sfilename == null ) {
+					html += '<div class="floatleft"><img class="cp" src="/img/common/profile.png" alt="myimg"/></div>';
+				} else {
+					html += '<div class="floatleft"><img class="cp" src="/uploadProfile/'+ comm.sfilename +'" alt="myimg"/></div>';
+				}
+				html += `<div class="nameSpace" style="display: flex"><span><h2>\${comm.nickname}</h2></span><span class="regdate">\${comm.coment_regdate}</span></div>`;
 				html += `<div class="contSpace" id="commentCont_\${ comm.coment_idx }" onclick="c( \${comm.coment_idx}, \${comm.board_idx}, \${comm.com_bnum}, \${comm.com_lvl}, \${comm.com_step}, \${comm.com_nref}, \${comm.com_parent})">\${comm.coment_cont}</div>`;
 				if(comm.usercode == usercode) {
 					html += '<div class="floatright btns"><input class="smbtn" type="button" onclick="updateForm_comment('+ comm.coment_idx + ',\'' + comm.coment_cont + '\')" value="수정" />';
@@ -312,8 +322,8 @@ function comment_display(data) {
 	}
 	const commentListEl = document.getElementById("commentList");
 	commentListEl.innerHTML = html;
-	
 }
+
 window.onload = function() {
 
 $('#coment_cont').keyup(function(e) {

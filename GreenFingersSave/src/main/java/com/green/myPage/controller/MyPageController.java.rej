@@ -1,9 +1,0 @@
-diff a/GreenFingersSave/src/main/java/com/green/myPage/controller/MyPageController.java b/GreenFingersSave/src/main/java/com/green/myPage/controller/MyPageController.java	(rejected hunks)
-@@ -135,7 +135,6 @@
- 	
- 	@RequestMapping("/myList")
- 	public ModelAndView myNoteList (@RequestParam HashMap<String, Object> map,
--			HttpSession session,  HttpServletRequest request) {
- 			HttpSession session) {
- 		
- 		UserVo userVo = (UserVo) session.getAttribute("login");

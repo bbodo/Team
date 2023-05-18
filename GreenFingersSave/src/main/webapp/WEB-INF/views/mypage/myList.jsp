@@ -147,7 +147,7 @@
 		let btnAddFile = document.getElementById("btnAddFile");
 		let proFileBtn = document.getElementById("proFileBtn");
 		upfile.click();
-		btnAddFile.style.display = "block";
+		btnAddFile.style.display = "inline-block";
 		proFileBtn.style.display = "none";
 	}
 	

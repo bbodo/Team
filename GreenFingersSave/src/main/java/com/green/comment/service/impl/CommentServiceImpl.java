@@ -14,7 +14,7 @@ import com.green.comment.vo.CommentVo;
 public class CommentServiceImpl implements CommentService {
 
 	@Autowired
-	CommentDao commentDao;
+	private CommentDao commentDao;
 	
 	@Override
 	public void setWrite(HashMap<String, Object> map) {
