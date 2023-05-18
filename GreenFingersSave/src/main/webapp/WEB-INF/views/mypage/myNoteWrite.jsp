@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@include file="/WEB-INF/include/comHead.jsp" %>
+<link rel="stylesheet" href="/css/mypage.css" />
 <!-- <script type="text/javascript" src="/js/myNote.js"></script> -->
 <title>쪽지 쓰기</title>
 
@@ -24,20 +25,14 @@
 	#title p {
 		 line-height: 100px;
 	}
-	#aside {
-		float: left;
-		height: 800px;
-		background-color: white;
-		width: 15%;
-		padding: 10px;
-	}
+	#wrap {width:100%;}
 	#main {
-		width: 85%;
+		width: 1200px;
 		height: 800px;
-		float: left;
-		padding: 10px;
-		padding-right : 15%;
+		display: block;
+		padding :100px 0;
 		background-color: white;
+		margin: 0 auto;
 	}
 	#cont {
 		background-color: #fff;
@@ -101,12 +96,17 @@
 		height: 400px;
 		padding: 20px;
 	}
-
+	
+	/*버튼*/
+	#submitBtn {
+		margin:20px 0 0 20px;
+		display: block;
+	}
+	
 </style>
 
 <script>
 	window.onload = function() {
-		const  submitBtn = document.getElementById('submitBtn');
 		const  notetitle = document.getElementById('notetitle');
 		const  notecont = document.getElementById('notecont');
 		
@@ -129,28 +129,32 @@
 			notetitle.value = null;
 			notecont.value = null;
 		}; 		
-	}
+		}
+		
+		let usercode = "${userVo.usercode}";
+		let myNoteVoUsercode = "${myNoteVo.usercode}";
+		console.log(usercode);
+		console.log(myNoteVoUsercode);
+		if(usercode === myNoteVoUsercode ) {
+			document.getElementById('submitBtn').style.display = 'none';
+		}
 </script>
 
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
 	 <%@include file="/WEB-INF/include/subBanner.jsp" %>
-     <div id="aside">
-     	내정보<br />
-     	작성글<br />
-     	쪽지<br />
-     </div>
      
+     <div id="wrap">
      <div id="main">
-		<form action="/mypage/myNoteWrite?nowpage=1" method="POST">
+		<form action="/mypage/myNoteWrite?nowpage=1&menu_id=mypage" method="POST" id="submitBtnform">
 			<input type="hidden" name="receiver_usercode" value="${myNoteVo.usercode}" />
 			<input type="hidden" name="board_idx" value="${param.board_idx}" />
 
 			<table id="cont">
 				<tr>
 					<th>받는 사람</th>
-					<td><input name="nickname" type="text" value="${myNoteVo.nickname}" />${myNoteVo.nickname}</td>
+					<td><input name="nickname" type="text" value="${myNoteVo.nickname}" disabled/></td>
 				</tr>
 				<tr>
 					<th>제목</th>
@@ -158,16 +162,17 @@
 				</tr>
 				<tr>
 					<th>그린마켓</th>
-					<td><a href="">${myNoteVo.board_title}</a></td>
+					<td><a href="">${myNoteVo.board_title} disabled</a></td>
 				</tr>
 				<tr>
 					<th>내용</th>
 					<td><textarea id="notecont" name="notecont"></textarea></td>
 				</tr>
 			</table>
-			<input style="float: right;" id="submitBtn" type="submit" value="전송"/>
 		</form>
-		<button id="cencelBtn" style="float: left;">취소 버튼</button>
+			<input style="float: right;" id="submitBtn" type="submit" value="전송"  onclick="document.getElementById('submitBtnform').submit();"/>
+			<button id="cencelBtn" style="float: right;" class="deleteButton">취소 버튼</button>
+	</div>
 	</div>
 	
      <%@include file="/WEB-INF/include/footer.jsp" %>

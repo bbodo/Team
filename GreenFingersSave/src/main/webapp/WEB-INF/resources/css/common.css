@@ -34,7 +34,7 @@ a {text-decoration: none; color:#252525;}
     font-style: normal;
 }
 
-button {
+button, input[type="submit"] {
 	padding:6px 8px;
 	background-color: #d0e385;
 	cursor: pointer;
@@ -43,7 +43,7 @@ button {
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
-button:hover {
+button:hover, input[type="submit"]:hover {
 	background-color: #4da865;
 	color:#fff;
 }

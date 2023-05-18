@@ -24,16 +24,9 @@
 	#title p {
 		 line-height: 100px;
 	}
-	#aside {
-		float: left;
-		height: 800px;
-		background-color: white;
-		width: 15%;
-		padding: 10px;
-	}
 	#wrap {width:100%;}
 	#main {
-		width: 1560px;
+		width: 1200px;
 		height: 800px;
 		display: block;
 		padding :100px 0;

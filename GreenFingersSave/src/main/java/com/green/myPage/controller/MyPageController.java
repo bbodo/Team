@@ -32,18 +32,23 @@ public class MyPageController {
 	
 	//쪽지등록페이지
 	@RequestMapping("/myNoteWriteForm")
-	public ModelAndView myNoteWriteForm(@RequestParam HashMap<String, Object> map) {
+	public ModelAndView myNoteWriteForm(@RequestParam HashMap<String, Object> map, HttpSession session) {
 
 		//쪽지등록 전 필요한 값 들고오기
 		MyPageVo myNoteForm =  myPageService.getmyNoteForm(map);
 		List<MenuVo> menuList = menuService.getMenuList();
 		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
+		
+		UserVo userVo = (UserVo) session.getAttribute("login");
+		Object usercode = userVo.getUsercode();
+		map.put("sendusercode", usercode);
 
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("menuList", menuList);
 		mv.addObject("submenuList", submenuList);
 		mv.setViewName("mypage/myNoteWrite");
 		mv.addObject("myNoteVo", myNoteForm);
+		mv.addObject("userVo", userVo);
 		return mv;
 	}
 
@@ -86,6 +91,7 @@ public class MyPageController {
 		mv.addObject("submenuList", submenuList);
 		mv.addObject("myNoteInsertCheck", myNoteInsertCheck);
 		mv.addObject("myNoteVo", myNoteForm);
+		mv.addObject("userVo", userVo);
 		return mv;
 	}
 	
