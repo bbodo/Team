@@ -887,6 +887,9 @@ public class ManagerController {
   		String  submenu_id  =  (String) map.get("submenu_id");
   		int     nowpage  =  Integer.parseInt(String.valueOf(map.get("nowpage")));
   		String  menu_id = (String) map.get("menu_id");
+  		String  board_idx = (String) map.get("board_idx");
+  		
+  		System.out.println(map.toString());
   		
   		String  address = (String) map.get("address");
   		String  board_cont = (String) map.get("board_cont");
@@ -896,8 +899,9 @@ public class ManagerController {
   		//등록 
   		managerService.insertSeminarSave(map, request);
   		
-  		String fmt = "redirect:/Event/SeminarList?menu_id=%s&submenu_id=%s&nowpage=%d";
-  		String loc = String.format(fmt, menu_id, submenu_id, nowpage);
+  		String fmt = "redirect:/Manager/SeminarList?menu_id=Festival&submenu_id=SUBMENU21&nowpage=1";
+  		//String fmt = "redirect:/Event/SeminarList?menu_id=%s&submenu_id=%s&nowpage=%d";
+  		String loc = String.format(fmt, submenu_id, nowpage);
   		
   		ModelAndView mv = new ModelAndView();
   		mv.setViewName(loc);
@@ -1036,7 +1040,7 @@ public class ManagerController {
 		String address = boardAddress_cont.substring(addressStart + 3);
 		map.put("address", address);
 		/* System.out.println(map.toString() + "map"); */
-		System.out.println(map.toString() + "dddddddddddddddd");
+		
  		ModelAndView mv = new ModelAndView();
  		mv.setViewName("admin/seminarUpdate");
  		mv.addObject("map", map);

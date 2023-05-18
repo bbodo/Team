@@ -345,6 +345,7 @@ public class ManagerServiceImpl implements ManagerService {
 	public void insertSeminarSave(HashMap<String, Object> map, HttpServletRequest request) {
 		//파일저장
 		ComFilesService.save(map, request);
+		System.out.println("emdfhrhejhfjd"+map.toString());
 		//DB저장	
 		managerDao.setSeminarUpdate(map);
 	}

@@ -210,7 +210,7 @@ tr td span {
 						<td colspan="6" id="bc" style="padding: 50px;">
 							<c:forEach var="file" items="${ fileList }">
 								<div>
-									<img src="/upload/${ file.sfilename }">
+									<img src="/upload/event/${ file.sfilename }">
 								</div>
 							</c:forEach>
 							<div style="min-height: 80px; height: auto; text-align: left;">
@@ -229,6 +229,7 @@ tr td span {
 						<td class="padd8">파일 첨부</td>
 						<td td colspan="5"><c:forEach var="file" items="${ fileList }">
 								<div>
+									<!-- <a href="/Event/download/external/${ file.sfilename }"> -->
 									<a href="/Event/download/external/${ file.sfilename }">
 									${ file.filename }
 									</a> 

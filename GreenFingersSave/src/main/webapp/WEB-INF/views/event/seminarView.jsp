@@ -207,7 +207,7 @@ tr td span {
 						<td colspan="6" id="bc" style="padding: 50px;">
 							<c:forEach var="file" items="${ fileList }">
 								<div>
-									<img src="/upload/${ file.sfilename }">
+									<img src="/upload/event/${ file.sfilename }">
 								</div>
 							</c:forEach>
 							<div style="min-height: 80px; height: auto; text-align: left;">

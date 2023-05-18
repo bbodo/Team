@@ -323,10 +323,6 @@ public class EventController {
 			map.put("endnum",    endnum );		
 			// ---------------------------------------------------------------------
 			
-			System.out.println(request);
-			System.out.println(request.toString());
-			System.out.println(map.toString());
-			
 			//목록 조회
 			String 		  submenu_id = (String) map.get("submenu_id");
 			List<BoardVo> boardList  = eventService.getSeminarList(map);
