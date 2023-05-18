@@ -64,11 +64,9 @@
 	}
 	#writeComment {
 		border-bottom: 1px solid #228B22;
-		display: inline-block;
 		border-top: 3px solid #228B22;
 	}
 	.nameSpace {
-		/* padding: 10px; */
 		margin-right: 10px
 	}
 	.coment_cont {
@@ -410,24 +408,30 @@
 		<br />
 		
 		<div id="writeComment">
-			<form id="writeC">
-			<input type="hidden"  name="board_idx" value="${ vo.board_idx }" />
-			<input type="hidden"  name="usercode" value="${ login.usercode }" id="usercode" />
-			<table>
-				<tr>
-					<th><div class="nameSpace" style="min-width: 80px;">${ login.nickname }</div></th>
-					<td style="width: 1000px;">
-						<textarea name="coment_cont" placeholder="내용을 작성하세요."
-					     required class="coment_cont" id="coment_cont"></textarea>
-					</td>
-					<td style="width: 100px;">
-						<input class="regbtn"  type="button" id="writeBtn" value="등록"/>
-					</td>
-				</tr>
-			</table>
-			</form>
+		<c:choose>
+			<c:when test="${ sessionScope.login eq null }">
+				<div style="display: block; padding: 20px;">로그인 후 사용할 수 있습니다.</div>
+			</c:when>
+			<c:otherwise>
+					<form id="writeC">
+					<input type="hidden"  name="board_idx" value="${ vo.board_idx }" />
+					<input type="hidden"  name="usercode" value="${ login.usercode }" id="usercode" />
+					<table>
+						<tr>
+							<th><div class="nameSpace" style="min-width: 80px;">${ login.nickname }</div></th>
+							<td style="width: 1000px;">
+								<textarea name="coment_cont" placeholder="내용을 작성하세요."
+							     required class="coment_cont" id="coment_cont"></textarea>
+							</td>
+							<td style="width: 100px;">
+								<input class="regbtn" type="button" id="writeBtn" value="등록"/>
+							</td>
+						</tr>
+					</table>
+					</form>
+			</c:otherwise>
+		</c:choose>
 		</div>
-		<br />
 		<div id="readComment">
 			<form id="readC">
 			<input type="hidden"  name="board_idx" value="${ vo.board_idx }" />
