@@ -164,12 +164,14 @@ section {width:100%; overflow: hidden;}
 #sec2Con2 {
 	float:left;
 	width:60%;
+	height:500px;
 	position: relative;
 	top:80px;
+	overflow: hidden;
 }
 
 #sec2Con1 .mainTitle{
-	margin: 191px 0 34px 100px;
+	margin: 191px 0 34px 75px;
 	font-size:28px;
 }
 
@@ -195,29 +197,44 @@ section {width:100%; overflow: hidden;}
 	overflow: hidden;
 }
 
-#sec2Con2Wrap>div:nth-of-type(1) {
-	width: 55%;
+#sec2Con2Wrap>div img {
+	height: 100%;
+	object-fit: cover;
+}
+
+/* #sec2Con2Wrap>div:nth-of-type(1) {
+	width: 53%;
 	top:0;
 }
 
 #sec2Con2Wrap>div:nth-of-type(2) {
 	width: 36%;
-	top:10%;
-	margin-left:74%;
+	top:-20%;
+	margin-left:64%;
 }
 
 #sec2Con2Wrap>div:nth-of-type(3) {
-	width: 60%;
+	width: 45%;
 	top:10%;
-	margin-left:0;
-	margin-top:-80px;
+	margin-left:6%;
+	margin-top:-283px;
+	z-index: -1;
 }
 
 #sec2Con2Wrap>div:nth-of-type(4) {
 	width: 50%;
-	top:- 10%;
-	margin-left:20%;
+	margin:145px 0 0 40%;
 }
+
+#sec2Con2Wrap>div:nth-of-type(5) {
+	width: 48%;
+	margin:-46px 0 0 10%;
+}
+
+#sec2Con2Wrap>div:nth-of-type(5) {
+	width: 48%;
+	margin:-46px 0 50% 10%;
+} */
 
 #sec2Con2Wrap>div>a>img {
 	width: 100%;

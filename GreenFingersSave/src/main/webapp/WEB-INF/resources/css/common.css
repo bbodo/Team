@@ -34,7 +34,7 @@ a {text-decoration: none; color:#252525;}
     font-style: normal;
 }
 
-button, input[type="submit"] {
+button, input[type="submit"], input[type="button"] {
 	padding:6px 8px;
 	background-color: #d0e385;
 	cursor: pointer;
@@ -43,7 +43,7 @@ button, input[type="submit"] {
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
-button:hover, input[type="submit"]:hover {
+button:hover, input[type="submit"]:hover ,input[type="button"]:hover {
 	background-color: #4da865;
 	color:#fff;
 }
@@ -498,7 +498,29 @@ footer #footerLogo img{width:70px;}
 	transform:translateX(-50%);
 }
 
+/* top 시작*/
+/*  ==================================================================*/
+#top {
+	width:50px;
+	height:50px;
+	background-color:#3f9b3f;
+	color:#fff;
+	opacity: 1;
+	position: fixed;
+	right:50px;
+	bottom: 100px;
+	text-align: center;
+	padding-top:14px;
+	cursor: pointer;
+}
 
+#top:hover {
+	background-color:#65c365;
+}
+
+.on {
+	opacity: 1;
+}
 
 /*home.jsp 끝*/
 /*  ==================================================================*/

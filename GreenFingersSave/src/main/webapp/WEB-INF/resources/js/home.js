@@ -60,5 +60,56 @@ window.onload = function () {
   }
 
   let interval = getInterval(); // interval 등록
-   
+  
+  /*section2*/
+  const Lists1 = document.querySelector('#sec2Con2Wrap');
+  const list1 = document.querySelectorAll('#sec2Con2Wrap>div');
+  const sec2Con2 = document.querySelector('#sec2Con2');
+  /*const img1 = querySelector("#sec2Con2Wrap>div:nth-of-type(1)");
+  const img2 = querySelector("#sec2Con2Wrap>div:nth-of-type(2)");
+  const img3 = querySelector("#sec2Con2Wrap>div:nth-of-type(3)");*/
+  let currentIndex1 = 0;
+
+  list1.forEach((list1) => {
+	  list1.style.height = "500px";
+  })
+  
+  Lists1.style.height = "1500px"; 
+
+  /*자동*/
+  const getInterval1 = () => {
+    return setInterval(() => {
+      currentIndex1++;
+      currentIndex1 = currentIndex1 >= list1.length ? 0 : currentIndex1;
+      Lists1.style.marginTop = -(500 * currentIndex1) + "px";
+    }, 3000);
+  }
+  
+  let interval1 = getInterval1();
+	
+  	sec2Con2.addEventListener('mouseenter', function() {
+  		clearInterval(interval1);    
+  	})
+  	
+  	sec2Con2.addEventListener('mouseleave', function() {
+  		interval1   = getInterval1();
+  	})
+  	
+  	//top
+  	let Top = document.querySelector('#top');
+	
+	window.addEventListener('scroll', function() {
+		if(this.scrollY > 500) {
+			Top.classList.remove('on');
+		}else {
+			Top.classList.add('on');
+		}
+	})
+	
+	Top.addEventListener('click', function (e){
+		e.preventDefault();
+		window.scrollTo({top:0, behavior: 'smooth'});
+	})
+	   
+
 }

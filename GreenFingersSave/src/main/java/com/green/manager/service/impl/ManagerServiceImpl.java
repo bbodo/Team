@@ -353,6 +353,22 @@ public class ManagerServiceImpl implements ManagerService {
 	@Override
 	public List<AdminEventVo> getSeminarList(HashMap<String, Object> map) {
 		List<AdminEventVo> seminarList = managerDao.getSeminarList(map);
+		int  pagetotalcount =  5;  // paging.jsp 페이지 번호 출력 갯수
+		
+		int        nowpage     =  Integer.parseInt( String.valueOf( map.get("nowpage") ) );    // 현재 페이지
+		int        pagecount   =  Integer.parseInt( String.valueOf( map.get("pagecount")) );  // 한페이지에 보여줄 자료수
+		
+		// menu_id 에 해당되는 전체 자료수 - pdsDaoImpl 가 돌려준 map 에 저장
+		int        totalcount  =  Integer.parseInt( String.valueOf( map.get("totalcount") ) );  
+		
+		String     menu_id  =  String.valueOf(map.get("submenu_id")); 
+		EventPaging   mp      =  new EventPaging(
+				menu_id, nowpage, pagecount, totalcount, pagetotalcount);
+
+		AdminEventVo   adminEventVo  = mp.getPdsPagingInfo();
+		
+		map.put("adminEventVo", adminEventVo);
+		
 		return seminarList;
 	}
 

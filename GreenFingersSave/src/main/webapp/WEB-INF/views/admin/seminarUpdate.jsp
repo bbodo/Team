@@ -8,7 +8,6 @@
 <%@include file="/WEB-INF/include/comHead.jsp" %>
 <script src="https://code.jquery.com/jquery.min.js"></script>
 <title>Insert title here</title>
-
 <script>
 	window.onload = function() {
 		let board_regdate = document.getElementById('board_regdate');
@@ -121,7 +120,7 @@
 
 
 
-	#aside {
+/* 	#aside {
 		float: left;
 		height: 800px;
 		background-color: white;
@@ -135,7 +134,7 @@
 		padding: 10px;
 		padding-right : 15%;
 		background-color: white;
-	}
+	} */
 /* 	#cont {
 		background-color: #fff;
 		margin: 0 auto;
@@ -153,7 +152,7 @@
 		border-bottom: 1px solid #228B22;
 	} */
 	
-	#sidemenu {
+/* 	#sidemenu {
 		padding: 30px;
 	}
 	#sidemenu li {
@@ -195,21 +194,55 @@
 		width: 100%;
 		height: 400px;
 		padding: 20px;
+	} */
+	
+	#main {
+	padding-right: 0;
+	}
+	
+	input {
+		width:100%;
+	}
+	
+	input[type="button"], input[type="submit"] {
+		width:auto;
+		background-color: 
+	}
+	
+	button, input[type="submit"], input[type="button"] {
+	padding:6px 8px;
+	background-color: #d0e385;
+	cursor: pointer;
+	border: none;
+	border-radius: 4px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	}
+	
+	button:hover, input[type="submit"]:hover ,input[type="button"]:hover {
+		background-color: #4da865;
+		color:#fff;
 	}
 
 </style>
 
 </head>
 <body>
-	 <%@include file="/WEB-INF/include/header.jsp" %>
-     <div id="title">
-     	<p>행사 등록 관리자페이지임</p>
-     </div>
-     <div id="aside">
-     	내정보<br />
-     	작성글<br />
-     	쪽지<br />
-     </div>
+<%@include file="/WEB-INF/include/adminHeader.jsp" %>
+
+<%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
+	<div id="wrapper"> 
+	 <div id="aside">
+       <ul id="sidemenu">
+       <li class="sidemenuTitle">SIDEMENU</li>
+			<li><a href="/Manager/Member?menu_id=Member">회원 관리</a><br /></li>
+       		<li><a href="/Manager/Menu?menu_id=Menu">메뉴 관리</a> <br /></li>
+     		<li><a href="/Manager/subMenu?menu_id=subMenu">하위 메뉴</a><br /></li>
+     		<li><a href="/Manager/EventList?menu_id=Event&nowpage=1">이벤트 관리</a><br /></li>
+     		<li><a href="/Manager/WinnerList?menu_id=Winner&nowpage=1">당첨자 관리</a><br /></li>
+     		<li><a href="/Manager/SeminarList?menu_id=Festival&submenu_id=SUBMENU21&nowpage=1">행사 관리</a></li>
+     		<li><a href="/Manager/Store?menu_id=Store">스토어 관리</a><br /></li>
+       </ul>
+     </div> 
      
      <div id="main">
 		<form action="/Manager/SeminarUpdate?menu_id=MENU04&submenu_id=SUBMENU21&board_idx=${vo.board_idx }&nowpage=1" method="POST" enctype="multipart/form-data" >
@@ -236,7 +269,7 @@
 				        <textarea name="board_cont" id="board_cont" 
 				                  rows="20" cols="10" 
 				                  placeholder="내용을 입력해주세요"
-				                  style="width: 100%">"${map.board_cont}</textarea>
+				                  style="width: 100%">${map.board_cont}</textarea>
 				      </div>
 					</td>
 					<!-- <td colspan="3"><textarea id="notecont" name="notecont"></textarea></td> -->
@@ -249,7 +282,7 @@
 					<c:forEach  var="file"   items="${ fileList }">
 					<div>
 						  <a  class  = "aDelete"
-						      href="/Event/deleteFile?file_num=${ file.file_num }&sfile=${file.sfilename}">
+						      href="/Manager/deleteFile?file_num=${ file.file_num }&sfile=${file.sfilename}">
 						                ❌
 						</a>
 						<a  href="/Event/download/external/${ file.sfilename }">
@@ -266,8 +299,8 @@
 						<td>이미지 첨부</td>
 						<td id="imgplus" colspan="3" > 
 					      	 <input type="button"  id="btnAddFile0" value="파일 추가(최대 100M byte)" /><br>
-					       	 <input type="file"  name="upfile"  class="upfile" onchange="readURL(this,0);"/>
-					       	 <img id="preview0" src="#" width=200 height=50 alt="선택된 이미지가 없습니다" style="align-content: flex-end; ">
+					       	 <input type="file"  name="upfile"  class="upfile" onchange="readURL(this,0);" />
+					       	 <img id="preview0" src="#" width=200 height=50 alt="선택한 이미지가 없습니다" style="align-content: flex-end; ">
 				   		</td>
 			   		</div>
 				</tr>
@@ -283,10 +316,10 @@
 				<tr>
 					<td colspan="4">
 					<!-- <a id="btnUpdate"href="/Data/Update" class="btn btn-primary btn-sm">수정완료</a>  -->
-					<input type="button" id="btnClear" class="btn btn-primary btn-sm"value="Clear" />
-					<a id="btnDelete" href="/Manager/SeminarDelete?menu_id=MENU04&submenu_id=SUBMENU21&board_idx=${map.board_idx }&nowpage=1" class="btn btn-primary btn-sm">삭제</a>
+					<!-- <input type="button" id="btnClear" class="btn btn-primary btn-sm"value="Clear" /> -->
 					<input style="float: right;" id="submitBtn" type="submit" value="수정완료"/>
-					<a id="btnDelete" href="/Event/SeminarList?menu_id=MENU04&submenu_id=SUBMENU21&nowpage=1" class="btn btn-primary btn-sm">목록으로</a>
+					<button style="float: right; margin:0 10px"><a id="btnDelete" href="/Manager/SeminarDelete?menu_id=Festival&submenu_id=SUBMENU21&board_idx=${map.board_idx }&nowpage=1" class="btn btn-primary btn-sm">삭제</a></button>
+					<button style="float: right;"><a id="btnDelete" href="/Manager/SeminarView?menu_id=Festival&submenu_id=SUBMENU21&board_idx=1271&nowpage=1">목록으로</a></button>
 					</td>
 				</tr>
 			</table>
@@ -294,7 +327,8 @@
 		</form>
 		<!-- <button id="cencelBtn" style="float: left;">취소 버튼</button> -->
 	</div>
-	
+	</div>
+	<%@include file="/WEB-INF/include/footer.jsp" %>
 	 <!--   <form enctype="multipart/form-data" method="post" >
       <div id="smarteditor">
         <textarea name="editorTxt" id="editorTxt" 

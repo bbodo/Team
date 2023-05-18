@@ -12,6 +12,9 @@
 
 <style type="text/css">
 
+#main {
+	padding-right: 0;
+	}
 
 </style>
 
@@ -91,22 +94,11 @@
      <!-- 조회수 -->
      ${ boardVo.readcount }
      </td>
-     <%-- <td>
-     <!-- 첨부파일수 -->
-     <c:choose>
-       <c:when test="${ boardVo.filescount eq 0 }">
-         &nbsp;
-       </c:when>
-       <c:otherwise>
-         ${ boardVo.filescount }         
-       </c:otherwise>
-     </c:choose>
-     </td> --%>
   </tr>  
   </c:forEach>
 		</table>
 		<br />
-	 <%@include file="/WEB-INF/include/paging.jsp" %>
+	 <%@include file="/WEB-INF/include/adminSeminarPaging.jsp" %>
      </div>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>

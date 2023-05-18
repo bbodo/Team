@@ -243,7 +243,7 @@ tr td span {
 				</div>
 			</c:if>
 			
-			<button id="cencelBtn" style="float: left;">취소 버튼</button>
+			<button id="cencelBtn" style="float: left;"><a href="/Event/SeminarList?menu_id=MENU04&submenu_id=SUBMENU21&nowpage=1">목록으로</a></button>
 		</div>
 	</div>
 	

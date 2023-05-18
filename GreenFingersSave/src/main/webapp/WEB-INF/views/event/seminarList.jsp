@@ -70,22 +70,6 @@
        	   </c:choose>	 
        		
          </c:when>
-         <%-- <c:otherwise>
-         
-            <b style="display:inline-block; width:${boardVo.lvl*20}px"></b> 
-            
-            <c:choose>
-              <c:when test="${ boardVo.delboard eq 0 }">
-                <a style="font-weight: bold;" href="/Board/View?menu_id=${ map.menu_id }&submenu_id=${boardVo.submenu_id}&board_idx=${boardVo.board_idx}&nowpage=${map.nowpage}">
-              	  [답글] ${ boardVo.board_title }
-         	    </a>
-         	  </c:when>
-         	  <c:otherwise>
-         	     [답글] <s>삭제된 글입니다</s>
-         	  </c:otherwise>
-         	</c:choose>
-         	
-         </c:otherwise> --%>
        </c:choose>
      </td>
      
@@ -103,17 +87,6 @@
      <!-- 조회수 -->
      ${ boardVo.readcount }
      </td>
-     <%-- <td>
-     <!-- 첨부파일수 -->
-     <c:choose>
-       <c:when test="${ boardVo.filescount eq 0 }">
-         &nbsp;
-       </c:when>
-       <c:otherwise>
-         ${ boardVo.filescount }         
-       </c:otherwise>
-     </c:choose>
-     </td> --%>
   </tr>  
   </c:forEach>
 		</table>

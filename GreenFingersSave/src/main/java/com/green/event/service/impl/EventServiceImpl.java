@@ -35,7 +35,6 @@ public class EventServiceImpl implements EventService {
 			) {
 		// 필요한 자료를 조회( rows)
 	
-		
 		List<EventVo>  eventList = eventDao.getEventList(map);
 		
 		int  pagetotalcount =  5;  // paging.jsp 페이지 번호 출력 갯수
@@ -46,7 +45,6 @@ public class EventServiceImpl implements EventService {
 		// menu_id 에 해당되는 전체 자료수 - pdsDaoImpl 가 돌려준 map 에 저장
 		int        totalcount  =  Integer.parseInt( String.valueOf( map.get("totalcount") ) );   
 	
-		
 		
 		String     submenu_id  =  String.valueOf(map.get("submenu_id")); 
 		EventPaging   mp      =  new EventPaging(
@@ -135,7 +133,27 @@ public class EventServiceImpl implements EventService {
 	
 	@Override
 	public List<BoardVo> getSeminarList(HashMap<String, Object> map) {
+		List<EventVo>  eventList = eventDao.getEventList(map);
+		
+		int  pagetotalcount =  10;  // paging.jsp 페이지 번호 출력 갯수
+				
+		int        nowpage     =  Integer.parseInt( String.valueOf( map.get("nowpage") ) );    // 현재 페이지
+		int        pagecount   =  Integer.parseInt( String.valueOf( map.get("pagecount")) );  // 한페이지에 보여줄 자료수
+		
+		// menu_id 에 해당되는 전체 자료수 - pdsDaoImpl 가 돌려준 map 에 저장
+		int        totalcount  =  Integer.parseInt( String.valueOf( map.get("totalcount") ) );   
+		
+		String     menu_id  =  String.valueOf(map.get("submenu_id")); 
+		EventPaging   mp      =  new EventPaging(
+				menu_id, nowpage, pagecount, totalcount, pagetotalcount);
+
+		EventVo   eventVo  = mp.getPdsPagingInfo();
+		
+		map.put("eventVo", eventVo);
+		
 		List<BoardVo> seminarList = eventDao.getSeminarList(map);
+		
+		
 		return seminarList;
 	}
 

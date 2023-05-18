@@ -59,6 +59,7 @@
 	text-decoration:underline;
 	
 	}	
+	
 </style>
 </head>
 
@@ -195,7 +196,7 @@
 			
 			<div id="sec2Con2">
 				<div id="sec2Con2Wrap">
-					<div>
+					<!-- <div>
 						<a href="http://localhost:9090/Board/View?menu_id=MENU02&submenu_id=SUBMENU11&board_idx=1232&nowpage=1"> 
 							<img src="/img/home/mainImg5.jpg" alt="mainImg" />
 							<p>식물 키우기 꿀팁<br/><span>전문가가 말해주는 꿀팁! 놓치지마세요</span></p>
@@ -204,22 +205,36 @@
 					</div>
 					
 					<div>
-						<a href="#"> <img src="/img/home/mainImg3.jpg" alt="mainImg" />
+						<a href="#"> <img src="/img/home/con2img1.jpg" alt="mainImg" />
 							<p>다양한</p>
+							<div></div>
+						</a>
+					</div> -->
+					
+					<div>
+						<a href="#"> <img src="/img/home/con2img7.jpg" alt="mainImg" />
+							<p>식물 키우기 꿀팁<br/><span>전문가가 말해주는 꿀팁! 놓치지마세요</span></p>
 							<div></div>
 						</a>
 					</div>
 					
 					<div>
-						<a href="#"> <img src="/img/home/mainImg3.jpg" alt="mainImg" />
-							<p>다양한</p>
+						<a href="#"> <img src="/img/home/con2img3.jpg" alt="mainImg" />
+							<p>반려식물 상담실<br/><span>반려식물 상담실이 생성되었습니다~</span></p>
 							<div></div>
 						</a>
 					</div>
 					
-					<div>
-						<a href="#"> <img src="/img/home/mainImg3.jpg" alt="mainImg" />
+					<!-- <div>
+						<a href="#"> <img src="/img/home/con2img6.jpg" alt="mainImg" />
 							<p>다양한</p>
+							<div></div>
+						</a>
+					</div> -->
+					
+					<div>
+						<a href="#"> <img src="/img/home/con2img8.jpeg" alt="mainImg" />
+							<p>그린위키<br/><span>궁금한 식물을 검색해보세요!</span></p>
 							<div></div>
 						</a>
 					</div>
@@ -228,6 +243,10 @@
 		</section>
 		
 	</div>
+	
+	  <div id="top">
+	  	TOP
+	  </div>
 	
 	
   <!-- footer -->

@@ -20,3 +20,19 @@ window.onload = function () {
 			 console.log("해당 객체 존재no");
 		}
 }//end
+
+//top
+let Top = document.querySelector('#top');
+	
+	window.addEventListener('scroll', function() {
+		if(this.scrollY > 200) {
+			Top.classList.remove('on');
+		}else {
+			Top.classList.add('on');
+		}
+	})
+	
+	Top.addEventListener('click', function (e){
+		e.preventDefault();
+		window.scrollTo({top:0, behavior: 'smooth'});
+	})

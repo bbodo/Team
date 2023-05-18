@@ -207,7 +207,6 @@ public class MyPageController {
 		List<SubmenuVo> submenuList = menuService.getSubmenuList1();
 		
 		String sfilename =  myPageService.getSfilename( map );
-		System.out.println("흠냐흠냐" + sfilename);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("mypage/myList");

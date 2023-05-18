@@ -76,7 +76,9 @@ tr:first-child td {
 tr td span {
 	font-weight: 600;
 }
-
+#main {
+	padding-right: 0;
+}
 /* 	* {
 		box-sizing: border-box;
 	}
@@ -180,7 +182,7 @@ tr td span {
        <li class="sidemenuTitle">SIDEMENU</li>
 			<li><a href="/Manager/Member?menu_id=Member">회원 관리</a><br /></li>
        		<li><a href="/Manager/Menu?menu_id=Menu">메뉴 관리</a> <br /></li>
-     		<li><a href="/Manager/subMenu?menu_id=subMenu"> - 하위 메뉴</a><br /></li>
+     		<li><a href="/Manager/subMenu?menu_id=subMenu">하위 메뉴</a><br /></li>
      		<li><a href="/Manager/EventList?menu_id=Event&nowpage=1">이벤트 관리</a><br /></li>
      		<li><a href="/Manager/WinnerList?menu_id=Winner&nowpage=1">당첨자 관리</a><br /></li>
      		<li><a href="/Manager/SeminarList?menu_id=Festival&submenu_id=SUBMENU21&nowpage=1">행사 관리</a></li>
@@ -210,7 +212,7 @@ tr td span {
 						<td colspan="6" id="bc" style="padding: 50px;">
 							<c:forEach var="file" items="${ fileList }">
 								<div>
-									<img src="/upload/event/${ file.sfilename }">
+									<img style="width:100%;" src="/upload/event/${ file.sfilename }">
 								</div>
 							</c:forEach>
 							<div style="min-height: 80px; height: auto; text-align: left;">
@@ -240,17 +242,17 @@ tr td span {
 				</table>
 			</form>
 			
-			<c:if test="${map.managercode != null && map.manager_pw != null}" var="delnote">
+			<%-- <c:if test="${map.managercode != null && map.manager_pw != null}" var="delnote"> --%>
 				<div>
-					<a href="/Manager/SeminarUpdateForm?submenu_id=SUBMENU21&nowpage=1&board_idx=${ vo.board_idx }&manager_code=${ map.managercode }" ><button>수정</button></a>
-					<a href="/Manager/SeminarDelete?menu_id=MENU04&submenu_id=SUBMENU21&board_idx=${map.board_idx }&nowpage=1" ><button>삭제</button></a>
+					<a href="/Manager/SeminarUpdateForm?menu_id=Festival&submenu_id=SUBMENU21&nowpage=1&board_idx=${ vo.board_idx }" ><button>수정</button></a>
+					<a href="/Manager/SeminarDelete?menu_id=Festival&submenu_id=SUBMENU21&board_idx=${map.board_idx }&nowpage=1" ><button>삭제</button></a>
 				</div>
-			</c:if>
+			<%-- </c:if> --%>
 			
-			<button id="cencelBtn" style="float: left;">취소 버튼</button>
+			<!-- <button id="cencelBtn" style="float: left;">취소 버튼</button> -->
 		</div>
 	</div>
-	
+	<%@include file="/WEB-INF/include/footer.jsp" %>
 	
 	 <!--   <form enctype="multipart/form-data" method="post" >
       <div id="smarteditor">

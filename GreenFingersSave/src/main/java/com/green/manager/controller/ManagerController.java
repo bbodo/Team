@@ -920,26 +920,28 @@ public class ManagerController {
 			map.put("Managercode", Managercode);
 			map.put("manager_pw", manager_pw);
     	}
-		
-		// ---------------------------------------------------------------------
-		// 페이징 정보 준비
-		int           nowpage   =  Integer.parseInt( (String) map.get("nowpage") ); 
-		int           pagecount =  10;    // 한페이지 당 출력할 줄(row)수  - 10
+    	// ---------------------------------------------------------------------
+			// 페이징 정보 준비
+			int           nowpage   =  Integer.parseInt( (String) map.get("nowpage") ); 
+			int           pagecount =  10;    // 한페이지 당 출력할 줄(row)수  - 10
 
-		// sql 사용할 변수 : 조회할 레코드 번호
-		int           startnum  =  ( nowpage - 1 ) * pagecount + 1;
-		int           endnum    =  nowpage  *  pagecount;
-
-		map.put("pagecount", pagecount );
-		map.put("startnum",  startnum );
-		map.put("endnum",    endnum );		
+			// sql 사용할 변수 : 조회할 레코드 번호
+			int           startnum  =  ( nowpage - 1 ) * pagecount + 1;
+			int           endnum    =  nowpage  *  pagecount;
+			
+			map.put("nowpage",   nowpage );
+			map.put("pagecount", pagecount );
+			map.put("startnum",  startnum );
+			map.put("endnum",    endnum );		
+			
 		// ---------------------------------------------------------------------
 		
 		//목록 조회
 		String 		  submenu_id = (String) map.get("submenu_id");
 		List<AdminEventVo> boardList  = managerService.getSeminarList(map);
-		
-		AdminEventVo boardVo = (AdminEventVo) map.get("AdminEventVo");
+		//System.out.println("dfdfdfe"+map.toString());
+		AdminEventVo adminEventVo = (AdminEventVo) map.get("adminEventVo");
+		//System.out.println("boardVo"+adminEventVo);
 		
 		// 메뉴 이름 알아오기
 		String submenu_name = menuService.getMenuName(submenu_id);
@@ -954,7 +956,7 @@ public class ManagerController {
 		mv.addObject("menuList", menuList);
 		mv.addObject("submenuList", submenuList);
 		mv.addObject("boardList", boardList);
-		mv.addObject("boardVo", boardVo);
+		mv.addObject("adminEventVo", adminEventVo);
 		mv.addObject("map", map);
 		return mv;
 	}
@@ -1069,8 +1071,8 @@ public class ManagerController {
 	 	ModelAndView mv = new ModelAndView();
 	 	mv.addObject("map", map);
 	 	
-	 	String fmt = "redirect:/Event/SeminarList?menu_id=%s&submenu_id=%s&nowpage=%d";
-  		String loc = String.format(fmt, menu_id, submenu_id, nowpage);
+	 	String fmt = "redirect:/Manager/SeminarList?menu_id=Festival&submenu_id=%s&nowpage=%d";
+  		String loc = String.format(fmt, submenu_id, nowpage);
   		mv.setViewName(loc);
 	 	return mv;
     }
@@ -1091,8 +1093,8 @@ public class ManagerController {
      	ModelAndView   mv  = new ModelAndView();
  		mv.addObject("map", map);
  		
- 		String fmt = "redirect:/Event/SeminarList?menu_id=%s&submenu_id=%s&nowpage=%d";
-  		String loc = String.format(fmt, menu_id, submenu_id, nowpage);
+ 		String fmt = "redirect:/Manager/SeminarList?menu_id=Festival&submenu_id=%s&nowpage=%d";
+  		String loc = String.format(fmt, submenu_id, nowpage);
   		mv.setViewName(loc);
 
  		return mv;	

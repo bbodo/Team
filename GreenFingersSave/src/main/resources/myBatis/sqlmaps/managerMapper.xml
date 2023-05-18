@@ -687,6 +687,24 @@
 		WHERE
 			BOARD_IDX    = #{ board_idx }    
     </update>
+    
+	
+		<!-- 전체 자료수 조회 -->
+	<select   id             = "GetTotalCount2"
+	          parameterType  = "hashmap"
+	          resultType     = "_int">
+	          
+		SELECT
+	    	COUNT( BOARD_IDX )  AS   TOTALCOUNT
+		FROM   
+	    	BOARD
+	    <if test="submenu_id != null or submenu_id != ''"> 
+		WHERE
+			SUBMENU_ID = #{ submenu_id }
+	    </if>
+	    
+	</select>
+  
 	
 </mapper>
 

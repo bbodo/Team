@@ -348,8 +348,12 @@ public class ManagerDaoImpl implements ManagerDao {
 
 		@Override
 		public List<AdminEventVo> getSeminarList(HashMap<String, Object> map) {
-			//행사 목록 들고오기
-			List<AdminEventVo> seminarList = sqlSession.selectList("Manager.SeminarList", map);
+			// 전체 자료수 조회
+  			int totalcount = sqlSession.selectOne("Manager.GetTotalCount2", map);
+  			map.put("totalcount", totalcount);
+  			//행사 목록 들고오기
+  			List<AdminEventVo> seminarList = sqlSession.selectList("Manager.SeminarList", map);
+			
 			return seminarList;
 		}
 

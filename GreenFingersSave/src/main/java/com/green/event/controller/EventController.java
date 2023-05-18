@@ -317,17 +317,19 @@ public class EventController {
 			// sql 사용할 변수 : 조회할 레코드 번호
 			int           startnum  =  ( nowpage - 1 ) * pagecount + 1;
 			int           endnum    =  nowpage  *  pagecount;
-
+			
+			map.put("nowpage",   nowpage );
 			map.put("pagecount", pagecount );
 			map.put("startnum",  startnum );
 			map.put("endnum",    endnum );		
-			// ---------------------------------------------------------------------
+			
+		// ---------------------------------------------------------------------
 			
 			//목록 조회
 			String 		  submenu_id = (String) map.get("submenu_id");
 			List<BoardVo> boardList  = eventService.getSeminarList(map);
 			
-			BoardVo boardVo = (BoardVo) map.get("boardVo");
+			EventVo boardVo = (EventVo) map.get("eventVo");
 			
 			// 메뉴 이름 알아오기
 			String submenu_name = menuService.getMenuName(submenu_id);
