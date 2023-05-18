@@ -332,7 +332,7 @@
 					<c:if test="${recNoteVo.delnote eq 1}" var="delnote">
 					<tr class="recList">
 						<td><a href="#" onclick="return false;">${recNoteVo.rnum}</a></td>
-						<td><a href="#" onclick="return false;">${recNoteVo.send_usercode}</a></td>
+						<td><a href="#" onclick="return false;">${recNoteVo.nickname}</a></td>
 						<td style="text-decoration: line-through;"><a href="#" style="color:#959595;" onclick="return false;">삭제 된 쪽지입니다</a></td>
 						<td><a href="#" onclick="return false;">${recNoteVo.note_regdate}</a></td>
 						<c:if test="${recNoteVo.readmark eq 0}" var="delnote">					
@@ -347,7 +347,7 @@
 					<c:if test="${recNoteVo.delnote eq 0}" var="delnote">
 					<tr class="recList">
 						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}&menu_id=mypage">${recNoteVo.rnum}</a></td>
-						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}&menu_id=mypage">${recNoteVo.send_usercode}</a></td>
+						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}&menu_id=mypage">${recNoteVo.nickname}</a></td>
 						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}&menu_id=mypage">${recNoteVo.note_title}</a></td>
 						<td><a href="/mypage/myNoteView?note_idx=${recNoteVo.note_idx}&menu_id=mypage">${recNoteVo.note_regdate}</a></td>
 						<c:if test="${recNoteVo.readmark eq 0}" var="delnote">					

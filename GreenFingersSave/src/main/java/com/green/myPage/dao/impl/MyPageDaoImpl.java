@@ -43,6 +43,8 @@ public class MyPageDaoImpl implements MyPageDao {
 		List<MyPageVo> pdsPagingList  =  sqlSession.selectList("MyPage.GetMyPageList", map);  
 		map.remove("sendData");
 		
+		System.out.println(pdsPagingList);
+		
 		return   pdsPagingList;
 	}
 

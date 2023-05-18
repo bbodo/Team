@@ -98,7 +98,7 @@
 	        </if>
 	       
 	        <if test = "recData == 'recData'" >
-	         WHERE	    n.RECEIVER_USERCODE = #{usercode} 
+	         WHERE	    n.RECEIVER_USERCODE = #{usercode}
 	        </if>
 	        ORDER BY RNUM DESC
 	  ) T 
