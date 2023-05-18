@@ -124,11 +124,11 @@
     	<div class="swiper-pagination"></div>
   </div>
 	
+	<!-- <a href="/Board/List?submenu_id=SUBMENU01&nowpage=1">식물연합 포이즌 게시판 가는길</a> <br />
 	<h2>Home</h2>
 	<a href="/Manager/Home">관리자 홈</a>
 	<a href="/Manager/Menu">메뉴관리</a>
 	<a href="/Manager/Member">회원관리</a>
-	<!-- <a href="/Board/List?submenu_id=SUBMENU01&nowpage=1">식물연합 포이즌 게시판 가는길</a> <br />
 	<a href="/write">write 가는길</a> <br />
 	<a href="/view">view 가는길</a> <br />
 	<a href="/update">update 가는길</a> <br />
@@ -155,30 +155,30 @@
 				
 				<div>
 					<div class="sec1Con1Box">
-						<a href="#">
+						<a href="/Event/EventList?menu_id=MENU04&submenu_id=SUBMENU18&nowpage=1">
 							<img src="/img/home/mainImg1.png" alt="mainImg"/>
-							<p>식물의 날</p>
+							<p>다양한 활동</p>
 							<div></div>
 						</a>
 					</div>
 					<div class="sec1Con1Box">
-						<a href="#">
+						<a href="/Board/List?menu_id=MENU01&submenu_id=SUBMENU01&nowpage=1">
 							<img src="/img/home/mainImg2.jpg" alt="mainImg"/>
-							<p>다양한 그린마켓</p>
+							<p>종합 커뮤니티</p>
 							<div></div>
 						</a>
 					</div>
 					<div class="sec1Con1Box">
-						<a href="#">
-							<img src="/img/home/mainImg3.jpg" alt="mainImg"/>
-							<p>다양한 </p>
+						<a href="/Market/Main?menu_id=MENU03&submenu_id=SUBMENU15&nowpage=1">
+							<img src="/img/home/mainImg4.jpg" alt="mainImg"/>
+							<p>천연 그린마켓</p>
 							<div></div>
 						</a>
 					</div>
 					<div class="sec1Con1Box">
-						<a href="#">
-							<img src="/img/home/mainImg3.jpg" alt="mainImg"/>
-							<p>다양한 </p>
+						<a href="/Wiki/List?menu_id=MENU05&submenu_id=SUBMENU20&nowpage=1">
+							<img src="/img/home/mainImg6.jpg" alt="mainImg"/>
+							<p>식물 백과사전</p>
 							<div></div>
 						</a>
 					</div>
@@ -189,14 +189,14 @@
 		<section id="sec2">
 			<div id="sec2Con1">
 				<img src="/img/home/seednanori.png" alt="mainImg"/>
-				<p class="mainTitle">매주 활동들을 확인하세요</p>
+				<p class="mainTitle">' 매주 활동들을 확인하세요 '</p>
 				<div class="titleDeco"></div>
 			</div>
 			
 			<div id="sec2Con2">
 				<div id="sec2Con2Wrap">
 					<div>
-						<a href="#"> 
+						<a href="http://localhost:9090/Board/View?menu_id=MENU02&submenu_id=SUBMENU11&board_idx=1232&nowpage=1"> 
 							<img src="/img/home/mainImg5.jpg" alt="mainImg" />
 							<p>식물 키우기 꿀팁<br/><span>전문가가 말해주는 꿀팁! 놓치지마세요</span></p>
 							<div></div>

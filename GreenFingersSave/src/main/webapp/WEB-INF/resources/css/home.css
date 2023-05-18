@@ -2,7 +2,7 @@
 section {width:100%; overflow: hidden;}
 
 #homeWrap {
-	width:1560px;
+	width:1300px;
 	margin:0 auto;
 }
 
@@ -151,11 +151,30 @@ section {width:100%; overflow: hidden;}
 	width:32%;
 	margin:15px 5% 0 0;
 	float:left;
+	position: relative; 
+}
+
+#sec2Con1 img {
+	position: absolute;
+	left:44px;
+	z-index: 9;
+	opacity: 0.8;
 }
 
 #sec2Con2 {
 	float:left;
 	width:60%;
+	position: relative;
+	top:80px;
+}
+
+#sec2Con1 .mainTitle{
+	margin: 191px 0 34px 100px;
+	font-size:28px;
+}
+
+#sec2Con1 .titleDeco{
+	display: none;
 }
 
 #sec2Con2Wrap {
