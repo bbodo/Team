@@ -84,11 +84,17 @@
 
 <!-- 상품 금액 & 예상 잔여 포인트 자동 계산    -->
 <script>
-function getAmount() {
-	  document.getElementById('prouduct_amount').innerText = 
-	    event.target.value * ${ marketVo.market_value };
-	  document.getElementById('remain').innerText = 
-		  ${ map.point } - event.target.value * ${ marketVo.market_value };
+	function getAmount() {
+		document.getElementById('prouduct_amount').innerText = 
+		    event.target.value * ${ marketVo.market_value };
+		let result = ${ map.point } - event.target.value * ${ marketVo.market_value };	  
+		document.getElementById('remain').innerText = result;
+		const btnEl = document.querySelector('.btn');	
+		if(result <0) {
+			btnEl.innerHTML = '<b style="color: red">포인트가 부족합니다</b>';
+		} else {
+			btnEl.innerHTML = '<input type="submit" value="결제" onclick="if(!confirm('+ '상품 금액만큼 포인트가 차감됩니다.\n정말로 결제하시겠습니까? ' + ')){return false;}" />'
+		}	  
 	}
 </script>
 
@@ -164,7 +170,7 @@ function getAmount() {
 			
 		</table>
 		<div class="btn"> 
-		<input type="submit" value="결제" onclick="if(!confirm('상품 금액만큼 포인트가 차감됩니다.\n정말로 결제하시겠습니까?')){return false;}" />
+		
 		</div>
 	  </form>
      </div>
