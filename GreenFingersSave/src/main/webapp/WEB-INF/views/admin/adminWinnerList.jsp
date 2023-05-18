@@ -35,10 +35,11 @@
 		border-collapse: collapse;
 		margin-bottom: 50px;
     	border-bottom: 3px solid #228B22;
+    	border-top: 3px solid #228B22;
 	}
 	#cont th {
 		background-color: white;
-		border-top: 3px solid #C0C0C0;
+		border-top: none;
 		border-bottom: 1px solid #C0C0C0;
 		padding: 20px;
 	}
@@ -80,7 +81,7 @@
 
 <body>
 	 <!-- header	 -->
-		 <%@include file="/WEB-INF/include/adminHeader.jsp" %>
+   <%@include file="/WEB-INF/include/adminHeader.jsp" %>
    <%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
     <div id="wrapper">
       <div id="aside">
@@ -96,15 +97,9 @@
      </div>
 	
     <div id="main">
-		<h2 style="font-size: 24px;">${ map.submenu_name }</h2>   
+		<h2 style="font-size: 24px; padding: 20px;">당첨자</h2>   
     
 		<table id="cont">
-			<tr>
-				<td colspan="3" style="width: 50%">
-					<div style="float: left;">
-			     		<h2>당첨자</h2>
-			     	</div>
-				</td>				
 				<tr>
 				<th class="padd8">번호</th>
 				<th class="padd8">제목</th>

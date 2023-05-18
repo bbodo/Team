@@ -38,13 +38,14 @@
 	border-collapse: collapse;
 	margin-bottom: 50px;
 	border-bottom: 3px solid #228B22;
+	border-top: 3px solid #228B22;
 }
 
 #cont th {
 	background-color: white;
-	border-top: 3px solid #C0C0C0;
 	border-bottom: 1px solid #C0C0C0;
 	padding: 20px;
+	border-top: none;
 }
 
 #cont tr td {
@@ -115,14 +116,8 @@ a:hover {
      </div>
 	
     <div id="main">
-		<h2 style="font-size: 24px;">${ map.submenu_name }</h2>   
+		<h2 style="font-size: 24px; padding:20px;">이벤트</h2>   
 		<table id="cont">
-			<tr>
-				<td colspan="3" style="width: 50%">
-					<div style="float: left;">
-			     		<h2>이벤트 목록</h2>
-			     	</div>			     	
-				</td>				
 				<tr>
 				<th class="padd8">번호</th>
 				<th class="padd8">제목</th>

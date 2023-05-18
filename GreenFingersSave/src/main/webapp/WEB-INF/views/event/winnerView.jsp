@@ -17,13 +17,6 @@
 	#section {
 		height: auto;
 	}
-	#aside {
-		float: left;
-		height: auto;
-		background-color: white;
-		width: 15%;
-		padding: 10px;
-	}
 	#main {
 		width: 85%;
 		height: auto;
@@ -73,34 +66,6 @@
 		border-bottom: 1px solid #228B22;
 		display: inline-block;
 		border-top: 3px solid #228B22;
-	}
-	#sidemenu {
-		padding: 30px;
-	}
-	#sidemenu li {
-		padding: 10px;
-	}
-	#sidemenu li a {
-		position: relative;
-		display: block;
-		font-size: 20px;
-	}
-	#sidemenu li a:after {
-		content: "";
-		position: absolute;
-		left: 0;
-		bottom: 24px;
-		width: 0px;
-		height: 3px;
-		margin: 5px 0 0;
-		transition: all 0.2s ease-in-out;
-		transition-duration: 0.3s;
-		opacity: 0;
-		background-color: #2E8B57;
-	}
-	#sidemenu li a:hover:after {
-		width: 100%;
-		opacity: 1;
 	}
 	.nameSpace {
 		padding: 10px;
@@ -378,21 +343,14 @@
 </head>
 <body>
 	<!-- header -->
-	 <c:choose>
-		<c:when test="${ sessionScope.login eq null }">
-			<%@include file="/WEB-INF/include/header.jsp" %>
-		</c:when>
-		<c:otherwise>
-			<%@include file="/WEB-INF/include/header2.jsp" %>
-		</c:otherwise>
-	</c:choose>
+	  <%@include file="/WEB-INF/include/header.jsp" %>
 	  <%@include file="/WEB-INF/include/subBanner.jsp" %>
 	<div id="wrapper">
       <div id="aside">
        <ul id="sidemenu">
        <li class="sidemenuTitle">SIDEMENU</li>
-     	     <a href="/Event/EventList?menu_id=${ map.menu_id }&submenu_id=SUBMENU18&nowpage=1" >이벤트</a>  <br>  	     	  
-     	     <a href="/Winner/WinnerList?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1">당첨자</a>   		
+     	     <li><a href="/Event/EventList?menu_id=${ map.menu_id }&submenu_id=SUBMENU18&nowpage=1" >이벤트</a><br></li>  	     	  
+     	     <li><a href="/Winner/WinnerList?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1">이벤트 당첨자</a></li>   		
      	</ul>
      </div>
 

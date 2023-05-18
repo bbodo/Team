@@ -11,28 +11,11 @@
 
 <style type="text/css">
 
-* {
+	* {
 		box-sizing: border-box;
-	}
-
-	#title {
-		width: 100%;
-		text-align: center;
-		height: 100px;
-		background-color: orange;
-	}
-	#title p {
-		 line-height: 100px;
 	}
 	#section {
 		height: auto;
-	}
-	#aside {
-		float: left;
-		height: auto;
-		background-color: white;
-		width: 20%;
-		padding: 10px;
 	}
 	#main {
 		width: 80%;
@@ -78,34 +61,6 @@
 	}
 	#writeComment {
 		border-bottom: 1px solid #228B22;
-	}
-	#sidemenu {
-		padding: 30px;
-	}
-	#sidemenu li {
-		padding: 10px;
-	}
-	#sidemenu li a {
-		position: relative;
-		display: block;
-		font-size: 20px;
-	}
-	#sidemenu li a:after {
-		content: "";
-		position: absolute;
-		left: 0;
-		bottom: 24px;
-		width: 0px;
-		height: 3px;
-		margin: 5px 0 0;
-		transition: all 0.2s ease-in-out;
-		transition-duration: 0.3s;
-		opacity: 0;
-		background-color: #2E8B57;
-	}
-	#sidemenu li a:hover:after {
-		width: 100%;
-		opacity: 1;
 	}
 	.nameSpace {
 		padding: 30px;
@@ -160,9 +115,13 @@
       <div id="aside">
        <ul id="sidemenu">
        <li class="sidemenuTitle">SIDEMENU</li>
-     	     <a href="/Manager/EventList?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1" >이벤트</a>  <br>  	     	  
-     	     <a href="/Manager/WinnerList?menu_id=${ map.menu_id }&submenu_id=SUBMENU19&nowpage=1">당첨자</a>   		
-     	</ul>
+			<li><a href="/Manager/Member?menu_id=Member">회원 관리</a><br /></li>
+       		<li><a href="/Manager/Menu?menu_id=Menu">메뉴 관리</a> <br /></li>
+     		<li><a href="/Manager/subMenu?menu_id=subMenu"> - 하위 메뉴</a><br /></li>
+     		<li><a href="/Manager/EventList?menu_id=Event&nowpage=1">이벤트 관리</a><br /></li>
+     		<li><a href="/Manager/WinnerList?menu_id=Winner&nowpage=1">당첨자 관리</a><br /></li>
+     		<li><a href="/Manager/Store">상품 등록</a><br /></li>
+       </ul>
      </div>
 
      <div id="main">
