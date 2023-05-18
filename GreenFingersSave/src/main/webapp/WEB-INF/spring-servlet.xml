@@ -74,11 +74,12 @@
      <!-- Interceptor 설정 추가  -->
 
 <!--  공통 Interceptor -->
-    <!--
+    <!-- -->
     <mvc:interceptors>       
        <mvc:interceptor>
-         <mvc:mapping path="/**"/>
-         <mvc:exclude-mapping path="/resources/**"/>
+        <!--  <mvc:mapping path="/**"/> -->
+    
+       <!--   <mvc:exclude-mapping path="/resources/**"/>
          <mvc:exclude-mapping path="/static/**"/>
          <mvc:exclude-mapping path="/include/**"/>
          <mvc:exclude-mapping path="/"/>
@@ -93,12 +94,16 @@
          <mvc:exclude-mapping path="/Event/SeminarList"/>
          <mvc:exclude-mapping path="/Winner/WinnerList"/>
          <mvc:exclude-mapping path="/Winner/WinnerView"/>
-         <mvc:exclude-mapping path="/Wiki/List"/>
+         <mvc:exclude-mapping path="/Wiki/List"/> -->
+         <mvc:mapping path="/Board/WriteForm"/>	
+         <mvc:mapping path="/Market/WriteForm"/>	
+       
+       
 	         
          <bean id="authInterceptor" 
             class="com.green.interceptor.AuthInterceptor">
          </bean>       
        </mvc:interceptor>    
     </mvc:interceptors>
-     -->
+     
 </beans>
