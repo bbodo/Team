@@ -47,6 +47,12 @@
 		border-collapse: collapse;
 		margin-top: 10px;
 		border-top: 3px solid #228B22;
+		border-bottom: 3px solid #228B22;
+	}
+	#cont th {
+	    border-bottom: 1px solid #C0C0C0;
+	    padding: 20px;
+	    border-top: none;
 	}
 	#cont tr td {
 		padding: 15px;

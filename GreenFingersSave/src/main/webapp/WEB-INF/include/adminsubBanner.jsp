@@ -32,6 +32,10 @@
 				<img src ="/img/common/adminsb.png" alt="subbanner"/>
 				<p>스토어 관리</p>
 		</c:when>
+		<c:when test="${param.menu_id eq 'Festival'}">
+				<img src ="/img/common/adminsb.png" alt="subbanner"/>
+				<p>행사 관리</p>
+		</c:when>
 		
 	</c:choose>
 </div>

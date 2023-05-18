@@ -5,22 +5,22 @@
 
 <!-- 메뉴목록 -->
 
+
 <header>
    <div id="headerInWrap">
-	   <div id="logo"><a href="/Manager/Home">logo</a></div>
+	   <div id="logo"><a href="/Manager/Home"><img src="/img/common/logo.png" alt="logo" /></a></div>
 		
-		<div>
+		<div class="tag">
 			<a href="/Manager/Member?menu_id=Member">회원 관리</a>
 			<a href="/Manager/Menu?menu_id=Menu">메뉴 관리</a>
 			<a href="/Manager/EventList?menu_id=Event&nowpage=1">이벤트 관리</a>
 			<a href="/Manager/WinnerList?menu_id=Winner&nowpage=1">당첨자 관리</a>
-			<a href="/Manager/SeminarSmarteditor?nowpage=1">세미나 관리</a>
+			<a href="/Manager/SeminarList?menu_id=Festival&submenu_id=SUBMENU21&nowpage=1">행사 관리</a>
 			<a href="/Manager/Store?menu_id=Store">상품 등록</a>
 		</div>
 		
 		<div>
-			<a href="">마이페이지</a>
-			<a href="/User/Logout">로그아웃</a>
+			<a href="/User/Logout">관리자 로그아웃</a>
 		</div>
    </div>
 </header>

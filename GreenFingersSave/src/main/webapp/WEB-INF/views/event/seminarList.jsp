@@ -25,13 +25,20 @@
 	
 	<div id="wrapper">
      <div id="aside">
-     	<ul id="sidemenu">
-     	<li class="sidemenuTitle">SIDEMENU</li>
-     	<li><a href="/Board/List?menu_id=${ menu.menu_id }&submenu_id=${menu.submenu_id}&nowpage=1">${menu.submenu_name}</a></li>
-     	<li><a href="/Board/List?menu_id=${ menu.menu_id }&submenu_id=${menu.submenu_id}&nowpage=1">${menu.submenu_name}</a></li>
-     	<li><a href="http://localhost:9090/Event/SeminarList?menu_id=MENU04&submenu_id=SUBMENU21&nowpage=1">행사</a></li>
-     	</ul>
-     </div>
+			<ul id="sidemenu">
+				<li class="sidemenuTitle">SIDEMENU</li>
+				<c:forEach var="menu" items="${ submenuList }">
+					<c:choose>
+						<c:when test="${menu.menu_id eq map.menu_id }">
+							<li><a href="/Board/List?menu_id=${ menu.menu_id }&submenu_id=${menu.submenu_id}&nowpage=1">
+								${menu.submenu_name}
+								</a>
+							</li>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+			</ul>
+		</div>
      
      <div id="main">
 		

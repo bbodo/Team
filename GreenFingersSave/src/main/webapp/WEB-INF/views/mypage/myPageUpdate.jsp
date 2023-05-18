@@ -81,6 +81,17 @@
 		position:relative;
 		top:1px;
 	}
+	button {
+	    padding: 6px 8px;
+	    cursor: pointer;
+	    border: none;
+	    background-color: white;
+	    box-shadow: none;
+	}
+	button:hover {
+	background-color: white;
+	color: white;
+}
 </style>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
