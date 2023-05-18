@@ -402,6 +402,9 @@ writeBtnEl.addEventListener("click", function(e) {
 	  <c:when test="${ map.submenu_id == 'SUBMENU17' }">
 	   <div><a style="padding-left: 80px;" id="board_title" href="/Board/List?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1">포인트 ${ map.submenu_name }</a></div>
 	    </c:when>
+	  <c:when test="${ map.submenu_id == 'SUBMENU16' }">
+	   <div><a style="padding-left: 80px;" id="board_title" href="/Board/List?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 합니다</a></div>
+	    </c:when>
 	<c:otherwise>
 		<div><a style="padding-left: 80px;" id="board_title" href="/Board/List?menu_id=${ map.menu_id }&submenu_id=${ map.submenu_id }&nowpage=1">${ map.submenu_name } 원해요</a></div>
 	</c:otherwise>
