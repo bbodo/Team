@@ -108,7 +108,7 @@
      </div>
      
      <div id="main">
-    <div id="add"><a href="/Manager/storeWriteForm">상품 등록</a></div>
+    <div id="add"><a href="/Manager/storeWriteForm?menu_id=Store">상품 등록</a></div>
 	<table id="cont">
 	 <tr>
        <th>번호</th>
@@ -122,7 +122,7 @@
       <tr>
        <td>${ store.board_idx  }</td>
        <td>
-        <a href="/Manager/View?submenu_id=${ store.submenu_id }&board_idx=${ store.board_idx }">
+        <a href="/Manager/View?menu_id=Store&submenu_id=${ store.submenu_id }&board_idx=${ store.board_idx }">
        	   ${ store.board_title }
         </a>
        </td>

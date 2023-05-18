@@ -153,10 +153,11 @@
 </head>
 <body>
 	<%@include file="/WEB-INF/include/adminHeader.jsp" %>
+	<%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
 	<div id="section">
-     <div id="title">
+    <!--  <div id="title">
      	<p>그린마켓</p>
-     </div>
+     </div> -->
      <div id="aside">
       <ul id="sidemenu">
      		<li><a href="/Manager/Member">회원 관리</a><br /></li>
@@ -216,9 +217,9 @@
 		</table>
 		
 		<div class="right">
-		<a href="/Manager/storeUpdateForm?submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}">수정</a>&nbsp
-		<a href="/Manager/storeDelete?submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }" onclick="if(!confirm('정말로 삭제하시겠습니까?')){return false;}">삭제</a>&nbsp
-		<a href="/Manager/Store">목록으로</a>
+		<a href="/Manager/storeUpdateForm?menu_id=Store&submenu_id=${vo.submenu_id}&board_idx=${vo.board_idx}">수정</a>&nbsp
+		<a href="/Manager/storeDelete?menu_id=Store&submenu_id=${vo.submenu_id}&board_idx=${ vo.board_idx }" onclick="if(!confirm('정말로 삭제하시겠습니까?')){return false;}">삭제</a>&nbsp
+		<a href="/Manager/Store?menu_id=Store">목록으로</a>
 		</div>
 	
       </div>

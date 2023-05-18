@@ -180,9 +180,10 @@
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/adminHeader.jsp" %>
-     <div id="title">
+	 <%@include file="/WEB-INF/include/adminsubBanner.jsp" %>
+     <!-- <div id="title">
      	<p style="font-size: 30px; font-weight: bold;">상품 등록</p>  
-     </div>
+     </div> -->
      <div id="aside">
       <ul id="sidemenu">
      	<li><a href="/Manager/Member">회원 관리</a><br /></li>
