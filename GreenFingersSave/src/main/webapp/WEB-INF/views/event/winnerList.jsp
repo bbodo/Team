@@ -20,6 +20,25 @@
 .tableList tr td:hover {
 	background-color: #D3D3D3;
 }
+
+.line{
+  margin:0 Auto;
+  width:90%;
+  height:75px;
+  border-collapse: collapse;
+}
+
+
+#tabline2{
+ border: 1px solid;
+ border-bottom:none;
+}
+#tabline{
+ border: 1px solid;
+ border-left:none;
+ border-top: none;
+ border-right:none;
+}
 </style>
 
 </head>
@@ -37,19 +56,22 @@
 		</ul>
 	</div>
      <div id="main">
-		<h2 style="font-size: 24px;">당첨자</h2>     
-		<table id="cont">
-					<tr>
-				<th colspan="2"><a href="http://localhost:9090/Event/EventList?submenu_id=SUBMENU18&nowpage=1">이벤트</a></th>
-				<th colspan="3"><a href="http://localhost:9090/Winner/WinnerList?submenu_id=SUBMENU19&nowpage=1">당첨자</a></th>
-			</tr>
+		<h2 style="font-size: 24px;     margin-bottom: 30px; ">당첨자</h2>     
 		
+			<table class="line">		
+					<tr>
+				<th colspan="2" id="tabline"><a href="http://localhost:9090/Event/EventList?submenu_id=SUBMENU18&nowpage=1">이벤트</a></th>
+				<th colspan="3" id="tabline2"><a href="http://localhost:9090/Winner/WinnerList?submenu_id=SUBMENU19&nowpage=1">당첨자</a></th>
+			</tr>
+			</table>
+		
+		<table id="cont" style=" border-top:none; " >
 			<tr>
-				<th class="padd8">번호</th>
-				<th class="padd8">제목</th>
-				<th class="padd8">작성자</th>
-				<th class="padd8">작성일</th>
-				<th class="padd8">조회수</th>
+				<th class="padd8" style=" border-top:none; ">번호</th>
+				<th class="padd8" style=" border-top:none; " >제목</th>
+				<th class="padd8" style=" border-top:none; ">작성자</th>
+				<th class="padd8" style=" border-top:none; ">작성일</th>
+				<th class="padd8" style=" border-top:none; ">조회수</th>
 			</tr>
 <c:forEach var="winnerVo" items="${ winnerList }">
   <tr>

@@ -23,6 +23,29 @@
 .tableList tr td:hover {
 	background-color: #D3D3D3;
 }
+a.test:hover{
+  text-decoration: underline; 
+}
+
+.line{
+  margin:0 Auto;
+  width:90%;
+  height:75px;
+  border-collapse: collapse;
+}
+
+
+#tabline{
+ border: 1px solid;
+ border-bottom:none;
+}
+#tabline2{
+ border: 1px solid;
+ border-top: none;
+ border-right:none;
+}
+
+
 
 </style>
 
@@ -40,18 +63,21 @@
 			<li> <a href="/Winner/WinnerList?menu_id=${ map.menu_id }&submenu_id=SUBMENU19&nowpage=1">이벤트 당첨자</a></li>
 		</ul>
 	</div>
+	
     <div id="main">
-		<h2 style="font-size: 24px;">${ map.submenu_name }</h2>   
-		<table id="cont">
-					
-			<tr>
-				<th colspan="4"><a href="http://localhost:9090/Event/EventList?submenu_id=${map.submenu_id}&nowpage=1">이벤트</a></th>
-				<th colspan="4"><a href="http://localhost:9090/Winner/WinnerList?submenu_id=SUBMENU19&nowpage=1">당첨자</a></th>
+		<h2 style="font-size: 24px; margin-bottom: 30px; " >${ map.submenu_name }</h2>   
+		
+		<table class="line">					
+			<tr >
+				<th colspan="4" id="tabline"><a href="http://localhost:9090/Event/EventList?submenu_id=${map.submenu_id}&nowpage=1" >이벤트</a></th>
+				<th colspan="4" id="tabline2"><a href="http://localhost:9090/Winner/WinnerList?submenu_id=SUBMENU19&nowpage=1">당첨자</a></th>
 			</tr>
-
+         </table>
+         
+		<table id="cont" style=" border-top:none; ">
 		<c:forEach var="eventVo" items="${ eventList }">
-	  <tr>
-	  
+		
+	  <tr>	  
 	  <td  colspan="3" >
 	         <c:forEach var="file"  items="${ fileList }" >         
 	  <c:if test="${ eventVo.board_idx == file.board_idx}">
@@ -61,7 +87,8 @@
 				 </div>
             
 					</c:if>
-            </c:forEach>    
+            </c:forEach>  
+              
              <td colspan="3" >
 	       <!-- 제목(새글/답글) -->
 	       <c:choose>
