@@ -315,6 +315,7 @@
 			MEMBER
 		SET
 			POINT = POINT + 10
+			GRADEPOINT = GRADEPOINT + 10
 		WHERE
 			USERID = #{ userid }
 	
