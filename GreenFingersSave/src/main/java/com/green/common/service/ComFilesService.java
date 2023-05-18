@@ -22,7 +22,30 @@ public class ComFilesService {
 			HttpServletRequest request) {
 		
 		// 자료실에 파일이 저장될 경로(디렉토리) 지정 없으면 생성
-		String  filePath   =  "d:\\upload\\";
+		String menu_id = (String) map.get("menu_id");
+		
+		String  filePath   =  "";
+		
+		switch (menu_id) {
+		  case "1":
+			  filePath = "d:\\upload\\board1\\";
+		    break;
+		  case "2":
+			  filePath = "d:\\upload\\board2\\";
+		    break;
+		  case "3":
+			  filePath = "d:\\upload\\menu3\\";
+		    break;
+		  case "4":
+			  filePath = "d:\\upload\\event\\";
+		    break;
+		  case "5":
+			  filePath = "d:\\upload\\wiki\\";
+		    break;
+		  default:
+			  filePath = "d:\\upload\\mypage\\";
+		}
+		
 		File    dir        =  new File(filePath);
 		if( !dir.exists() ) {
 			dir.mkdir();    // make directory   

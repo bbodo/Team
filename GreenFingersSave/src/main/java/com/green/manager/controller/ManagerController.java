@@ -870,7 +870,7 @@ public class ManagerController {
 
 
   	
-  //행사 등록----------------------------------------------------------------------------
+  //행사 ----------------------------------------------------------------------------
   	@RequestMapping("SeminarWriteForm")
   	public ModelAndView SeminarWriteForm( @RequestParam HashMap<String, Object> map,
   			HttpServletRequest request) {

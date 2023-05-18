@@ -340,6 +340,7 @@ public class ManagerServiceImpl implements ManagerService {
 		
 	}
 
+	//행사관리-------------------------------------------------------------------------------------
 	@Override
 	public void insertSeminarSave(HashMap<String, Object> map, HttpServletRequest request) {
 		//파일저장
