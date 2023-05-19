@@ -542,7 +542,7 @@ writeBtnEl.addEventListener("click", function(e) {
 			</form>
 		</div>
      </div> <!--  main end -->
-     
+     </div>
      </div>
      <%@include file="/WEB-INF/include/footer.jsp" %>
 </body>

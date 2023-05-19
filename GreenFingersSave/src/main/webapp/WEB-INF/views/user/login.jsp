@@ -134,10 +134,10 @@ a:hover {
 				<td>
 					<div class="id_pw_wrap">
 						<div class="input_row">
-							<input type="text" name="userid" id="id" value="sky" placeholder="아이디" style="border: none;"/>
+							<input type="text" name="userid" id="id" placeholder="아이디" style="border: none;"/>
 						</div>
 						<div class="input_row"
-							><input type="password" name="passwd" id="pwd" value="1234" placeholder="비밀번호" style="border: none;"/>
+							><input type="password" name="passwd" id="pwd" placeholder="비밀번호" style="border: none;"/>
 						</div>
 					</div>
 				</td>

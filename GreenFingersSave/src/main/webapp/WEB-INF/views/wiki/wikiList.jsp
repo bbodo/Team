@@ -338,7 +338,9 @@
 				});
 			}
 		})
-		
+		document.getElementById("top").addEventListener("click", function(e) {
+			window.scrollTo({ top: 0, behavior: "smooth" });
+		});
 	});
 </script>
 
@@ -372,6 +374,9 @@
 		modal.style.display = "flex"
 		   		}
 	</script>
+	  <div id="top">
+	  	TOP
+	  </div>
 	<div id="paging1"></div>
 	<!-- footer -->
     <%@include file="/WEB-INF/include/footer.jsp" %> 

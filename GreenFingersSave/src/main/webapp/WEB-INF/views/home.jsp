@@ -61,6 +61,17 @@
 	}	
 	
 </style>
+
+<script type="text/javascript">
+	
+	window.onload = function() {
+		document.getElementById("top").addEventListener("click", function(e) {
+			window.scrollTo({ top: 0, behavior: "smooth" });
+		});
+	}
+
+</script>
+
 </head>
 
 <body>
