@@ -31,13 +31,14 @@
 		width: 15%;
 		padding: 10px;
 	}
+	#wrap {width:100%;}
 	#main {
-		width: 85%;
+		width: 1200px;
 		height: 800px;
-		float: left;
-		padding: 10px;
-		padding-right : 15%;
+		display: block;
+		padding :100px 0;
 		background-color: white;
+		margin: 0 auto;
 	}
 	#cont {
 		background-color: #fff;
@@ -135,15 +136,8 @@
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
-     <div id="title">
-     	<p>쪽지 상세보기</p>
-     </div>
-     <div id="aside">
-     	내정보<br />
-     	작성글<br />
-     	쪽지<br />
-     </div>
-     
+	 <%@include file="/WEB-INF/include/subBanner.jsp" %>
+     <div id="wrap">
      <div id="main">
 		<form action="/mypage/myNoteAnswerSend?nowpage=1&note_idx=${myNoteAnswerForm.note_idx}" method="POST">
 			<input type="hidden" name="receiver_usercode" value="${myNoteAnswerForm.receiver_usercode}" />
@@ -164,6 +158,7 @@
 			<input style="float: right;" id="submitBtn" type="submit" value="전송"/>
 		</form>
 		<button id="cencelBtn" style="float: left;">취소</button>
+	</div>
 	</div>
 	
      <%@include file="/WEB-INF/include/footer.jsp" %>

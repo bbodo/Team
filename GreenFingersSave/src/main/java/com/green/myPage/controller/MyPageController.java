@@ -527,7 +527,7 @@ public class MyPageController {
 		//myPageService.myUpdatePoint(map);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/mypage/myList?nowpage=1");
+		mv.setViewName("redirect:/mypage/myList?menu_id=mypage&nowpage=1");
 		mv.addObject("userVo", userVo);
 		return mv;
 	}
