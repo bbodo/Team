@@ -130,17 +130,17 @@
 		}
 		
 		//빈 칸 체크
-		let nullNote = "${nullNote}";
+	/* 	let nullNote = "${nullNote}";
 		
 		if(nullNote == "값없음"){
 			alert("빈 칸을 채워주세요");
-		}
+		} */
 		
 		//취소 버튼
-		document.getElementById('cencelBtn').onclick = function(){
+	/* 	document.getElementById('cencelBtn').onclick = function(){
 			notetitle.value = null;
 			notecont.value = null;
-		}; 		
+		}; 	 */	
 	}
 </script>
 
@@ -153,7 +153,7 @@
 
 
      <div id="main">
-		<form action="/mypage/myNoteAnswerSend?nowpage=1&note_idx=${myNoteAnswerForm.note_idx}" method="POST">
+		<form action="/mypage/myNoteAnswerSend?nowpage=1&note_idx=${myNoteAnswerForm.note_idx}&menu_id=mypage" method="POST">
 			<input type="hidden" name="receiver_usercode" value="${myNoteAnswerForm.receiver_usercode}" />
 			<table id="cont">
 				<tr>
@@ -170,7 +170,7 @@
 				</tr>
 			</table>
 			<input style="float: right;" id="submitBtn" type="submit" value="전송"/>
-		<button id="cencelBtn" style="float: left; margin:20px 0 0 20px;">취소</button>
+		<button style="float: left; margin:20px 0 0 20px;"><a href="/mypage/myList?nowpage=1&menu_id=mypage">목록으로</a></button>
 		</form>
 	</div>
 	</div>
