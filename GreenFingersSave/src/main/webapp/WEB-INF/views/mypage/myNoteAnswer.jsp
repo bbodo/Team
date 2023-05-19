@@ -24,6 +24,7 @@
 	#title p {
 		 line-height: 100px;
 	}
+<<<<<<< HEAD
 	#aside {
 		float: left;
 		height: 800px;
@@ -31,6 +32,8 @@
 		width: 15%;
 		padding: 10px;
 	}
+=======
+>>>>>>> branch 'master' of https://github.com/bbodo/Team.git
 	#wrap {width:100%;}
 	#main {
 		width: 1200px;
@@ -47,6 +50,10 @@
 		border-collapse: collapse;
 		margin-top: 10px;
 		border-top: 3px solid #228B22;
+		border-bottom: 3px solid #228B22;
+	}
+	#cont th {
+		border-top: none;
 	}
 	#cont tr td {
 		padding: 15px;
@@ -103,6 +110,12 @@
 		padding: 20px;
 	}
 	
+	/*버튼*/
+	#submitBtn {
+		margin:20px 0 0 20px;
+		display: block;
+	}
+	
 </style>
 
 <script>
@@ -136,8 +149,12 @@
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
+<<<<<<< HEAD
 	 <%@include file="/WEB-INF/include/subBanner.jsp" %>
      <div id="wrap">
+=======
+     <%@include file="/WEB-INF/include/subBanner.jsp" %>
+>>>>>>> branch 'master' of https://github.com/bbodo/Team.git
      <div id="main">
 		<form action="/mypage/myNoteAnswerSend?nowpage=1&note_idx=${myNoteAnswerForm.note_idx}" method="POST">
 			<input type="hidden" name="receiver_usercode" value="${myNoteAnswerForm.receiver_usercode}" />
@@ -156,8 +173,8 @@
 				</tr>
 			</table>
 			<input style="float: right;" id="submitBtn" type="submit" value="전송"/>
+		<button id="cencelBtn" style="float: left; margin:20px 0 0 20px;">취소</button>
 		</form>
-		<button id="cencelBtn" style="float: left;">취소</button>
 	</div>
 	</div>
 	
