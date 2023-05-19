@@ -24,7 +24,7 @@
 	#title p {
 		 line-height: 100px;
 	}
-<<<<<<< HEAD
+
 	#aside {
 		float: left;
 		height: 800px;
@@ -32,8 +32,6 @@
 		width: 15%;
 		padding: 10px;
 	}
-=======
->>>>>>> branch 'master' of https://github.com/bbodo/Team.git
 	#wrap {width:100%;}
 	#main {
 		width: 1200px;
@@ -149,12 +147,12 @@
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
-<<<<<<< HEAD
+
 	 <%@include file="/WEB-INF/include/subBanner.jsp" %>
      <div id="wrap">
-=======
+
      <%@include file="/WEB-INF/include/subBanner.jsp" %>
->>>>>>> branch 'master' of https://github.com/bbodo/Team.git
+
      <div id="main">
 		<form action="/mypage/myNoteAnswerSend?nowpage=1&note_idx=${myNoteAnswerForm.note_idx}" method="POST">
 			<input type="hidden" name="receiver_usercode" value="${myNoteAnswerForm.receiver_usercode}" />
