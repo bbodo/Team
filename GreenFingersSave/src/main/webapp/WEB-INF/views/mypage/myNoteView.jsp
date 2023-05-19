@@ -171,11 +171,7 @@
 				</tr>
 			</table>
 		</form>
-<<<<<<< HEAD
-		<button id="answerBtn" style="float: right; margin-top:20px;"><a href="/mypage/myNoteAnswer?nowpage=1&note_idx=${myNoteView.note_idx}&menu_id=mypage">답장</a></button>
-=======
 		<button id="answerBtn" style="float: right; margin-top:20px;"><a href="/mypage/myNoteAnswer?nowpage=1&note_idx=${myNoteView.note_idx}&menu_id=mypage"">답장</a></button>
->>>>>>> branch 'master' of https://github.com/bbodo/Team.git
 		<button id="cencelBtn" style="float: right; margin-top:20px;"><a href="/mypage/noteDelete?nowpage=1&note_idx=${myNoteView.note_idx}">삭제</a></button>
 	</div>
 	</div>

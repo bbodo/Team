@@ -151,7 +151,6 @@
 	 <%@include file="/WEB-INF/include/subBanner.jsp" %>
      <div id="wrap">
 
-     <%@include file="/WEB-INF/include/subBanner.jsp" %>
 
      <div id="main">
 		<form action="/mypage/myNoteAnswerSend?nowpage=1&note_idx=${myNoteAnswerForm.note_idx}" method="POST">
