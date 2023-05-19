@@ -27,7 +27,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		}
 		
 		//-----------------------------------------------------------
-		Object obj = session.getAttribute("login");
+		Object obj  = session.getAttribute("login");
+
 		if(obj == null) {
 			// 로그인되어 있지 않다면 /login 화면으로 이동하시오
 			response.sendRedirect("/User/Login");

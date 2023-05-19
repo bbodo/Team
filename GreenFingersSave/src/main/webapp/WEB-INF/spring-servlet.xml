@@ -97,8 +97,6 @@
          <mvc:exclude-mapping path="/Wiki/List"/> -->
          <mvc:mapping path="/Board/WriteForm"/>	
          <mvc:mapping path="/Market/WriteForm"/>	
-       
-       
 	         
          <bean id="authInterceptor" 
             class="com.green.interceptor.AuthInterceptor">

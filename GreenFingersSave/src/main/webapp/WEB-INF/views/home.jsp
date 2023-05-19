@@ -232,7 +232,7 @@
 					<div>
 						<a href="#"> <img src="/img/home/con2img3.jpg" alt="mainImg" />
 							<p>반려식물 상담실<br/><span>반려식물 상담실이 생성되었습니다~</span></p>
-							<div></div>
+							<div></div> 
 						</a>
 					</div>
 					
