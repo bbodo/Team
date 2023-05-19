@@ -24,20 +24,14 @@
 	#title p {
 		 line-height: 100px;
 	}
-	#aside {
-		float: left;
-		height: 800px;
-		background-color: white;
-		width: 15%;
-		padding: 10px;
-	}
+	#wrap {width:100%;}
 	#main {
-		width: 85%;
+		width: 1200px;
 		height: 800px;
-		float: left;
-		padding: 10px;
-		padding-right : 15%;
+		display: block;
+		padding :100px 0;
 		background-color: white;
+		margin: 0 auto;
 	}
 	#cont {
 		background-color: #fff;
@@ -46,6 +40,10 @@
 		border-collapse: collapse;
 		margin-top: 10px;
 		border-top: 3px solid #228B22;
+		border-bottom: 3px solid #228B22;
+	}
+	#cont th {
+		border-top: none;
 	}
 	#cont tr td {
 		padding: 15px;
@@ -102,6 +100,12 @@
 		padding: 20px;
 	}
 	
+	/*버튼*/
+	#submitBtn {
+		margin:20px 0 0 20px;
+		display: block;
+	}
+	
 </style>
 
 <script>
@@ -135,15 +139,7 @@
 </head>
 <body>
 	 <%@include file="/WEB-INF/include/header.jsp" %>
-     <div id="title">
-     	<p>쪽지 상세보기</p>
-     </div>
-     <div id="aside">
-     	내정보<br />
-     	작성글<br />
-     	쪽지<br />
-     </div>
-     
+     <%@include file="/WEB-INF/include/subBanner.jsp" %>
      <div id="main">
 		<form action="/mypage/myNoteAnswerSend?nowpage=1&note_idx=${myNoteAnswerForm.note_idx}" method="POST">
 			<input type="hidden" name="receiver_usercode" value="${myNoteAnswerForm.receiver_usercode}" />
@@ -162,8 +158,8 @@
 				</tr>
 			</table>
 			<input style="float: right;" id="submitBtn" type="submit" value="전송"/>
+		<button id="cencelBtn" style="float: left; margin:20px 0 0 20px;">취소</button>
 		</form>
-		<button id="cencelBtn" style="float: left;">취소</button>
 	</div>
 	
      <%@include file="/WEB-INF/include/footer.jsp" %>
